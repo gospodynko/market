@@ -53,13 +53,15 @@ class HomeController extends Controller
 
         $suggestion['carousel'] = $suggestion['product_purchased'];
 
-        return view('home', [
+        return view('main');
+
+        /*[
             'banner' => ['/img/banner/01.png', '/img/banner/02.png', '/img/banner/03.png', '/img/banner/04.png'], //while refactoring
             'tagsCloud' => $this->tagsCloud($suggestion),
             'panel' => $this->panelLayout(),
             'suggestion' => $suggestion,
             'events' => [],
-        ]);
+        ]*/
     }
 
     /**

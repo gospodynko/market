@@ -34,7 +34,7 @@ class VirtualProductsSeeder extends Seeder
                 'stock'        => $stock,
                 'sale_counts'  => $faker->randomNumber(9),
                 'view_counts'  => $faker->randomNumber(9),
-                'brand'        => $faker->randomElement(['Apple', 'Gigabyte', 'Microsoft', 'Google. Inc', 'Samsung', 'Lg']),
+//                'brand'        => $faker->randomElement(['Apple', 'Gigabyte', 'Microsoft', 'Google. Inc', 'Samsung', 'Lg']),
                 'features'     => json_encode([
                     'images' => [
                     '/img//pt-default/'.$faker->unique()->numberBetween(1, 330).'.jpg',

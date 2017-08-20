@@ -21,16 +21,16 @@ class CompanyTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Company::class)->create([
-            'name' => 'antvel',
-            'description' => 'Laravel e-commerce Application',
-            'email' => 'info@antvel.com',
-            'contact_email' => 'contact@antvel.com',
-            'sales_email' => 'sales@antvel.com',
-            'support_email' => 'support@antvel.com',
-            'website' => 'http://antvel.com',
-            'twitter' => 'https://twitter.com/_antvel',
-            'facebook' => 'https://www.facebook.com/antvelecommerce',
-        ]);
+//        factory(Company::class)->create([
+//            'name' => 'antvel',
+//            'description' => 'Laravel e-commerce Application',
+//            'email' => 'info@antvel.com',
+//            'contact_email' => 'contact@antvel.com',
+//            'sales_email' => 'sales@antvel.com',
+//            'support_email' => 'support@antvel.com',
+//            'website' => 'http://antvel.com',
+//            'twitter' => 'https://twitter.com/_antvel',
+//            'facebook' => 'https://www.facebook.com/antvelecommerce',
+//        ]);
     }
 }

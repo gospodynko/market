@@ -4,6 +4,7 @@ Homestead.yaml
 
 /.idea
 /vendor
+vendor/
 /_ide_helper.php
 
 /storage/*.key

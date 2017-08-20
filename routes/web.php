@@ -27,6 +27,9 @@ Route::get('/adminlogin', function (){
 
 // home
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
+Route::get('/single-product', function (){
+   return view('single-prod') ;
+});
 Route::get('summary', ['as' => 'home', 'uses' => 'HomeController@summary']); //while refactoring
 
 Route::group(['prefix' => 'home'], function () {
