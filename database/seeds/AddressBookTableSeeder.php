@@ -23,7 +23,7 @@ class AddressBookTableSeeder extends Seeder
     public function run()
     {
         factory(Address::class, 3)->create([
-            'user_id' => User::where('role', 'like', 'customer')->take(1)->first()->id
+            'user_id' => User::where('role', 'like', 'seller')->take(1)->first()->id
         ]);
     }
 }

@@ -1,8 +1,9 @@
-var elixir = require('laravel-elixir');
+const elixir = require('laravel-elixir');
+require('laravel-elixir-vue-2');
+
 var path = {
 	'vendors':'public/css/vendor/'
 };
-
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -14,8 +15,7 @@ var path = {
  |
  */
 
-elixir(function(mix) {
-	mix.less([
-		'app.less'
-	]);
+elixir(mix => {
+    mix.sass('main.scss')
+        .webpack('app.js');
 });

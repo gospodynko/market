@@ -1,0 +1,202 @@
+.header{
+  height: 80px;
+  width: 100%;
+  background: #ffffff;
+  .two-wrap{
+    height: 100%;
+    max-width: 1315px;
+    margin: 0 auto;
+  }
+  .left,.right{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .left{
+    width: 55%;
+  }
+  .right{
+    width: 45%;
+  }
+  .site-menu{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .item{
+      img{
+        width: 45px;
+        height: 45px;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+      }
+      i{
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        vertical-align: sub;
+        margin-right: 10px;
+      }
+      p,a{
+        color: $gray-dark;
+      }
+      .city > i{
+        background: url("../img/header/place.svg") no-repeat center;
+        -webkit-background-size: 14px;
+        background-size: 14px;
+      }
+      .shop>i{
+        background: url("../img/header/market.svg") no-repeat center;
+        -webkit-background-size: 17px;
+        background-size: 17px;
+      }
+      .basket > i{
+        background: url("../img/header/ko.svg") no-repeat center;
+        -webkit-background-size:17px;
+        background-size:17px;
+      }
+    }
+  }
+}
+
+.catalogue-wrap{
+  width: 100%;
+  background: #e2e9f0;
+  height: 80px;
+  .menu-wrap{
+    width: 100%;
+    max-width: 1315px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    position: relative;
+    .catalog-menu-items{
+      width: 300px;
+      height: 100%;
+      .catalog-menu-btn{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        background: #f0f4f8;
+        border: 1px solid $light-gray;
+        p{
+          font-size: 20px;
+          font-weight: 500;
+        }
+        .burger{
+          display: inline-block;
+          width: 25px;
+          height: 20px;
+          background: url('../img/header/burger.png') no-repeat center;
+        }
+        .arrow-down{
+          display: inline-block;
+          width: 15px;
+          height: 10px;
+          background: url('../img/header/arrow-down.png') no-repeat center;
+        }
+      }
+    }
+    .search-wrap{
+      width: calc(100% - 345px);
+      .actions-wrap{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        .search-action-wrap{
+          width: calc(100% - 230px);
+          label{
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            input{
+              border: 1px solid $green;
+              width: calc(100% - 130px);
+              border-top-right-radius: 0;
+              border-bottom-right-radius: 0;
+            }
+            button{
+              width: 125px;
+              display: inline-block;
+              border: 1px solid $green;
+              background: $green-btn;
+              color: $white;
+              margin-left: -5px;
+              border-top-right-radius: 4px;
+              border-bottom-right-radius: 4px;
+              font-size: 20px;
+              font-weight: 500;
+            }
+          }
+        }
+        .all-shops-btn{
+          width: 200px;
+          .btn{
+            width: 100%;
+            background: $blue-btn;
+            border: 1px solid $blue-btn-bd;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            border-radius: 4px;
+            font-size: 20px;
+            font-weight: 500;
+            color: $white;
+          }
+        }
+      }
+    }
+  }
+}
+.all-menu-list{
+  position: absolute;
+  width: 300px;
+  left: 0;
+  top: 80px;
+  background: $white;
+  .site-menu-wrap{
+    width: 100%;
+    height: 500px;
+    .single-menu-item{
+      width: 100%;
+      height: 40px;
+      padding: 0px 25px;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+      line-height: 40px;
+      &:hover{
+        background: $green;
+        cursor: pointer;
+        & p{
+          color: $white;
+          i{
+            background-position: -10px 0;
+          }
+        }
+      }
+      p{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        i{
+          display: inline-block;
+          width: 10px;
+          height: 14px;
+          background: url("../img/sprite-arrow.png") no-repeat;
+          background-position: 0 0;
+        }
+      }
+    }
+  }
+}
