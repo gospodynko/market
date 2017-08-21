@@ -30,6 +30,18 @@ Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::get('/single-product', function (){
    return view('single-prod') ;
 });
+Route::get('/product-list', function (){
+    return view('prod-list') ;
+});
+Route::get('/product-list-feedback', function (){
+    return view('prod-list-feedback') ;
+});
+Route::get('/search-page', function (){
+    return view('search') ;
+});
+Route::get('/cart-item', function (){
+    return view('cart') ;
+});
 Route::get('summary', ['as' => 'home', 'uses' => 'HomeController@summary']); //while refactoring
 
 Route::group(['prefix' => 'home'], function () {
