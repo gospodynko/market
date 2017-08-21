@@ -8,6 +8,10 @@ import HeaderVue from './components/core/header.vue';
 import FooterVue from './components/core/footer.vue';
 import MainVue from './components/index/main.vue';
 import ProductVue from './components/product/product.vue';
+import ProductList from './components/product/prod-list.vue';
+import ProductListFeedback from './components/product/prod-list-feedback.vue';
+import SearchVue from './components/search/search.vue';
+import CartVue from './components/cart/cart.vue';
 // Vue.use(VueSocketio, 'http://localhost:8303');
 // Vue.use(VueRouter);
 Vue.use(VueResource);
@@ -21,7 +25,11 @@ const app = new Vue({
         HeaderVue,
         FooterVue,
         MainVue,
-        ProductVue
+        ProductVue,
+        ProductList,
+        ProductListFeedback,
+        SearchVue,
+        CartVue
     }
 
 
