@@ -15,6 +15,7 @@ use App\User;
 
 class LoginController extends Controller
 {
+
     use AuthenticatesUsers;
 
     /**
@@ -55,24 +56,25 @@ class LoginController extends Controller
         }
 
         return redirect()->back()
-            ->withInput($request->only('email'))
-            ->withErrors([
-                'password' => 'Invalid password',
-            ]);
+                ->withInput($request->only('email'))
+                ->withErrors([
+                    'password' => 'Invalid password',
+        ]);
     }
 
-    public function loginOauth(Request $request){
+    public function loginOauth(Request $request)
+    {
 
-        $user = \DB::table('agroyard_users')
-            ->where('phone', $request->input('phone'))
+        $user = AgroUser
+            ::where('phone', $request->input('phone'))
             ->first();
 
-        if($user == null){
+        if ($user == null) {
             return redirect()->back()
-                ->withInput($request->only('phone'))
-                ->withErrors([
-                    'phone' => 'User not found',
-                ]);
+                    ->withInput($request->only('phone'))
+                    ->withErrors([
+                        'phone' => 'User not found',
+            ]);
         }
 
         $credentials = [
@@ -81,7 +83,7 @@ class LoginController extends Controller
         ];
 
         $client = new Client();
-        $response = $client->request('POST','http://api.agroyard.test/api/login', [
+        $response = $client->request('POST', 'http://agroyard-api.loc/api/login', [
             'auth' => ['UT-agroyard', '![8a1ypLKE6-]9K'],
             'form_params' => [
                 'phone' => $request->input('phone'),
@@ -89,17 +91,18 @@ class LoginController extends Controller
             ]
         ]);
 
-        if((string)$response->getBody() != '0'){
+        if ((string) $response->getBody() != '0') {
             $attempt = \Auth::attempt($credentials);
             if ($attempt) {
+                $user->autosetRole();
                 return redirect(url('/'));
             }
         }
 
         return redirect()->back()
-            ->withInput($request->only('phone'))
-            ->withErrors([
-                'password' => 'Invalid password',
-            ]);
+                ->withInput($request->only('phone'))
+                ->withErrors([
+                    'password' => 'Invalid password',
+        ]);
     }
 }
