@@ -7,14 +7,15 @@ namespace App\Http\Controllers;
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-
 use App\Order;
 use Antvel\Product\Products;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 
 class HomeController extends Controller
 {
-   /**
+
+    /**
      * The products repository.
      *
      * @var Products
@@ -26,7 +27,7 @@ class HomeController extends Controller
      *
      * @var array
      */
-    protected $listing = ['product_viewed', 'product_purchased' , 'product_categories'];
+    protected $listing = ['product_viewed', 'product_purchased', 'product_categories'];
 
     /**
      * Creates a new instance.
@@ -52,30 +53,36 @@ class HomeController extends Controller
         $suggestion = $this->products->suggestForPreferences($this->listing);
 
         $suggestion['carousel'] = $suggestion['product_purchased'];
+        return view('main', [
+        'categories' => Category::where('category_id', null)->get(),
+        'banner' => ['/img/banner/01.png', '/img/banner/02.png', '/img/banner/03.png', '/img/banner/04.png'], //while refactoring
+        'tagsCloud' => $this->tagsCloud($suggestion),
+        'panel' => $this->panelLayout(),
+        'suggestion' => $suggestion,
+        'events' => [],
+        ]);
 
-        return view('main');
+        /* [
+          'banner' => ['/img/banner/01.png', '/img/banner/02.png', '/img/banner/03.png', '/img/banner/04.png'], //while refactoring
+          'tagsCloud' => $this->tagsCloud($suggestion),
+          'panel' => $this->panelLayout(),
+          'suggestion' => $suggestion,
+          'events' => [],
+          ] */
+        }
 
-        /*[
-            'banner' => ['/img/banner/01.png', '/img/banner/02.png', '/img/banner/03.png', '/img/banner/04.png'], //while refactoring
-            'tagsCloud' => $this->tagsCloud($suggestion),
-            'panel' => $this->panelLayout(),
-            'suggestion' => $suggestion,
-            'events' => [],
-        ]*/
-    }
-
-    /**
-     * Returns a tags array based upon the given suggestions.
-     *
-     * @param  array $suggestion
-     *
-     * @return array
-     */
-    protected function tagsCloud($suggestion) : array
-    {
+        /**
+         * Returns a tags array based upon the given suggestions.
+         *
+         * @param  array $suggestion
+         *
+         * @return array
+         */
+        protected function tagsCloud($suggestion) : array
+        {
         return collect($suggestion)->map(function ($item) {
-            $tags[] = explode(',', $item->pluck('tags')->implode(','));
-            return $tags;
+        $tags[] = explode(',', $item->pluck('tags')->implode(','));
+        return $tags;
         })->flatten()->unique()->all();
     }
 
@@ -100,8 +107,8 @@ class HomeController extends Controller
     //moved here while refactoring
     public function summary()
     {
-        $panel =  [
-            'left'   => ['width' => '2', 'class' => 'user-panel'],
+        $panel = [
+            'left' => ['width' => '2', 'class' => 'user-panel'],
             'center' => ['width' => '10'],
         ];
 
@@ -110,16 +117,16 @@ class HomeController extends Controller
 
         foreach ($query as $row) {
             if ($row->status == 'cancelled') {
-                $orders['cancelled']++;
+                $orders['cancelled'] ++;
             } elseif ($row->status == 'closed') {
-                $orders['closed']++;
+                $orders['closed'] ++;
             } else {
-                $orders['open']++;
+                $orders['open'] ++;
             }
             foreach ($row->details as $deta) {
                 $orders['total'] += ($deta->quantity * $deta->price);
                 if ($row->status == 'closed' && !$deta->rate) {
-                    $orders['nopRate']++;
+                    $orders['nopRate'] ++;
                 }
             }
         }
@@ -130,20 +137,20 @@ class HomeController extends Controller
             $sales = ['closed' => 0, 'open' => 0, 'cancelled' => 0, 'all' => $orders->count(), 'total' => 0, 'rate' => 0, 'numRate' => 0, 'totalRate' => 0, 'nopRate' => 0];
             foreach ($orders as $row) {
                 if ($row->status == 'cancelled') {
-                    $sales['cancelled']++;
+                    $sales['cancelled'] ++;
                 } elseif ($row->status == 'closed') {
-                    $sales['closed']++;
+                    $sales['closed'] ++;
                 } else {
-                    $sales['open']++;
+                    $sales['open'] ++;
                 }
                 foreach ($row->details as $deta) {
                     $sales['total'] += ($deta->quantity * $deta->price);
                     if ($row->status == 'closed' && $deta->rate) {
-                        $sales['numRate']++;
+                        $sales['numRate'] ++;
                         $sales['totalRate'] = $sales['totalRate'] + $deta->rate;
                     }
                     if ($row->status == 'closed' && !$deta->rate) {
-                        $sales['nopRate']++;
+                        $sales['nopRate'] ++;
                     }
                 }
             }
