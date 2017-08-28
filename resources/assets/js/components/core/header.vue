@@ -1,5 +1,6 @@
 <template>
     <header>
+        <div class="overlay" :class="{'show': showChild}"></div>
         <div class="header">
             <div class="two-wrap">
 
@@ -20,7 +21,12 @@
                             <a href="#" class="basket"><i></i> Корзина</a>
                         </div>
                         <div class="item">
-                            <img src="/img/avatars/ava.jpg" alt="" class="avatar">
+                            <div class="user-wrap" v-if="user">
+                                <img src="/img/avatars/ava.jpg" alt="" class="avatar">
+                                <span class="logout" @click="logout">Выйти</span>
+                            </div>
+
+                            <a href="/login" v-else>Войти</a>
                         </div>
                         <div class="item">
                             <ul class="languages">
@@ -33,7 +39,7 @@
                 </div>
             </div>
         </div>
-        <div class="catalogue-wrap">
+        <div class="catalogue-wrap" @mouseleave="showChild = false">
             <div class="menu-wrap">
                 <div class="catalog-menu-items">
                     <div class="catalog-menu-btn">
@@ -44,28 +50,14 @@
                 </div>
                 <div class="all-menu-list active" v-if="showMenu">
                     <div class="site-menu-wrap">
-                        <div class="single-menu-item">
-                            <p>Авто, Мото <i></i></p>
+                        <div class="single-menu-item" v-for="category in categories" @mouseover="setChild(category.children)">
+                            <p>{{category.name}} <i></i></p>
                         </div>
-                        <div class="single-menu-item">
-                            <p>Авто, Мото <i></i></p>
+                    </div>
+                    <div class="site-menu-wrap child-menu" v-if="showChild" @mouseleave="showChild = false">
+                        <div class="single-menu-item" v-for="subCategory in subCategories">
+                            <p>{{subCategory.name}} <i></i></p>
                         </div>
-                        <div class="single-menu-item">
-                            <p>Авто, Мото <i></i></p>
-                        </div>
-                        <div class="single-menu-item">
-                            <p>Авто, Мото <i></i></p>
-                        </div>
-                        <div class="single-menu-item">
-                            <p>Авто, Мото <i></i></p>
-                        </div>
-                        <div class="single-menu-item">
-                            <p>Авто, Мото <i></i></p>
-                        </div>
-                        <div class="single-menu-item">
-                            <p>Авто, Мото <i></i></p>
-                        </div>
-
                     </div>
                 </div>
                 <div class="search-wrap">
@@ -90,12 +82,28 @@
     export default {
         data(){
             return {
-                showMenu: false
+                showMenu: false,
+                showChild: false,
+                subCategories: null
             }
         },
+        props: ['categories', 'user'],
         created(){
             if(location.pathname == '/'){
                 this.showMenu = true;
+            }
+        },
+        methods: {
+            setChild(children){
+                this.showChild = true;
+                this.subCategories = children;
+            },
+            logout(){
+                this.$http.post('/logout', {}).then(res => {
+                    this.user = null;
+                }, err => {
+
+                })
             }
         }
     }

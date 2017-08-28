@@ -110,7 +110,17 @@ class AdminController extends Controller
 
     public function getProducersList(Request $request){
         $category = Category::find($request->input('category_id'));
-        return json_encode(\App\Models\Producer::select('id', 'name')->whereRaw('json_contains(category_id, \'"' . $category->category_id . '"\')')->get());
+        $producers = Producer::all();
+        $find_producers = array();
+        foreach ($producers as $producer){
+            $category_ids = explode(',', $producer->category_id);
+            if(array_search($category->id, $category_ids) !== false){
+                array_push($find_producers, $producer);
+            }
+        }
+
+//        return json_encode(\App\Models\Producer::select('id', 'name')->whereRaw('json_contains(category_id, \'"' . $category->category_id . '"\')')->get());
+        return json_encode($find_producers);
     }
     public function getProductsList(Request $request){
         return json_encode(\App\Models\Product::select('id', 'name')->where('producer_id', $request->input('producer_id'))->get());
