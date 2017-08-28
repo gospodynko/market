@@ -51,7 +51,6 @@ class HomeController extends Controller
     public function index()
     {
         $suggestion = $this->products->suggestForPreferences($this->listing);
-
         $suggestion['carousel'] = $suggestion['product_purchased'];
         return view('main', [
         'categories' => Category::where('category_id', null)->get(),
