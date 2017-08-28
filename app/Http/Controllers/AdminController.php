@@ -1,18 +1,21 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Producer;
-use Antvel\Categories\Models\Category;
+use App\Models\Category;
 use App\Helpers\ProductsHelper;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use App\Http\Requests\CreateBannerRequest;
+use App\Models\Banner;
 
 class AdminController extends Controller
 {
-    public function indexProducts(Request $request){
+
+    public function indexProducts(Request $request)
+    {
         $products = Product::where('id', '>', '-1')
             ->paginate(20);
 
@@ -21,20 +24,21 @@ class AdminController extends Controller
             'products' => $products,
         ]);
     }
-    public function indexProducers(Request $request){
-        $producers = Producer::where('id', '>', '-1')
-            ->paginate(20);
 
-
+    public function indexProducers(Request $request)
+    {
+        $producers = Producer::
+            paginate(20);
         return view('dashboard.sections.producers.index', [
             'producers' => $producers,
         ]);
     }
 
-    public function storeProducer(Request $request){
+    public function storeProducer(Request $request)
+    {
         if (!$request->input('category_id') || in_array(NULL, $request->input('category_id'))) {
             return redirect()->back()
-                ->withErrors(['category_id' => [trans('globals.error').' не обрано категорію']]);
+                    ->withErrors(['category_id' => [trans('globals.error') . ' не обрано категорію']]);
         }
 
         $producer = new Producer();
@@ -45,11 +49,13 @@ class AdminController extends Controller
         $producer->save();
 
         $message = '';
-        Session::flash('message', trans('product.controller.saved_successfully').$message);
+        Session::flash('message', trans('product.controller.saved_successfully') . $message);
 
         return redirect('admin/producers');
     }
-    public function editProducer($id){
+
+    public function editProducer($id)
+    {
         $producer = Producer::find($id);
         $arrayCategories = Category::actives()
             ->where('category_id', NULL)
@@ -67,10 +73,11 @@ class AdminController extends Controller
 
         $edit = true;
 
-        return view('dashboard.sections.producers.create',
-            compact('producer','categories', 'edit', 'productsDetails'));
+        return view('dashboard.sections.producers.create', compact('producer', 'categories', 'edit', 'productsDetails'));
     }
-    public function createProducer(Request $request){
+
+    public function createProducer(Request $request)
+    {
         $producer = Producer::find(-50);
         $arrayCategories = Category::actives()
             ->where('category_id', NULL)
@@ -88,11 +95,11 @@ class AdminController extends Controller
 
         $edit = false;
 
-        return view('dashboard.sections.producers.create',
-            compact('producer','categories', 'edit', 'productsDetails'));
+        return view('dashboard.sections.producers.create', compact('producer', 'categories', 'edit', 'productsDetails'));
     }
 
-    public function updateProducer($id, Request $request){
+    public function updateProducer($id, Request $request)
+    {
         $producer = Producer::find($id);
 
         $producer->category_id = \GuzzleHttp\json_encode($request->input('category_id'));
@@ -102,27 +109,39 @@ class AdminController extends Controller
         $producer->save();
 
         $message = '';
-        Session::flash('message', trans('product.controller.saved_successfully').$message);
+        Session::flash('message', trans('product.controller.saved_successfully') . $message);
 
-        return redirect('admin/producers/'.$id.'/edit');
-
+        return redirect('admin/producers/' . $id . '/edit');
     }
 
-    public function getProducersList(Request $request){
-        $category = Category::find($request->input('category_id'));
-        $producers = Producer::all();
-        $find_producers = array();
-        foreach ($producers as $producer){
-            $category_ids = explode(',', $producer->category_id);
-            if(array_search($category->id, $category_ids) !== false){
-                array_push($find_producers, $producer);
-            }
-        }
+    public function getProducersList(Request $request)
+    {
+        $category = Category::find($request->category_id);
 
-//        return json_encode(\App\Models\Producer::select('id', 'name')->whereRaw('json_contains(category_id, \'"' . $category->category_id . '"\')')->get());
-        return json_encode($find_producers);
+        return response()->json($category->producers, 200);
     }
-    public function getProductsList(Request $request){
+
+    public function getBannersList()
+    {
+        $banners = Banner::all();
+
+        return $banners;
+    }
+
+    public function createBanner(CreateBannerRequest $request)
+    {
+        $banner = Banner::create([
+                'is_special' => $request->input('is_special'),
+                'url' => $request->input('url'),
+                ]
+        );
+
+        $banner->image = $request->file('image')->getRealPath();
+        $banner->save();
+    }
+
+    public function getProductsList(Request $request)
+    {
         return json_encode(\App\Models\Product::select('id', 'name')->where('producer_id', $request->input('producer_id'))->get());
     }
 }

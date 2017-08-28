@@ -34,4 +34,7 @@ Route::group(['roles' => ['seller', 'admin'], 'middleware' => ['auth', 'roles']]
 
     Route::put('admin/producers/{id}', ['uses' => 'AdminController@updateProducer', 'as' => 'admin.producers.update']);
 
+    Route::post('admin/banner', 'AdminController@createBanner');
+
+    Route::get('admin/banner', 'AdminController@getBannersList');
 });
