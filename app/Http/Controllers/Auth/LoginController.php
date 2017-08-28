@@ -83,7 +83,7 @@ class LoginController extends Controller
         ];
 
         $client = new Client();
-        $response = $client->request('POST', 'http://api-agroyard.test/api/login', [
+        $response = $client->request('POST', env('AGROYARD_API_AUTH'), [
             'auth' => ['UT-agroyard', '![8a1ypLKE6-]9K'],
             'form_params' => [
                 'phone' => $request->input('phone'),
