@@ -157,7 +157,7 @@ class ProductsController extends Controller
         $panel = $this->panel;
         $oldFeatures = ProductDetail::oldFeatures([]);
         $productsDetails = new FeaturesHelper();
-        $producers = ($product) ? Producer::getByCategory($product->category_id) : [];
+        $producers = ($product) ? $product->category->producers : [];
 
         return view('products.formAdmin',
                 compact('product', 'panel', 'features', 'categories', 'typeItem', 'disabled', 'edit', 'oldFeatures', 'productsDetails'))
@@ -456,7 +456,7 @@ class ProductsController extends Controller
         ProductsHelper::simpleTypesDropDownFormat($productType, $productTypes);
 
         $currencies = Currency::getArray();
-        $producers = ($product) ? Producer::getByCategory($product->category_id) : [];
+        $producers = ($product) ? $product->category->producers : [];
         return view('products.form', compact('product', 'panel', 'features', 'categories', 'condition', 'typeItem', 'disabled', 'edit', 'oldFeatures', 'productsDetails'))
             ->with('deliveryTypes', $deliveryTypes)
             ->with('payTypes', $payTypes)
@@ -504,7 +504,7 @@ class ProductsController extends Controller
 
         $productsDetails = new FeaturesHelper();
         $images = Product::images($product);
-        $producers = ($product) ? Producer::getByCategory($product->category_id) : [];
+        $producers = ($product) ? $product->category->producers : [];
 
         return view('products.formAdmin', compact('product', 'panel', 'features', 'categories', 'condition', 'typeItem', 'disabled', 'edit', 'oldFeatures', 'productsDetails'))
             ->with('images', $images)
