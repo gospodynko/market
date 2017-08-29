@@ -95,7 +95,7 @@ class Product extends Model
         if($minPriceEUR !== NULL)
             array_push($tmpArr, \App\Helpers\CurrencyRates::convertToUAH($minPriceEUR, 3));
 
-        $average = array_sum($tmpArr) / count($tmpArr);
+        $average = !empty($tmpArr) ? array_sum($tmpArr) / count($tmpArr) : 0;
         return number_format($average, 2, '.', '');
     }
 
