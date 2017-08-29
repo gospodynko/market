@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 /*
@@ -7,10 +6,13 @@ namespace App\Http\Controllers;
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
+
 use App\Order;
 use Antvel\Product\Products;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Product;
+use App\Models\Banner;
 
 class HomeController extends Controller
 {
@@ -50,39 +52,33 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $suggestion = $this->products->suggestForPreferences($this->listing);
-        $suggestion['carousel'] = $suggestion['product_purchased'];
+        $productsTop = Product::orderBy('created_at', 'DESC')->get();
+        $productsSuggestions = Product::orderBy('created_at', 'ASC')->get();
+        
         return view('main', [
-        'categories' => Category::where('category_id', null)->get(),
-        'banner' => ['/img/banner/01.png', '/img/banner/02.png', '/img/banner/03.png', '/img/banner/04.png'], //while refactoring
-        'tagsCloud' => $this->tagsCloud($suggestion),
-        'panel' => $this->panelLayout(),
-        'suggestion' => $suggestion,
-        'events' => [],
+            'categories' => Category::where('category_id', null)->get(),
+            'banner' => Banner::all(),
+            'tagsCloud' => $this->tagsCloud($productsSuggestions),
+            'panel' => $this->panelLayout(),
+            'productsTop' => $productsTop,
+            'productsSuggestions' => $productsSuggestions,
+            'events' => [],
         ]);
+    }
 
-        /* [
-          'banner' => ['/img/banner/01.png', '/img/banner/02.png', '/img/banner/03.png', '/img/banner/04.png'], //while refactoring
-          'tagsCloud' => $this->tagsCloud($suggestion),
-          'panel' => $this->panelLayout(),
-          'suggestion' => $suggestion,
-          'events' => [],
-          ] */
-        }
-
-        /**
-         * Returns a tags array based upon the given suggestions.
-         *
-         * @param  array $suggestion
-         *
-         * @return array
-         */
-        protected function tagsCloud($suggestion) : array
-        {
+    /**
+     * Returns a tags array based upon the given suggestions.
+     *
+     * @param  array $suggestion
+     *
+     * @return array
+     */
+    protected function tagsCloud($suggestion): array
+    {
         return collect($suggestion)->map(function ($item) {
-        $tags[] = explode(',', $item->pluck('tags')->implode(','));
-        return $tags;
-        })->flatten()->unique()->all();
+                $tags[] = explode(',', $item->pluck('tags')->implode(','));
+                return $tags;
+            })->flatten()->unique()->all();
     }
 
     /**
