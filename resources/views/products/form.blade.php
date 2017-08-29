@@ -239,7 +239,6 @@
                     success: function (data) {
                         $('#products_section').hide();
                         $('#producer_id').empty();
-                        data = JSON.parse(data);
 
                         if(data.length > 0){
                             var elem = '<option value="false" disabled selected="selected">Оберіть виробника</option>';
