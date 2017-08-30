@@ -30,7 +30,7 @@ class Product extends Model
         return $this->hasMany(UserProduct::class);
     }
 
-    public static function images()
+    public function getImagesAttribute()
     {
         $imagesPath = "products/$this->id/images/";
 
