@@ -48,6 +48,10 @@ Route::group(['prefix' => 'home'], function () {
     Route::get('/', 'HomeController@index');
 });
 
+Route::prefix('search')->group(function () {
+    Route::post('/', 'SearchController@search');
+});
+
 //users routes
 require __DIR__ . '/web/users.php';
 
