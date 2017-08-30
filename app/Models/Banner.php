@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -21,7 +20,7 @@ class Banner extends Model
 
     public function getImageAttribute()
     {
-        return Storage::disk('public')->path(self::BANNERS_PATH . $this->id . '.jpg');
+        return Storage::disk('public')->url(self::BANNERS_PATH . $this->id . '.jpg');
     }
 
     public function setImageAttribute($imagePath)
