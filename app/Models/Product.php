@@ -6,13 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 use Antvel\Categories\Models\Category;
 use Antvel\Product\Models\Concerns\Pictures;
 use App\Models\UserProduct;
+use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
 {
 
     use Pictures;
 
-    protected $with = ['pictures'];
+    protected $appends = ['images'];
 
     public function category()
     {
@@ -29,9 +30,17 @@ class Product extends Model
         return $this->hasMany(UserProduct::class);
     }
 
-    public static function images(Product $product)
+    public static function images()
     {
-        return json_decode($product->features)->images;
+        $imagesPath = "products/$this->id/images/";
+
+        $images = Storage::disk('public')->files($imagesPath);
+
+        foreach ($images as $key => $image) {
+            $images[$key] = Storage::disk('public')->url($image);
+        }
+
+        return $images;
     }
 
     public function getPriceMin()

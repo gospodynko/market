@@ -503,7 +503,7 @@ class ProductsController extends Controller
         $oldFeatures = ProductDetail::oldFeatures($product->features);
 
         $productsDetails = new FeaturesHelper();
-        $images = Product::images($product);
+        $images = $product->images;
         $producers = ($product) ? $product->category->producers : [];
 
         return view('products.formAdmin', compact('product', 'panel', 'features', 'categories', 'condition', 'typeItem', 'disabled', 'edit', 'oldFeatures', 'productsDetails'))
