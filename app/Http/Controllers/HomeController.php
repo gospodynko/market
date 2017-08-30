@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 /*
@@ -6,7 +7,6 @@ namespace App\Http\Controllers;
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-
 use App\Order;
 use Antvel\Product\Products;
 use App\Http\Controllers\Controller;
@@ -52,9 +52,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $productsTop = Product::orderBy('created_at', 'DESC')->get();
-        $productsSuggestions = Product::orderBy('created_at', 'ASC')->get();
-        
+        $productsTop = Product::orderBy('created_at', 'DESC')->whereHas('user_products')->get();
+        $productsSuggestions = Product::orderBy('created_at', 'ASC')->whereHas('user_products')->get();
+
         return view('main', [
             'categories' => Category::where('category_id', null)->get(),
             'banner' => Banner::all(),
