@@ -55,7 +55,7 @@ class HomeController extends Controller
         $productsTop = Product::orderBy('created_at', 'DESC')->whereHas('user_products')->get();
         $productsSuggestions = Product::orderBy('created_at', 'ASC')->whereHas('user_products')->get();
 
-        return view('main', [
+        return view('main', ['data' =>[
             'categories' => Category::where('category_id', null)->get(),
             'banner' => Banner::all(),
             'tagsCloud' => $this->tagsCloud($productsSuggestions),
@@ -63,7 +63,7 @@ class HomeController extends Controller
             'productsTop' => $productsTop,
             'productsSuggestions' => $productsSuggestions,
             'events' => [],
-        ]);
+        ]]);
     }
 
     /**

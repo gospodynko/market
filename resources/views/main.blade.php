@@ -1,6 +1,6 @@
 @extends('layouts.index')
 
 @section('content')
-<main-vue></main-vue>
+<main-vue :data="{{json_encode($data)}}"></main-vue>
 
     @endsection

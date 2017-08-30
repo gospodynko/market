@@ -23,16 +23,16 @@ class DatabaseSeeder extends Seeder
     {
         Model::unguard();
 
-        $this->call(CompanyTableSeeder::class);
-        $this->call(UsersTableSeeder::class);
-        $this->call(CategoriesTableSeeder::class);
-        $this->call(AddressBookTableSeeder::class);
-//        $this->call(ProductsTableSeeder::class);
-        $this->call('ProductsDetailTableSeeder');
+//        $this->call(CompanyTableSeeder::class);
+//        $this->call(UsersTableSeeder::class);
+//        $this->call(CategoriesTableSeeder::class);
+//        $this->call(AddressBookTableSeeder::class);
+        $this->call(ProductsTableSeeder::class);
+//        $this->call('ProductsDetailTableSeeder');
 //        $this->call(ProductsFeaturesTableSeeder::class);
 //        $this->call('OrdersTableSeeder');
 //        $this->call('ProductsRatesSeeder');
-        $this->call('LogsTableSeeder');
-        $this->call('CommentsTableSeeder');
+//        $this->call('LogsTableSeeder');
+//        $this->call('CommentsTableSeeder');
     }
 }
