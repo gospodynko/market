@@ -13,7 +13,7 @@ $mainProduct = \App\Models\Product::find($tmpProd->id);
     <div class="thumbnail clearfix product-overflow" ng-controller = "ProductBox">
 
         <div class="product-price">
-            {!! \Utility::showPrice($mainProduct->getPriceAvg()) !!}
+            {!! \Utility::showPrice($mainProduct->price_avg()) !!}
         </div>
 
         <div class="product-reviews @if (!$product['rate_val']) hide @endif">
