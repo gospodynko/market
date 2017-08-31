@@ -491,12 +491,9 @@ class ProductsController extends Controller
         $oldFeatures = ProductDetail::oldFeatures($product->features);
 
         $productsDetails = new FeaturesHelper();
-        $images = $product->images;
         $producers = ($product) ? $product->category->producers : [];
 
-        return view('products.formAdmin', compact('product', 'panel', 'features', 'categories', 'condition', 'typeItem', 'disabled', 'edit', 'oldFeatures', 'productsDetails'))
-            ->with('images', $images)
-            ->with('producers', $producers);;
+        return view('products.formAdmin', compact('product', 'panel', 'features', 'categories', 'condition', 'typeItem', 'disabled', 'edit', 'oldFeatures', 'productsDetails', 'producers'));
     }
 
     /**

@@ -35,10 +35,9 @@ class UserProduct extends Model
         return $this->hasOne('App\Models\Product', 'id', 'product_id');
     }
 
-    public static function images(UserProduct $product)
+    public function pictures()
     {
-        $arr = json_decode($product->mainProduct->features);
-        return $arr->images;
+        return $this->mainProduct->pictures;
     }
 
     public function getDeliveryArray()
