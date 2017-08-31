@@ -38,6 +38,11 @@
                                 <i class="glyphicon glyphicon-menu-right"></i>&nbsp;{{ trans('dashboard.nav.categories') }}
                             </a>
                         </li>
+                        {{--<li>--}}
+                            {{--<a href="{{ route('banners.index') }}">--}}
+                                {{--<i class="glyphicon glyphicon-menu-right"></i>&nbsp;Баннери--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
                     </ul>
                 </li>
             </ul>

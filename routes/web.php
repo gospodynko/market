@@ -27,6 +27,7 @@ Route::get('/adminlogin', function (){
 
 // home
 Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
+Route::post('/get-categories', 'HomeController@getCategories');
 Route::get('/single-product', function (){
    return view('single-prod') ;
 });

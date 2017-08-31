@@ -50,6 +50,7 @@
                                 @if (!isset($product['id']))
                                     <option selected disabled>Віробники відсутні</option>
                                 @endif
+                                {{var_dump($producers)}}
                                 @foreach($producers AS $id=>$name)
                                     @if($edit && $product->producer_id == $id)
                                         <option selected value="{{ $id }}">{{ $name }}</option>

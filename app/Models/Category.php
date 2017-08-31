@@ -7,7 +7,7 @@ use Antvel\Categories\Models\Category as AntvelCategory;
 class Category extends AntvelCategory
 {
 
-    protected $with = ['children'];
+    protected $with = ['children', 'producers'];
 
     public function children()
     {

@@ -2,7 +2,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Antvel\Categories\Models\Category;
 use Antvel\Product\Models\Concerns\Pictures;
 use App\Models\UserProduct;
 use Illuminate\Support\Facades\Storage;
@@ -13,6 +12,7 @@ class Product extends Model
     use Pictures;
 
     protected $appends = ['images', 'price_min', 'price_max', 'price_avg'];
+    protected $with = ['user_products'];
 
     public function category()
     {

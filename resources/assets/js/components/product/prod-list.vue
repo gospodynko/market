@@ -305,6 +305,7 @@
 
             }
         },
+        props: ['data'],
         components: {
             StarRating
         }

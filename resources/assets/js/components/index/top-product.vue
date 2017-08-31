@@ -5,7 +5,7 @@
             <div class="all-products-list">
                 <div class="single-product" v-for="product in products">
                     <div class="img-wrap">
-                        <img :src="JSON.parse(product.features.image)['images'][0]" alt="">
+                        <img :src="product.images[0]" alt="">
                     </div>
                     <div class="detail-wrap">
                         <p class="product-title">
@@ -57,7 +57,7 @@
 
                     </div>
                 </div>
-                <div class="show-all-btn-wrap">
+                <div class="show-all-btn-wrap" v-if="products && products.length > 20">
                     <button class="btn">Показать все</button>
                 </div>
             </div>

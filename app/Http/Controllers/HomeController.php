@@ -66,6 +66,11 @@ class HomeController extends Controller
         ]]);
     }
 
+    public function getCategories()
+    {
+        return Category::where('category_id', null)->get()->toJson();
+    }
+
     /**
      * Returns a tags array based upon the given suggestions.
      *
