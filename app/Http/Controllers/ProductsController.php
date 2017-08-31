@@ -300,7 +300,7 @@ class ProductsController extends Controller
                 ->take(5)
                 ->get();
 
-            $suggestions = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->get();
+            $suggestions = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->limit(4)->get();
 
             $storesProducts = UserProduct::where('product_id', '=', $product->id)
                 ->where('status', '=', 1)
