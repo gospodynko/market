@@ -28,7 +28,7 @@
                         <div class="price-wrap">
                             <p class="price-title">{{+cartItem.store.price * cartItem.store.store_count}} грн</p>
                             <div class="count-items-wrap">
-                                <span>-</span><input type="text" :value="cartItem.store.store_count"><span class="to">+</span>
+                                <span @click="changeCount('minus', cartItem)">-</span><input type="text" :value="cartItem.store.store_count"><span class="to" @click="changeCount('plus', cartItem)">+</span>
                             </div>
                             <span class="close" @click="delFromCart(cartItem)"></span>
                         </div>
@@ -69,8 +69,9 @@
                     if(cartItem.store.id === item.store.id){
                         this.cartItems.splice(i,1);
                     }
-                })
-                localStorage.setItem('cart', JSON.stringify(this.cartItems))
+                });
+                localStorage.setItem('cart', JSON.stringify(this.cartItems));
+                Events.$emit('updateCart', true);
             },
             settingsCart(status){
                 this.cartItems = JSON.parse(localStorage.getItem('cart'));
@@ -79,6 +80,24 @@
             closeCart(){
                 this.showCart = !this.showCart;
                 Events.$emit('closeCart', this.showCart);
+            },
+            changeCount(type, item){
+                if(type == 'minus'){
+                    var countItem = --item.store.store_count;
+                    if(!countItem){
+                        this.delFromCart(item);
+                    } else {
+                        item.store.store_count = countItem;
+                        this.cartItems.forEach(cart => {
+                            if(cart.store.id === item.store.id){
+                                cart.store.store_count = countItem;
+                            }
+                        });
+                    }
+                } else {
+                    ++item.store.store_count;
+                }
+                localStorage.setItem('cart', JSON.stringify(this.cartItems));
             }
         }
     }
