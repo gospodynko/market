@@ -300,8 +300,7 @@ class ProductsController extends Controller
                 ->take(5)
                 ->get();
 
-            $suggestions = $this->products->suggestForPreferences(['product_viewed']);
-            $suggestions = $suggestions['product_viewed']->toArray();
+            $suggestions = Product::where('category_id', $product->category_id)->where('id', '!=', $product->id)->get();
 
             $storesProducts = UserProduct::where('product_id', '=', $product->id)
                 ->where('status', '=', 1)

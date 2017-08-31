@@ -38,6 +38,22 @@
         vertical-align: sub;
         margin-right: 10px;
       }
+      .badge{
+        position: absolute;
+        top: -8px;
+        left: 15px;
+        width: 18px;
+        height: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        background: #2d92fa;
+        color: #ffffff;
+        font-size: 12px;
+      }
       p,a{
         color: $gray-dark;
       }
@@ -50,6 +66,9 @@
         background: url("../img/header/market.svg") no-repeat center;
         -webkit-background-size: 17px;
         background-size: 17px;
+      }
+      .basket{
+        position: relative;
       }
       .basket > i{
         background: url("../img/header/ko.svg") no-repeat center;
@@ -89,6 +108,7 @@
         box-sizing: border-box;
         background: #f0f4f8;
         border: 1px solid $light-gray;
+        cursor: pointer;
         p{
           font-size: 20px;
           font-weight: 500;

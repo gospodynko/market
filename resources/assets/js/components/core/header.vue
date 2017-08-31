@@ -1,12 +1,15 @@
 <template>
-    <header>
-        <div class="overlay" :class="{'show': showChild}"></div>
+    <header @mouseleave="closeMenu()">
+        <div class="overlay" :class="{'show': showChild || showOverlay}"></div>
+        <cart-blocked></cart-blocked>
         <div class="header">
             <div class="two-wrap">
 
                 <div class="left">
                     <div class="logo">
-                        <img src="/img/header/logo.svg" alt="">
+                        <a href="/">
+                            <img src="/img/header/logo.svg" alt="">
+                        </a>
                     </div>
                 </div>
                 <div class="right">
@@ -18,7 +21,7 @@
                             <a href="#" class="shop"><i></i> Мой магазин</a>
                         </div>
                         <div class="item">
-                            <a href="#" class="basket"><i></i> Корзина</a>
+                            <a href="#" class="basket" @click="showCartFunc"><i></i><span class="badge" :class="{'badge': cart}" v-if="cart && cart.length">{{cart.length}}</span> Корзина</a>
                         </div>
                         <div class="item">
                             <div class="user-wrap" v-if="user">
@@ -39,10 +42,10 @@
                 </div>
             </div>
         </div>
-        <div class="catalogue-wrap" @mouseleave="showChild = false">
+        <div class="catalogue-wrap" @mouseleave="closeMenu()">
             <div class="menu-wrap">
                 <div class="catalog-menu-items">
-                    <div class="catalog-menu-btn">
+                    <div class="catalog-menu-btn" @click="showMenuFunc()">
                         <i class="burger"></i>
                         <p>Каталог товаров</p>
                         <i class="arrow-down"></i>
@@ -81,21 +84,35 @@
 </template>
 
 <script>
+    import cartBlocked from './cart.vue';
+    import {Events} from './../../app';
     export default {
         data(){
             return {
                 showMenu: false,
                 showChild: false,
                 subCategories: null,
-                categories: null
+                categories: null,
+                showOverlay: false,
+                cart: JSON.parse(localStorage.getItem('cart')),
+                showCart: false
             }
         },
         props: ['user'],
+        components: {
+            cartBlocked
+        },
         created(){
             this.getCategories();
             if(location.pathname == '/'){
                 this.showMenu = true;
             }
+            Events.$on('closeCart', (status) => {
+                this.showCart = status;
+            })
+            Events.$on('newCartItem', () => {
+                this.showCartFunc();
+            })
         },
         methods: {
             setChild(children){
@@ -115,7 +132,30 @@
                 }, err => {
 
                 })
+            },
+            showMenuFunc()
+            {
+                if(location.pathname == '/') return;
+                this.showOverlay = true;
+                this.showMenu = !this.showMenu;
+            },
+            closeMenu()
+            {
+                this.showOverlay = false;
+                if(location.pathname == '/') return;
+                this.showChild = false;
+                this.showMenu = false;
+            },
+            showCartFunc(e = 0){
+                if(e){
+                    e.preventDefault();
+                } else {
+                    this.cart = JSON.parse(localStorage.getItem('cart'));
+                }
+                this.showCart = !this.showCart;
+                Events.$emit('showCart', this.showCart);
             }
+
         }
     }
 </script>
