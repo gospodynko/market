@@ -8,7 +8,7 @@
                 <div class="detail-product-wrap">
                     <div class="shop-gallery">
                         <div class="small-photos">
-                            <div class="single-small-photo active" v-for="smallImage in images" @click="checkImage(smallImage)" :class="{'active': checkImage == smallImage}">
+                            <div class="single-small-photo" v-for="(smallImage, index) in product.images" @click="checkImages(smallImage)" :class="{'active': checkImage == smallImage}" v-if="index <= 3">
                                 <img :src="smallImage" alt="">
                             </div>
                             <!--<p class="show-all">еще 6</p>-->
@@ -157,7 +157,7 @@
                                             <p class="prod-status">В наличии</p>
                                         </div>
                                         <div class="go-shop-wrap">
-                                            <button class="btn">В магазин</button>
+                                            <button class="btn" @click="addToCart(store)">В корзину</button>
                                         </div>
                                     </div>
                                 </div>
@@ -408,12 +408,13 @@
 
 <script type="text/babel">
     import StarRating from 'vue-star-rating';
+    import {Events} from './../../app';
     export default {
         data(){
             return {
                 product: this.data.product,
                 productTab: 'store',
-                checkImage: this.data.product[0]
+                checkImage: this.data.product.images[0]
             }
         },
         props: ['data'],
@@ -421,8 +422,32 @@
             StarRating
         },
         methods: {
-            checkImage(img){
+            checkImages(img){
                 this.checkImage = img;
+            },
+            addToCart(item){
+                var userBuys = JSON.parse(localStorage.getItem('cart'));
+                item.store_count = 0;
+                if(!userBuys){
+                    userBuys = [];
+                }
+                if(userBuys.length){
+                   userBuys.forEach(buy => {
+                       if(buy.store.id == item.id){
+                           ++buy.store.store_count;
+                           ++item.store_count;
+                       }
+                   })
+                }
+                if(!item.store_count){
+                    item.store_count = 1;
+                    userBuys.push({
+                        store: item,
+                        product: this.product
+                    });
+                }
+                localStorage.setItem('cart', JSON.stringify(userBuys));
+                Events.$emit('newCartItem', true);
             }
         }
     }

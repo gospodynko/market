@@ -106,8 +106,9 @@
       width: 40%;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: flex-start;
       flex-wrap: wrap;
+      height: 500px;
       .small-photos{
         width: 82px;
         .show-all{
@@ -127,8 +128,10 @@
           height: 80px;
           margin-bottom: 15px;
           border: 1px solid #e2e9f0;
-          text-align: center;
           cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
           img{
             max-height: 100%;
             max-width: 100%;
@@ -143,6 +146,10 @@
         text-align: center;
         min-height: 350px;
         margin-bottom: 25px;
+        padding: 0 10px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
         img{
           max-height: 100%;
           max-width: 100%;
