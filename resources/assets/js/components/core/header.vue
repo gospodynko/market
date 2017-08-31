@@ -113,6 +113,9 @@
             Events.$on('newCartItem', () => {
                 this.showCartFunc();
             })
+            Events.$on('updateCart', () => {
+                this.updateCart();
+            })
         },
         methods: {
             setChild(children){
@@ -154,6 +157,9 @@
                 }
                 this.showCart = !this.showCart;
                 Events.$emit('showCart', this.showCart);
+            },
+            updateCart(){
+                this.cart = JSON.parse(localStorage.getItem('cart'));
             }
 
         }
