@@ -50,7 +50,7 @@ Route::group(['prefix' => 'home'], function () {
 });
 
 Route::prefix('search')->group(function () {
-    Route::post('/', 'SearchController@search');
+    Route::get('/', 'SearchController@index');
 });
 
 //users routes

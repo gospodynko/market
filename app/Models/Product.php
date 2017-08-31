@@ -26,7 +26,7 @@ class Product extends Model
 
     public function user_products()
     {
-        return $this->hasMany(UserProduct::class);
+        return $this->hasMany(UserProduct::class, 'product_id', 'id');
     }
 
     public function getImagesAttribute()

@@ -3,7 +3,7 @@
         <div class="top-product-wrap">
             <h2>Топ предложений</h2>
             <div class="all-products-list">
-                <div class="single-product" v-for="product in products">
+                <div class="single-product" v-for="product in products.data">
                     <div class="img-wrap">
                         <img :src="product.images[0]" alt="">
                     </div>
@@ -57,7 +57,7 @@
 
                     </div>
                 </div>
-                <div class="show-all-btn-wrap" v-if="products && products.length > 20">
+                <div class="show-all-btn-wrap" v-if="products && products.total > 20">
                     <button class="btn">Показать все</button>
                 </div>
             </div>

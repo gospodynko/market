@@ -4,7 +4,7 @@
             <div class="breadcrumbs"></div>
             <div class="info-search-head-wrap">
                 <div class="found-list">
-                    <h2>Найдено 1580 результатов в 48 категориях</h2>
+                    <h2>Найдено {{data.products.total}} результатов</h2>
                 </div>
                 <div class="filters-list">
                     <div class="my-region-wrap">
@@ -29,30 +29,14 @@
                     <h3>Выбранные фильтры: </h3>
                     <div class="all-chose-filters">
                         <div class="single-filter">
-                            <p class="name">Имя выбранного фильтра</p>
-                            <span class="close"></span>
-                        </div>
-                        <div class="single-filter">
-                            <p class="name">Фильтр</p>
-                            <span class="close"></span>
-                        </div>
-                        <div class="single-filter">
-                            <p class="name">Днепр</p>
-                            <span class="close"></span>
-                        </div>
-                        <div class="single-filter">
-                            <p class="name">Porshe 911</p>
-                            <span class="close"></span>
-                        </div>
-                        <div class="single-filter">
-                            <p class="name">Овен</p>
-                            <span class="close"></span>
+                            <p class="name">{{data.q}}</p>
+                            <!--<span class="close"></span>-->
                         </div>
                     </div>
                 </div>
                 <div class="main-search-content">
-                    <div class="filter-wrap">
-                        <div class="price-wrap">
+                    <div class="filter-wrap" v-if="false">
+                        <div class="price-wrap" v-if="false">
                             <h3><i></i>Цена</h3>
                             <div class="price-sect">
                                 <span>От</span>
@@ -61,7 +45,7 @@
                                 <input type="text">
                             </div>
                         </div>
-                        <div class="status-product">
+                        <div class="status-product" v-if="false">
                             <h3><i></i>Статусы продукта</h3>
                             <ul>
                                 <li>
@@ -90,7 +74,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="shop-rating-list">
+                        <div class="shop-rating-list" v-if="false">
                             <h3><i></i>Рейтинг магазина</h3>
                             <ul>
                                 <li>
@@ -118,7 +102,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="status-product">
+                        <div class="status-product" v-if="false">
                             <h3><i></i>Поставщики</h3>
                             <ul>
                                 <li>
@@ -148,18 +132,18 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="content-wrap">
+                    <div class="content-wrap" style="width: 100%">
                         <div class="all-products-list">
-                            <div class="single-product" v-for="n in 12">
+                            <div class="single-product" style="width: 25%" v-for="product in data.products.data">
                                 <div class="img-wrap">
-                                    <img src="/img/products/tr.jpg" alt="">
+                                    <img :src="product.images[0]" alt="">
                                 </div>
                                 <div class="detail-wrap">
                                     <p class="product-title">
-                                        Трактора МТЗ синий, красный ТЮНИНГОВАНИЙ
+                                        {{product.name}}
                                     </p>
                                     <p class="price">
-                                        10 000 - 25 000 грн.
+                                        {{product.price_min + ' - ' + product.price_max}} грн.
                                     </p>
                                 </div>
                                 <div class="detail-prod-wrap">
@@ -173,17 +157,13 @@
                                     </div>
                                     <div class="all-detail-list">
                                         <ul>
-                                            <li>Масса конструкционная, кг	5100</li>
-                                            <li>Масса эксплуатационная, кг	5260</li>
-                                            <li>База , мм	2450</li>
+                                            <li>{{product.description}}</li>
                                         </ul>
                                     </div>
                                     <div class="hide-list-wrap">
                                         <div class="all-detail-list">
                                             <ul>
-                                                <li>Масса конструкционная, кг	5100</li>
-                                                <li>Масса эксплуатационная, кг	5260</li>
-                                                <li>База , мм	2450</li>
+                                                <li>{{product.description}}</li>
                                             </ul>
                                         </div>
                                         <div class="all-goods-btn">
@@ -209,7 +189,7 @@
                     </div>
                 </div>
                 <div class="footer-search-wrap">
-                    <div class="paginate-wrap">
+                    <div class="paginate-wrap" v-if="data.products.total > 16">
                         <ul class="paginate">
                             <li class="prev"><i></i> Назад</li>
                             <li>1</li>
@@ -218,7 +198,7 @@
                             <li class="next">Вперед <i></i></li>
                         </ul>
                     </div>
-                    <div class="chose-page">
+                    <div class="chose-page" v-if="data.products.total > 16">
                         <span>Перейти к странице</span>
                         <label for="chose-page-id">
                             <input type="text" id="chose-page-id">
@@ -240,6 +220,7 @@
 
             }
         },
+        props: ['data'],
         components: {
             StarRating
         }
