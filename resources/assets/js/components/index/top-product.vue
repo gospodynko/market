@@ -3,16 +3,16 @@
         <div class="top-product-wrap">
             <h2>Топ предложений</h2>
             <div class="all-products-list">
-                <div class="single-product" v-for="n in 12">
+                <div class="single-product" v-for="product in products.data">
                     <div class="img-wrap">
-                        <img src="/img/products/tr.jpg" alt="">
+                        <img :src="product.images[0]" alt="">
                     </div>
                     <div class="detail-wrap">
                         <p class="product-title">
-                            Трактора МТЗ синий, красный ТЮНИНГОВАНИЙ
+                            {{product.name}}
                         </p>
                         <p class="price">
-                            10 000 - 25 000 грн.
+                            {{product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max}} грн.
                         </p>
                     </div>
                     <div class="detail-prod-wrap">
@@ -26,23 +26,22 @@
                         </div>
                         <div class="all-detail-list">
                             <ul>
-                                <li>Масса конструкционная, кг	5100</li>
-                                <li>Масса эксплуатационная, кг	5260</li>
-                                <li>База , мм	2450</li>
+                                <li>{{product.description}}</li>
                             </ul>
                         </div>
                         <div class="hide-list-wrap">
                             <div class="all-detail-list">
                                 <ul>
-                                    <li>Масса конструкционная, кг	5100</li>
-                                    <li>Масса эксплуатационная, кг	5260</li>
-                                    <li>База , мм	2450</li>
+                                    <!--<li>Масса конструкционная, кг	5100</li>-->
+                                    <!--<li>Масса эксплуатационная, кг	5260</li>-->
+                                    <!--<li>База , мм	2450</li>-->
+                                    <li>{{product.description}}</li>
                                 </ul>
                             </div>
                             <div class="all-goods-btn">
-                                <button class="btn">
+                                <a :href="'/products/'+product.id" class="btn">
                                     Все предложения
-                                </button>
+                                </a>
                             </div>
                             <div class="two-wrap">
                                 <div class="left">
@@ -58,7 +57,7 @@
 
                     </div>
                 </div>
-                <div class="show-all-btn-wrap">
+                <div class="show-all-btn-wrap" v-if="products && products.total > 20">
                     <button class="btn">Показать все</button>
                 </div>
             </div>
@@ -74,6 +73,9 @@
 
             }
         },
+        props: [
+          'products'
+        ],
         components: {
             StarRating
         }

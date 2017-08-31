@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\DB;
 //shop components.
 use App\User;
 use Antvel\Product\Products;
-use Antvel\Categories\Models\Category;
+use App\Models\Category;
 use Antvel\User\UsersRepository as Users;
 
 use App\Models\DeliveryType;
@@ -268,11 +268,6 @@ class ProductsController extends Controller
     {
         $user = \Auth::user();
         $allWishes = '';
-        $panel = [
-            'center' => [
-                'width' => '12',
-            ],
-        ];
 
         if ($user) {
             $allWishes = Order::ofType('wishlist')
@@ -285,14 +280,6 @@ class ProductsController extends Controller
 
         $product = Product::with('category')->find($id);
         if ($product) {
-
-            //if there is a user in session, the admin menu will be shown
-            if ($user && in_array($user->role, ['admin', 'seller'])) {
-                $panel = [
-                    'left'   => ['width' => '2'],
-                    'center' => ['width' => '10'],
-                ];
-            }
 
             //retrieving products features
             $features = ProductDetail::all()->toArray();
@@ -320,8 +307,7 @@ class ProductsController extends Controller
                 ->where('status', '=', 1)
                 ->get();
 
-            return view('products.detailProd', compact('product', 'panel', 'allWishes', 'reviews', 'freeproductId', 'features', 'suggestions'))
-                ->with('storesProducts', $storesProducts);
+            return view('prod-list',['data' => compact('product', 'allWishes', 'reviews', 'freeproductId', 'features', 'suggestions', 'storesProducts')]);
         } else {
             return redirect(route('products.index'));
         }

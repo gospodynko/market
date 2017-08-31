@@ -681,6 +681,9 @@ section.slider .all-slides-wrap .slider-wrap .navigation .small-slide.active {
   border-radius: 4px;
   font-size: 20px;
   color: #fff;
+  display: inline-block;
+  line-height: 45px;
+  text-align: center;
 }
 
 .all-products-list .single-product .hide-list-wrap .two-wrap .left, .all-products-list .single-product .hide-list-wrap .two-wrap .right {
@@ -1232,6 +1235,7 @@ section.slider .all-slides-wrap .slider-wrap .navigation .small-slide.active {
   height: 30px;
   width: 100%;
   text-align: center;
+  cursor: pointer;
 }
 
 .single-prod-detail .detail-product-wrap .detail-post-info .all-tabs-menu .single-tab p {
@@ -1331,7 +1335,7 @@ section.slider .all-slides-wrap .slider-wrap .navigation .small-slide.active {
 }
 
 .single-prod-detail .detail-product-wrap .detail-post-info .all-tabs-detail .single-tab-detail.market-list-wrap .market-list-all .single-market .logo-shop-wrap img {
-  max-width: 100%;
+  max-width: 120px;
 }
 
 .single-prod-detail .detail-product-wrap .detail-post-info .all-tabs-detail .single-tab-detail.market-list-wrap .market-list-all .single-market .shop-detail-wrap {

@@ -12,7 +12,7 @@
 </head>
 <body>
 <div id="app">
-    <header-vue :user="{{json_encode(Auth::user())}}" :categories="{{json_encode($categories)}}"></header-vue>
+    <header-vue :user="{{json_encode(Auth::user())}}"></header-vue>
     @yield('content')
     <footer-vue :user="{{json_encode(Auth::user())}}"></footer-vue>
 

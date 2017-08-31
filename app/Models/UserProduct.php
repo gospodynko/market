@@ -9,6 +9,20 @@ class UserProduct extends Model
 {
 
     protected $with = ['created_by_user'];
+    protected $fillable = [
+        'product_id',
+        'category_id',
+        'price',
+        'currency_id',
+        'delivery_id',
+        'pay_id',
+        'created_by',
+        'sale_counts',
+        'view_counts',
+        'status',
+        'created_at',
+        'producer_id'
+    ];
 
     public function created_by_user()
     {

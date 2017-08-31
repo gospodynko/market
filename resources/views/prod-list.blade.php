@@ -1,5 +1,5 @@
 @extends('layouts.index')
 
 @section('content')
-<product-list></product-list>
+<product-list :data="{{json_encode($data)}}"></product-list>
 @endsection

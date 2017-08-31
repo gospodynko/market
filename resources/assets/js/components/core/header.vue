@@ -63,10 +63,12 @@
                 <div class="search-wrap">
                     <div class="actions-wrap">
                         <div class="search-action-wrap">
-                            <label for="search-input">
-                                <input type="text" id="search-input">
-                                <button class="btn">Поиск</button>
-                            </label>
+                            <form method="get" action="/search">
+                                <label for="search-input">
+                                    <input type="text" id="search-input" name="q">
+                                    <button type="submit" class="btn">Поиск</button>
+                                </label>
+                            </form>
                         </div>
                         <div class="all-shops-btn">
                             <button class="btn">Все магазины</button>
@@ -84,11 +86,13 @@
             return {
                 showMenu: false,
                 showChild: false,
-                subCategories: null
+                subCategories: null,
+                categories: null
             }
         },
-        props: ['categories', 'user'],
+        props: ['user'],
         created(){
+            this.getCategories();
             if(location.pathname == '/'){
                 this.showMenu = true;
             }
@@ -101,6 +105,13 @@
             logout(){
                 this.$http.post('/logout', {}).then(res => {
                     this.user = null;
+                }, err => {
+
+                })
+            },
+            getCategories(){
+                this.$http.post('/get-categories', {}).then(res => {
+                    this.categories = res.data;
                 }, err => {
 
                 })

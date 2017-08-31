@@ -1,10 +1,10 @@
 <template>
     <div>
         <slider-vue></slider-vue>
-        <clasfds-vue></clasfds-vue>
-        <top-product></top-product>
-        <popular-products></popular-products>
-        <actual-products></actual-products>
+        <!--<clasfds-vue></clasfds-vue>-->
+        <top-product :products="data.productsTop"></top-product>
+        <!--<popular-products></popular-products>-->
+        <!--<actual-products></actual-products>-->
     </div>
 </template>
 
@@ -20,6 +20,7 @@
 
             }
         },
+        props: ['data'],
         components: {
             SliderVue,
             ClasfdsVue,
