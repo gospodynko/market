@@ -113,7 +113,7 @@
             </span>
         </div>
         <div class="col-sm-6">
-            от {{ $userProduct->mainProduct->getPriceMin() }} &nbsp;&nbsp;&nbsp; {{ trans('product.globals.price') }}: {{ $userProduct->mainProduct->getPriceAvg() }} &nbsp;&nbsp;&nbsp; до {{ $userProduct->mainProduct->getPriceMax() }}
+            от {{ $userProduct->mainProduct->price_min() }} &nbsp;&nbsp;&nbsp; {{ trans('product.globals.price') }}: {{ $userProduct->mainProduct->price_avg() }} &nbsp;&nbsp;&nbsp; до {{ $userProduct->mainProduct->price_max() }}
         </div>
     </div>
 

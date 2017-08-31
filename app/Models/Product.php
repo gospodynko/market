@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +12,7 @@ class Product extends Model
 
     use Pictures;
 
-    protected $appends = ['images'];
+    protected $appends = ['images', 'price_min', 'price_max', 'price_avg'];
 
     public function category()
     {
@@ -43,7 +42,7 @@ class Product extends Model
         return $images;
     }
 
-    public function getPriceMin()
+    public function getPriceMinAttribute()
     {
         $tmpArr = [];
 
@@ -69,7 +68,7 @@ class Product extends Model
         return number_format($min, 2, '.', '');
     }
 
-    public function getPriceMax()
+    public function getPriceMaxAttribute()
     {
         $tmpArr = [];
 
@@ -95,7 +94,7 @@ class Product extends Model
         return number_format($max, 2, '.', '');
     }
 
-    public function getPriceAvg()
+    public function getPriceAvgAttribute()
     {
         $tmpArr = [];
 

@@ -93,8 +93,8 @@
         {{-- Product Information --}}
         <div class="col-md-3">
             <hr class="visible-xs visible-sm">
-            <h5 class="black_color">{{ $product->getPriceMin() }}
-                - {{ \Utility::showPrice($product->getPriceMax()) }}</h5>
+            <h5 class="black_color">{{ $product->price_min() }}
+                - {{ \Utility::showPrice($product->price_max()) }}</h5>
             <hr class="hidden-sm hidden-xs">
             <hr class="visible-xs visible-sm">
             <p>{{ trans('globals.producer').': '.$product->producer->name }}</p>
