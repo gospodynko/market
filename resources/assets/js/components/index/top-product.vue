@@ -12,7 +12,7 @@
                             {{product.name}}
                         </p>
                         <p class="price">
-                            {{product.price_min + ' - ' + product.price_max}} грн.
+                            {{product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max}} грн.
                         </p>
                     </div>
                     <div class="detail-prod-wrap">
@@ -39,9 +39,9 @@
                                 </ul>
                             </div>
                             <div class="all-goods-btn">
-                                <button class="btn">
+                                <a :href="'/products/'+product.id" class="btn">
                                     Все предложения
-                                </button>
+                                </a>
                             </div>
                             <div class="two-wrap">
                                 <div class="left">

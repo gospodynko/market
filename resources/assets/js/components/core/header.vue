@@ -110,7 +110,7 @@
                 })
             },
             getCategories(){
-                this.$http.post('get-categories', {}).then(res => {
+                this.$http.post('/get-categories', {}).then(res => {
                     this.categories = res.data;
                 }, err => {
 
