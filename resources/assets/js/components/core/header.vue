@@ -2,6 +2,7 @@
     <header @mouseleave="closeMenu()">
         <div class="overlay" :class="{'show': showChild || showOverlay}"></div>
         <cart-blocked></cart-blocked>
+        <noselect-user :user="user" v-if="user && user.role == 'noselect'"></noselect-user>
         <div class="header">
             <div class="two-wrap">
 
@@ -86,6 +87,7 @@
 <script>
     import cartBlocked from './cart.vue';
     import {Events} from './../../app';
+    import NoselectUser from './noselect-user.vue';
     export default {
         data(){
             return {
@@ -100,7 +102,8 @@
         },
         props: ['user'],
         components: {
-            cartBlocked
+            cartBlocked,
+            NoselectUser
         },
         created(){
             this.getCategories();
@@ -145,8 +148,8 @@
             closeMenu()
             {
                 this.showOverlay = false;
-                if(location.pathname == '/') return;
                 this.showChild = false;
+                if(location.pathname == '/') return;
                 this.showMenu = false;
             },
             showCartFunc(e = 0){

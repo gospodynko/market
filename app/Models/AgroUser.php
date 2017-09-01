@@ -21,15 +21,21 @@ class AgroUser extends User
 
     public function autosetRole(){
 
-        $res = \DB::select(\DB::raw("SELECT ac.companyRole FROM agroyard_companies AS ac, agroyard_company_users AS acu 
-                                  WHERE ac.id = acu.company_id AND acu.user_id={$this->id} "));
+//        $res = \DB::select(\DB::raw("SELECT ac.companyRole FROM agroyard_companies AS ac, agroyard_company_users AS acu
+//                                  WHERE ac.id = acu.company_id AND acu.user_id={$this->id} "));
+//
+//        $this->role = 'customer';
+//        foreach($res AS $item){
+//            if(strpos($item->companyRole, '2')){
+//                $this->role = 'seller';
+//            }
+//        }
+//        $this->save();
+    }
+    protected $with = ['shops'];
 
-        $this->role = 'customer';
-        foreach($res AS $item){
-            if(strpos($item->companyRole, '2')){
-                $this->role = 'seller';
-            }
-        }
-        $this->save();
+    public function shops()
+    {
+        return $this->hasMany(UserShops::class, 'user_id', 'id');
     }
 }

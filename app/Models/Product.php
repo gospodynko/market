@@ -10,8 +10,8 @@ class Product extends Model
 {
 
     use Pictures;
-
-    protected $appends = ['images', 'price_min', 'price_max', 'price_avg'];
+    protected $fillable = ['moderation'];
+    protected $appends = ['images'];
     protected $with = ['user_products'];
 
     public function category()
@@ -42,81 +42,9 @@ class Product extends Model
         return $images;
     }
 
-    public function getPriceMinAttribute()
+    public function user()
     {
-        $tmpArr = [];
-
-        $minPriceUAH = UserProduct::where('product_id', $this->id)
-            ->where('currency_id', 1)
-            ->min('price');
-        if ($minPriceUAH !== NULL)
-            array_push($tmpArr, $minPriceUAH);
-
-        $minPriceUSD = UserProduct::where('product_id', $this->id)
-            ->where('currency_id', 2)
-            ->min('price');
-        if ($minPriceUSD !== NULL)
-            array_push($tmpArr, \App\Helpers\CurrencyRates::convertToUAH($minPriceUSD, 2));
-
-        $minPriceEUR = UserProduct::where('product_id', $this->id)
-            ->where('currency_id', 3)
-            ->min('price');
-        if ($minPriceEUR !== NULL)
-            array_push($tmpArr, \App\Helpers\CurrencyRates::convertToUAH($minPriceEUR, 3));
-
-        $min = (count($tmpArr) > 0) ? min($tmpArr) : 0;
-        return number_format($min, 2, '.', '');
+        return $this->hasOne(AgroUser::class, 'id', 'created_by');
     }
 
-    public function getPriceMaxAttribute()
-    {
-        $tmpArr = [];
-
-        $minPriceUAH = UserProduct::where('product_id', $this->id)
-            ->where('currency_id', 1)
-            ->max('price');
-        if ($minPriceUAH !== NULL)
-            array_push($tmpArr, $minPriceUAH);
-
-        $minPriceUSD = UserProduct::where('product_id', $this->id)
-            ->where('currency_id', 2)
-            ->max('price');
-        if ($minPriceUSD !== NULL)
-            array_push($tmpArr, \App\Helpers\CurrencyRates::convertToUAH($minPriceUSD, 2));
-
-        $minPriceEUR = UserProduct::where('product_id', $this->id)
-            ->where('currency_id', 3)
-            ->max('price');
-        if ($minPriceEUR !== NULL)
-            array_push($tmpArr, \App\Helpers\CurrencyRates::convertToUAH($minPriceEUR, 3));
-
-        $max = (count($tmpArr) > 0) ? min($tmpArr) : 0;
-        return number_format($max, 2, '.', '');
-    }
-
-    public function getPriceAvgAttribute()
-    {
-        $tmpArr = [];
-
-        $minPriceUAH = UserProduct::where('product_id', $this->id)
-            ->where('currency_id', 1)
-            ->avg('price');
-        if ($minPriceUAH !== NULL)
-            array_push($tmpArr, $minPriceUAH);
-
-        $minPriceUSD = UserProduct::where('product_id', $this->id)
-            ->where('currency_id', 2)
-            ->avg('price');
-        if ($minPriceUSD !== NULL)
-            array_push($tmpArr, \App\Helpers\CurrencyRates::convertToUAH($minPriceUSD, 2));
-
-        $minPriceEUR = UserProduct::where('product_id', $this->id)
-            ->where('currency_id', 3)
-            ->avg('price');
-        if ($minPriceEUR !== NULL)
-            array_push($tmpArr, \App\Helpers\CurrencyRates::convertToUAH($minPriceEUR, 3));
-
-        $average = !empty($tmpArr) ? array_sum($tmpArr) / count($tmpArr) : 0;
-        return number_format($average, 2, '.', '');
-    }
 }

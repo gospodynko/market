@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\UserProduct;
 use App\Models\Producer;
 use App\Models\Category;
 use App\Helpers\ProductsHelper;
@@ -143,5 +144,22 @@ class AdminController extends Controller
     public function getProductsList(Request $request)
     {
         return json_encode(\App\Models\Product::select('id', 'name')->where('producer_id', $request->input('producer_id'))->get());
+    }
+
+    public function moderateList()
+    {
+        $per_page = 20;
+        return view('dashboard.sections.moderations.index', ['products' => Product::where('moderation', 1)->paginate($per_page)]);
+    }
+    public function viewProduct($id)
+    {
+        return view('dashboard.sections.moderations.view', ['product' => Product::find($id)->load('user')]);
+    }
+    public function acceptProduct(Request $request)
+    {
+        $product = Product::find($request->input('product_id'));
+        $product->moderation = 0;
+        $product->save();
+        return response()->json(['status' => 1]);
     }
 }
