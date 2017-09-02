@@ -7,7 +7,6 @@ namespace App\Http\Controllers;
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
-
 use App\Models\Producer;
 use App\Order;
 use App\OrderDetail;
@@ -24,13 +23,11 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
-
 //shop components.
 use App\User;
 use Antvel\Product\Products;
 use App\Models\Category;
 use Antvel\User\UsersRepository as Users;
-
 use App\Models\DeliveryType;
 use App\Models\PayType;
 use App\Models\UserProduct;
@@ -39,33 +36,39 @@ use App\Models\Currency;
 
 class ProductsController extends Controller
 {
+
     private $form_rules_admin = [
-        'bar_code'     => 'max:255|required|unique:products',
-        'category_id'  => 'required',
-        'producer_id'  => 'required',
-        'description'  => 'required|max:500',
-        'type'         => 'required',
-        'name'         => 'required|max:100',
+        'bar_code' => 'max:255|required|unique:products',
+        'category_id' => 'required',
+        'producer_id' => 'required',
+        'description' => 'required|max:500',
+        'type' => 'required',
+        'name' => 'required|max:100',
+        'feature_images_1' => 'nullable|file_exists:local',
+        'feature_images_2' => 'nullable|file_exists:local',
+        'feature_images_3' => 'nullable|file_exists:local',
+        'feature_images_4' => 'nullable|file_exists:local',
+        'feature_images_5' => 'nullable|file_exists:local',
     ];
     private $form_rules_admin_update = [
-        'bar_code'     => 'max:255|required',
-        'category_id'  => 'required',
-        'producer_id'  => 'required',
-        'description'  => 'required|max:500',
-        'type'         => 'required',
-        'name'         => 'required|max:100',
+        'bar_code' => 'max:255|required',
+        'category_id' => 'required',
+        'producer_id' => 'required',
+        'description' => 'required|max:500',
+        'type' => 'required',
+        'name' => 'required|max:100',
     ];
     private $form_rules = [
-        'category_id'  => 'required',
-        'product_id'  => 'required',
-        'producer_id'  => 'required',
-        'currency'  => 'required',
-        'price'        => 'required|numeric|digits_between:1,10|min:1',
-        'delivery_id'     => 'required',
+        'category_id' => 'required',
+        'product_id' => 'required',
+        'producer_id' => 'required',
+        'currency' => 'required',
+        'price' => 'required|numeric|digits_between:1,10|min:1',
+        'delivery_id' => 'required',
         'pay_id' => 'required',
     ];
     private $panel = [
-        'left'   => ['width' => '2'],
+        'left' => ['width' => '2'],
         'center' => ['width' => '10'],
     ];
 
@@ -96,9 +99,9 @@ class ProductsController extends Controller
         $product = Product::find(-50);
         $features = ProductDetail::all()->toArray();
         $arrayCategories = Category::actives()
-           ->lightSelection()
-           ->get()
-           ->toArray();
+            ->lightSelection()
+            ->get()
+            ->toArray();
 
         $categories = [
             '' => trans('product.controller.select_category'),
@@ -128,21 +131,21 @@ class ProductsController extends Controller
 
         $currencies = Currency::getArray();
 
-        return view('products.form',
-                compact('product', 'panel', 'features', 'categories', 'typeItem', 'disabled', 'edit', 'oldFeatures', 'productsDetails', 'deliveryTypes'. 'payTypes'))
-            ->with('deliveryTypes', $deliveryTypes)
-            ->with('currencies', $currencies)
-            ->with('producers', [])
-            ->with('payTypes', $payTypes);
+        return view('products.form', compact('product', 'panel', 'features', 'categories', 'typeItem', 'disabled', 'edit', 'oldFeatures', 'productsDetails', 'deliveryTypes' . 'payTypes'))
+                ->with('deliveryTypes', $deliveryTypes)
+                ->with('currencies', $currencies)
+                ->with('producers', [])
+                ->with('payTypes', $payTypes);
     }
+
     public function createAdmin()
     {
         $product = Product::find(-50);
         $features = ProductDetail::all()->toArray();
         $arrayCategories = Category::actives()
-           ->lightSelection()
-           ->get()
-           ->toArray();
+            ->lightSelection()
+            ->get()
+            ->toArray();
 
         $categories = [
             '' => trans('product.controller.select_category'),
@@ -160,9 +163,8 @@ class ProductsController extends Controller
         $productsDetails = new FeaturesHelper();
         $producers = ($product) ? $product->category->producers : [];
 
-        return view('products.formAdmin',
-                compact('product', 'panel', 'features', 'categories', 'typeItem', 'disabled', 'edit', 'oldFeatures', 'productsDetails'))
-            ->with('producers', $producers);
+        return view('products.formAdmin', compact('product', 'panel', 'features', 'categories', 'typeItem', 'disabled', 'edit', 'oldFeatures', 'productsDetails'))
+                ->with('producers', $producers);
     }
 
     /**
@@ -179,7 +181,7 @@ class ProductsController extends Controller
 
         if ($v->fails()) {
             return redirect()->back()
-            ->withErrors($v->errors())->withInput();
+                    ->withErrors($v->errors())->withInput();
         }
 
         $product = new UserProduct();
@@ -215,31 +217,40 @@ class ProductsController extends Controller
         $mainProduct->save();
 
         $message = '';
-        Session::flash('message', trans('product.controller.saved_successfully').$message);
+        Session::flash('message', trans('product.controller.saved_successfully') . $message);
 
-        return redirect('products/'.$product->product_id);
+        return redirect('products/' . $product->product_id);
     }
+
     public function storeAdmin(Request $request)
     {
-    if (!$request->input('type')) {
-        return redirect()->back()
-        ->withErrors(['induced_error' => [trans('globals.error').' '.trans('globals.induced_error')]]);
-    }
+        if (!$request->input('type')) {
+            return redirect()->back()
+                    ->withErrors(['induced_error' => [trans('globals.error') . ' ' . trans('globals.induced_error')]]);
+        }
 
         $rules = $this->rulesByTypes($request, false, true);
         $v = Validator::make($request->all(), $rules);
 
         if ($v->fails()) {
             return redirect()->back()
-            ->withErrors($v->errors())->withInput();
+                    ->withErrors($v->errors())->withInput();
         }
 
-//        $features = $this->validateFeatures($request->all());
+        $images = [];
 
-        if (!is_string($features)) {
-            return redirect()->back()
-            ->withErrors($features)->withInput();
+        for ($i = 1; $i <= 5; $i++) {
+            if ($request->input("feature_images_$i")) {
+                $image['id'] = -1;
+                $image['path'] = $request->input("feature_images_$i");
+                $images[] = $image;
+            }
         }
+
+//        if (!is_string($features)) {
+//            return redirect()->back()
+//                    ->withErrors($features)->withInput();
+//        }
 
         $product = new Product();
         $product->name = $request->input('name');
@@ -253,12 +264,11 @@ class ProductsController extends Controller
         $product->type = $request->input('type');
         $product->moderation = 0;
         $product->save();
+        $product->updatePictures($images);
         $message = '';
-        Session::flash('message', trans('product.controller.saved_successfully').$message);
+        Session::flash('message', trans('product.controller.saved_successfully') . $message);
 
-
-
-        return redirect('products/'.$product->id);
+        return redirect('products/' . $product->id);
     }
 
     /**
@@ -309,13 +319,14 @@ class ProductsController extends Controller
             $storesProducts = UserProduct::where('product_id', '=', $product->id)
                 ->where('status', '=', 1)
                 ->get();
-
-            return view('prod-list',['data' => compact('product', 'allWishes', 'reviews', 'freeproductId', 'features', 'suggestions', 'storesProducts')]);
+dd($product->toArray());
+            return view('prod-list', ['data' => compact('product', 'allWishes', 'reviews', 'freeproductId', 'features', 'suggestions', 'storesProducts')]);
         } else {
             return redirect(route('products.index'));
         }
     }
-/**
+
+    /**
      * Display the specified resource.
      *
      * @param int $id
@@ -348,7 +359,7 @@ class ProductsController extends Controller
             //if there is a user in session, the admin menu will be shown
             if ($user && in_array($user->role, ['admin', 'seller'])) {
                 $panel = [
-                    'left'   => ['width' => '2'],
+                    'left' => ['width' => '2'],
                     'center' => ['width' => '10'],
                 ];
             }
@@ -379,12 +390,12 @@ class ProductsController extends Controller
             $prices->min = $product->price_min;
             $prices->max = $product->price_max;
             $prices->avg = (int) DB::table('user_products')
-                ->where('product_id', $product->id)
-                ->avg('price');
+                    ->where('product_id', $product->id)
+                    ->avg('price');
 
             return view('products.detailUserProd', compact('product', 'panel', 'allWishes', 'reviews', 'freeproductId', 'features', 'suggestions'))
-                ->with('userProduct', $userProduct)
-                ->with('prices', $prices);
+                    ->with('userProduct', $userProduct)
+                    ->with('prices', $prices);
         } else {
             return redirect(route('products.index'));
         }
@@ -447,12 +458,13 @@ class ProductsController extends Controller
         $currencies = Currency::getArray();
         $producers = ($product) ? $product->category->producers : [];
         return view('products.form', compact('product', 'panel', 'features', 'categories', 'condition', 'typeItem', 'disabled', 'edit', 'oldFeatures', 'productsDetails'))
-            ->with('deliveryTypes', $deliveryTypes)
-            ->with('payTypes', $payTypes)
-            ->with('currencies', $currencies)
-            ->with('producers', $producers)
-            ->with('productTypes', $productTypes);
+                ->with('deliveryTypes', $deliveryTypes)
+                ->with('payTypes', $payTypes)
+                ->with('currencies', $currencies)
+                ->with('producers', $producers)
+                ->with('productTypes', $productTypes);
     }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -516,7 +528,7 @@ class ProductsController extends Controller
         $v = Validator::make($request->all(), $rules);
         if ($v->fails()) {
             return redirect()->back()
-            ->withErrors($v->errors())->withInput();
+                    ->withErrors($v->errors())->withInput();
         }
         $product = UserProduct::find($id);
         // if (\Auth::id() != $product->user_id) {
@@ -553,9 +565,9 @@ class ProductsController extends Controller
         $mainProduct->save();
 
         $message = '';
-        Session::flash('message', trans('product.controller.saved_successfully').$message);
+        Session::flash('message', trans('product.controller.saved_successfully') . $message);
 
-        return redirect('storeproduct/'.$product->id);
+        return redirect('storeproduct/' . $product->id);
     }
 
     /**
@@ -569,7 +581,7 @@ class ProductsController extends Controller
     {
         if (!$request->input('type')) {
             return redirect()->back()
-            ->withErrors(['induced_error' => [trans('globals.error').' '.trans('globals.induced_error')]])->withInput();
+                    ->withErrors(['induced_error' => [trans('globals.error') . ' ' . trans('globals.induced_error')]])->withInput();
         }
         $rules = $this->rulesByTypes($request, true, true);
         $order = OrderDetail::where('product_id', $id)->join('orders', 'order_details.order_id', '=', 'orders.id')->first();
@@ -581,12 +593,12 @@ class ProductsController extends Controller
         $v = Validator::make($request->all(), $rules);
         if ($v->fails()) {
             return redirect()->back()
-            ->withErrors($v->errors())->withInput();
+                    ->withErrors($v->errors())->withInput();
         }
         $features = $this->validateFeatures($request->all());
         if (!is_string($features)) {
             return redirect()->back()
-            ->withErrors($features)->withInput();
+                    ->withErrors($features)->withInput();
         }
         $product = Product::find($id);
         // if (\Auth::id() != $product->user_id) {
@@ -603,7 +615,7 @@ class ProductsController extends Controller
         $product->updated_by = \Auth::id();
         $product->save();
         $message = '';
-        Session::flash('message', trans('product.controller.saved_successfully').$message);
+        Session::flash('message', trans('product.controller.saved_successfully') . $message);
 
         return redirect()->back();
     }
@@ -625,7 +637,7 @@ class ProductsController extends Controller
         $product->save();
         Session::flash('message', trans('product.controller.saved_successfully'));
 
-        return redirect('products/'.$product->id);
+        return redirect('products/' . $product->id);
     }
 
     /**
@@ -638,9 +650,9 @@ class ProductsController extends Controller
     public function changeStatus($id)
     {
         $product = UserProduct::find($id);
-         if (\Auth::id() != $product->created_by) {
-             return redirect()->back()->withErrors(['feature_images' => [trans('globals.not_access')]]);
-         }
+        if (\Auth::id() != $product->created_by) {
+            return redirect()->back()->withErrors(['feature_images' => [trans('globals.not_access')]]);
+        }
         $product->status = ($product->status) ? 0 : 1;
         $product->save();
 
@@ -650,7 +662,7 @@ class ProductsController extends Controller
             ->count();
 
         $mainProduct = Product::find($product->id);
-        if($countActives == 0){
+        if ($countActives == 0) {
             $mainProduct->status = 0;
             $mainProduct->price_max = 0;
             $mainProduct->price_min = 0;
@@ -674,7 +686,7 @@ class ProductsController extends Controller
 
         Session::flash('message', trans('product.controller.saved_successfully'));
 
-        return redirect('products/'.$product->id.'/edit');
+        return redirect('products/' . $product->id . '/edit');
     }
 
     /**
@@ -751,7 +763,7 @@ class ProductsController extends Controller
      */
     public function downloadExample()
     {
-        return response()->download(storage_path().'/files/key_code/example_keys.txt', 'file.txt');
+        return response()->download(storage_path() . '/files/key_code/example_keys.txt', 'file.txt');
     }
 
     /**
@@ -769,17 +781,17 @@ class ProductsController extends Controller
         foreach ($features as $row) {
             if ($row['status'] == 'active' && $row['validationRulesArray']) {
                 if ($row['max_num_values'] * 1 == 1) {
-                    $features_rules['feature_'.$row['indexByName']] = $row['validationRulesArray'][$row['indexByName'].'_1'] ? $row['validationRulesArray'][$row['indexByName'].'_1'] : '';
-                    $message_rules = array_merge($message_rules, $this->validationMessagesFeatures($row['validationRulesArray'][$row['indexByName'].'_1'], 'feature_'.$row['indexByName'], $row['upperName']));
+                    $features_rules['feature_' . $row['indexByName']] = $row['validationRulesArray'][$row['indexByName'] . '_1'] ? $row['validationRulesArray'][$row['indexByName'] . '_1'] : '';
+                    $message_rules = array_merge($message_rules, $this->validationMessagesFeatures($row['validationRulesArray'][$row['indexByName'] . '_1'], 'feature_' . $row['indexByName'], $row['upperName']));
                 } else {
                     for ($i = 1; $i <= ($row['max_num_values'] * 1); $i++) {
-                        $features_rules['feature_'.$row['indexByName'].'_'.$i] = $row['validationRulesArray'][$row['indexByName'].'_'.$i] ? $row['validationRulesArray'][$row['indexByName'].'_'.$i] : '';
-                        $message_rules = array_merge($message_rules, $this->validationMessagesFeatures($row['validationRulesArray'][$row['indexByName'].'_'.$i], 'feature_'.$row['indexByName'].'_'.$i, $row['upperName']));
+                        $features_rules['feature_' . $row['indexByName'] . '_' . $i] = $row['validationRulesArray'][$row['indexByName'] . '_' . $i] ? $row['validationRulesArray'][$row['indexByName'] . '_' . $i] : '';
+                        $message_rules = array_merge($message_rules, $this->validationMessagesFeatures($row['validationRulesArray'][$row['indexByName'] . '_' . $i], 'feature_' . $row['indexByName'] . '_' . $i, $row['upperName']));
                     }
                 }
             }
         }
-       // dd($data, $features_rules,$message_rules);
+        // dd($data, $features_rules,$message_rules);
         $v = Validator::make($data, $features_rules, $message_rules);
         if ($v->fails()) {
             $array = [];
@@ -797,7 +809,7 @@ class ProductsController extends Controller
             $values = [];
             if (($row['max_num_values'] * 1) !== 1) {
                 for ($i = 1; $i <= ($row['max_num_values'] * 1); $i++) {
-                    if (!$data['feature_'.$row['indexByName'].'_'.$i]) {
+                    if (!$data['feature_' . $row['indexByName'] . '_' . $i]) {
                         continue;
                     }
                     if ($row['help_message'] != '' && (strpos('video image document', $row['input_type']) === false)) {
@@ -805,19 +817,19 @@ class ProductsController extends Controller
                         if (isset($row['helpMessageArray']['general'])) {
                             $message = $row['helpMessageArray']['general'];
                         } elseif (isset($row['helpMessageArray']['specific'])) {
-                            $message = $row['helpMessageArray']['specific'][$row['indexByName'].'_'.$i];
+                            $message = $row['helpMessageArray']['specific'][$row['indexByName'] . '_' . $i];
                         } elseif (isset($row['helpMessageArray']['general_selection'])) {
-                            $message = $data['help_msg_'.$row['indexByName']];
+                            $message = $data['help_msg_' . $row['indexByName']];
                         } elseif (isset($row['helpMessageArray']['specific_selection'])) {
-                            $message = $data['help_msg_'.$row['indexByName'].'_'.$i];
+                            $message = $data['help_msg_' . $row['indexByName'] . '_' . $i];
                         }
-                        $values[] = [$data['feature_'.$row['indexByName'].'_'.$i], $message];
+                        $values[] = [$data['feature_' . $row['indexByName'] . '_' . $i], $message];
                     } else {
-                        $values[] = $data['feature_'.$row['indexByName'].'_'.$i];
+                        $values[] = $data['feature_' . $row['indexByName'] . '_' . $i];
                     }
                 }
             } else {
-                if (isset($data['feature_'.$row['indexByName']]) && !$data['feature_'.$row['indexByName']]) {
+                if (isset($data['feature_' . $row['indexByName']]) && !$data['feature_' . $row['indexByName']]) {
                     continue;
                 }
                 if ($row['help_message'] != '' && (strpos('video image document', $row['input_type']) === false)) {
@@ -825,11 +837,11 @@ class ProductsController extends Controller
                     if (isset($row['helpMessageArray']['general'])) {
                         $message = $row['helpMessageArray']['general'];
                     } elseif (isset($row['helpMessageArray']['general_selection'])) {
-                        $message = $data['help_msg_'.$row['indexByName']];
+                        $message = $data['help_msg_' . $row['indexByName']];
                     }
-                    $values = [$data['feature_'.$row['indexByName']], $message];
+                    $values = [$data['feature_' . $row['indexByName']], $message];
                 } else {
-                    $values = isset($data['feature_'.$row['indexByName']]) ? $data['feature_'.$row['indexByName']] : '';
+                    $values = isset($data['feature_' . $row['indexByName']]) ? $data['feature_' . $row['indexByName']] : '';
                 }
             }
             if ($values) {
@@ -853,49 +865,49 @@ class ProductsController extends Controller
     {
         $return = [];
         if (strpos($rules, '|in') !== false) {
-            $return[$index.'.in'] = $name.' '.trans('features.is_invalid');
+            $return[$index . '.in'] = $name . ' ' . trans('features.is_invalid');
         }
         if (strpos($rules, '|numeric') !== false) {
-            $return[$index.'.numeric'] = $name.' '.trans('features.only_allows_numbers');
+            $return[$index . '.numeric'] = $name . ' ' . trans('features.only_allows_numbers');
             if (strpos($rules, '|min') !== false) {
                 $num = explode('min:', $rules);
                 $num = explode('|', $num[1]);
-                $return[$index.'.min'] = $name.' '.str_replace('*N*', $num[0], trans('features.minimum_number'));
+                $return[$index . '.min'] = $name . ' ' . str_replace('*N*', $num[0], trans('features.minimum_number'));
             } elseif (strpos($rules, '|max') !== false) {
                 $num = explode('max:', $rules);
                 $num = explode('|', $num[1]);
-                $return[$index.'.max'] = $name.' '.str_replace('*N*', $num[0], trans('features.maximum_number_2'));
+                $return[$index . '.max'] = $name . ' ' . str_replace('*N*', $num[0], trans('features.maximum_number_2'));
             } elseif (strpos($rules, '|between') !== false) {
                 $num = explode('between:', $rules);
                 $num = explode('|', $num[1]);
                 $num = explode(',', $num[0]);
-                $return[$index.'.between'] = $name.' '.str_replace(['*N1*', '*N2*'], $num, trans('features.between_n_and_n'));
+                $return[$index . '.between'] = $name . ' ' . str_replace(['*N1*', '*N2*'], $num, trans('features.between_n_and_n'));
             }
         } else {
             if (strpos($rules, '|alpha') !== false) {
-                $return[$index.'.alpha'] = $name.' '.trans('features.only_allows_letters');
+                $return[$index . '.alpha'] = $name . ' ' . trans('features.only_allows_letters');
             }
             if (strpos($rules, '|min') !== false) {
                 $num = explode('min:', $rules);
                 $num = explode('|', $num[1]);
-                $return[$index.'.min'] = $name.' '.str_replace('*N*', $num[0], trans('features.minimum_characters'));
+                $return[$index . '.min'] = $name . ' ' . str_replace('*N*', $num[0], trans('features.minimum_characters'));
             } elseif (strpos($rules, '|max') !== false) {
                 $num = explode('max:', $rules);
                 $num = explode('|', $num[1]);
-                $return[$index.'.max'] = $name.' '.str_replace('*N*', $num[0], trans('features.maximum_characters'));
+                $return[$index . '.max'] = $name . ' ' . str_replace('*N*', $num[0], trans('features.maximum_characters'));
             } elseif (strpos($rules, '|between') !== false) {
                 $num = explode('between:', $rules);
                 $num = explode('|', $num[1]);
                 $num = explode(',', $num[0]);
-                $return[$index.'.between'] = $name.' '.str_replace(['*N1*', '*N2*'], $num, trans('features.between_n_and_n_characters'));
+                $return[$index . '.between'] = $name . ' ' . str_replace(['*N1*', '*N2*'], $num, trans('features.between_n_and_n_characters'));
             }
         }
         if (strpos($rules, 'required_without_all') !== false) {
-            $return[$index.'.required_without_all'] = $name.' '.trans('features.one_is_required');
+            $return[$index . '.required_without_all'] = $name . ' ' . trans('features.one_is_required');
         } elseif (strpos($rules, 'required_with') !== false) {
-            $return[$index.'.required_with'] = $name.' '.trans('features.is_required');
+            $return[$index . '.required_with'] = $name . ' ' . trans('features.is_required');
         } elseif (strpos($rules, 'required') !== false) {
-            $return[$index.'.required'] = $name.' '.trans('features.is_required');
+            $return[$index . '.required'] = $name . ' ' . trans('features.is_required');
         }
 
         return $return;
@@ -904,15 +916,18 @@ class ProductsController extends Controller
     private function rulesByTypes($request, $edit = false, $isAdmin = false)
     {
         $rules = [];
-        if($isAdmin && $edit)
+        if ($isAdmin && $edit)
             $rules = $this->form_rules_admin_update;
         elseif ($isAdmin && !$edit)
             $rules = $this->form_rules_admin;
         else
             $rules = $this->form_rules;
 
-        unset($rules['amount']); unset($rules['key']); unset($rules['software']);
-        unset($rules['key_software']); unset($rules['software_key']);
+        unset($rules['amount']);
+        unset($rules['key']);
+        unset($rules['software']);
+        unset($rules['key_software']);
+        unset($rules['software_key']);
 
         return $rules;
     }
@@ -945,7 +960,7 @@ class ProductsController extends Controller
     public static function setCounters($product = null, $data = [], $wrapper = '')
     {
         if (\Auth::user() && $product != '' && count($data) > 0) {
-            $_array = Session::get('products.'.$wrapper); //products already evaluated
+            $_array = Session::get('products.' . $wrapper); //products already evaluated
             if (count($_array) == 0 || !in_array($product->id, $_array)) {
                 //looked up to make sure the product is not in $wrapper array already
                 foreach ($data as $key => $value) {
@@ -954,7 +969,7 @@ class ProductsController extends Controller
                         $product->save();
                     }
                 }
-                Session::push('products.'.$wrapper, $product->id); //build product list to not increase a product more than one time per day
+                Session::push('products.' . $wrapper, $product->id); //build product list to not increase a product more than one time per day
                 Session::save();
             }
         }
@@ -1030,9 +1045,9 @@ class ProductsController extends Controller
     public function getFeatures($data = [])
     {
         $options = [
-            'product'    => [],
+            'product' => [],
             'product_id' => '',
-            'feature'    => '',
+            'feature' => '',
         ];
 
         $features = [];
@@ -1048,7 +1063,8 @@ class ProductsController extends Controller
         return trim($data['feature']) != '' ? $features[$data['feature']] : $features;
     }
 
-    public function getListAdmin(Request $request){
+    public function getListAdmin(Request $request)
+    {
         $categoryId = $request->input('category_id');
         return json_encode(\App\Models\Product::select('id', 'name')->where('category_id', '=', $categoryId)->get());
     }

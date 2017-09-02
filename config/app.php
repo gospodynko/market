@@ -197,6 +197,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Illuminate\Notifications\NotificationServiceProvider::class,
+        App\Providers\ValidationServiceProvider::class
     ],
 
     /*
