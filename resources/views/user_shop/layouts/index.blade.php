@@ -16,7 +16,9 @@
     <!-- Menu CSS -->
     <!-- Menu CSS -->
     <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.0.0/dist/vue-multiselect.min.css">
     <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/useradmin.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>

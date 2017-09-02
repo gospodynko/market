@@ -2,6 +2,6 @@
 
 @section('user-shop-content')
 
-<index-vue></index-vue>
+    <shops-vue :shops="{{json_encode($shops)}}"></shops-vue>
     <!-- /#page-wrapper -->
-    @endsection
+@endsection

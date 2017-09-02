@@ -19,6 +19,7 @@ use App\Helpers\FeaturesHelper; //WIP
 use App\Helpers\ProductsHelper;
 use Illuminate\Support\Collection;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
