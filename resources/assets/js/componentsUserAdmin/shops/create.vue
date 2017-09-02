@@ -30,7 +30,7 @@
                     <div v-if="checkedProduct && !Number.isInteger(checkedProduct.id)">
                         <div class="col-lg-12">
                             <label>Описание продукта</label>
-                            <input type="text">
+                            <input type="text" v-model="description">
                         </div>
                         <div class="col-md-12">
                             <hr>
@@ -96,7 +96,8 @@
                 categories: this.data.categories,
                 deliveryType: [],
                 paymentType: [],
-                currencyType: null
+                currencyType: null,
+                description: '',
             }
         },
         props: ['data'],
@@ -105,7 +106,21 @@
         },
         methods: {
             createProduct(){
+                let data = {
+                    'product': this.checkedProduct,
+                    'type': 'items',
+                    'pay_type': this.paymentType,
+                    'delivery_type': this.deliveryType,
+                    'currency': this.currencyType,
+                    'description': this.description,
+                    'producer': this.checkedTag,
+                    'category': this.checkedCategory
+                };
+                this.$http.post('/user-shop/shop/'+this.shop.id+'/create', data).then(res => {
+                    console.log(res);
+                }, err => {
 
+                })
             },
             setProducer(){
                 this.checkedProducers = this.checkedCategory.producers;
