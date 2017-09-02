@@ -108,7 +108,7 @@
       justify-content: space-between;
       align-items: flex-start;
       flex-wrap: wrap;
-      height: 500px;
+      height: 320px;
       .small-photos{
         width: 82px;
         .show-all{
@@ -144,7 +144,7 @@
       .full-photo{
         width: calc(100% - 82px);
         text-align: center;
-        min-height: 350px;
+        max-height: 320px;
         margin-bottom: 25px;
         padding: 0 10px;
         -webkit-box-sizing: border-box;

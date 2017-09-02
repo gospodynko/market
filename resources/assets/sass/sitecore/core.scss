@@ -50,7 +50,7 @@ h2{
     height: 100%;
     background: rgba(0,0,0,.7);
     transition: background .5s ease-out;
-    z-index: 7;
+    z-index: 5;
 }
 .btn{
     height: 45px;
@@ -188,5 +188,25 @@ ul{
             padding: 0 25px;
             color: $white;
         }
+    }
+}
+.shops-popup-wrap{
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    width: 600px;
+    height: 200px;
+    margin-left: -15%;
+    background: #ffffff;
+    z-index: 7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h2{
+        margin-bottom: 15px;
+    }
+    h2,p{
+        text-align: center;
     }
 }

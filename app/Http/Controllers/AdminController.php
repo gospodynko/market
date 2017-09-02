@@ -126,7 +126,7 @@ class AdminController extends Controller
     {
         $banners = Banner::all();
 
-        return $banners;
+        return view('dashboard.sections.banners.index', ['banners' => $banners]);
     }
 
     public function createBanner(CreateBannerRequest $request)

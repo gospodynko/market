@@ -26,7 +26,7 @@ Route::get('/adminlogin', function (){
 });
 
 // home
-Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
+Route::any('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::post('/get-categories', 'HomeController@getCategories');
 Route::get('/single-product', function (){
    return view('single-prod') ;
@@ -59,6 +59,9 @@ Route::group(['prefix' => 'api'],function (){
 
 //users routes
 require __DIR__ . '/web/users.php';
+
+//user shop ['role' => 'seller']
+require __DIR__ . '/web/user_shop.php';
 
 //business routes
 require __DIR__ . '/web/business.php';

@@ -3,13 +3,13 @@
         <div class="top-product-wrap">
             <h2>Топ предложений</h2>
             <div class="all-products-list">
-                <div class="single-product" v-for="product in products.data">
+                <div class="single-product" v-for="product in allProducts.data">
                     <div class="img-wrap">
-                        <img :src="product.images[0]" alt="">
+                        <a :href="'/products/'+product.id"><img :src="product.images[0]" alt=""></a>
                     </div>
                     <div class="detail-wrap">
                         <p class="product-title">
-                            {{product.name}}
+                            <a :href="'/products/'+product.id">{{product.name}}</a>
                         </p>
                         <p class="price">
                             {{product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max}} грн.
@@ -57,8 +57,9 @@
 
                     </div>
                 </div>
-                <div class="show-all-btn-wrap" v-if="products && products.total > 20">
-                    <button class="btn">Показать все</button>
+                <div class="show-all-btn-wrap" v-if="products && allProducts.total > 20">
+                    <vue-ladda class="btn"@click="getNew" :loading="loadProduct">Показать еще</vue-ladda>
+                    <!--<button class="btn" @click="getNew">Показать еще</button>-->
                 </div>
             </div>
         </div>
@@ -67,17 +68,36 @@
 
 <script type="text/babel">
     import StarRating from 'vue-star-rating';
+    import VueLadda from 'vue-ladda'
     export default{
         data(){
             return{
-
+                page: 1,
+                allProducts: this.products,
+                loadProduct: false
             }
         },
         props: [
           'products'
         ],
         components: {
-            StarRating
+            StarRating,
+            VueLadda
+        },
+        methods: {
+           getNew(){
+               this.loadProduct = true;
+               this.$http.post('/', {'page': ++this.page}).then(res => {
+                   res.data.products.data.forEach(item => {
+                       this.allProducts.data.unshift(item);
+                   })
+
+                   this.page = res.data.products.current_page;
+                   this.loadProduct = false;
+               }, err => {
+                   this.loadProduct = false;
+               })
+           }
         }
     }
 </script>

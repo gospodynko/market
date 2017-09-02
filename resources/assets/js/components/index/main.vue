@@ -1,6 +1,6 @@
 <template>
     <div>
-        <slider-vue></slider-vue>
+        <slider-vue :banners="data.banner"></slider-vue>
         <!--<clasfds-vue></clasfds-vue>-->
         <top-product :products="data.productsTop"></top-product>
         <!--<popular-products></popular-products>-->

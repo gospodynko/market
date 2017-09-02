@@ -5,12 +5,12 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12">
-            <a href="/admin/banner/create" class="btn btn-success">
-                {{ trans('banners.create') }}
-            </a>
+            {{--<a href="{{ route('categories.create') }}" class="btn btn-success">--}}
+                {{--{{ trans('banners.create') }}--}}
+            {{--</a>--}}
             <hr>
         </div>
     </div>
-    <admin-banners :banners="{{json_encode($banners)}}"></admin-banners>
+    <admin-banners-create></admin-banners-create>
 
 @endsection

@@ -17,6 +17,8 @@ import AdminHeader from './components/dashboard/core/header.vue';
 import AdminModeration from './components/dashboard/moderations/index.vue';
 import AdminModerationEdit from './components/dashboard/moderations/edit.vue';
 import AdminModerationView from './components/dashboard/moderations/show.vue';
+import AdminBanners from './components/dashboard/banners/index.vue';
+import AdminBannersCreate from './components/dashboard/banners/create.vue';
 // Vue.use(VueSocketio, 'http://localhost:8303');
 // Vue.use(VueRouter);
 Vue.use(VueResource);
@@ -38,7 +40,9 @@ const app = new Vue({
         AdminCategories,
         AdminHeader,
         AdminModeration,
-        AdminModerationView
+        AdminModerationView,
+        AdminBanners,
+        AdminBannersCreate
     }
 
 

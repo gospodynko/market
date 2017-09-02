@@ -55,18 +55,21 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function index()
+    public function index(Request $request)
     {
-        $page_count = 20;
+        $page_count = 8;
         $productsTop = Product::where('status', 1)->orderBy('updated_at', 'DESC')->whereHas('user_products')->paginate($page_count);
         $productsSuggestions = Product::orderBy('created_at', 'ASC')->paginate($page_count);
-
-        return view('main', ['data' =>[
-            'banner' => Banner::all(),
-            'productsTop' => $productsTop,
-            'productsSuggestions' => $productsSuggestions,
-            'events' => [],
-        ]]);
+        if($request->method() == 'GET'){
+            return view('main', ['data' =>[
+                'banner' => Banner::all(),
+                'productsTop' => $productsTop,
+                'productsSuggestions' => $productsSuggestions,
+                'events' => [],
+            ]]);
+        } else {
+            return response()->json(['products' => Product::where('status', 1)->orderBy('updated_at', 'DESC')->whereHas('user_products')->paginate($page_count)]);
+        }
     }
 
     public function getCategories()

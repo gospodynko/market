@@ -41,7 +41,7 @@
                             </a>
                                 </li>
                                 <li>
-                                    <a href="/admin/banners">
+                                    <a href="/admin/banner">
                                         <i class="glyphicon glyphicon-menu-right"></i>&nbsp;Баннери
                                     </a>
                                 </li>

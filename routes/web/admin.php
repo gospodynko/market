@@ -6,7 +6,7 @@
  * Time: 11:51 AM
  */
 
-Route::group(['roles' => ['seller', 'admin'], 'middleware' => ['auth', 'roles']], function () {
+Route::group(['roles' => ['admin'], 'middleware' => ['auth', 'roles']], function () {
 
 
 
@@ -39,6 +39,9 @@ Route::group(['roles' => ['seller', 'admin'], 'middleware' => ['auth', 'roles']]
     Route::post('admin/banner', 'AdminController@createBanner');
 
     Route::get('admin/banner', 'AdminController@getBannersList');
+    Route::get('admin/banner/create', function (){
+        return view('dashboard.sections.banner.create');
+    });
     Route::get('admin/moderation', 'AdminController@moderateList');
     Route::post('admin/moderation/accept-product', 'AdminController@acceptProduct');
     Route::get('admin/moderation/show/{id}', 'AdminController@viewProduct');
