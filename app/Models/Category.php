@@ -18,4 +18,5 @@ class Category extends AntvelCategory
     {
         return $this->belongsToMany(Producer::class);
     }
+
 }

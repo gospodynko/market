@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -16,7 +17,9 @@
     <!-- Menu CSS -->
     <!-- Menu CSS -->
     <!-- Custom CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.0.0/dist/vue-multiselect.min.css">
     <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/useradmin.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -29,7 +32,11 @@
 <div class="preloader">
     <div class="cssload-speeding-wheel"></div>
 </div>
-@yield('user-shop-content')
+<div id="wrapper">
+    <header-vue></header-vue>
+    <menu-vue></menu-vue>
+    @yield('user-shop-content')
+</div>
 <!-- /#wrapper -->
 {!! Html::script('/antvel-bower/jquery/dist/jquery.min.js') !!}
 {!! Html::script('/antvel-bower/bootstrap/dist/js/bootstrap.min.js') !!}
@@ -38,6 +45,7 @@
 {!! Html::script('/antvel-bower/raphael/raphael-min.js') !!}
 <!--Nice scroll JavaScript -->
 <script src="/js/jquery.nicescroll.js"></script>
+<script src="/js/appUserAdmin.js"></script>
 <!--Wave Effects -->
 <script src="/js/waves.js"></script>
 <!-- Custom Theme JavaScript -->

@@ -18,5 +18,7 @@ var path = {
 elixir(mix => {
     mix.sass('main.scss')
         .sass('admin.scss')
-        .webpack('app.js');
+        .sass('/user-admin/useradmin.scss')
+        .webpack('app.js')
+        .webpack('appUserAdmin.js');
 });
