@@ -8,7 +8,7 @@ use App\Models\DeliveryType;
 class UserProduct extends Model
 {
 
-    protected $with = ['created_by_user'];
+    protected $with = ['shop'];
     protected $fillable = [
         'product_id',
         'category_id',
