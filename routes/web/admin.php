@@ -8,6 +8,8 @@
 
 Route::group(['roles' => ['seller', 'admin'], 'middleware' => ['auth', 'roles']], function () {
 
+
+
     Route::get('admin/products/create', ['uses' => 'ProductsController@createAdmin', 'as' => 'products.admin.create']);
 
     Route::get('/admin/producers/by_category', ['uses' => 'AdminController@getProducersList', 'as' => 'admin.producers.getlist']);
@@ -37,4 +39,7 @@ Route::group(['roles' => ['seller', 'admin'], 'middleware' => ['auth', 'roles']]
     Route::post('admin/banner', 'AdminController@createBanner');
 
     Route::get('admin/banner', 'AdminController@getBannersList');
+    Route::get('admin/moderation', 'AdminController@moderateList');
+    Route::post('admin/moderation/accept-product', 'AdminController@acceptProduct');
+    Route::get('admin/moderation/show/{id}', 'AdminController@viewProduct');
 });

@@ -52,6 +52,10 @@ Route::group(['prefix' => 'home'], function () {
 Route::prefix('search')->group(function () {
     Route::get('/', 'SearchController@index');
 });
+Route::group(['prefix' => 'api'],function (){
+    Route::post('/check-user', 'HomeController@checkUser');
+    Route::post('/set-role', 'HomeController@setRole');
+});
 
 //users routes
 require __DIR__ . '/web/users.php';
