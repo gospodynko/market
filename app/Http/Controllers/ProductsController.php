@@ -203,7 +203,7 @@ class ProductsController extends Controller
         $maxPrice = DB::table('user_products')
             ->where('status', 1)
             ->where('product_id', $product->product_id)
-            ->min('price');
+            ->max('price');
 
         $mainProduct->price_min = ($minPrice > $product->price) ? $product->price : $minPrice;
         $mainProduct->price_max = ($maxPrice < $product->price) ? $product->price : $maxPrice;
@@ -233,7 +233,7 @@ class ProductsController extends Controller
             ->withErrors($v->errors())->withInput();
         }
 
-        $features = $this->validateFeatures($request->all());
+//        $features = $this->validateFeatures($request->all());
 
         if (!is_string($features)) {
             return redirect()->back()
@@ -248,11 +248,14 @@ class ProductsController extends Controller
         $product->description = $request->input('description');
         $product->bar_code = $request->input('bar_code');
         $product->producer_id = $request->input('producer_id');
-        $product->features = $features;
+//        $product->features = $features;
         $product->type = $request->input('type');
+        $product->moderation = 0;
         $product->save();
         $message = '';
         Session::flash('message', trans('product.controller.saved_successfully').$message);
+
+
 
         return redirect('products/'.$product->id);
     }

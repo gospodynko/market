@@ -16,7 +16,7 @@
                         <div class="full-photo">
                             <img :src="checkImage" alt="">
                         </div>
-                        <div class="product-options">
+                        <div class="product-options" v-if="false">
                             <div class="find-good">
                                 <i></i>
                                 <p class="find-good-action"> Отслеживать товар</p>
@@ -347,12 +347,12 @@
                 <div class="all-products-list">
                     <div class="single-product" v-for="product in data.suggestions">
                         <div class="img-wrap">
-                            <img :src="product.images[0]" alt="">
+                            <a :href="'/products/'+product.id"><img :src="product.images[0]" alt=""></a>
                         </div>
                         <div class="detail-wrap">
                             <p class="product-title">
-                                {{product.name}}
-                        </p>
+                                <a :href="'/products/'+product.id">{{product.name}}</a>
+                            </p>
                             <p class="price">
                                 {{product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max}} грн.
                         </p>

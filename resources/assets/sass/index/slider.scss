@@ -3,66 +3,74 @@ section.slider{
   .all-slides-wrap{
     max-width: 1315px;
     margin: 0 auto;
-    .slider-wrap{
+    .pgwSlider{
       width: calc(100% - 300px);
       float: right;
-      max-height: 600px;
-      .full-slide{
+      display: flex;
+      flex-direction: column;
+      .ps-current{
         width: 100%;
-        height: 500px;
+        height: 500px!important;
         position: relative;
-        .best-change{
-          position: absolute;
-          right: 0;
-          bottom: 45px;
-          width: auto;
-          height: 90px;
-          padding: 0px 40px;
-          line-height: 90px;
-          background: #ffa800;
-          text-align: center;
-          p{
-            color: $white;
-            text-transform: uppercase;
-            font-size: 34px;
-            font-weight: 500;
+        ul>li{
+          height: 500px!important;
+          img{
+            max-height: 100%;
+            object-fit: cover;
           }
         }
-        img{
-          max-height: 100%;
-        }
       }
-      .navigation{
+      .ps-caption{
+        position: absolute;
+        left: auto;
+        right: 0;
+        bottom: 45px;
+        width: auto;
+        height: 90px;
+        padding: 0px 40px;
+        line-height: 90px;
+        background: #ffa800;
+        text-align: center;
+        color: $white;
+        text-transform: uppercase;
+        font-size: 34px;
+        font-weight: 500;
+      }
+      .ps-list{
         display: flex;
         justify-content: space-between;
         align-items: center;
-        height: 100px;
         width: 100%;
-        padding: 15px 35px;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
         background: #e2e9f0;
-        .small-slide{
+        li{
           display: inline-block;
           width: 220px;
           height: 70px;
           opacity: .5;
           cursor: pointer;
+          margin-bottom: 0;
+          margin-top: 15px;
+          margin-bottom: 15px;
           img{
-            width: 100%;
+            width: 90%;
             max-height: 100%;
             object-fit: cover;
+            margin: 0 auto;
           }
-        }
-        .small-slide.active{
-          opacity: 1;
+          span{
+            display: none;
+          }
         }
       }
     }
   }
 
 }
+
+
 
 .classified-wrap{
   width: 100%;

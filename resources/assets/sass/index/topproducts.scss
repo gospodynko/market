@@ -21,8 +21,11 @@
       background: #48a2ff;
       border: 1px solid #2d92fa;
       border-radius: 4px;
-      font-size: 20px;
-      color: #fff;
+      padding: 0;
+      span{
+        font-size: 20px;
+        color: #fff;
+      }
     }
   }
   .single-product{
@@ -39,7 +42,7 @@
     .hide-list-wrap{
       display: none;
       position: absolute;
-      top: 412px;
+      top: 414px;
       left: -1px;
       width: calc(100% + 2px);
       height: auto;
@@ -134,12 +137,15 @@
       border-bottom: 1px solid $light-gray;
       margin-bottom: 10px;
       .product-title{
-        font-size: 20px;
-        font-weight: 500;
-        line-height: 30px;
-        margin-bottom: 15px;
-        height: 60px;
-        overflow: hidden;
+        a{
+          font-size: 20px;
+          font-weight: 500;
+          line-height: 30px;
+          margin-bottom: 15px;
+          height: 60px;
+          overflow: hidden;
+          display: inline-block;
+        }
       }
       .price{
         color: $green;

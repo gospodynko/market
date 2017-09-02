@@ -7,12 +7,17 @@ namespace App\Http\Controllers;
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
+//use App\Http\Requests\Request;
+use App\Models\AgroUser;
+use App\Models\UserShops;
 use App\Order;
 use Antvel\Product\Products;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Banner;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -50,21 +55,21 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function index()
+    public function index(Request $request)
     {
-        $page_count = 20;
-        $productsTop = Product::orderBy('created_at', 'DESC')->whereHas('user_products')->paginate($page_count);
-        $productsSuggestions = Product::orderBy('created_at', 'ASC')->whereHas('user_products')->limit(20)->get();
-
-        return view('main', ['data' =>[
-            'categories' => Category::where('category_id', null)->get(),
-            'banner' => Banner::all(),
-            'tagsCloud' => $this->tagsCloud($productsSuggestions),
-            'panel' => $this->panelLayout(),
-            'productsTop' => $productsTop,
-            'productsSuggestions' => $productsSuggestions,
-            'events' => [],
-        ]]);
+        $page_count = 8;
+        $productsTop = Product::where('status', 1)->orderBy('updated_at', 'DESC')->whereHas('user_products')->paginate($page_count);
+        $productsSuggestions = Product::orderBy('created_at', 'ASC')->paginate($page_count);
+        if($request->method() == 'GET'){
+            return view('main', ['data' =>[
+                'banner' => Banner::all(),
+                'productsTop' => $productsTop,
+                'productsSuggestions' => $productsSuggestions,
+                'events' => [],
+            ]]);
+        } else {
+            return response()->json(['products' => Product::where('status', 1)->orderBy('updated_at', 'DESC')->whereHas('user_products')->paginate($page_count)]);
+        }
     }
 
     public function getCategories()
@@ -79,9 +84,9 @@ class HomeController extends Controller
      *
      * @return array
      */
-    protected function tagsCloud($suggestion): array
+    protected function tagsCloud($suggestion)
     {
-        return collect($suggestion)->map(function ($item) {
+        return collect($suggestion->items)->map(function ($item) {
                 $tags[] = explode(',', $item->pluck('tags')->implode(','));
                 return $tags;
             })->flatten()->unique()->all();
@@ -161,5 +166,49 @@ class HomeController extends Controller
         }
 
         return view('user.summary', compact('panel', 'orders', 'sales'));
+    }
+
+    public function checkUser(Request $request)
+    {
+        $user = AgroUser::findOrFail(Auth::id());
+        $user_companies = \DB::table('agroyard_company_users as acu')
+                                        ->where('user_id', Auth::id())
+                                        ->join('agroyard_companies as ac', 'acu.company_id', 'ac.id')
+                                        ->whereIn('ac.status_id', [2,3,6])
+                                        ->select('ac.*')
+                                        ->get();
+        if(!count($user_companies)){
+            return response()->json(['status' => 0, 'errors' => [['text' => 'Нет активных компаний']]], 200);
+        } else {
+            return response()->json(['status' => 1], 200);
+        }
+
+    }
+
+    public function setRole(Request $request)
+    {
+        $user = Auth::user();
+        $user_companies = \DB::table('agroyard_company_users as acu')
+            ->where('user_id', Auth::id())
+            ->join('agroyard_companies as ac', 'acu.company_id', 'ac.id')
+            ->whereIn('ac.status_id', [2,3,6])
+            ->select('ac.*')
+            ->get();
+        if(count($user_companies) && $request->input('role') == 'seller'){
+            foreach ($user_companies as $company){
+                UserShops::create([
+                   'name' => $company->compName,
+                    'company_id' => $company->id,
+                    'user_id' => $user->id
+                ]);
+            }
+            $user->role = 'seller';
+            $user->save();
+            return response()->json(['status' => 1, 'user' => $user]);
+        } elseif($request->input('role') == 'customer') {
+            $user->role = 'customer';
+            $user->save();
+            return response()->json(['status' => 1, 'user' => $user]);
+        }
     }
 }

@@ -17,6 +17,7 @@ class UserProduct extends Model
         'delivery_id',
         'pay_id',
         'created_by',
+        'user_shop_id',
         'sale_counts',
         'view_counts',
         'status',
@@ -24,9 +25,9 @@ class UserProduct extends Model
         'producer_id'
     ];
 
-    public function created_by_user()
+    public function shop()
     {
-        return $this->belongsTo(AgroUser::class, 'created_by');
+        return $this->hasMany(UserShops::class, 'id', 'user_shop_id');
     }
 
     public function mainProduct()

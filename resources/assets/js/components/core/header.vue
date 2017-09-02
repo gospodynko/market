@@ -1,7 +1,13 @@
 <template>
     <header @mouseleave="closeMenu()">
-        <div class="overlay" :class="{'show': showChild || showOverlay}"></div>
+        <div class="overlay" :class="{'show': showChild || showOverlay}" @click="showPopupFunc"></div>
+        <div class="overlay" style="z-index: 6" :class="{'show': showOverlayPopup}" @click="showPopupFunc"></div>
         <cart-blocked></cart-blocked>
+        <noselect-user :user="user" v-if="user && user.role == 'noselect'"></noselect-user>
+        <div class="shops-popup-wrap" v-if="showPopup">
+            <h2>Каталог всех магазинов</h2>
+            <p>Coming soon!</p>
+        </div>
         <div class="header">
             <div class="two-wrap">
 
@@ -15,10 +21,10 @@
                 <div class="right">
                     <div class="site-menu">
                         <div class="item">
-                            <p class="city"><i></i> Город</p>
+                            <!--<p class="city"><i></i> Город</p>-->
                         </div>
                         <div class="item">
-                            <a href="#" class="shop"><i></i> Мой магазин</a>
+                            <a href="#" class="shop" v-if="user.role == 'seller'"><i></i> Мой магазин</a>
                         </div>
                         <div class="item">
                             <a href="#" class="basket" @click="showCartFunc"><i></i><span class="badge" :class="{'badge': cart}" v-if="cart && cart.length">{{cart.length}}</span> Корзина</a>
@@ -31,13 +37,13 @@
 
                             <a href="/login" v-else>Войти</a>
                         </div>
-                        <div class="item">
-                            <ul class="languages">
-                                <li class="language">UA</li>
-                                <li class="language">RU</li>
-                                <li class="language">EN</li>
-                            </ul>
-                        </div>
+                        <!--<div class="item">-->
+                            <!--&lt;!&ndash;<ul class="languages">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<li class="language">UA</li>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<li class="language">RU</li>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<li class="language">EN</li>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                        <!--</div>-->
                     </div>
                 </div>
             </div>
@@ -74,7 +80,7 @@
                             </form>
                         </div>
                         <div class="all-shops-btn">
-                            <button class="btn">Все магазины</button>
+                            <button class="btn" @click="showPopupFunc">Все магазины</button>
                         </div>
                     </div>
                 </div>
@@ -86,6 +92,7 @@
 <script>
     import cartBlocked from './cart.vue';
     import {Events} from './../../app';
+    import NoselectUser from './noselect-user.vue';
     export default {
         data(){
             return {
@@ -95,12 +102,15 @@
                 categories: null,
                 showOverlay: false,
                 cart: JSON.parse(localStorage.getItem('cart')),
-                showCart: false
+                showCart: false,
+                showPopup: false,
+                showOverlayPopup: false
             }
         },
         props: ['user'],
         components: {
-            cartBlocked
+            cartBlocked,
+            NoselectUser
         },
         created(){
             this.getCategories();
@@ -115,6 +125,9 @@
             })
             Events.$on('updateCart', () => {
                 this.updateCart();
+            })
+            Events.$on('updateRole', (user) => {
+                this.user = user;
             })
         },
         methods: {
@@ -145,8 +158,8 @@
             closeMenu()
             {
                 this.showOverlay = false;
-                if(location.pathname == '/') return;
                 this.showChild = false;
+                if(location.pathname == '/') return;
                 this.showMenu = false;
             },
             showCartFunc(e = 0){
@@ -160,6 +173,10 @@
             },
             updateCart(){
                 this.cart = JSON.parse(localStorage.getItem('cart'));
+            },
+            showPopupFunc(){
+                this.showPopup = !this.showPopup;
+                this.showOverlayPopup = !this.showOverlayPopup;
             }
 
         }
