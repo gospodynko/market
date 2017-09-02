@@ -29,7 +29,11 @@
 <div class="preloader">
     <div class="cssload-speeding-wheel"></div>
 </div>
-@yield('user-shop-content')
+<div id="wrapper">
+    <header-vue></header-vue>
+    <menu-vue></menu-vue>
+    @yield('user-shop-content')
+</div>
 <!-- /#wrapper -->
 {!! Html::script('/antvel-bower/jquery/dist/jquery.min.js') !!}
 {!! Html::script('/antvel-bower/bootstrap/dist/js/bootstrap.min.js') !!}
@@ -38,6 +42,7 @@
 {!! Html::script('/antvel-bower/raphael/raphael-min.js') !!}
 <!--Nice scroll JavaScript -->
 <script src="/js/jquery.nicescroll.js"></script>
+<script src="/js/appUserAdmin.js"></script>
 <!--Wave Effects -->
 <script src="/js/waves.js"></script>
 <!-- Custom Theme JavaScript -->

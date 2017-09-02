@@ -92,24 +92,6 @@ class HomeController extends Controller
             })->flatten()->unique()->all();
     }
 
-    /**
-     * Returns the panel layout.
-     *
-     * @return array
-     */
-    protected function panelLayout()
-    {
-        return [
-            'center' => [
-                'width' => 10,
-            ],
-            'left' => [
-                'width' => 2,
-                'class' => 'home-no-padding',
-            ],
-        ];
-    }
-
     //moved here while refactoring
     public function summary()
     {

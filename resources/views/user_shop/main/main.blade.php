@@ -1,59 +1,10 @@
 @extends('user_shop.layouts.index')
 
 @section('user-shop-content')
-<div id="wrapper">
+
     <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-static-top" style="margin-bottom: 0">
-        <div class="navbar-header"> <a class="navbar-toggle hidden-sm hidden-md hidden-lg " href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse"><i class="ti-menu"></i></a>
-            <div class="top-left-part"><a class="logo" href="/"><i class="glyphicon glyphicon-fire"></i>&nbsp;<span class="hidden-xs">АгроЯрд</span></a></div>
-            <ul class="nav navbar-top-links navbar-left hidden-xs">
-                <li><a href="javascript:void(0)" class="open-close hidden-xs hidden-lg
- waves-effect waves-light"><i class="ti-arrow-circle-left ti-menu"></i>
-                    </a></li>
-            </ul>
-            <ul class="nav navbar-top-links navbar-right pull-right">
-                <li>
-                    <form role="search" class="app-search hidden-xs">
-                        <input type="text" placeholder="Search..." class="form-control">
-                        <a href=""><i class="ti-search"></i></a>
-                    </form>
-                </li>
-                <li>
-                    <a class="profile-pic" href="#"> <img src="/img/avatars/ava.jpg" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">Maruti</b> </a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-header -->
-        <!-- /.navbar-top-links -->
-        <!-- /.navbar-static-side -->
-    </nav>
-    <div class="navbar-default sidebar nicescroll" role="navigation">
-        <div class="sidebar-nav navbar-collapse ">
-            <ul class="nav" id="side-menu">
-                <li class="sidebar-search hidden-sm hidden-md hidden-lg">
-                    <div class="input-group custom-search-form">
-                        <input type="text" class="form-control" placeholder="Search...">
-                        <span class="input-group-btn">
-                                <button class="btn btn-default" type="button"><i class="ti-search"></i> </button>
-                            </span>
-                    </div>
-                </li>
-                <li>
-                    <a href="/user/shop" class="waves-effect">Главная</a>
-                </li>
-                <li>
-                    <a href="/user/all-shops" class="waves-effect">Магазины</a>
-                </li>
-                <li>
-                    <a href="/user/data" class="waves-effect">Личные данные</a>
-                </li>
-                <li>
-                    <a href="/user/seller/orders" class="waves-effect"> Мои заказы</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.sidebar-collapse -->
-    </div>
+
+
     <!-- Page Content -->
     <div id="page-wrapper">
         <div class="container-fluid">
@@ -184,5 +135,4 @@
     </div>
     <!-- /#page-wrapper -->
     <footer class="footer text-center"> 2017 &copy; Myadmin brought to you by wrappixel.com </footer>
-</div>
     @endsection
