@@ -15,7 +15,7 @@
                 <div class="right">
                     <div class="site-menu">
                         <div class="item">
-                            <p class="city"><i></i> Город</p>
+                            <!--<p class="city"><i></i> Город</p>-->
                         </div>
                         <div class="item">
                             <a href="#" class="shop"><i></i> Мой магазин</a>
@@ -31,13 +31,13 @@
 
                             <a href="/login" v-else>Войти</a>
                         </div>
-                        <div class="item">
-                            <ul class="languages">
-                                <li class="language">UA</li>
-                                <li class="language">RU</li>
-                                <li class="language">EN</li>
-                            </ul>
-                        </div>
+                        <!--<div class="item">-->
+                            <!--&lt;!&ndash;<ul class="languages">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<li class="language">UA</li>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<li class="language">RU</li>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<li class="language">EN</li>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                        <!--</div>-->
                     </div>
                 </div>
             </div>
@@ -145,8 +145,8 @@
             closeMenu()
             {
                 this.showOverlay = false;
-                if(location.pathname == '/') return;
                 this.showChild = false;
+                if(location.pathname == '/') return;
                 this.showMenu = false;
             },
             showCartFunc(e = 0){
