@@ -8,6 +8,9 @@ class Producer extends Model
 
     protected $fillable = [
         'name',
+        'created_by',
+        'updated_by',
+        'category_id'
     ];
 
     public function categories()

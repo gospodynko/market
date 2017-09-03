@@ -7,6 +7,7 @@ use App\Models\UserProduct;
 use App\Models\Producer;
 use App\Models\Category;
 use App\Helpers\ProductsHelper;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\CreateBannerRequest;
@@ -155,9 +156,10 @@ class AdminController extends Controller
     {
         return view('dashboard.sections.moderations.view', ['product' => Product::find($id)->load('user')]);
     }
-    public function acceptProduct(Request $request)
+    public function acceptProduct($id)
     {
-        $product = Product::find($request->input('product_id'));
+        if(Auth::user()->role !== 'admin') return false;
+        $product = Product::find($id);
         $product->moderation = 0;
         $product->save();
         return response()->json(['status' => 1]);

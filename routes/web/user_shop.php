@@ -17,5 +17,5 @@ Route::group(['prefix' => 'user-shop','roles' => ['seller'], 'middleware' => ['a
 //           return view('user_shop.main.main');
 //       });
 //    });
-    Route::get('/user/all-shops', 'UserShopController@getShops');
+    Route::get('/all-shops', 'UserShopController@getShops');
 });

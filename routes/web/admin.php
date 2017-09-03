@@ -40,9 +40,9 @@ Route::group(['roles' => ['admin'], 'middleware' => ['auth', 'roles']], function
 
     Route::get('admin/banner', 'AdminController@getBannersList');
     Route::get('admin/banner/create', function (){
-        return view('dashboard.sections.banner.create');
+        return view('dashboard.sections.banners.create');
     });
     Route::get('admin/moderation', 'AdminController@moderateList');
-    Route::post('admin/moderation/accept-product', 'AdminController@acceptProduct');
+    Route::get('admin/moderation/accept/{id}', 'AdminController@acceptProduct');
     Route::get('admin/moderation/show/{id}', 'AdminController@viewProduct');
 });

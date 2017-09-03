@@ -24,7 +24,7 @@
                             <!--<p class="city"><i></i> Город</p>-->
                         </div>
                         <div class="item">
-                            <a href="#" class="shop" v-if="user.role == 'seller'"><i></i> Мой магазин</a>
+                            <a href="#" class="shop" v-if="user && user.role == 'seller'"><i></i> Мой магазин</a>
                         </div>
                         <div class="item">
                             <a href="#" class="basket" @click="showCartFunc"><i></i><span class="badge" :class="{'badge': cart}" v-if="cart && cart.length">{{cart.length}}</span> Корзина</a>

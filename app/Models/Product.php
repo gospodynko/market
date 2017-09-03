@@ -10,9 +10,30 @@ class Product extends Model
 {
 
     use Pictures;
-    protected $fillable = ['moderation'];
+    protected $fillable = [
+        'moderation',
+        'category_id',
+        'created_by',
+        'updated_by',
+        'name',
+        'description',
+        'price',
+        'cost',
+        'stock',
+        'features',
+        'barcode',
+        'condition',
+        'rate_val',
+        'tags',
+        'brand',
+        'rate_count',
+        'low_stock',
+        'status',
+        'parent_id',
+        'producer_id'
+    ];
     protected $appends = ['default_picture'];
-    protected $with = ['user_products', 'pictures'];
+    protected $with = ['user_products', 'pictures', 'reviews'];
 
     public function category()
     {
@@ -33,5 +54,11 @@ class Product extends Model
     {
         return $this->hasOne(AgroUser::class, 'id', 'created_by');
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(ProductReviews::class, 'product_id', 'id')->orderBy('created_at', 'DESC');
+    }
+
 
 }

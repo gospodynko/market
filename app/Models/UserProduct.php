@@ -17,6 +17,7 @@ class UserProduct extends Model
         'delivery_id',
         'pay_id',
         'created_by',
+        'updated_by',
         'user_shop_id',
         'sale_counts',
         'view_counts',
@@ -27,7 +28,7 @@ class UserProduct extends Model
 
     public function shop()
     {
-        return $this->hasMany(UserShops::class, 'id', 'user_shop_id');
+        return $this->hasOne(UserShops::class, 'id', 'user_shop_id');
     }
 
     public function mainProduct()

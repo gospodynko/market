@@ -30,16 +30,23 @@
                     <div v-if="checkedProduct && !Number.isInteger(checkedProduct.id)">
                         <div class="col-lg-12">
                             <label>Описание продукта</label>
-                            <input type="text" v-model="description">
+                            <textarea class="form-control" v-model="description"></textarea>
                         </div>
                         <div class="col-md-12">
+                            <div class="col-md-3">
+                                <label>Загрузить картинки (макс 5шт)</label>
+                                <input type="file" @change="fileLoad">
+                            </div>
+                            <div class="col-md-3" v-for="image in images">
+                                <img :src="image" alt="image">
+                            </div>
                             <hr>
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="col-lg-3">
                             <label>Цена:</label>
-                            <input type="number" class="form-control">
+                            <input type="number" class="form-control" v-model="price">
                         </div>
                         <div class="col-lg-3">
                             <label>Валюта:</label>
@@ -98,6 +105,8 @@
                 paymentType: [],
                 currencyType: null,
                 description: '',
+                price: 1,
+                images: []
             }
         },
         props: ['data'],
@@ -114,7 +123,10 @@
                     'currency': this.currencyType,
                     'description': this.description,
                     'producer': this.checkedTag,
-                    'category': this.checkedCategory
+                    'category': this.checkedCategory,
+                    'shop_id': this.shop.id,
+                    'price': this.price,
+                    'images': this.images
                 };
                 this.$http.post('/user-shop/shop/'+this.shop.id+'/create', data).then(res => {
                     console.log(res);
@@ -135,6 +147,16 @@
             addTagProduct(newTag){
                 this.checkedProduct = {'name': newTag, 'id': newTag};
                 this.checkedProducts.push({'name': newTag, 'id': newTag});
+            },
+            fileLoad(e){
+                let data = new FormData();
+                data.append('file', e.target.files[0]);
+
+                this.$http.post('/products/upload', data).then(res => {
+                    this.images.push({'path': res.data, 'id': '-1'});
+                }, err => {
+
+                })
             }
         }
     }
