@@ -110,34 +110,12 @@
                         <div class="all-tabs-detail">
                             <div class="single-tab-detail characteristic" v-if="productTab === 'charact'">
                                 <h2>Характеристики</h2>
-                                <p><span>Производитель</span><span>Дніпро-М</span></p>
-                                <p><span>Страна производитель</span> <span>Украина</span></p>
-                                <p><span>Производитель</span><span>Дніпро-М</span></p>
-
-                                <h3>Габаритные размеры</h3>
-
-                                <p><span>Вес</span> <span>1.3 (кг)</span></p>
-                                <p><span>Максимальный диаметр сверления</span><span>18.0 (мм)</span></p>
-                                <p><span>Максимальный диаметр сверления (дерево)</span><span>18.0 (мм)</span></p>
-                                <p><span>Максимальный диаметр сверления (металл)</span><span>7.0 (мм)</span></p>
-                                <h3>Габаритные размеры</h3>
-
-                                <p><span>Вес</span> <span>1.3 (кг)</span></p>
-                                <p><span>Максимальный диаметр сверления</span><span>18.0 (мм)</span></p>
-                                <p><span>Максимальный диаметр сверления (дерево)</span><span>18.0 (мм)</span></p>
-                                <p><span>Максимальный диаметр сверления (металл)</span><span>7.0 (мм)</span></p>
-                                <h3>Габаритные размеры</h3>
-
-                                <p><span>Вес</span> <span>1.3 (кг)</span></p>
-                                <p><span>Максимальный диаметр сверления</span><span>18.0 (мм)</span></p>
-                                <p><span>Максимальный диаметр сверления (дерево)</span><span>18.0 (мм)</span></p>
-                                <p><span>Максимальный диаметр сверления (металл)</span><span>7.0 (мм)</span></p>
-                                <h3>Габаритные размеры</h3>
-
-                                <p><span>Вес</span> <span>1.3 (кг)</span></p>
-                                <p><span>Максимальный диаметр сверления</span><span>18.0 (мм)</span></p>
-                                <p><span>Максимальный диаметр сверления (дерево)</span><span>18.0 (мм)</span></p>
-                                <p><span>Максимальный диаметр сверления (металл)</span><span>7.0 (мм)</span></p>
+                                <div v-for="feature in features">
+                                    <h3>{{feature.name}}</h3>
+                                    <div v-for="param in feature.params">
+                                        <p><span>{{param.title}}</span><span>{{param.param}}</span></p>
+                                    </div>
+                                </div>
                             </div>
                             <div class="single-tab-detail market-list-wrap" v-if="productTab === 'store'">
                                 <div class="market-list-all">
@@ -312,7 +290,8 @@
                 checkImage: this.data.product.pictures.length && this.data.product.pictures[0].hasOwnProperty('path') ? this.data.product.pictures[0].path : '',
                 reviews: this.data.product.reviews,
                 reviewText: '',
-                showReview: false
+                showReview: false,
+                features: JSON.parse(this.data.product.features)
             }
         },
         props: ['data'],

@@ -19,6 +19,7 @@ import AdminModerationEdit from './components/dashboard/moderations/edit.vue';
 import AdminModerationView from './components/dashboard/moderations/show.vue';
 import AdminBanners from './components/dashboard/banners/index.vue';
 import AdminBannersCreate from './components/dashboard/banners/create.vue';
+import CartCheckoutVue from './components/cart/cart-checkout.vue';
 // Vue.use(VueSocketio, 'http://localhost:8303');
 // Vue.use(VueRouter);
 Vue.use(VueResource);
@@ -42,7 +43,8 @@ const app = new Vue({
         AdminModeration,
         AdminModerationView,
         AdminBanners,
-        AdminBannersCreate
+        AdminBannersCreate,
+        CartCheckoutVue
     }
 
 
