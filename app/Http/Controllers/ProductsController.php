@@ -8,6 +8,7 @@ namespace App\Http\Controllers;
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
 use App\Models\Producer;
+use App\Models\ProductReviews;
 use App\Order;
 use App\OrderDetail;
 use App\Helpers\File;
@@ -319,7 +320,6 @@ class ProductsController extends Controller
             $storesProducts = UserProduct::where('product_id', '=', $product->id)
                 ->where('status', '=', 1)
                 ->get();
-dd($product->toArray());
             return view('prod-list', ['data' => compact('product', 'allWishes', 'reviews', 'freeproductId', 'features', 'suggestions', 'storesProducts')]);
         } else {
             return redirect(route('products.index'));
@@ -1067,5 +1067,17 @@ dd($product->toArray());
     {
         $categoryId = $request->input('category_id');
         return json_encode(\App\Models\Product::select('id', 'name')->where('category_id', '=', $categoryId)->get());
+    }
+
+    public function storeReview($id, Request $request)
+    {
+        $product = Product::findOrFail($id);
+
+        $review = ProductReviews::create([
+           'text' => $request->input('text'),
+            'user_id' => Auth::id(),
+            'product_id' => $product->id
+        ]);
+        return response()->json(['review' => $review->load('user')], 200);
     }
 }

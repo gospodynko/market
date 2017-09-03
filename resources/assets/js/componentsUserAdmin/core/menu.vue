@@ -14,7 +14,7 @@
                     <a href="/user/shop" class="waves-effect">Главная</a>
                 </li>
                 <li>
-                    <a href="/user/all-shops" class="waves-effect">Магазины</a>
+                    <a href="/user-shop/all-shops" class="waves-effect">Магазины</a>
                 </li>
                 <li>
                     <a href="/user/data" class="waves-effect">Личные данные</a>

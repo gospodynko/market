@@ -8,8 +8,8 @@
                 <div class="detail-product-wrap">
                     <div class="shop-gallery">
                         <div class="small-photos">
-                            <div class="single-small-photo" v-for="(smallImage, index) in product.images" @click="checkImages(smallImage)" :class="{'active': checkImage == smallImage}" v-if="index <= 3">
-                                <img :src="smallImage" alt="">
+                            <div class="single-small-photo" v-for="(smallImage, index) in product.pictures" @click="checkImages(smallImage)" :class="{'active': checkImage == smallImage.path}" v-if="index <= 3">
+                                <img :src="smallImage.path" alt="">
                             </div>
                             <!--<p class="show-all">еще 6</p>-->
                         </div>
@@ -36,7 +36,7 @@
                         <div class="feedback-wrap two-wrap">
                             <div class="left">
                                 <star-rating :star-size="20"></star-rating>
-                                <a href="#" class="feedback-link">Отзывов 1965</a>
+                                <a href="#" class="feedback-link" @click="showReviews">Отзывов {{product.reviews.length}}</a>
                             </div>
                             <div class="right">
                                 <p>id {{product.id}}</p>
@@ -102,7 +102,7 @@
                             </div>
                             <div class="single-tab" @click="productTab = 'feedback'" :class="{'active': productTab === 'feedback'}">
                                 <p>
-                                    Отзывы (10)
+                                    Отзывы {{reviews.length ? '('+reviews.length+')' : ''}}
                                 </p>
                             </div>
 
@@ -146,7 +146,7 @@
                                             <img src="/img/avatars/ava.jpg" alt="">
                                         </div>
                                         <div class="shop-detail-wrap">
-                                            <h2>{{store.created_by_user.first_name + ' ' + store.created_by_user.last_name}}</h2>
+                                            <h2>{{store.shop.name}}</h2>
                                             <div class="star-wrap">
                                                 <star-rating :star-size="20"></star-rating>
                                                 <a href="#">145 Отзывов</a>
@@ -165,7 +165,7 @@
                             <div class="single-tab-detail feedback-list-wrap" v-if="productTab === 'feedback'">
                                 <div class="feedback-head-wrap two-wrap">
                                     <div class="left">
-                                        <h3>Все отзывы (10)</h3>
+                                        <h3>Все отзывы ({{reviews.length}})</h3>
                                         <div class="sort-wrap">
                                             <p class="bold">
                                                 <span class="bold">Сортировать: </span>
@@ -179,160 +179,55 @@
                                         </div>
                                     </div>
                                     <div class="right">
-                                        <button class="btn">Написать отзыв</button>
+                                        <button class="btn" @click="showReviews">Написать отзыв</button>
                                     </div>
                                 </div>
+                                <div class="new-review" v-if="showReview">
+                                    <textarea name="" id="" cols="30" rows="10" v-model="reviewText"></textarea>
+                                    <button class="btn send-review" @click="sendReview">Отправить</button>
+                                </div>
                                 <div class="all-feedback-list-wrap">
-                                    <div class="single-answer">
+                                    <div class="single-answer" v-for="review in reviews">
                                         <div class="comment-head">
                                             <div class="logo-user">
                                                 <img src="/img/avatars/ava.jpg" alt="">
                                             </div>
                                             <div class="star-rating-wrap">
-                                                <p class="user-name">Артур Пирожков</p>
+                                                <p class="user-name">{{review.user.first_name + ' ' + review.user.last_name}}</p>
                                                 <div class="rating-wrap">
                                                     <span class="rating">Рейтинг </span><star-rating :star-size="20"></star-rating>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="comment-wrap">
-                                            <p class="comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                             Aspernatur autem, eligendi excepturi facere minima nemo nihil
-                                              odio perferendis temporibus.
-                                             Assumenda aut qui ullam veritatis. Dignissimos earum ipsum maxime
-                                              sunt veritatis.</p>
+                                            <p class="comment">
+                                                {{review.text}}
+                                            </p>
                                             <div class="action-wrap">
-                                                <p class="date">21 августа 2017г</p>
+                                                <p class="date">{{moment(review.created_at).format('LLL')}}</p>
                                                 <span class="action-link">Ответить</span>
                                             </div>
                                         </div>
-                                        <div class="comment-answer">
-                                            <div class="comment-head">
-                                                <div class="logo-user">
-                                                    <img src="/img/avatars/ava.jpg" alt="">
-                                                </div>
-                                                <div class="star-rating-wrap">
-                                                    <p class="user-name">Артур Пирожков (Менеджер "Рога и Копыта" отвечает)</p>
-                                                </div>
-                                            </div>
-                                            <div class="comment-wrap">
-                                                <p class="comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                             Aspernatur autem, eligendi excepturi facere minima nemo nihil
-                                              odio perferendis temporibus.
-                                             Assumenda aut qui ullam veritatis. Dignissimos earum ipsum maxime
-                                              sunt veritatis.</p>
-                                                <div class="action-wrap">
-                                                    <p class="date">21 августа 2017г</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="single-answer">
-                                        <div class="comment-head">
-                                            <div class="logo-user">
-                                                <img src="/img/avatars/ava.jpg" alt="">
-                                            </div>
-                                            <div class="star-rating-wrap">
-                                                <p class="user-name">Артур Пирожков</p>
-                                                <div class="rating-wrap">
-                                                    <span class="rating">Рейтинг </span><star-rating :star-size="20"></star-rating>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="comment-wrap">
-                                            <p class="comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                             Aspernatur autem, eligendi excepturi facere minima nemo nihil
-                                              odio perferendis temporibus.
-                                             Assumenda aut qui ullam veritatis. Dignissimos earum ipsum maxime
-                                              sunt veritatis.
-                                              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                             Aspernatur autem, eligendi excepturi facere minima nemo nihil
-                                              odio perferendis temporibus.
-                                             Assumenda aut qui ullam veritatis. Dignissimos earum ipsum maxime
-                                              sunt veritatis.
-                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                             Aspernatur autem, eligendi excepturi facere minima nemo nihil
-                                              odio perferendis temporibus.
-                                             Assumenda aut qui ullam veritatis. Dignissimos earum ipsum maxime
-                                              sunt veritatis.
-                                              </p>
-                                            <div class="action-wrap">
-                                                <p class="date">21 августа 2017г</p>
-                                                <span class="action-link">Ответить</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="single-answer">
-                                        <div class="comment-head">
-                                            <div class="logo-user">
-                                                <img src="/img/avatars/ava.jpg" alt="">
-                                            </div>
-                                            <div class="star-rating-wrap">
-                                                <p class="user-name">Артур Пирожков</p>
-                                                <div class="rating-wrap">
-                                                    <span class="rating">Рейтинг </span><star-rating :star-size="20"></star-rating>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="comment-wrap">
-                                            <p class="comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                             Aspernatur autem, eligendi excepturi facere minima nemo nihil
-                                              odio perferendis temporibus.
-                                             Assumenda aut qui ullam veritatis. Dignissimos earum ipsum maxime
-                                              sunt veritatis.</p>
-                                            <div class="action-wrap">
-                                                <p class="date">21 августа 2017г</p>
-                                                <span class="action-link">Ответить</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="single-answer">
-                                        <div class="comment-head">
-                                            <div class="logo-user">
-                                                <img src="/img/avatars/ava.jpg" alt="">
-                                            </div>
-                                            <div class="star-rating-wrap">
-                                                <p class="user-name">Артур Пирожков</p>
-                                                <div class="rating-wrap">
-                                                    <span class="rating">Рейтинг </span><star-rating :star-size="20"></star-rating>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="comment-wrap">
-                                            <p class="comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                             Aspernatur autem, eligendi excepturi facere minima nemo nihil
-                                              odio perferendis temporibus.
-                                             Assumenda aut qui ullam veritatis. Dignissimos earum ipsum maxime
-                                              sunt veritatis.</p>
-                                            <div class="action-wrap">
-                                                <p class="date">21 августа 2017г</p>
-                                                <span class="action-link">Ответить</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="single-answer">
-                                        <div class="comment-head">
-                                            <div class="logo-user">
-                                                <img src="/img/avatars/ava.jpg" alt="">
-                                            </div>
-                                            <div class="star-rating-wrap">
-                                                <p class="user-name">Артур Пирожков</p>
-                                                <div class="rating-wrap">
-                                                    <span class="rating">Рейтинг </span><star-rating :star-size="20"></star-rating>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="comment-wrap">
-                                            <p class="comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                             Aspernatur autem, eligendi excepturi facere minima nemo nihil
-                                              odio perferendis temporibus.
-                                             Assumenda aut qui ullam veritatis. Dignissimos earum ipsum maxime
-                                              sunt veritatis.</p>
-                                            <div class="action-wrap">
-                                                <p class="date">21 августа 2017г</p>
-                                                <span class="action-link">Ответить</span>
-                                            </div>
-                                        </div>
+                                        <!--<div class="comment-answer">-->
+                                            <!--<div class="comment-head">-->
+                                                <!--<div class="logo-user">-->
+                                                    <!--<img src="/img/avatars/ava.jpg" alt="">-->
+                                                <!--</div>-->
+                                                <!--<div class="star-rating-wrap">-->
+                                                    <!--<p class="user-name">Артур Пирожков (Менеджер "Рога и Копыта" отвечает)</p>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                            <!--<div class="comment-wrap">-->
+                                                <!--<p class="comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit.-->
+                                             <!--Aspernatur autem, eligendi excepturi facere minima nemo nihil-->
+                                              <!--odio perferendis temporibus.-->
+                                             <!--Assumenda aut qui ullam veritatis. Dignissimos earum ipsum maxime-->
+                                              <!--sunt veritatis.</p>-->
+                                                <!--<div class="action-wrap">-->
+                                                    <!--<p class="date">21 августа 2017г</p>-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                        <!--</div>-->
                                     </div>
                                 </div>
                             </div>
@@ -347,7 +242,7 @@
                 <div class="all-products-list">
                     <div class="single-product" v-for="product in data.suggestions">
                         <div class="img-wrap">
-                            <a :href="'/products/'+product.id"><img :src="product.images[0]" alt=""></a>
+                            <a :href="'/products/'+product.id"><img :src="product.default_picture" alt=""></a>
                         </div>
                         <div class="detail-wrap">
                             <p class="product-title">
@@ -363,7 +258,7 @@
                                     <star-rating :star-size="20"></star-rating>
                                 </div>
                                 <div class="count-feedback-wrap">
-                                    <a href="#">45 отзывов</a>
+                                    <a href="#">{{product.reviews.length}} отзывов</a>
                                 </div>
                             </div>
                             <div class="all-detail-list">
@@ -408,12 +303,16 @@
 <script type="text/babel">
     import StarRating from 'vue-star-rating';
     import {Events} from './../../app';
+    import moment from 'moment';
     export default {
         data(){
             return {
                 product: this.data.product,
                 productTab: 'store',
-                checkImage: this.data.product.images[0]
+                checkImage: this.data.product.pictures.length && this.data.product.pictures[0].hasOwnProperty('path') ? this.data.product.pictures[0].path : '',
+                reviews: this.data.product.reviews,
+                reviewText: '',
+                showReview: false
             }
         },
         props: ['data'],
@@ -422,7 +321,7 @@
         },
         methods: {
             checkImages(img){
-                this.checkImage = img;
+                this.checkImage = img.path;
             },
             addToCart(item){
                 var userBuys = JSON.parse(localStorage.getItem('cart'));
@@ -447,7 +346,28 @@
                 }
                 localStorage.setItem('cart', JSON.stringify(userBuys));
                 Events.$emit('newCartItem', true);
+            },
+            moment(time){
+                return moment(time).locale('ru');
+            },
+            sendReview(){
+                if(!this.reviewText) return false;
+                this.$http.post('/products/'+this.product.id+'/send-review', {'text': this.reviewText}).then(res => {
+                    this.reviews.unshift(res.data.review);
+                    this.showReview = false;
+                    this.reviewText = '';
+                }, err => {
+
+                })
+            },
+            showReviews(e){
+                e.preventDefault();
+                if(this.productTab !== 'feedback'){
+                    this.productTab = 'feedback';
+                }
+                this.showReview = !this.showReview;
             }
+
         }
     }
 </script>

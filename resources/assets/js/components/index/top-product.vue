@@ -5,7 +5,7 @@
             <div class="all-products-list">
                 <div class="single-product" v-for="product in allProducts.data">
                     <div class="img-wrap">
-                        <a :href="'/products/'+product.id"><img :src="product.images[0]" alt=""></a>
+                        <a :href="'/products/'+product.id"><img :src="product.default_picture" alt=""></a>
                     </div>
                     <div class="detail-wrap">
                         <p class="product-title">
@@ -21,7 +21,7 @@
                                 <star-rating :star-size="20"></star-rating>
                             </div>
                             <div class="count-feedback-wrap">
-                                <a href="#">45 отзывов</a>
+                                <a href="#">{{product.reviews.length}} отзывов</a>
                             </div>
                         </div>
                         <div class="all-detail-list">
