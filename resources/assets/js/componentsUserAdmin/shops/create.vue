@@ -33,12 +33,24 @@
                             <textarea class="form-control" v-model="description"></textarea>
                         </div>
                         <div class="col-md-12">
+                            <h2>Характеристики</h2>
+                            <div v-for="feature in features">
+                                <input type="text" placeholder="Заголовок характеристики" class="form-control" v-model="feature.name">
+                                <div v-for="param in feature.params">
+                                    <input type="text" placeholder="Название параметра" v-model="param.title">
+                                    <input type="text" placeholder="Параметр" v-model="param.param">
+                                </div>
+                                <button class="btn btn-success" @click="addParameter(feature)">Добавить параметр</button>
+                            </div>
+                            <button class="btn btn-success" @click="addFeature">Добавить характеристику</button>
+                        </div>
+                        <div class="col-md-12">
                             <div class="col-md-3">
                                 <label>Загрузить картинки (макс 5шт)</label>
                                 <input type="file" @change="fileLoad">
                             </div>
                             <div class="col-md-3" v-for="image in images">
-                                <img :src="image" alt="image">
+                                <img :src="image.path" alt="image">
                             </div>
                             <hr>
                         </div>
@@ -106,7 +118,18 @@
                 currencyType: null,
                 description: '',
                 price: 1,
-                images: []
+                images: [],
+                features: [
+                    {
+                        name: '',
+                        params: [
+                            {
+                                title: '',
+                                param: ''
+                            }
+                        ]
+                    }
+                ]
             }
         },
         props: ['data'],
@@ -126,7 +149,8 @@
                     'category': this.checkedCategory,
                     'shop_id': this.shop.id,
                     'price': this.price,
-                    'images': this.images
+                    'images': this.images,
+                    'features': this.features
                 };
                 this.$http.post('/user-shop/shop/'+this.shop.id+'/create', data).then(res => {
                     console.log(res);
@@ -156,6 +180,23 @@
                     this.images.push({'path': res.data, 'id': '-1'});
                 }, err => {
 
+                })
+            },
+            addParameter(feature){
+                feature.params.push({
+                    title: '',
+                    param: ''
+                });
+            },
+            addFeature(){
+                this.features.push({
+                    name: '',
+                    params: [
+                        {
+                            title: '',
+                            param: ''
+                        }
+                    ]
                 })
             }
         }

@@ -16,7 +16,7 @@
                 <div class="cart-detail-list">
                     <div class="single-item-cart" v-for="cartItem in cartItems">
                         <div class="logo-wrap">
-                            <img :src="cartItem.product.images[0]" alt="">
+                            <img :src="cartItem.product.default_picture" alt="">
                         </div>
                         <div class="title-wrap">
                             <h2><a href="#">{{cartItem.product.name}}</a></h2>
@@ -32,14 +32,18 @@
                             </div>
                             <span class="close" @click="delFromCart(cartItem)"></span>
                         </div>
+                        <div class="checkout-wrap">
+                            <a :href="'/checkout/'+cartItem.store.id" class="btn">Оформить заказ</a>
+                        </div>
                     </div>
                 </div>
-                <div class="cart-footer-action two-wrap">
-                    <div class="left"></div>
-                    <div class="right">
-                        <button class="btn">Оформить заказ</button>
-                    </div>
-                </div>
+                <div class="cart-footer-action"></div>
+                <!--<div class="cart-footer-action two-wrap">-->
+                    <!--<div class="left"></div>-->
+                    <!--<div class="right">-->
+                        <!--<a href="/checkout" class="btn">Оформить заказ</a>-->
+                    <!--</div>-->
+                <!--</div>-->
             </div>
         </div>
     </div>

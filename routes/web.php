@@ -57,6 +57,8 @@ Route::group(['prefix' => 'api'],function (){
     Route::post('/set-role', 'HomeController@setRole');
 });
 
+Route::get('/checkout/{id}', 'CheckoutController@index');
+
 //users routes
 require __DIR__ . '/web/users.php';
 

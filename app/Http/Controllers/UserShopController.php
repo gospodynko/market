@@ -40,6 +40,7 @@ class UserShopController extends Controller
         $pay_type = $request->input('pay_type');
         $delivery_type = $request->input('delivery_type');
         $images = $request->input('images');
+        $features = $request->input('features');
 
         if(!is_numeric($producer['id'])){
             $producer_id  = self::createProducer($producer, $category);
@@ -47,7 +48,7 @@ class UserShopController extends Controller
             $producer_id = $producer['id'];
         }
         if(!is_numeric($product['id']) && $producer_id && $product_desc){
-            $product_id = self::createProductSeller($product, $category, $producer_id, $product_desc, $images);
+            $product_id = self::createProductSeller($product, $category, $producer_id, $product_desc, $images, $features);
         } else {
             $product_id = $product['id'];
         }
@@ -76,7 +77,7 @@ class UserShopController extends Controller
 
     }
 
-    private function createProductSeller($product, $category, $producer_id, $product_desc, $images)
+    private function createProductSeller($product, $category, $producer_id, $product_desc, $images, $features)
     {
         $check_product = Product::where('name', $product['name'])->first();
         if($check_product){
@@ -91,7 +92,8 @@ class UserShopController extends Controller
                 'bar_code' => '777',
                 'producer_id' => $producer_id,
                 'moderation' => 1,
-                'status' => 0
+                'status' => 0,
+                'features' => json_encode($features)
             ]);
             $product_id->updatePictures($images);
             return $product_id->id;
