@@ -191,8 +191,8 @@ class ProductsController extends Controller
         $product->price = $request->input('price');
         $product->currency_id = $request->input('currency');
         $product->producer_id = $request->input('producer_id');
-        $product->delivery_id = \GuzzleHttp\json_encode($request->input('delivery_id'));
-        $product->pay_id = \GuzzleHttp\json_encode($request->input('pay_id'));
+        $product->delivery_types()->sync($request->input('delivery_id'));
+        $product->pay_types()->sync($request->input('pay_id'));
         $product->created_by = \Auth::id();
         $product->updated_by = \Auth::id();
 
@@ -540,8 +540,8 @@ class ProductsController extends Controller
         $product->product_id = $request->input('product_id');
         $product->currency_id = $request->input('currency');
         $product->price = $request->input('price');
-        $product->delivery_id = \GuzzleHttp\json_encode($request->input('delivery_id'));
-        $product->pay_id = \GuzzleHttp\json_encode($request->input('pay_id'));
+        $product->delivery_types()->sync($request->input('delivery_id'));
+        $product->pay_types()->sync($request->input('pay_id'));
         $product->updated_by = \Auth::id();
 
         $mainProduct = Product::find($product->product_id);

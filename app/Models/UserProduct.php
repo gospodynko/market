@@ -41,24 +41,14 @@ class UserProduct extends Model
         return $this->mainProduct->pictures;
     }
 
-    public function getDeliveryArray()
+    public function delivery_types()
     {
-        $out = [];
-        $deliveryTypes = DeliveryType::select('id', 'name')->whereIn('id', array_values(\GuzzleHttp\json_decode($this->delivery_id)))->get();
-        foreach ($deliveryTypes AS $deliveryType)
-            $out[$deliveryType->id] = $deliveryType->name;
-
-        return $out;
+        return $this->belongsToMany(DeliveryType::class);
     }
 
-    public function getPayArray()
+    public function pay_types()
     {
-        $out = [];
-        $deliveryTypes = PayType::select('id', 'name')->whereIn('id', array_values(\GuzzleHttp\json_decode($this->pay_id)))->get();
-        foreach ($deliveryTypes AS $deliveryType)
-            $out[$deliveryType->id] = $deliveryType->name;
-
-        return $out;
+        return $this->belongsToMany(PayType::class);
     }
 
     public function getPrice()

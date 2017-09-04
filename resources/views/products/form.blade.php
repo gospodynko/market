@@ -109,7 +109,7 @@
                                 @foreach($deliveryTypes AS $id=>$name)
                                     @if($id == '')
                                         <option disabled>{{ $name }}</option>
-                                    @elseif($edit && in_array($id, array_keys($product->getDeliveryArray())))
+                                    @elseif($edit && in_array($id, $product->delivery_types()-pluck('id')->get()))
                                         <option selected value="{{ $id }}">{{ $name }}</option>
                                     @else
                                         <option value="{{ $id }}">{{ $name }}</option>
@@ -123,7 +123,7 @@
                                 @foreach($payTypes AS $id=>$name)
                                     @if($id == '')
                                         <option disabled>{{ $name }}</option>
-                                        @elseif($edit && in_array($id, array_keys($product->getPayArray())))
+                                        @elseif($edit && in_array($id, $product->pay_types()-pluck('id')->get()))
                                         <option selected value="{{ $id }}">{{ $name }}</option>
                                     @else
                                         <option value="{{ $id }}">{{ $name }}</option>
