@@ -37,8 +37,8 @@ class UserShopController extends Controller
         $price = $request->input('price');
         $shop_id = $request->input('shop_id');
         $currency = $request->input('currency');
-        $pay_type = $request->input('pay_type');
-        $delivery_type = $request->input('delivery_type');
+        $pay_types = $request->input('pay_type');
+        $delivery_types = $request->input('delivery_type');
         $images = $request->input('images');
         $features = $request->input('features');
 
@@ -53,7 +53,7 @@ class UserShopController extends Controller
             $product_id = $product['id'];
         }
         if($producer_id && $product_id){
-            $user_product = self::createUserProduct($product_id, $category['id'], $producer_id, $price, $shop_id, $currency, $pay_type, $delivery_type);
+            $user_product = self::createUserProduct($product_id, $category['id'], $producer_id, $price, $shop_id, $currency, array_column($pay_types, 'id'), array_column($delivery_types, 'id'));
             dd($user_product);
         }
     }
@@ -100,7 +100,7 @@ class UserShopController extends Controller
         }
     }
 
-    private function createUserProduct($product_id, $category_id, $producer_id, $price, $shop_id, $currency, $pay_type, $delivery_type)
+    private function createUserProduct($product_id, $category_id, $producer_id, $price, $shop_id, $currency, $pay_types, $delivery_types)
     {
         $data_user_product = [
             'category_id' => $category_id,
@@ -109,12 +109,12 @@ class UserShopController extends Controller
             'user_shop_id' => $shop_id,
             'price' => $price,
             'currency_id' => $currency['id'],
-            'pay_id' => $pay_type[0]['id'],
-            'delivery_id' => $delivery_type[0]['id'],
             'created_by' => \Auth::id(),
             'updated_by' => \Auth::id()
         ];
         $user_product = UserProduct::create($data_user_product);
+        $user_product->delivery_types()->sync($delivery_types);
+        $user_product->pay_types()->sync($pay_types);
         $mainProduct = Product::find($user_product->product_id);
 
         $minPrice = \DB::table('user_products')

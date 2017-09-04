@@ -195,7 +195,7 @@
                     <div class="col-sm-3"><span>{{ trans('product.globals.price') }}: {{ $storesProduct->getPrice() }}</span></div>
                     <div class="col-sm-3">
                         <span>{{ trans('product.globals.delivery') }}:
-                            @foreach($storesProduct->getDeliveryArray() AS $item)
+                            @foreach($storesProduct->delivery_types AS $item)
                                 {{ $item }}&nbsp;
                             @endforeach
                         </span>

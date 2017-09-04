@@ -100,14 +100,14 @@
         <div class="col-sm-6">
             <span>
                 {{ trans('product.globals.delivery') }}
-                @foreach($userProduct->getDeliveryArray() AS $item)
+                @foreach($userProduct->delivery_types AS $item)
                     {{ $item }}&nbsp;
                 @endforeach
                 </span>
             <br>
             <span>
                 {{ trans('product.globals.payment') }}
-                @foreach($userProduct->getPayArray() AS $item)
+                @foreach($userProduct->pay_types AS $item)
                     {{ $item }}&nbsp;
                   @endforeach
             </span>
