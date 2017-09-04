@@ -17,7 +17,7 @@ class UserShopController extends Controller
 {
     public function getShops()
     {
-        return view('user_shop.shops.index', ['shops' => UserShops::all()]);
+        return view('user_shop.shops.index', ['shops' => UserShops::where('user_id', Auth::id())->get()]);
     }
 
     public function createProduct($id)
@@ -54,7 +54,7 @@ class UserShopController extends Controller
         }
         if($producer_id && $product_id){
             $user_product = self::createUserProduct($product_id, $category['id'], $producer_id, $price, $shop_id, $currency, $pay_type, $delivery_type);
-            dd($user_product);
+            return redirect('/user-shop/all-shops');
         }
     }
 

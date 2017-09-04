@@ -24,7 +24,7 @@
                             <!--<p class="city"><i></i> Город</p>-->
                         </div>
                         <div class="item">
-                            <a href="#" class="shop" v-if="user && user.role == 'seller'"><i></i> Мой магазин</a>
+                            <a href="/user-shop/all-shops" class="shop" v-if="user && user.role == 'seller'"><i></i> Мой магазин</a>
                         </div>
                         <div class="item">
                             <a href="#" class="basket" @click="showCartFunc"><i></i><span class="badge" :class="{'badge': cart}" v-if="cart && cart.length">{{cart.length}}</span> Корзина</a>
@@ -58,14 +58,17 @@
                     </div>
                 </div>
                 <div class="all-menu-list active" v-if="showMenu">
-                    <div class="site-menu-wrap">
-                        <div class="single-menu-item" v-for="category in categories" @mouseover="setChild(category.children)">
-                            <p>{{category.name}} <i></i></p>
+                    <div class="menu-listing" :class="{'show': showChild}">
+                        <div class="site-menu-wrap">
+                            <div class="single-menu-item" v-for="category in categories" @mouseover="setChild(category.children)">
+                                <p>{{category.name}} <i></i></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="site-menu-wrap child-menu" v-if="showChild" @mouseleave="showChild = false">
-                        <div class="single-menu-item" v-for="subCategory in subCategories">
-                            <p>{{subCategory.name}} <i></i></p>
+                        <!--showChild-->
+                        <div class="site-menu-wrap child-menu" v-if="showChild" @mouseleave="showChild = false">
+                            <div class="single-menu-item" v-for="subCategory in subCategories">
+                                <p>{{subCategory.name}}</p>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -153,7 +153,7 @@
                     'features': this.features
                 };
                 this.$http.post('/user-shop/shop/'+this.shop.id+'/create', data).then(res => {
-                    console.log(res);
+                    location.href = '/user-shop/all-shops';
                 }, err => {
 
                 })
