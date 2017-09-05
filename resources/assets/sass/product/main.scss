@@ -2,8 +2,8 @@
   width: 100%;
   max-width: 1315px;
   margin: 0 auto;
-  background: $white;
-  height: 40px;
+  background: transparent;
+  //height: 40px;
   margin-bottom: 35px;
 }
 .single-prod-detail{
@@ -108,7 +108,7 @@
       justify-content: space-between;
       align-items: flex-start;
       flex-wrap: wrap;
-      height: 320px;
+      height: 390px;
       .small-photos{
         width: 82px;
         .show-all{
@@ -144,13 +144,13 @@
       .full-photo{
         width: calc(100% - 82px);
         text-align: center;
-        max-height: 320px;
+        max-height: 365px;
         margin-bottom: 25px;
         padding: 0 10px;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
-        height: 320px;
+        height: 365px;
         img{
           max-height: 100%;
           max-width: 100%;

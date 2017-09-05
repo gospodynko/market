@@ -136,14 +136,14 @@
                         <div class="all-products-list">
                             <div class="single-product" style="width: 25%" v-for="product in data.products.data">
                                 <div class="img-wrap">
-                                    <img :src="product.images[0]" alt="">
+                                    <a :href="'/products/'+product.id"><img :src="product.default_picture" alt=""></a>
                                 </div>
                                 <div class="detail-wrap">
                                     <p class="product-title">
-                                        {{product.name}}
+                                        <a :href="'/products/'+product.id">{{product.name}}</a>
                                     </p>
                                     <p class="price">
-                                        {{product.price_min + ' - ' + product.price_max}} грн.
+                                        {{product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max}} грн.
                                     </p>
                                 </div>
                                 <div class="detail-prod-wrap">
@@ -167,9 +167,9 @@
                                             </ul>
                                         </div>
                                         <div class="all-goods-btn">
-                                            <button class="btn">
+                                            <a :href="'/products/'+product.id" class="btn">
                                                 Все предложения
-                                            </button>
+                                            </a>
                                         </div>
                                         <div class="two-wrap">
                                             <div class="left">
