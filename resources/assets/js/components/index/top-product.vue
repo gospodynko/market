@@ -57,7 +57,7 @@
 
                     </div>
                 </div>
-                <div class="show-all-btn-wrap" v-if="products && allProducts.total > 8">
+                <div class="show-all-btn-wrap" v-if="products && allProducts.total > 12">
                     <vue-ladda class="btn"@click="getNew" :loading="loadProduct">Показать еще</vue-ladda>
                     <!--<button class="btn" @click="getNew">Показать еще</button>-->
                 </div>

@@ -9,18 +9,28 @@ class SearchController extends Controller
 {
     public function index(Request $request)
     {
-        $page_count = 20;
+        $page_count = 12;
         $q = '%' . $request->input('q') . '%';
-        $products = Product::where('name', 'like', $q)->orWhere('description', 'like', $q)->paginate($page_count);
+        $products = Product::where('name', 'like', $q)->orWhere('description', 'like', $q)->orderby('price_min', 'ASC')->paginate($page_count);
 
         return view('search',['data' => ['products' => $products, 'q' => $request->input('q')]]);
     }
 
     public function search(Request $request)
     {
-        $q = '%' . $request->input('q') . '%';
-        $products = Product::where('name', 'like', $q)->orWhere('description', 'like', $q)->get();
+        $page_count = 12;
+        $filter_type = $request->input('sort');
+        if($filter_type == 'plus'){
+            $filter_type = ['type' => 'price_min', 'sort' => 'DESC'];
+        } else if($filter_type == 'minus'){
+            $filter_type = ['type' => 'price_min', 'sort' => 'ASC'];
+        } else {
+            $filter_type = ['type' => 'rate_val', 'sort' => 'DESC'];
+        }
 
-        return response()->json($products, 200);
+        $q = '%' . $request->input('q') . '%';
+        $products = Product::where('name', 'like', $q)->orWhere('description', 'like', $q)->orderby($filter_type['type'], $filter_type['sort'])->paginate($page_count);
+
+        return response()->json(['products' => $products], 200);
     }
 }

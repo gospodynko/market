@@ -76,6 +76,9 @@
                 });
                 localStorage.setItem('cart', JSON.stringify(this.cartItems));
                 Events.$emit('updateCart', true);
+                if(!this.cartItems.length){
+                    this.closeCart();
+                }
             },
             settingsCart(status){
                 this.cartItems = JSON.parse(localStorage.getItem('cart'));
@@ -87,17 +90,19 @@
             },
             changeCount(type, item){
                 if(type == 'minus'){
-                    var countItem = --item.store.store_count;
-                    if(!countItem){
-                        this.delFromCart(item);
+                    var countItem = item.store.store_count;
+                    countItem = countItem--;
+                    if(countItem <= 1){
+                        console.log(countItem);
+                        item.store.store_count = 1;
                     } else {
-                        item.store.store_count = countItem;
-                        this.cartItems.forEach(cart => {
-                            if(cart.store.id === item.store.id){
-                                cart.store.store_count = countItem;
-                            }
-                        });
+                        item.store.store_count = countItem--;
                     }
+                    this.cartItems.forEach(cart => {
+                        if(cart.store.id === item.store.id){
+                            cart.store.store_count = countItem;
+                        }
+                    });
                 } else {
                     ++item.store.store_count;
                 }

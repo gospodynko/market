@@ -11,6 +11,7 @@ use App\Models\Product;
 use App\Models\UserProduct;
 use App\Models\UserShops;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class UserShopController extends Controller
@@ -146,7 +147,10 @@ class UserShopController extends Controller
             'price' => $price,
             'currency_id' => $currency['id'],
             'created_by' => \Auth::id(),
-            'updated_by' => \Auth::id()
+            'updated_by' => \Auth::id(),
+            'delivery_id' => '111',
+            'pay_id' => '111'
+
         ];
 
         $v = Validator::make($data_user_product, self::$validationRules);

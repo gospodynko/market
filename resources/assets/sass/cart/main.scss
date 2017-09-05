@@ -214,13 +214,15 @@
   top: 0;
   right: 0;
   background: #ffffff;
-  transition: width .5s ease-out;
+  transition: opacity .5s ease-out;
   overflow: hidden;
+  opacity: 0;
   }
 .cart-blocked-wrap.show{
   width: 550px;
-  transition: width .5s ease-out;
+  transition: opacity .5s ease-out;
   z-index: 500;
+  opacity: 1;
 
   .cart-wrap{
     height: 100%;

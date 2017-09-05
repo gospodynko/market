@@ -148,7 +148,7 @@
                     'producer': this.checkedTag,
                     'category': this.checkedCategory,
                     'shop_id': this.shop.id,
-                    'price': this.price,
+                    'price': +this.price,
                     'images': this.images,
                     'features': this.features
                 };

@@ -1,5 +1,18 @@
 <template>
     <section class="single-prod-sect">
+        <div class="overlay" style="z-index: 6" :class="{'show': showAuthorized}" @click="closeAuth"></div>
+        <div class="unauthorized-user-popup" v-if="showAuthorized">
+            <div class="head">
+                <h2>
+                    Для совершения действия нужно авторизоваться
+                </h2>
+                <span class="close" @click="closeAuth"></span>
+            </div>
+            <div class="main">
+                <a href="/login" class="btn">Авторизоваться</a>
+                <a href="#" class="btn">Зарегистрироваться</a>
+            </div>
+        </div>
         <div class="single-prod-wrap">
             <div class="breadcrumbs">
 
@@ -56,7 +69,7 @@
                         </div>
                         <div class="prod-desc-wrap">
                             <h2>Описание</h2>
-                            <p>{{product.description}}</p>
+                            <p v-html="product.description"></p>
                         </div>
                     </div>
                     <div class="detail-post-info">
@@ -146,13 +159,13 @@
                                         <h3>Все отзывы ({{reviews.length}})</h3>
                                         <div class="sort-wrap">
                                             <p class="bold">
-                                                <span class="bold">Сортировать: </span>
-                                                <span>
-                                                    по дате
-                                                </span>
-                                                <span>
-                                                    по оценке
-                                                </span>
+                                                <!--<span class="bold">Сортировать: </span>-->
+                                                <!--<span>-->
+                                                    <!--по дате-->
+                                                <!--</span>-->
+                                                <!--<span>-->
+                                                    <!--по оценке-->
+                                                <!--</span>-->
                                             </p>
                                         </div>
                                     </div>
@@ -173,7 +186,7 @@
                                             <div class="star-rating-wrap">
                                                 <p class="user-name">{{review.user.first_name + ' ' + review.user.last_name}}</p>
                                                 <div class="rating-wrap">
-                                                    <span class="rating">Рейтинг </span><star-rating :star-size="20"></star-rating>
+                                                    <!--<span class="rating">Рейтинг </span><star-rating :star-size="20"></star-rating>-->
                                                 </div>
                                             </div>
                                         </div>
@@ -215,7 +228,7 @@
                 </div>
 
             </div>
-            <div class="compare-products">
+            <div class="compare-products" v-if="data.suggestions.length">
                 <h2>Похожие товары</h2>
                 <div class="all-products-list">
                     <div class="single-product" v-for="product in data.suggestions">
@@ -291,12 +304,16 @@
                 reviews: this.data.product.reviews,
                 reviewText: '',
                 showReview: false,
-                features: JSON.parse(this.data.product.features)
+                features: JSON.parse(this.data.product.features),
+                showAuthorized: false
             }
         },
-        props: ['data'],
+        props: ['data', 'user'],
         components: {
             StarRating
+        },
+        created(){
+            this.product.description = this.product.description.replace(/(?:\r\n|\r|\n)/g, '<br>');
         },
         methods: {
             checkImages(img){
@@ -341,10 +358,17 @@
             },
             showReviews(e){
                 e.preventDefault();
+                if(!this.user){
+                    this.showAuthorized = true;
+                }
                 if(this.productTab !== 'feedback'){
                     this.productTab = 'feedback';
                 }
                 this.showReview = !this.showReview;
+            },
+            closeAuth(){
+                this.showAuthorized = !this.showAuthorized;
+
             }
 
         }
