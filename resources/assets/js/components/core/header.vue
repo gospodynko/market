@@ -5,6 +5,7 @@
         <cart-blocked></cart-blocked>
         <noselect-user :user="user" v-if="user && user.role == 'noselect'"></noselect-user>
         <div class="shops-popup-wrap" v-if="showPopup">
+            <span class="close" @click="showPopupFunc"></span>
             <h2>Каталог всех магазинов</h2>
             <p>Coming soon!</p>
         </div>
@@ -57,7 +58,7 @@
                         <i class="arrow-down"></i>
                     </div>
                 </div>
-                <div class="all-menu-list active" v-if="showMenu">
+                <div class="all-menu-list active" :class="{'full-size': showChild}" v-if="showMenu">
                     <div class="menu-listing" :class="{'show': showChild}">
                         <div class="site-menu-wrap">
                             <div class="single-menu-item" v-for="category in categories" @mouseover="setChild(category.children)">
@@ -75,9 +76,9 @@
                 <div class="search-wrap">
                     <div class="actions-wrap">
                         <div class="search-action-wrap">
-                            <form method="get" action="/search">
+                            <form method="get" action="/search" ref="custom" v-on:submit.prevent="onSubmit">
                                 <label for="search-input">
-                                    <input type="text" id="search-input" name="q">
+                                    <input type="text" id="search-input" name="q" v-model="q">
                                     <button type="submit" class="btn">Поиск</button>
                                 </label>
                             </form>
@@ -107,7 +108,8 @@
                 cart: JSON.parse(localStorage.getItem('cart')),
                 showCart: false,
                 showPopup: false,
-                showOverlayPopup: false
+                showOverlayPopup: false,
+                q: ''
             }
         },
         props: ['user'],
@@ -180,6 +182,13 @@
             showPopupFunc(){
                 this.showPopup = !this.showPopup;
                 this.showOverlayPopup = !this.showOverlayPopup;
+            },
+            onSubmit(){
+                if(this.q.length <= 1){
+                    return false;
+                } else {
+                    this.$refs.custom.submit();
+                }
             }
 
         }

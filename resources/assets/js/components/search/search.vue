@@ -8,20 +8,22 @@
                 </div>
                 <div class="filters-list">
                     <div class="my-region-wrap">
-                        <input type="checkbox" id="my-region-check">
-                        <label for="my-region-check">
-                            <span>Сначала предложения в моем регионе</span>
-                        </label>
+                        <!--<input type="checkbox" id="my-region-check">-->
+                        <!--<label for="my-region-check">-->
+                            <!--<span>Сначала предложения в моем регионе</span>-->
+                        <!--</label>-->
                     </div>
                     <div class="sort-wrap">
                         <span>Сортировать по:</span>
-                        <select>
-                            <option value="1">по умолчанию</option>
+                        <select @change="setFilter" v-model="filterType">
+                            <option :value="'minus'">Сначала дешевые</option>
+                            <option :value="'plus'">Сначала дорогие</option>
+                            <option :value="'rating'">По рейтингу</option>
                         </select>
                     </div>
-                    <div class="type-view">
-                        <p><span>Вид:</span> <i class="table"></i><i class="list"></i></p>
-                    </div>
+                    <!--<div class="type-view">-->
+                        <!--<p><span>Вид:</span> <i class="table"></i><i class="list"></i></p>-->
+                    <!--</div>-->
                 </div>
             </div>
             <div class="search-content-wrap">
@@ -30,13 +32,13 @@
                     <div class="all-chose-filters">
                         <div class="single-filter">
                             <p class="name">{{data.q}}</p>
-                            <!--<span class="close"></span>-->
+                            <span class="close"></span>
                         </div>
                     </div>
                 </div>
                 <div class="main-search-content">
-                    <div class="filter-wrap" v-if="false">
-                        <div class="price-wrap" v-if="false">
+                    <div class="filter-wrap" v-if="true">
+                        <div class="price-wrap" v-if="true">
                             <h3><i></i>Цена</h3>
                             <div class="price-sect">
                                 <span>От</span>
@@ -45,7 +47,7 @@
                                 <input type="text">
                             </div>
                         </div>
-                        <div class="status-product" v-if="false">
+                        <div class="status-product" v-if="true">
                             <h3><i></i>Статусы продукта</h3>
                             <ul>
                                 <li>
@@ -74,7 +76,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="shop-rating-list" v-if="false">
+                        <div class="shop-rating-list" v-if="true">
                             <h3><i></i>Рейтинг магазина</h3>
                             <ul>
                                 <li>
@@ -102,7 +104,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="status-product" v-if="false">
+                        <div class="status-product" v-if="true">
                             <h3><i></i>Поставщики</h3>
                             <ul>
                                 <li>
@@ -132,9 +134,9 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="content-wrap" style="width: 100%">
+                    <div class="content-wrap">
                         <div class="all-products-list">
-                            <div class="single-product" style="width: 25%" v-for="product in data.products.data">
+                            <div class="single-product" v-for="product in searchProducts.data">
                                 <div class="img-wrap">
                                     <a :href="'/products/'+product.id"><img :src="product.default_picture" alt=""></a>
                                 </div>
@@ -217,12 +219,26 @@
     export default{
         data(){
             return {
-
+                filterType: 'minus',
+                searchProducts: this.data.products
             }
         },
         props: ['data'],
         components: {
             StarRating
+        },
+        methods: {
+            setFilter(){
+                if(!this.filterType) return false;
+                let data = {
+                    sort: this.filterType
+                }
+                this.$http.post('/search', data).then(res => {
+                    this.searchProducts = res.data.products;
+                }, err => {
+
+                })
+            }
         }
     }
 </script>

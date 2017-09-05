@@ -51,6 +51,7 @@ Route::group(['prefix' => 'home'], function () {
 
 Route::prefix('search')->group(function () {
     Route::get('/', 'SearchController@index');
+    Route::post('/', 'SearchController@search');
 });
 Route::group(['prefix' => 'api'],function (){
     Route::post('/check-user', 'HomeController@checkUser');

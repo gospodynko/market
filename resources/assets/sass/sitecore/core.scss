@@ -203,10 +203,90 @@ ul{
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    .close{
+        position: absolute;
+        top: 15px;
+        right: 10px;
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        &:before, &:after {
+            position: absolute;
+            left: 9px;
+            content: ' ';
+            height: 20px;
+            width: 2px;
+            background-color: $light-gray;
+        }
+        &:before {
+            transform: rotate(45deg);
+        }
+        &:after {
+            transform: rotate(-45deg);
+        }
+    }
     h2{
         margin-bottom: 15px;
     }
     h2,p{
         text-align: center;
+    }
+}
+.unauthorized-user-popup{
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    width: 600px;
+    height: 140px;
+    margin-left: -15%;
+    background: #ffffff;
+    z-index: 7;
+    .head{
+        height: 50px;
+        line-height: 50px;
+        position: relative;
+        margin-bottom: 15px;
+        h2{
+            text-align: center;
+            font-size: 21px;
+        }
+        .close{
+            position: absolute;
+            top: 15px;
+            right: 10px;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            &:before, &:after {
+                position: absolute;
+                left: 9px;
+                content: ' ';
+                height: 20px;
+                width: 2px;
+                background-color: $light-gray;
+            }
+            &:before {
+                transform: rotate(45deg);
+            }
+            &:after {
+                transform: rotate(-45deg);
+            }
+        }
+    }
+    .main{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        .btn{
+            background: $blue-btn;
+            border: 1px solid $blue-btn-bd;
+            padding: 0 20px;
+            text-align: center;
+            line-height: 45px;
+            font-size: 16px;
+            color: $white;
+        }
     }
 }

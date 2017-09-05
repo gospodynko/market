@@ -31,10 +31,13 @@ section.slider{
         line-height: 90px;
         background: #ffa800;
         text-align: center;
-        color: $white;
-        text-transform: uppercase;
-        font-size: 34px;
-        font-weight: 500;
+        a{
+          color: $white;
+          text-transform: uppercase;
+          font-size: 34px;
+          font-weight: 500;
+          display: inline-block;
+        }
       }
       .ps-list{
         display: flex;
