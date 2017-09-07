@@ -22,13 +22,14 @@ class UserShopController extends Controller
         'producer_id' => 'sometimes|exists:producers,id',
         'product_id' => 'sometimes|exists:products,id',
         'price' => 'sometimes|numeric',
-        'name' => 'sometimes|string|max:100',
+        'name' => 'sometimes|string|max:250',
         'description' => 'sometimes|string|max:500',
         'features.*.name' => 'string|max:50',
         'features.*.params.*.title' => 'string|max:50',
         'features.*.params.*.param' => 'string|max:50',
         'user_shop_id' => 'sometimes|exists:user_shops,id|auth_user_own_shop',
-        'currency_id' => 'sometimes|exists:currencies,id'
+        'currency_id' => 'sometimes|exists:currencies,id',
+        'slug' => 'string|max:250'
     ];
 
     public function getShops()
@@ -123,7 +124,8 @@ class UserShopController extends Controller
                 'producer_id' => $producer_id,
                 'moderation' => 1,
                 'status' => 0,
-                'features' => json_encode($features)
+                'features' => json_encode($features),
+                'slug' => str_slug($product['name'])
             ];
 
             $v = Validator::make($data_product, self::$validationRules);

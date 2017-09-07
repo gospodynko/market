@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class UserProductBuyers extends Model
+{
+    protected $table = 'user_product_buyers';
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'phone',
+        'email'
+    ];
+
+}

@@ -43,6 +43,17 @@ Route::group(['roles' => ['admin'], 'middleware' => ['auth', 'roles']], function
         return view('dashboard.sections.banners.create');
     });
     Route::get('admin/moderation', 'AdminController@moderateList');
+    Route::group(['prefix' => 'admin/deliveries'], function (){
+        Route::get('/', 'AdminController@deliveryList');
+        Route::get('/create', 'AdminController@deliveryCreate');
+        Route::post('/create', 'AdminController@storeDelivery');
+    });
+    Route::group(['prefix' => 'admin/payments'], function (){
+        Route::get('/', 'AdminController@paymentList');
+        Route::get('/create', 'AdminController@paymentCreate');
+        Route::post('/create', 'AdminController@storePayment');
+    });
+//    Route::get('admin/payments', 'AdminController@paymentList');
     Route::get('admin/moderation/accept/{id}', 'AdminController@acceptProduct');
     Route::get('admin/moderation/show/{id}', 'AdminController@viewProduct');
 });

@@ -32,18 +32,17 @@
                             </div>
                             <span class="close" @click="delFromCart(cartItem)"></span>
                         </div>
-                        <div class="checkout-wrap">
-                            <a :href="'/checkout/'+cartItem.store.id" class="btn">Оформить заказ</a>
-                        </div>
+                        <!--<div class="checkout-wrap">-->
+                            <!--<a :href="'/checkout/'+cartItem.store.id" class="btn">Оформить заказ</a>-->
+                        <!--</div>-->
                     </div>
                 </div>
-                <div class="cart-footer-action"></div>
-                <!--<div class="cart-footer-action two-wrap">-->
-                    <!--<div class="left"></div>-->
-                    <!--<div class="right">-->
-                        <!--<a href="/checkout" class="btn">Оформить заказ</a>-->
-                    <!--</div>-->
-                <!--</div>-->
+                <div class="cart-footer-action two-wrap">
+                    <div class="left"></div>
+                    <div class="right">
+                        <a href="/checkout" class="btn">Оформить заказ</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

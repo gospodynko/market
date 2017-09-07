@@ -233,11 +233,11 @@
                 <div class="all-products-list">
                     <div class="single-product" v-for="product in data.suggestions">
                         <div class="img-wrap">
-                            <a :href="'/products/'+product.id"><img :src="product.default_picture" alt=""></a>
+                            <a :href="'/products/'+product.slug"><img :src="product.default_picture" alt=""></a>
                         </div>
                         <div class="detail-wrap">
                             <p class="product-title">
-                                <a :href="'/products/'+product.id">{{product.name}}</a>
+                                <a :href="'/products/'+product.slug">{{product.name}}</a>
                             </p>
                             <p class="price">
                                 {{product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max}} грн.
@@ -267,7 +267,7 @@
                                     </ul>
                                 </div>
                                 <div class="all-goods-btn">
-                                    <a :href="'/products/'+product.id" class="btn">
+                                    <a :href="'/products/'+product.slug" class="btn">
                                         Все предложения
                                     </a>
                                 </div>
@@ -348,7 +348,7 @@
             },
             sendReview(){
                 if(!this.reviewText) return false;
-                this.$http.post('/products/'+this.product.id+'/send-review', {'text': this.reviewText}).then(res => {
+                this.$http.post('/products/'+this.product.slug+'/send-review', {'text': this.reviewText}).then(res => {
                     this.reviews.unshift(res.data.review);
                     this.showReview = false;
                     this.reviewText = '';
