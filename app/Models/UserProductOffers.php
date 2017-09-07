@@ -14,19 +14,32 @@ class UserProductOffers extends Model
         'day_end',
         'price',
         'quantity',
-        'comment'
+        'comment',
+        'delivery_type_id',
+        'pay_type_id'
     ];
 
-    protected $with = ['userProduct', 'buyer'];
+    protected $with = ['userProduct', 'buyer', 'delivery', 'payment'];
 
     public function userProduct()
     {
         return $this->hasOne(UserProduct::class, 'id', 'user_product_id');
     }
 
+
     public function buyer()
     {
-        return $this->hasOne(AgroUser::class, 'id', 'buyer_id');
+        return $this->hasOne(UserProductBuyers::class, 'id', 'buyer_id');
+    }
+
+    public function payment()
+    {
+        return $this->hasOne(PayType::class, 'id', 'pay_type_id');
+    }
+
+    public function delivery()
+    {
+        return $this->hasOne(DeliveryType::class, 'id', 'delivery_type_id');
     }
 
 }

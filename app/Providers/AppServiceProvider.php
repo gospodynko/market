@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Antvel\Categories\Categories;
 use Antvel\Company\Models\Company;
+use App\Models\Category;
+use App\Observers\CategoryObserver;
 use Laravel\Dusk\DuskServiceProvider;
 use Illuminate\Support\ServiceProvider;
 
@@ -37,6 +39,7 @@ class AppServiceProvider extends ServiceProvider
             \View::share('main_company', $main_company);
             \View::share('categories_menu', $menu);
         }
+//        Category::observe(CategoryObserver::class);
     }
 
     /**

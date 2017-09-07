@@ -279,7 +279,7 @@ class ProductsController extends Controller
      *
      * @return Response
      */
-    public function show($id)
+    public function show($slug)
     {
         $user = \Auth::user();
         $allWishes = '';
@@ -293,7 +293,7 @@ class ProductsController extends Controller
                 ->get();
         }
 
-        $product = Product::with('category')->find($id);
+        $product = Product::with('category')->where('slug', $slug)->first();
         if ($product) {
 
             //retrieving products features
@@ -1069,9 +1069,9 @@ class ProductsController extends Controller
         return json_encode(\App\Models\Product::select('id', 'name')->where('category_id', '=', $categoryId)->get());
     }
 
-    public function storeReview($id, Request $request)
+    public function storeReview($slug, Request $request)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::where('slug', $slug)->firstOrFail();
 
         $review = ProductReviews::create([
            'text' => $request->input('text'),

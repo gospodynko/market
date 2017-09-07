@@ -19,12 +19,6 @@ class Category extends AntvelCategory
         'type',
         'slug'
     ];
-    protected $events = [
-        'updated' => CategoryEvent::class,
-        'saved' => CategoryEvent::class,
-        'created' => CategoryEvent::class,
-
-    ];
 
     public function children()
     {

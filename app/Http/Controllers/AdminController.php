@@ -1,6 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\DeliveryType;
+use App\Models\PayType;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\UserProduct;
@@ -163,5 +165,45 @@ class AdminController extends Controller
         $product->moderation = 0;
         $product->save();
         return response()->json(['status' => 1]);
+    }
+
+    public function deliveryList()
+    {
+        $count_page = 15;
+        return view('dashboard.sections.delivery.index', ['deliveries' => DeliveryType::paginate($count_page)]);
+    }
+
+    public function paymentList()
+    {
+        $count_page = 15;
+        return view('dashboard.sections.payment.index', ['payments' => PayType::paginate($count_page)]);
+    }
+
+    public function deliveryCreate()
+    {
+        return view('dashboard.sections.delivery.create');
+    }
+
+    public function paymentCreate()
+    {
+        return view('dashboard.sections.payment.create');
+    }
+
+    public function storePayment(Request $request)
+    {
+        PayType::create([
+            'name' => $request->input('name'),
+            'slug' => str_slug($request->input('name'))
+        ]);
+        return response()->json(['message' => 'success'], 200);
+    }
+
+    public function storeDelivery(Request $request)
+    {
+        DeliveryType::create([
+            'name' => $request->input('name'),
+            'slug' => str_slug($request->input('name'))
+        ]);
+        return response()->json(['message' => 'success'], 200);
     }
 }

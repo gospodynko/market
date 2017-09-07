@@ -46,6 +46,16 @@
                                     </a>
                                 </li>
                                 <li>
+                                    <a href="/admin/deliveries">
+                                        <i class="glyphicon glyphicon-menu-right"></i>&nbsp;Доставка
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/admin/payments">
+                                        <i class="glyphicon glyphicon-menu-right"></i>&nbsp;Оплата
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="/admin/moderation">
                                         <i class="glyphicon glyphicon-menu-right"></i>&nbsp;Модерация
                                     </a>
