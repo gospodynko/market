@@ -159,7 +159,14 @@ class HomeController extends Controller
                                         ->whereIn('ac.status_id', [2,3,6])
                                         ->select('ac.*')
                                         ->get();
-        if(!count($user_companies)){
+        $company_tmp = array();
+        foreach ($user_companies as $company){
+            $role = explode(',', $company->companyRole);
+            if(array_search('2', $role) !== 0){
+                array_push($company_tmp, $company);
+            }
+        }
+        if(!count($company_tmp)){
             return response()->json(['status' => 0, 'errors' => [['text' => 'Нет активных компаний']]], 200);
         } else {
             return response()->json(['status' => 1], 200);
@@ -177,12 +184,15 @@ class HomeController extends Controller
             ->select('ac.*')
             ->get();
         if(count($user_companies) && $request->input('role') == 'seller'){
+            $company_tmp = array();
             foreach ($user_companies as $company){
-                UserShops::create([
-                   'name' => $company->compName,
-                    'company_id' => $company->id,
-                    'user_id' => $user->id
-                ]);
+                $role = explode(',', $company->companyRole);
+                if(array_search('2', $role) !== 0){
+                    UserShops::create([
+                        'name' => $company->compName,
+                        'company_id' => $company->id,
+                        'user_id' => $user->id
+                    ]);                }
             }
             $user->role = 'seller';
             $user->save();

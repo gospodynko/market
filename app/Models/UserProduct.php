@@ -8,7 +8,7 @@ use App\Models\DeliveryType;
 class UserProduct extends Model
 {
 
-    protected $with = ['shop', 'pay_types', 'delivery_types'];
+    protected $with = ['shop', 'pay_types', 'delivery_types', 'user'];
     protected $fillable = [
         'product_id',
         'category_id',
@@ -33,7 +33,7 @@ class UserProduct extends Model
 
     public function mainProduct()
     {
-        return $this->hasOne('App\Models\Product', 'id', 'product_id');
+        return $this->hasOne(Product::class, 'id', 'product_id');
     }
 
     public function pictures()
@@ -67,5 +67,10 @@ class UserProduct extends Model
                 return $item->compName;
             }
         }
+    }
+
+    public function user()
+    {
+        return $this->hasOne(AgroUser::class, 'id', 'created_by');
     }
 }

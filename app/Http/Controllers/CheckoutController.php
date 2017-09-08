@@ -8,6 +8,7 @@ use App\Models\UserProductOffers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class CheckoutController extends Controller
 {
@@ -27,8 +28,9 @@ class CheckoutController extends Controller
         $user_data = $request->input('data');
         $store = $request->input('store');
         $buyer = UserProductBuyers::firstOrCreate(['phone' => $user_data['user']['phone']], $user_data['user']);
+
         $user_product_offer = UserProductOffers::create([
-            'user_product_id' => $product['id'],
+            'user_product_id' => $store['id'],
             'buyer_id' => $buyer->id,
             'day_start' => Carbon::now(),
             'day_end' => Carbon::now(),
@@ -38,7 +40,37 @@ class CheckoutController extends Controller
             'pay_type_id' => $user_data['payment']['payment_type'],
             'delivery_type_id' => $user_data['delivery']['delivery_type']
         ]);
-//        dd($user_product_offer);
-        return response()->json(['order' => $user_product_offer->load('userProduct.mainProduct'), 'product_name' => $product['name']], 200);
+        $item_offer = $user_product_offer->load('userProduct.mainProduct');
+        $data_mail = array();
+        $data_mail['user'] = [
+            'first_name' => $buyer->first_name,
+            'last_name' => $buyer->last_name
+        ];
+        $data_mail['order'] = [
+            'created_at' => $item_offer->created_at,
+            'price' => $item_offer->price,
+            'quantity' => $item_offer->quantity,
+            'payment' => $item_offer->payment->name,
+            'delivery' => $item_offer->delivery->name,
+            'comment' => $item_offer->comment
+        ];
+        $data_mail['product'] = [
+            'name' => $request->input('product')['name'],
+            'id' => $item_offer['userProduct']->id,
+            'slug' => $item_offer['userProduct']['mainProduct']->slug
+        ];
+        $data_mail['merchant'] = [
+            'name' => $item_offer['userProduct']->user->first_name . ' ' . $item_offer['userProduct']->user->last_name,
+            'phone' => $item_offer['userProduct']->user->phone,
+            'email' => $item_offer['userProduct']->user->email
+        ];
+        Mail::send('emails.checkout', ['data' => $data_mail], function ($message) use ($buyer, $request) {
+            $message->subject('Поздравляем! Вы купили товар '.$request->input('product')['name']);
+            $message->to($buyer->email);
+        });
+//        Mail::send('emails.checkout', ['param' => 'asd'], function ($email) use ($buyer) {
+//            $email->to($buyer->email);
+//        });
+        return response()->json(['order' => $item_offer, 'product_name' => $product['name']], 200);
     }
 }

@@ -110,10 +110,10 @@
                     <div class="product-list">
                         <div class="single-product">
                             <div class="logo-wrap">
-                                <img src="" alt="">
+                                <img :src="order.user_product.main_product.default_picture" alt="">
                             </div>
                             <div class="product-wrap">
-                                <div class="head-product">
+                                <div class="head-product two-wrap">
                                     <div class="left">
                                         <h2>{{productName}}</h2>
                                     </div>
@@ -125,7 +125,7 @@
                                 <p>Способ доставки: <span>{{order.delivery.name}}</span></p>
                                 <p>Способ оплаты: <span>{{order.payment.name}}</span></p>
                                 <p class="space"></p>
-                                <p>{{order.user_product.shop.name}}</p>
+                                <p>Магазин {{order.user_product.shop.name}}</p>
                                 <p>Телефон: <span>{{order.buyer.phone}}</span></p>
                                 <p>E-mail: <span>{{order.buyer.email}}</span></p>
                             </div>
@@ -134,8 +134,8 @@
                 </div>
                 <div class="footer">
                     <div class="user-cart-full">
-                        <p v-if="cartItems.length">У вас есть заказы в корзине <a href="#" class="btn">Перейти к корзине</a></p>
-                        <p><a href="#" class="btn">Продолжить покупки</a></p>
+                        <p v-if="cartItems.length">У вас есть заказы в корзине <a href="/checkout" class="btn">Перейти к корзине</a></p>
+                        <p><a href="/" class="btn">Продолжить покупки</a></p>
                     </div>
                 </div>
             </div>
@@ -216,7 +216,7 @@
                         this.order = res.data.order;
                         this.productName = res.data.product_name;
                         this.cartItems.forEach((item, i) => {
-                            if(item.product.id == res.data.order.user_product_id){
+                            if(item.store.id == res.data.order.user_product_id){
                                 this.cartItems.splice(i, 1);
                             }
                         })
