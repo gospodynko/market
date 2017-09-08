@@ -3168,11 +3168,19 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
 .cart-checkout-success-wrap .success-wrap .head .left p {
   font-size: 24px;
   font-weight: 500;
+  margin-top: 10px;
 }
 
 .cart-checkout-success-wrap .success-wrap .head .right {
   text-align: center;
   width: 60%;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  justify-content: center;
 }
 
 .cart-checkout-success-wrap .success-wrap .head .right p {
@@ -3212,11 +3220,25 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
   margin-left: 20px;
 }
 
+.cart-checkout-success-wrap .success-wrap .main .single-product .product-wrap .head-product .left {
+  width: 68%;
+}
+
+.cart-checkout-success-wrap .success-wrap .main .single-product .product-wrap .head-product .right {
+  width: 30%;
+}
+
+.cart-checkout-success-wrap .success-wrap .main .single-product .product-wrap .head-product .right p.price {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
 .cart-checkout-success-wrap .success-wrap .main .single-product .product-wrap h2 {
   font-size: 20px;
   text-decoration: underline;
   line-height: 30px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   color: #48a2ff;
 }
 
@@ -3231,7 +3253,47 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
 }
 
 .cart-checkout-success-wrap .success-wrap .main .single-product .product-wrap p.space {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  width: 100%;
+  height: 20px;
+}
+
+.cart-checkout-success-wrap .success-wrap .footer {
+  width: 100%;
+  height: 160px;
+}
+
+.cart-checkout-success-wrap .success-wrap .footer .user-cart-full {
+  display: -webkit-box;
+  display: flex;
+  justify-content: space-around;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.cart-checkout-success-wrap .success-wrap .footer .user-cart-full p {
+  margin-bottom: 15px;
+}
+
+.cart-checkout-success-wrap .success-wrap .footer .user-cart-full p:first-child {
+  margin-left: 15px;
+}
+
+.cart-checkout-success-wrap .success-wrap .footer .user-cart-full .btn {
+  padding: 0 20px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 43px;
+  background: #48a2ff;
+  border: 1px solid #2d92fa;
+  border-radius: 4px;
+  color: #fff;
+  display: inline-block;
 }
 
 /*# sourceMappingURL=main.css.map */
