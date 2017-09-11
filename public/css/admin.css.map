@@ -1,1 +1,1 @@
-{"version":3,"sources":["admin.css"],"names":[],"mappings":"AAAA","file":"admin.css","sourcesContent":[]}
+{"version":3,"sources":["admin.scss"],"names":[],"mappings":"AAAA;EACE,6BAA6B;EAC7B,4BAA4B;EAC5B,cAAc;EACd,sBAAsB;CACvB","file":"admin.css","sourcesContent":[".thumbnail{\r\n  background-repeat: no-repeat;\r\n  background-position: center;\r\n  height: 125px;\r\n  background-size: 100%;\r\n}"]}

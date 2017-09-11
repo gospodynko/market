@@ -152,7 +152,7 @@
                     'images': this.images,
                     'features': this.features
                 };
-                this.$http.post('/user-shop/shop/'+this.shop.id+'/create', data).then(res => {
+                this.$http.post('/user-shop/shop/create', data).then(res => {
                     location.href = '/user-shop/all-shops';
                 }, err => {
 

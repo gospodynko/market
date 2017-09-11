@@ -24,6 +24,7 @@ import AdminBannersCreate from './components/dashboard/banners/create.vue';
 import CartCheckoutVue from './components/cart/cart-checkout.vue';
 import PaymentsCreate from './components/dashboard/payments/create.vue';
 import DeliveriesCreate from './components/dashboard/deliveries/create.vue';
+import ProductCreate from './components/dashboard/products/create.vue';
 // Vue.use(VueSocketio, 'http://localhost:8303');
 // Vue.use(VueRouter);
 Vue.use(VueResource);
@@ -52,7 +53,8 @@ const app = new Vue({
         DeliveriesList,
         PaymentsList,
         PaymentsCreate,
-        DeliveriesCreate
+        DeliveriesCreate,
+        ProductCreate
     }
 
 

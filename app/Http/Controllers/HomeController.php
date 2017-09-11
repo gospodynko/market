@@ -58,7 +58,9 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        self::setRole();
+        if(Auth::id() && Auth::user()->role == 'noselect'){
+            self::setRole();
+        }
         $page_count = 12;
         $productsTop = Product::where(['status' => 1, 'moderation' => 0])->orderBy('updated_at', 'DESC')->whereHas('user_products')->paginate($page_count);
         $productsSuggestions = Product::orderBy('created_at', 'ASC')->paginate($page_count);
@@ -155,14 +157,6 @@ class HomeController extends Controller
     private function setRole()
     {
         $user = Auth::user();
-        if($user->role !== 'noselect') return;
-//        $user_companies = \DB::table('agroyard_company_users as acu')
-//            ->where('user_id', $user->id)
-//            ->join('agroyard_companies as ac', 'acu.company_id', 'ac.id')
-//            ->whereIn('ac.status_id', [2,3,6])
-//            ->select('ac.*')
-//            ->get();
-
         $user_companies_tmp = CompanyUsers::whereHas('company', function($q){
             $q->where('companyRole', 'like', '%2%');
             $q->whereIn('status_id', [2,3,6]);

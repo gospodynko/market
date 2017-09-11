@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
  */
 use App\Models\Producer;
 use App\Models\ProductReviews;
+use App\Models\UserShops;
 use App\Order;
 use App\OrderDetail;
 use App\Helpers\File;
@@ -141,31 +142,25 @@ class ProductsController extends Controller
 
     public function createAdmin()
     {
-        $product = Product::find(-50);
-        $features = ProductDetail::all()->toArray();
-        $arrayCategories = Category::actives()
-            ->lightSelection()
-            ->get()
-            ->toArray();
-
-        $categories = [
-            '' => trans('product.controller.select_category'),
-        ];
-
-        $typeItem = 'item';
-
-        //categories drop down formatted
-        ProductsHelper::categoriesDropDownFormat($arrayCategories, $categories);
-
-        $disabled = '';
-        $edit = false;
-        $panel = $this->panel;
-        $oldFeatures = ProductDetail::oldFeatures([]);
-        $productsDetails = new FeaturesHelper();
-        $producers = ($product) ? $product->category->producers : [];
-
-        return view('products.formAdmin', compact('product', 'panel', 'features', 'categories', 'typeItem', 'disabled', 'edit', 'oldFeatures', 'productsDetails'))
-                ->with('producers', $producers);
+//        $product = Product::find(-50);
+//        $features = ProductDetail::all()->toArray();
+//        $categories = Category::actives()
+//            ->get()
+//            ->toArray();
+//        $typeItem = 'item';
+//
+//        //categories drop down formatted
+//
+//        $disabled = '';
+//        $edit = false;
+//        $panel = $this->panel;
+//        $oldFeatures = ProductDetail::oldFeatures([]);
+//        $productsDetails = new FeaturesHelper();
+//        $producers = ($product) ? $product->category->producers : [];
+        return view('dashboard.sections.products.create', ['data' => ['shops' => UserShops::all(),
+            'categories' => Category::with('producers.products')->get(),
+            'currencies' => Currency::all(), 'delivery_type' => DeliveryType::all(),
+            'pay_type' => PayType::all()]]);
     }
 
     /**

@@ -85,7 +85,7 @@ class UserShopController extends Controller
         } else {
             $product_id = $product['id'];
         }
-        if ($producer_id && $product_id) {
+        if ($producer_id && $product_id && $shop_id) {
             return self::createUserProduct($product_id, $category['id'], $producer_id, $price, $shop_id, $currency, array_column($pay_types, 'id'), array_column($delivery_types, 'id'));
 
         }

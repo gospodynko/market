@@ -164,7 +164,7 @@ class AdminController extends Controller
         $product = Product::find($id);
         $product->moderation = 0;
         $product->save();
-        return response()->json(['status' => 1]);
+        return redirect('/admin/moderation', 302);
     }
 
     public function deliveryList()
