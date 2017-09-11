@@ -9,14 +9,18 @@ class UserShops extends Model
     protected $fillable = [
         'name',
         'rating',
-        'company_id',
-        'user_id'
+        'company_id'
     ];
     public $timestamps = false;
-    protected $with = ['company'];
+    protected $with = ['companyUsers'];
 
-    public function company()
+//    public function company()
+//    {
+//        return $this->hasOne(Companies::class, 'id', 'company_id');
+//    }
+
+    public function companyUsers()
     {
-        return $this->hasOne(Companies::class, 'id', 'company_id');
+        return $this->hasOne(CompanyUsers::class, 'company_id', 'company_id');
     }
 }

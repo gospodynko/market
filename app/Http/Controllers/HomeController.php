@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
  */
 //use App\Http\Requests\Request;
 use App\Models\AgroUser;
+use App\Models\CompanyUsers;
 use App\Models\UserShops;
 use App\Order;
 use Antvel\Product\Products;
@@ -57,6 +58,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+        self::setRole();
         $page_count = 12;
         $productsTop = Product::where(['status' => 1, 'moderation' => 0])->orderBy('updated_at', 'DESC')->whereHas('user_products')->paginate($page_count);
         $productsSuggestions = Product::orderBy('created_at', 'ASC')->paginate($page_count);
@@ -150,57 +152,33 @@ class HomeController extends Controller
         return view('user.summary', compact('panel', 'orders', 'sales'));
     }
 
-    public function checkUser(Request $request)
-    {
-        $user = AgroUser::findOrFail(Auth::id());
-        $user_companies = \DB::table('agroyard_company_users as acu')
-                                        ->where('user_id', Auth::id())
-                                        ->join('agroyard_companies as ac', 'acu.company_id', 'ac.id')
-                                        ->whereIn('ac.status_id', [2,3,6])
-                                        ->select('ac.*')
-                                        ->get();
-        $company_tmp = array();
-        foreach ($user_companies as $company){
-            $role = explode(',', $company->companyRole);
-            if(array_search('2', $role) !== 0){
-                array_push($company_tmp, $company);
-            }
-        }
-        if(!count($company_tmp)){
-            return response()->json(['status' => 0, 'errors' => [['text' => 'Нет активных компаний']]], 200);
-        } else {
-            return response()->json(['status' => 1], 200);
-        }
-
-    }
-
-    public function setRole(Request $request)
+    private function setRole()
     {
         $user = Auth::user();
-        $user_companies = \DB::table('agroyard_company_users as acu')
-            ->where('user_id', Auth::id())
-            ->join('agroyard_companies as ac', 'acu.company_id', 'ac.id')
-            ->whereIn('ac.status_id', [2,3,6])
-            ->select('ac.*')
-            ->get();
-        if(count($user_companies) && $request->input('role') == 'seller'){
-            $company_tmp = array();
-            foreach ($user_companies as $company){
-                $role = explode(',', $company->companyRole);
-                if(array_search('2', $role) !== 0){
+        if($user->role !== 'noselect') return;
+//        $user_companies = \DB::table('agroyard_company_users as acu')
+//            ->where('user_id', $user->id)
+//            ->join('agroyard_companies as ac', 'acu.company_id', 'ac.id')
+//            ->whereIn('ac.status_id', [2,3,6])
+//            ->select('ac.*')
+//            ->get();
+
+        $user_companies_tmp = CompanyUsers::whereHas('company', function($q){
+            $q->where('companyRole', 'like', '%2%');
+            $q->whereIn('status_id', [2,3,6]);
+        })->where('user_id', $user->id)->get()->load('company');
+        if(count($user_companies_tmp)){
+            foreach ($user_companies_tmp as $company_user){
                     UserShops::create([
-                        'name' => $company->compName,
-                        'company_id' => $company->id,
-                        'user_id' => $user->id
-                    ]);                }
+                        'name' => $company_user->company->compName,
+                        'company_id' => $company_user->company_id,
+                    ]);
             }
             $user->role = 'seller';
             $user->save();
-            return response()->json(['status' => 1, 'user' => $user]);
-        } elseif($request->input('role') == 'customer') {
+        } else {
             $user->role = 'customer';
             $user->save();
-            return response()->json(['status' => 1, 'user' => $user]);
         }
     }
 }
