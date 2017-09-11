@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="/css/reset.css">
 	{!! Html::style('/antvel-bower/bootstrap/dist/css/bootstrap.css') !!}
 	{!! Html::style('/antvel-bower/font-awesome/css/font-awesome.min.css') !!}
+	<link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.0.0/dist/vue-multiselect.min.css">
 	<link rel="stylesheet" href="/css/admin.css">
 	<style>
 		html {
