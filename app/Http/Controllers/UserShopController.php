@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\CompanyUsers;
 use App\Models\Currency;
 use App\Models\DeliveryType;
 use App\Models\PayType;
@@ -12,6 +13,7 @@ use App\Models\UserProduct;
 use App\Models\UserShops;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class UserShopController extends Controller
@@ -27,14 +29,19 @@ class UserShopController extends Controller
         'features.*.name' => 'string|max:50',
         'features.*.params.*.title' => 'string|max:50',
         'features.*.params.*.param' => 'string|max:50',
-        'user_shop_id' => 'sometimes|exists:user_shops,id|auth_user_own_shop',
+        'user_shop_id' => 'sometimes|exists:user_shops,id',
         'currency_id' => 'sometimes|exists:currencies,id',
         'slug' => 'string|max:250'
     ];
 
     public function getShops()
     {
-        return view('user_shop.shops.index', ['shops' => UserShops::where('user_id', Auth::id())->get()]);
+//        dd(DB::table('agroyard_company_users')->where('user_id', Auth::id())->get());
+        $companies_id = CompanyUsers::whereHas('company', function($q){
+            $q->where('companyRole', 'like', '%2%');
+            $q->whereIn('status_id', [2,3,6]);
+        })->where(['user_id' => Auth::id()])->get()->pluck('company_id')->toArray();
+        return view('user_shop.shops.index', ['shops' => UserShops::whereIn('company_id', $companies_id)->get()]);
     }
 
     public function createProduct($id)

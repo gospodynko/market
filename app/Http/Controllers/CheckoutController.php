@@ -44,7 +44,9 @@ class CheckoutController extends Controller
         $data_mail = array();
         $data_mail['user'] = [
             'first_name' => $buyer->first_name,
-            'last_name' => $buyer->last_name
+            'last_name' => $buyer->last_name,
+            'email' => $buyer->email,
+            'phone' => $buyer->phone
         ];
         $data_mail['order'] = [
             'created_at' => $item_offer->created_at,
@@ -64,13 +66,15 @@ class CheckoutController extends Controller
             'phone' => $item_offer['userProduct']->user->phone,
             'email' => $item_offer['userProduct']->user->email
         ];
+
         Mail::send('emails.checkout', ['data' => $data_mail], function ($message) use ($buyer, $request) {
             $message->subject('Поздравляем! Вы купили товар '.$request->input('product')['name']);
             $message->to($buyer->email);
         });
-//        Mail::send('emails.checkout', ['param' => 'asd'], function ($email) use ($buyer) {
-//            $email->to($buyer->email);
-//        });
+        Mail::send('emails.checkoutSeller', ['data' => $data_mail], function ($message) use ($data_mail, $request) {
+            $message->subject('Поздравляем! Вы продали товар '.$request->input('product')['name']);
+            $message->to($data_mail['merchant']['email']);
+        });
         return response()->json(['order' => $item_offer, 'product_name' => $product['name']], 200);
     }
 }

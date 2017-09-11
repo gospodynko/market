@@ -32,10 +32,5 @@ class AgroUser extends User
 //        }
 //        $this->save();
     }
-    protected $with = ['shops'];
 
-    public function shops()
-    {
-        return $this->hasMany(UserShops::class, 'user_id', 'id');
-    }
 }

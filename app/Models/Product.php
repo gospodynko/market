@@ -30,7 +30,8 @@ class Product extends Model
         'low_stock',
         'status',
         'parent_id',
-        'producer_id'
+        'producer_id',
+        'slug'
     ];
     protected $appends = ['default_picture'];
     protected $with = ['user_products', 'pictures', 'reviews'];
