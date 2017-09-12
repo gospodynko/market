@@ -26,18 +26,18 @@
                         </div>
                         <div class="all-detail-list">
                             <ul>
-                                <li>{{product.description}}</li>
+                                <li>{{product.description.length > 100 ? product.description.slice(0, 100) + ' ...' : product.description }}</li>
                             </ul>
                         </div>
                         <div class="hide-list-wrap">
-                            <div class="all-detail-list">
-                                <ul>
-                                    <!--<li>Масса конструкционная, кг	5100</li>-->
-                                    <!--<li>Масса эксплуатационная, кг	5260</li>-->
-                                    <!--<li>База , мм	2450</li>-->
-                                    <li>{{product.description}}</li>
-                                </ul>
-                            </div>
+                            <!--<div class="all-detail-list">-->
+                                <!--&lt;!&ndash;<ul>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;&lt;!&ndash;<li>Масса конструкционная, кг	5100</li>&ndash;&gt;&ndash;&gt;-->
+                                    <!--&lt;!&ndash;&lt;!&ndash;<li>Масса эксплуатационная, кг	5260</li>&ndash;&gt;&ndash;&gt;-->
+                                    <!--&lt;!&ndash;&lt;!&ndash;<li>База , мм	2450</li>&ndash;&gt;&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<li>{{product.description}}</li>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+                            <!--</div>-->
                             <div class="all-goods-btn">
                                 <a :href="'/products/'+product.slug" class="btn">
                                     Все предложения

@@ -30,7 +30,7 @@
   }
   .single-product{
     width: 25%;
-    height: 500px;
+    height: 430px;
     border: 1px solid $light-gray;
     background: $white;
     padding: 10px 25px;
@@ -39,10 +39,21 @@
     box-sizing: border-box;
     position: relative;
     overflow: hidden;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    width: 23.5%;
+    margin-right: 2%;
+    margin-bottom: 2%;
+    &:nth-child(4n+4){
+      margin-right: 0;
+    }
     .hide-list-wrap{
-      display: none;
+      //display: none;
+      visibility: hidden;
+      opacity: 0;
       position: absolute;
-      top: 414px;
+      top: 416px;
       left: -1px;
       width: calc(100% + 2px);
       height: auto;
@@ -55,7 +66,9 @@
       border-bottom: 1px solid $light-gray;
       border-right: 1px solid $light-gray;
       border-left: 1px solid $light-gray;
-      box-shadow: 0 8px 10px rgba(0,0,0,.15);
+      box-shadow: 0 8px 12px rgba(0,0,0,.15);
+      border-bottom-right-radius: 3px;
+      border-bottom-left-radius: 3px;
       .all-detail-list{
         height: auto!important;
       }
@@ -104,9 +117,14 @@
     }
     &:hover{
       overflow: visible;
+      box-shadow: 0px 0px 12px rgba(0,0,0,.15);
       & .hide-list-wrap{
         display: block;
+        opacity: 1;
+        visibility: visible;
         z-index: 5;
+        opacity: 1;
+        transition: all .5s;
       }
       &:after{
         display: none;
@@ -118,15 +136,15 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      height: 15px;
+      height: 13px;
       background: $white;
     }
     .img-wrap{
       width: 100%;
-      height: 180px;
+      height: 175px;
       text-align: center;
-      line-height: 180px;
-      margin-top: 50px;
+      line-height: 175px;
+      margin-top: 15px;
       margin-bottom: 15px;
       img{
         max-width: 100%;
@@ -141,7 +159,7 @@
           font-size: 20px;
           font-weight: 500;
           line-height: 30px;
-          margin-bottom: 15px;
+          margin-bottom: 5px;
           height: 60px;
           overflow: hidden;
           display: inline-block;
@@ -151,7 +169,7 @@
         color: $green;
         font-size: 24px;
         font-weight: 500;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
       }
     }
     .detail-prod-wrap{
@@ -169,6 +187,7 @@
       ul>li{
         font-size: 13px;
         margin-bottom: 5px;
+        line-height: 18px;
       }
     }
   }

@@ -25,8 +25,8 @@ class RouteServiceProvider extends ServiceProvider
     public function boot()
     {
         parent::boot();
-
         Antvel::routes();
+
     }
 
     /**

@@ -159,15 +159,15 @@
                                     </div>
                                     <div class="all-detail-list">
                                         <ul>
-                                            <li>{{product.description}}</li>
+                                            <li>{{product.description.length > 100 ? product.description.slice(0, 100) + ' ...' : product.description }}</li>
                                         </ul>
                                     </div>
                                     <div class="hide-list-wrap">
-                                        <div class="all-detail-list">
-                                            <ul>
-                                                <li>{{product.description}}</li>
-                                            </ul>
-                                        </div>
+                                        <!--<div class="all-detail-list">-->
+                                            <!--<ul>-->
+                                                <!--<li>{{product.description}}</li>-->
+                                            <!--</ul>-->
+                                        <!--</div>-->
                                         <div class="all-goods-btn">
                                             <a :href="'/products/'+product.slug" class="btn">
                                                 Все предложения

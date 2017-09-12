@@ -55,6 +55,16 @@
                     </div>
                 </div>
                 <div class="payment-delivery-wrap">
+                    <h2>Оплата</h2>
+                    <div class="checked-payment">
+                        <div class="checked-payment">
+                            <div class="single-payment" v-for="pay in checkedItem.store.pay_types" :class="[{'active': checkedItem.data.payment.payment_type == pay.id}, pay.slug]" @click="setPayment(pay)">
+                                <p><i></i> {{pay.name}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="payment-delivery-wrap">
                     <h2>Доставка</h2>
                     <div class="checked-payment">
                         <div class="single-payment" v-for="delivery in checkedItem.store.delivery_types" :class="[{'active': checkedItem.data.delivery.delivery_type == delivery.id}, delivery.slug]" @click="setDelivery(delivery)">
@@ -66,24 +76,15 @@
                         <textarea name="" id="" cols="30" rows="10" v-model="checkedItem.data.delivery.delivery_comment"></textarea>
                     </div>
                 </div>
-                <div class="payment-delivery-wrap">
-                    <h2>Оплата</h2>
-                    <div class="checked-payment">
-                        <div class="checked-payment">
-                            <div class="single-payment" v-for="pay in checkedItem.store.pay_types" :class="[{'active': checkedItem.data.payment.payment_type == pay.id}, pay.slug]" @click="setPayment(pay)">
-                                <p><i></i> {{pay.name}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
                 <div class="end-section">
                     <div class="two-wrap">
                         <div class="left">
-                            <p class="title">Итого:</p>
+                            <p class="title">Цена товара:</p>
                             <p class="price">{{checkedItem.store.price * checkedItem.store.store_count}} грн</p>
                         </div>
                         <div class="right">
-                            <button class="btn" @click="setOrder">Заказать</button>
+                            <button class="btn" @click="setOrder">Оформить заказ</button>
                         </div>
                     </div>
                 </div>
