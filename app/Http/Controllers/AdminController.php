@@ -209,8 +209,14 @@ class AdminController extends Controller
 
     public function updateCategory(Request $request)
     {
-//        dd($request);
-        \App::call('FileController@img');
+        $category = $request->all();
+        $category['slug'] = str_slug($category['name']);
+        unset($category['parent']);
+        $upd_cat = Category::find($category['id']);
+
+        $upd_cat->update($category);
+
+        return response()->json(['status' => 1], 200);
 
     }
 }

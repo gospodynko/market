@@ -17,6 +17,8 @@ class FileController extends Controller
     //needs to be refactored
     public function img(Request $request, $file = '')
     {
+        $file = $request->file('file');
+        dd($file->getBasename());
         if (!$this->valid('img', $file)) {
             return $this->notFound();
         }
@@ -106,6 +108,7 @@ class FileController extends Controller
      */
     private function imgExist($path, $file, $size = [])
     {
+        $size = [];
         if (count($size)) {
             $w = isset($size['w']) ? $size['w'] : false;
             $h = isset($size['h']) ? $size['h'] : false;
@@ -119,10 +122,11 @@ class FileController extends Controller
 
         if (!file_exists($pathFile) || !is_file($pathFile)) {
             if (file_exists("$path/$file") && is_file("$path/$file") && count($size)) {
-                $img = \Image::make("$path/$file")->resize($w ? $w : null, $h ? $h : null, function ($constraint) {
-                    $constraint->aspectRatio();
-                    $constraint->upsize();
-                });
+                $img = \Image::make("$path/$file");
+//                ->resize($w ? $w : null, $h ? $h : null, function ($constraint) {
+//                    $constraint->aspectRatio();
+//                    $constraint->upsize();
+//                });
 
                 $img->save($pathFile);
 

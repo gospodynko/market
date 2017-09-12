@@ -2,82 +2,50 @@
     <div class="row">
 
         <div class="col-lg-6">
-            <form action="{{ route('categories.update', ['category' => $category->id]) }}" method="POST" role="form" enctype="multipart/form-data">
-                {{ csrf_field() }}
-				{{ method_field('PATCH') }}
 				<div class="form-group">
-                <label for="name">{{ trans('globals.name') }}:</label>
-                <input type="text" class="form-control" name="name" value="{{ $category->name }}">
+                <label>Название:</label>
+                <input type="text" class="form-control" name="name" v-model="checkedCategory.name">
             </div>
                 <div class="form-group">
-                    <label for="name">{{ trans('globals.description') }} :</label>
-                    <textarea class="form-control"  name="description" cols="30" rows="2">{{ $category->description }}</textarea>
+                    <label>Описание :</label>
+                    <textarea class="form-control"  name="description" cols="30" rows="2" v-model="checkedCategory.description">{{ checkedCategory.description }}</textarea>
                 </div>
                 <div class="form-group">
-                    <label for="name">
-                        @if (! is_null($category->icon))
-                            <i class="{{ $category->icon }}"></i>&nbsp;
-                        @endif
-                        {{ trans('categories.icon') }}:
-					</label>
-                    <input type="text" class="form-control" name="icon" value="{{ $category->icon }}">
-                </div>
-                <div class="form-group">
-                    <label for="name">{{ trans('globals.status') }}:</label>
-                    <select name="status" class="form-control">
-                        <option value="1" @if ($category->status) selected="selected" @endif>{{ trans('globals.active') }}</option>
-                        <option value="0" @if (! $category->status) selected="selected" @endif>{{ trans('globals.inactive') }}</option>
+                    <label>Статус:</label>
+                    <select name="status" class="form-control" v-model="checkedCategory.status">
+                        <option value="1" v-if="checkedCategory.status" selected="selected">Активная</option>
+                        <option value="0" v-else selected="selected">Деактивирована</option>
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="name">{{ trans('categories.parent') }}:</label>
-                    <select name="category_id" class="form-control">
+                    <label>Родительская категория:</label>
+                    <select name="checkedCategory_id" class="form-control" v-model="checkedCategory.category_id">
                         <option value="">---</option>
-                        @foreach ($parents as $parent)
-                            <option value="{{ $parent->id }}" @if ($hasParent && $parent->id == $category->parent->id) selected="selected" @endif >
-								{{ ucfirst($parent->name) }}
-							</option>
-                        @endforeach
+                        <option :value="parent.id" :selected="hasParent && parent.id == checkedCategory.category_id" v-for="parent in parents">
+                            {{ parent.name }}
+                        </option>
                     </select>
                 </div>
                 <div class="form-group">
                     <div class="row">
                         <div class="col-lg-12">
-                            <label for="name">{{ trans('categories.background') }}:</label>
-                            @if (is_null($category->image))
-                                <input type="file" class="form-control" name="_pictures_file">
-                            @else
-                                <div class="input-group">
-										<span class="input-group-addon">
-											<input type="checkbox" name="_pictures_delete">&nbsp;<span class="label label-danger">{{ trans('globals.delete') }}</span>
-											<input type="hidden" name="_pictures_current" value="{{ $category->image }}">
-										</span>
-                            <input type="file" class="form-control" name="_pictures_file">
-                            <div class="input-group-btn">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#image_{{ $category->id }}">
-                                    <i class="glyphicon glyphicon-search"></i>
-                                </button>
-                            </div>
+                            <label>Изображение:</label>
+                            <input type="file" class="form-control" name="_pictures_file" @change="fileLoad">
                         </div>
-                            @endif
+                        <div class="ol-md-3" v-if="checkedCategory.image"><img :src="checkedCategory.image" alt=""></div>
                     </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input type="hidden" name="current_category" value="{{ $category->id }}">
                 </div>
                 <div class="form-group">
                     <hr>
-                    <a href="{{ route('categories.index') }}" class="btn btn-danger">
+                    <a href="/dashboard/categories" class="btn btn-danger">
                         <i class="glyphicon glyphicon-remove"></i>&nbsp;
-                        {{ trans('globals.close_label') }}
+                       Отмена
 					</a>
-                    <button type="submit" class="btn btn-success">
+                    <button type="submit" class="btn btn-success" @click="editCategory">
                         <i class="glyphicon glyphicon-send"></i>&nbsp;
-                        {{ trans('globals.submit') }}
+                        Редактировать
 					</button>
                 </div>
-            </form>
         </div>
     </div>
 </template>
@@ -86,7 +54,27 @@
     export default {
         data(){
             return{
+                checkedCategory: this.category
+            }
+        },
+        props: ['category', 'parents', 'hasParent'],
+        methods:{
+            fileLoad(e){
+                let data = new FormData();
+                data.append('file', e.target.files[0]);
 
+                this.$http.post('/admin/category/upload', data).then(res => {
+                    this.checkedCategory.image = res.data;
+                }, err => {
+
+                })
+            },
+            editCategory(){
+                this.$http.patch('/dashboard/categories/'+this.checkedCategory.id, this.checkedCategory).then(res => {
+                    location.href = '/dashboard/categories/';
+                }, err => {
+
+                })
             }
         }
 
