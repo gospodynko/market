@@ -492,16 +492,20 @@
         width: 100%;
         height: 80px;
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: center;
         margin-bottom: 30px;
         .single-payment{
-          width: 23%;
+          width: 25%;
           height: 100%;
           display: flex;
           justify-content: center;
           align-items: center;
           border: 1px solid $light-gray;
+          &:hover{
+            box-shadow: 0 8px 20px rgba(186,204,213,.3);
+            background: #f5f7f8;
+          }
           p{
             font-size: 16px;
             font-weight: 500;
@@ -554,6 +558,7 @@
         }
         .single-payment.active{
           border-color: $green-btn;
+          background: #f5f7f8;
         }
       }
       textarea{

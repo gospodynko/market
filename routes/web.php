@@ -13,7 +13,12 @@
 |
 */
 
+
+use Illuminate\Http\Request;
+
 Auth::routes();
+
+Route::patch('dashboard/categories/{id}' , 'AdminController@updateCategory');
 
 Route::get('register/confirm/{token}/{email}', [
 	'as' => 'register.confirm',

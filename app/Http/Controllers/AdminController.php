@@ -206,4 +206,11 @@ class AdminController extends Controller
         ]);
         return response()->json(['message' => 'success'], 200);
     }
+
+    public function updateCategory(Request $request)
+    {
+//        dd($request);
+        \App::call('FileController@img');
+
+    }
 }

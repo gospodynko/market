@@ -207,7 +207,7 @@
     width: 100%;
   }
   .site-menu-wrap{
-    width: 300px;
+    width: 298px;
     //margin-left: -1px;
     height: 500px;
     z-index: 5;
@@ -249,12 +249,13 @@
   .child-menu{
     position: absolute;
     top: -1px;
-    left: 300px;
+    left: 299px;
     background: $white;
+    height: 502px;
     z-index: 6;
     border-left: 1px solid $light-gray;
     border-top: 1px solid $light-gray;
-    width: calc(100% - 300px);
+    width: calc(100% - 299px);
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
