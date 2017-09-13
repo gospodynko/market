@@ -23,7 +23,7 @@
                 </tr>
                 <tr>
                     <td style="border-top: 1px solid #c3c3c3;background: #eeeeee;font-family: arial, helvetica, sans-serif;font-size: 10pt;vertical-align: top;padding: 3px;padding-top: 10px;" width="30%"><strong>Цена:</strong></td>
-                    <td style="border-top: 1px solid #c3c3c3;border-left: 1px solid #c3c3c3;font-family: arial, helvetica, sans-serif;font-size: 10pt;vertical-align: top;padding: 3px;padding-top: 10px;">{{$data['order']['price']}}</td>
+                    <td style="border-top: 1px solid #c3c3c3;border-left: 1px solid #c3c3c3;font-family: arial, helvetica, sans-serif;font-size: 10pt;vertical-align: top;padding: 3px;padding-top: 10px;">{{$data['order']['price']}} грн.</td>
                 </tr>
                 <tr>
                     <td style="border-top: 1px solid #c3c3c3;background: #eeeeee;font-family: arial, helvetica, sans-serif;font-size: 10pt;vertical-align: top;padding: 3px;padding-top: 10px;" width="30%"><strong>Количество:</strong></td>

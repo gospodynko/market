@@ -471,37 +471,37 @@ class ProductsController extends Controller
     {
         $product = Product::find($id);
 
-        $typeItem = $product->type;
-        $disabled = '';
-
-        $order = OrderDetail::where('product_id', $id)
-            ->join('orders', 'order_details.order_id', '=', 'orders.id')
-            ->first();
-
-        if ($order) {
-            $disabled = 'disabled';
-        }
-
-        $features = ProductDetail::all()->toArray();
-
-        $allCategoriesStore = Category::actives()->lightSelection()->get()->toArray();
-
-        $categories = ['' => trans('product.controller.select_category')];
-
-        //categories drop down formatted
-        ProductsHelper::categoriesDropDownFormat($allCategoriesStore, $categories);
-
-        $condition = ['new' => trans('product.controller.new'), 'refurbished' => trans('product.controller.refurbished'), 'used' => trans('product.controller.used')];
-
-        $edit = true;
-        $panel = $this->panel;
-
-        $oldFeatures = ProductDetail::oldFeatures($product->features);
-
-        $productsDetails = new FeaturesHelper();
-        $producers = ($product) ? $product->category->producers : [];
-
-        return view('products.formAdmin', compact('product', 'panel', 'features', 'categories', 'condition', 'typeItem', 'disabled', 'edit', 'oldFeatures', 'productsDetails', 'producers'));
+//        $typeItem = $product->type;
+//        $disabled = '';
+//
+//        $order = OrderDetail::where('product_id', $id)
+//            ->join('orders', 'order_details.order_id', '=', 'orders.id')
+//            ->first();
+//
+//        if ($order) {
+//            $disabled = 'disabled';
+//        }
+//
+//        $features = ProductDetail::all()->toArray();
+//
+//        $allCategoriesStore = Category::actives()->lightSelection()->get()->toArray();
+//
+//        $categories = ['' => trans('product.controller.select_category')];
+//
+//        //categories drop down formatted
+//        ProductsHelper::categoriesDropDownFormat($allCategoriesStore, $categories);
+//
+//        $condition = ['new' => trans('product.controller.new'), 'refurbished' => trans('product.controller.refurbished'), 'used' => trans('product.controller.used')];
+//
+//        $edit = true;
+//        $panel = $this->panel;
+//
+//        $oldFeatures = ProductDetail::oldFeatures($product->features);
+//
+//        $productsDetails = new FeaturesHelper();
+//        $producers = ($product) ? $product->category->producers : [];
+//        compact('product', 'panel', 'features', 'categories', 'condition', 'typeItem', 'disabled', 'edit', 'oldFeatures', 'productsDetails', 'producers')
+        return view('dashboard.sections.products.edit', ['data' => ['product' => $product]]);
     }
 
     /**

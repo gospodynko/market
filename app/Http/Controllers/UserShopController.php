@@ -25,7 +25,7 @@ class UserShopController extends Controller
         'product_id' => 'sometimes|exists:products,id',
         'price' => 'sometimes|numeric',
         'name' => 'sometimes|string|max:250',
-        'description' => 'sometimes|string|max:500',
+        'description' => 'sometimes|string|max:65000',
         'features.*.name' => 'string|max:50',
         'features.*.params.*.title' => 'string|max:50',
         'features.*.params.*.param' => 'string|max:50',

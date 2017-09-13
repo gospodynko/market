@@ -1,6 +1,6 @@
 <head><meta charset="utf-8"></head>
 <body bgcolor="#f6f5f3" topmargin="0" leftmargin="0" marginheight="0" marginwidth="0" style="-webkit-font-smoothing: antialiased;width:100% !important;background:#f6f5f3;-webkit-text-size-adjust:none;">
-<table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#f6f5f3" style="padding: 10px;">
+<table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#f6f5f3" style="padding: 15px;">
     <tr>
         <table width="600" cellpadding="0" cellspacing="0" border="0">
             <tr>
@@ -23,7 +23,7 @@
                 </tr>
                 <tr>
                     <td style="border-top: 1px solid #c3c3c3;background: #eeeeee;font-family: arial, helvetica, sans-serif;font-size: 10pt;vertical-align: top;padding: 3px;padding-top: 10px;" width="30%"><strong>Цена:</strong></td>
-                    <td style="border-top: 1px solid #c3c3c3;border-left: 1px solid #c3c3c3;font-family: arial, helvetica, sans-serif;font-size: 10pt;vertical-align: top;padding: 3px;padding-top: 10px;">{{$data['order']['price']}}</td>
+                    <td style="border-top: 1px solid #c3c3c3;border-left: 1px solid #c3c3c3;font-family: arial, helvetica, sans-serif;font-size: 10pt;vertical-align: top;padding: 3px;padding-top: 10px;">{{$data['order']['price']}} грн.</td>
                 </tr>
                 <tr>
                     <td style="border-top: 1px solid #c3c3c3;background: #eeeeee;font-family: arial, helvetica, sans-serif;font-size: 10pt;vertical-align: top;padding: 3px;padding-top: 10px;" width="30%"><strong>Количество:</strong></td>
