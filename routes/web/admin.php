@@ -21,8 +21,15 @@ Route::group(['roles' => ['admin'], 'middleware' => ['auth', 'roles']], function
     Route::post('admin/products', ['uses' => 'ProductsController@storeAdmin', 'as' => 'products.admin.store']);
 
     Route::get('admin/products', ['uses' => 'AdminController@indexProducts', 'as' => 'products.admin']);
+    Route::get('admin/orders', ['uses' => 'AdminController@indexOrders', 'as' => 'orders.admin']);
+
+    Route::get('/admin/user-products', 'AdminController@indexUserProducts');
+    Route::get('/admin/user-products/{id}/edit', 'AdminController@editUserProducts');
+    Route::put('/admin/user-products/{id}', 'AdminController@updateUserProducts');
 
     Route::get('admin/products/{id}/edit', ['uses' => 'ProductsController@editAdmin', 'as' => 'products.admin.edit']);
+    Route::get('admin/products/{id}/delete', ['uses' => 'AdminController@delProductAdmin', 'as' => 'products.admin.delete']);
+    Route::get('admin/user-products/{id}/delete', ['uses' => 'AdminController@delProductUserAdmin', 'as' => 'products-user.admin.delete']);
 
     Route::put('admin/products/{id}', ['uses' => 'ProductsController@updateAdmin', 'as' => 'products.admin.update']);
 

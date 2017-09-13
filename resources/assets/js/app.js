@@ -26,6 +26,7 @@ import PaymentsCreate from './components/dashboard/payments/create.vue';
 import DeliveriesCreate from './components/dashboard/deliveries/create.vue';
 import ProductCreate from './components/dashboard/products/create.vue';
 import AdminProductEdit from './components/dashboard/products/edit.vue';
+import AdminUserProductEdit from './components/dashboard/products/user-edit.vue';
 import DashboardCategoriesEdit from './components/dashboard/categories/edit.vue';
 // Vue.use(VueSocketio, 'http://localhost:8303');
 // Vue.use(VueRouter);
@@ -58,7 +59,8 @@ const app = new Vue({
         DeliveriesCreate,
         ProductCreate,
         DashboardCategoriesEdit,
-        AdminProductEdit
+        AdminProductEdit,
+        AdminUserProductEdit
     }
 
 

@@ -1,8 +1,10 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\Currency;
 use App\Models\DeliveryType;
 use App\Models\PayType;
+use App\Models\UserProductOffers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\UserProduct;
@@ -14,9 +16,27 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use App\Http\Requests\CreateBannerRequest;
 use App\Models\Banner;
+use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
+
+    private $form_rules_user_product = [
+        'category_id' => 'required',
+        'product_id' => 'required',
+        'producer_id' => 'required',
+        'currency' => 'required',
+        'price' => array('required','regex:/^(?=.+)(?:[1-9]\d*|0)?(?:\.\d+)?$/'),
+        'delivery_id' => 'required',
+        'pay_id' => 'required',
+    ];
+
+    private function rulesUserUpdate()
+    {
+        $rules = $this->form_rules_user_product;
+        return $rules;
+    }
+
 
     public function indexProducts(Request $request)
     {
@@ -218,5 +238,64 @@ class AdminController extends Controller
 
         return response()->json(['status' => 1], 200);
 
+    }
+
+    public function indexUserProducts()
+    {
+//        dd(UserProduct::all()->toArray());
+        return view('dashboard.sections.products.user', ['data' => [
+            'user_product' => UserProduct::all()
+        ]]);
+    }
+
+    public function editUserProducts($id){
+//        dd(UserProduct::find($id)->first());
+        return view('dashboard.sections.products.user-edit', ['data' => [
+            'user_product' => UserProduct::with('currency')->where('id', $id)->first(),
+            'currencies' => Currency::all(),
+            'deliveries' => DeliveryType::all(),
+            'pays' => PayType::all()
+        ]]);
+    }
+
+    public function updateUserProducts($id, Request $request)
+    {
+        $rules = $this->rulesUserUpdate();
+//        dd($request->all());
+        $v = Validator::make($request->all(), $rules);
+        if($v->fails()){
+            return redirect()->back()
+                ->withErrors($v->errors())->withInput();
+        }
+        $user_product = UserProduct::find($request->input('id'));
+        $user_product->price = $request->input('price');
+        $user_product->currency_id = $request->input('currency')['id'];
+        $user_product->updated_by = Auth::id();
+        $user_product->delivery_types()->sync(array_map(create_function('$ids', 'return $ids[\'id\'];'), $request->input('delivery_types')));
+        $user_product->pay_types()->sync(array_map(create_function('$ids', 'return $ids[\'id\'];'), $request->input('pay_types')));
+        $user_product->save();
+
+        return response()->json(['status' => 1], 200);
+    }
+
+    public function delProductAdmin($id){
+        $product = Product::findOrFail($id);
+        $product->user_products()->delete();
+        $product->delete();
+        return redirect()->back();
+    }
+
+    public function delProductUserAdmin($id)
+    {
+        $product = UserProduct::findOrFail($id);
+        $product->delete();
+        return redirect()->back();
+    }
+
+    public function indexOrders()
+    {
+        return view('dashboard.sections.orders.index', ['data' => [
+            'orders' => UserProductOffers::all()
+        ]]);
     }
 }

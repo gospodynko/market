@@ -501,7 +501,9 @@ class ProductsController extends Controller
 //        $productsDetails = new FeaturesHelper();
 //        $producers = ($product) ? $product->category->producers : [];
 //        compact('product', 'panel', 'features', 'categories', 'condition', 'typeItem', 'disabled', 'edit', 'oldFeatures', 'productsDetails', 'producers')
-        return view('dashboard.sections.products.edit', ['data' => ['product' => $product]]);
+        return view('dashboard.sections.products.edit',
+                                                ['data' => ['product' => $product->load('category', 'producer.products'),
+                                                            'categories' => Category::where('status', 1)->get()]]);
     }
 
     /**
@@ -513,6 +515,7 @@ class ProductsController extends Controller
      */
     public function update($id, Request $request)
     {
+        dd($request);
         $rules = $this->rulesByTypes($request, true);
         $order = OrderDetail::where('product_id', $id)->join('orders', 'order_details.order_id', '=', 'orders.id')->first();
         if ($order) {
@@ -574,10 +577,10 @@ class ProductsController extends Controller
      */
     public function updateAdmin($id, Request $request)
     {
-        if (!$request->input('type')) {
-            return redirect()->back()
-                    ->withErrors(['induced_error' => [trans('globals.error') . ' ' . trans('globals.induced_error')]])->withInput();
-        }
+    //        if (!$request->input('type')) {
+//            return redirect()->back()
+//                    ->withErrors(['induced_error' => [trans('globals.error') . ' ' . trans('globals.induced_error')]])->withInput();
+//        }
         $rules = $this->rulesByTypes($request, true, true);
         $order = OrderDetail::where('product_id', $id)->join('orders', 'order_details.order_id', '=', 'orders.id')->first();
         if ($order) {
@@ -585,34 +588,45 @@ class ProductsController extends Controller
             unset($rules['category_id']);
             unset($rules['condition']);
         }
+        unset($rules['bar_code']);
+//        dd(Validator::make($request->all(), $rules));
         $v = Validator::make($request->all(), $rules);
         if ($v->fails()) {
             return redirect()->back()
                     ->withErrors($v->errors())->withInput();
         }
-        $features = $this->validateFeatures($request->all());
-        if (!is_string($features)) {
-            return redirect()->back()
-                    ->withErrors($features)->withInput();
-        }
+
+//        $features = $this->validateFeatures($request->all());
+//        dd($features);
+//        if (!is_string($features)) {
+//            return redirect()->back()
+//                    ->withErrors($features)->withInput();
+//        }
         $product = Product::find($id);
         // if (\Auth::id() != $product->user_id) {
         //     return redirect('products/'.$product->user_id)->withErrors(['feature_images' => [trans('globals.not_access')]]);
         // }
         if (!$order) {
             $product->name = $request->input('name');
-            $product->category_id = $request->input('category_id');
+            $product->category_id = $request->input('category')['id'];
         }
         $product->description = $request->input('description');
-        $product->bar_code = $request->input('bar_code');
-        $product->producer_id = $request->input('producer_id');
-        $product->features = $features;
+        $product->bar_code = $request->input('bar_code')?:'111';
+        $product->producer_id = $request->input('producer')['id'];
+        $product->features = json_encode($request->input('features'));
         $product->updated_by = \Auth::id();
         $product->save();
+        $product->pictures()->delete();
+        if(count($request->input('pictures'))){
+            foreach ($request->input('pictures') as $image){
+                $product->pictures()->create(['path' => $image['path']]);
+            }
+        }
+
         $message = '';
         Session::flash('message', trans('product.controller.saved_successfully') . $message);
 
-        return redirect()->back();
+        return response()->json(['status' => 1], 200);
     }
 
     /**
