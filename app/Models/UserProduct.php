@@ -51,6 +51,11 @@ class UserProduct extends Model
         return $this->belongsToMany(PayType::class);
     }
 
+    public function currency()
+    {
+        return $this->hasOne(Currency::class, 'id', 'currency_id');
+    }
+
     public function getPrice()
     {
         $price = \App\Helpers\CurrencyRates::convertToUAH($this->price, $this->currency_id);

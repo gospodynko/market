@@ -224,7 +224,13 @@
                         this.$set(this.errors,u, false);
                     }
                 }
-                return false;
+                var hasErr = false;
+                for(let err in this.errors){
+                    if(this.errors[err]){
+                        hasErr = true;
+                    }
+                }
+                if(hasErr) return false;
                 this.$http.post('/set-order', this.checkedItem).then(res => {
                     if(res.data.order){
                         this.showSuccess = true;

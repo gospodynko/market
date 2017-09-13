@@ -17,8 +17,6 @@ class FileController extends Controller
     //needs to be refactored
     public function img(Request $request, $file = '')
     {
-        $file = $request->file('file');
-        dd($file->getBasename());
         if (!$this->valid('img', $file)) {
             return $this->notFound();
         }

@@ -29,6 +29,16 @@
                                         <i class="glyphicon glyphicon-menu-right"></i>&nbsp;Продукти
                             </a>
                                 </li>
+                                <li>
+                                    <a href="/admin/user-products">
+                                        <i class="glyphicon glyphicon-menu-right"></i>&nbsp;Продукти користувачiв
+                            </a>
+                                </li>
+                                <li>
+                                    <a href="/admin/orders">
+                                        <i class="glyphicon glyphicon-menu-right"></i>&nbsp;Замовлення
+                            </a>
+                                </li>
                                 <li role="separator" class="divider"></li>
                                 <li>
                                     <a href="/admin/producers">
