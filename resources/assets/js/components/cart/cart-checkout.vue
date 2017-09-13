@@ -36,17 +36,17 @@
                     <div class="field-list">
                         <p>
                             <span>Имя</span>
-                            <input type="text" v-model="checkedItem.data.user.first_name">
+                            <input type="text" v-model="checkedItem.data.user.first_name" :class="{'error': errors.first_name}">
                         </p>
                         <p>
                             <span>Фамилия</span>
-                            <input type="text" v-model="checkedItem.data.user.last_name">
+                            <input type="text" v-model="checkedItem.data.user.last_name" :class="{'error': errors.last_name}">
                         </p>
                     </div>
                     <div class="field-list">
                         <p>
                             <span>Телефон</span>
-                            <input type="phone" v-model="checkedItem.data.user.phone">
+                            <input type="phone" v-model="checkedItem.data.user.phone" :class="{'error': errors.phone}">
                         </p>
                         <p>
                             <span>Email</span>
@@ -73,7 +73,7 @@
                     </div>
                     <div class="other-info">
                         <p class="comments">Комментарий:</p>
-                        <textarea name="" id="" cols="30" rows="10" v-model="checkedItem.data.delivery.delivery_comment"></textarea>
+                        <textarea name="" id="" cols="30" rows="10" v-model="checkedItem.data.delivery.delivery_comment" :class="{'error': errors.delivery_comment}"></textarea>
                     </div>
                 </div>
 
@@ -166,7 +166,13 @@
                     }},
                 showSuccess: false,
                 order: null,
-                productName: ''
+                productName: '',
+                errors: {
+//                    first_name: false,
+//                    last_name: false,
+//                    phone: false,
+//                    comment: false
+                },
             }
         },
         props: ['store', 'user'],
@@ -211,6 +217,14 @@
                 this.checkedItem.data.payment.payment_type = payment.id;
             },
             setOrder(){
+                for(let u in this.checkedItem.data.user){
+                    if(!this.checkedItem.data.user[u]){
+                        this.$set(this.errors,u, true);
+                    } else {
+                        this.$set(this.errors,u, false);
+                    }
+                }
+                return false;
                 this.$http.post('/set-order', this.checkedItem).then(res => {
                     if(res.data.order){
                         this.showSuccess = true;
