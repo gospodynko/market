@@ -11,7 +11,10 @@ class SearchController extends Controller
     {
         $page_count = 12;
         $q = '%' . $request->input('q') . '%';
-        $products = Product::where('name', 'like', $q)->orWhere('description', 'like', $q)->orderby('price_min', 'ASC')->paginate($page_count);
+        $products = Product::where(function ($query) use ($q){
+            $query->where('name', 'like', $q);
+            $query->orWhere('description', 'like', $q);
+        })->whereHas('user_products')->orderby('price_min', 'ASC')->paginate($page_count);
 
         return view('search',['data' => ['products' => $products, 'q' => $request->input('q')]]);
     }

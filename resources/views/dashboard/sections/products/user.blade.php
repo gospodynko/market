@@ -27,10 +27,11 @@
 				</thead>
 				<tbody>
 					@foreach ($data['user_product'] as $product)
+						{{--{{dd($product->toArray())}}--}}
 						<tr>
 							<td class="text-center">{{ $product->id }}</td>
 							<td class="text-left">{{ str_limit($product->user->phone, 30) }}</td>
-							<td class="text-left">{{ $product->shop->name }}</td>
+							<td class="text-left">{{ $product->shop ? $product->shop->name : 'магазин удален' }}</td>
 							<td class="text-left">{{ $product->price }}</td>
 							<td class="text-center">
 								@if ($product->status)

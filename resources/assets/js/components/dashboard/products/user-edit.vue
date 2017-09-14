@@ -16,7 +16,7 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label>Цена:</label>
-                                    <input type="price" class="form-control" v-model="userProduct.price">
+                                    <input type="number" class="form-control" v-model="userProduct.price">
                                 </div>
                             </div>
                             <div class="col-lg-6">
@@ -25,6 +25,12 @@
                                     <select class="form-control" v-model="userProduct.currency">
                                     <option :value="currency" v-for="currency in data.currencies">{{currency.name}}</option>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                    <label>Единица измерения:</label>
+                                    <input type="text" class="form-control" v-model="userProduct.quantity_price">
                                 </div>
                             </div>
                             <div class="col-lg-6">

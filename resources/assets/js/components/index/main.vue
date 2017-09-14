@@ -1,8 +1,8 @@
 <template>
     <div>
-        <slider-vue :banners="data.banner"></slider-vue>
+        <slider-vue :banners="data.banner" :translate="data.translate"></slider-vue>
         <!--<clasfds-vue></clasfds-vue>-->
-        <top-product :products="data.productsTop"></top-product>
+        <top-product :products="data.productsTop" :translate="data.translate"></top-product>
         <!--<popular-products></popular-products>-->
         <!--<actual-products></actual-products>-->
     </div>

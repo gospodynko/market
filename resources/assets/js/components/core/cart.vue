@@ -5,11 +5,11 @@
             <div class="cart-list-wrap">
                 <div class="cart-head-wrap two-wrap">
                     <div class="left">
-                        <h2>Корзина заказов</h2>
+                        <h2>{{translate.cart_goods}}</h2>
                     </div>
                     <div class="right">
                         <div class="count-purchases" v-if="cartItems">
-                            <p>Итого: <span>{{cartItems.length}}</span> товарa</p>
+                            <p>{{translate.together}}: <span>{{cartItems.length}}</span> {{translate.goods}}</p>
                         </div>
                     </div>
                 </div>
@@ -38,9 +38,9 @@
                     </div>
                 </div>
                 <div class="cart-footer-action two-wrap">
-                    <div class="left"></div>
-                    <div class="right">
-                        <a href="/checkout" class="btn">Оформить заказ</a>
+                    <div class="left" style="width: 30%"></div>
+                    <div class="right" style="width: 70%;">
+                        <a href="/checkout" class="btn">{{translate.buy_item}}</a>
                     </div>
                 </div>
             </div>
@@ -63,6 +63,7 @@
                 this.settingsCart(status);
             })
         },
+        props:['translate'],
         components:{
             starRating
         },

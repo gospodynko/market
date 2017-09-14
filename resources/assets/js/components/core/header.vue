@@ -2,11 +2,11 @@
     <header @mouseleave="closeMenu()">
         <div class="overlay" :class="{'show': showChild || showOverlay}" @click="showPopupFunc"></div>
         <div class="overlay" style="z-index: 6" :class="{'show': showOverlayPopup}" @click="showPopupFunc"></div>
-        <cart-blocked></cart-blocked>
+        <cart-blocked :translate="cartTranslate"></cart-blocked>
         <noselect-user :user="user" v-if="user && user.role == 'noselect'"></noselect-user>
         <div class="shops-popup-wrap" v-if="showPopup">
             <span class="close" @click="showPopupFunc"></span>
-            <h2>Каталог всех магазинов</h2>
+            <h2>{{translate.popup_catalog}}</h2>
             <p>Coming soon!</p>
         </div>
         <div class="header">
@@ -25,18 +25,18 @@
                             <!--<p class="city"><i></i> Город</p>-->
                         </div>
                         <div class="item">
-                            <a href="/user-shop/all-shops" class="shop" v-if="user && user.role == 'seller'"><i></i> Мой магазин</a>
+                            <a href="/user-shop/all-shops" class="shop" v-if="user && user.role == 'seller'"><i></i> {{translate.my_shop}}</a>
                         </div>
                         <div class="item">
-                            <a href="#" class="basket" @click="showCartFunc"><i></i><span class="badge" :class="{'badge': cart}" v-if="cart && cart.length">{{cart.length}}</span> Корзина</a>
+                            <a href="#" class="basket" @click="showCartFunc"><i></i><span class="badge" :class="{'badge': cart}" v-if="cart && cart.length">{{cart.length}}</span> {{translate.cart}}</a>
                         </div>
                         <div class="item">
                             <div class="user-wrap" v-if="user">
                                 <img src="/img/avatars/ava.jpg" alt="" class="avatar">
-                                <span class="logout" @click="logout">Выйти</span>
+                                <span class="logout" @click="logout">{{translate.exit}}</span>
                             </div>
 
-                            <a href="/login" v-else>Войти</a>
+                            <a href="/login" v-else>{{translate.enter}}</a>
                         </div>
                         <!--<div class="item">-->
                             <!--&lt;!&ndash;<ul class="languages">&ndash;&gt;-->
@@ -54,7 +54,7 @@
                 <div class="catalog-menu-items">
                     <div class="catalog-menu-btn" @click="showMenuFunc()">
                         <i class="burger"></i>
-                        <p>Каталог товаров</p>
+                        <p>{{translate.catalog}}</p>
                         <i class="arrow-down"></i>
                     </div>
                 </div>
@@ -79,12 +79,12 @@
                             <form method="get" action="/search" ref="custom" v-on:submit.prevent="onSubmit">
                                 <label for="search-input">
                                     <input type="text" id="search-input" name="q" v-model="q">
-                                    <button type="submit" class="btn">Поиск</button>
+                                    <button type="submit" class="btn">{{translate.search}}</button>
                                 </label>
                             </form>
                         </div>
                         <div class="all-shops-btn">
-                            <button class="btn" @click="showPopupFunc">Все магазины</button>
+                            <button class="btn" @click="showPopupFunc">{{translate.all_shops}}</button>
                         </div>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
                 q: ''
             }
         },
-        props: ['user'],
+        props: ['user', 'translate', 'cartTranslate'],
         components: {
             cartBlocked,
             NoselectUser

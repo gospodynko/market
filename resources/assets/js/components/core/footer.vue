@@ -3,10 +3,10 @@
         <div class="head-footer-wrap">
             <div class="site-naw-wrap">
                 <ul class="head-footer-menu">
-                    <li>Компания</li>
-                    <li>Инструменты</li>
-                    <li>Контакты</li>
-                    <li>Адрес</li>
+                    <li>{{translate.company}}</li>
+                    <li>{{translate.tool}}</li>
+                    <li>{{translate.contacts}}</li>
+                    <li>{{translate.address}}</li>
                 </ul>
             </div>
         </div>
@@ -14,18 +14,18 @@
             <div class="all-items-menu-wrap">
                 <div class="single-menu-item">
                     <ul class="list-company-info">
-                        <li><a href="#">Новости</a></li>
-                        <li><a href="#">Про АгроЯрд</a></li>
-                        <li><a href="#">Обратная связь</a></li>
+                        <li><a href="#">{{translate.news}}</a></li>
+                        <li><a href="#">{{translate.about}}</a></li>
+                        <li><a href="#">{{translate.feedback}}</a></li>
                     </ul>
                 </div>
                 <div class="single-menu-item">
                     <ul class="list-company-info">
-                        <li><a href="#">Продать урожай</a></li>
-                        <li><a href="#">Подать объявление</a></li>
-                        <li><a href="#">Объявления</a></li>
-                        <li><a href="#">Аукционы</a></li>
-                        <li><a href="#">Тендеры Rialto</a></li>
+                        <li><a href="#">{{translate.sell_crop}}</a></li>
+                        <li><a href="#">{{translate.add_adv}}</a></li>
+                        <li><a href="#">{{translate.adv}}</a></li>
+                        <li><a href="#">{{translate.auction}}</a></li>
+                        <li><a href="#">{{translate.tenders}}</a></li>
                     </ul>
                 </div>
                 <div class="single-menu-item">
@@ -39,8 +39,8 @@
                 </div>
                 <div class="single-menu-item">
                     <ul class="list-company-info">
-                        <li>49044, г.Днепр</li>
-                        <li>ул. Исполкомовская 12А, офис 21</li>
+                        <li>{{translate.detail_address_1}}</li>
+                        <li>{{translate.detail_address_2}}</li>
                     </ul>
                 </div>
                 <div class="qr-wrap">
@@ -50,10 +50,10 @@
         <div class="bottom-footer-detail">
             <div class="all-det-wrap">
                 <div class="left">
-                    <p>&#169; АгроЯрдб 2017 г. Все права защищены</p>
+                    <p>&#169; АгроЯрд 2017 г. {{translate.all_right}}</p>
                 </div>
                 <div class="right">
-                    <p>Сайт разработан и поддерживается компанией Unique Technologies</p>
+                    <p>{{translate.site_create}}</p>
                 </div>
             </div>
         </div>
@@ -65,5 +65,8 @@
         data(){
             return {}
         },
+        props: [
+            'translate'
+        ]
     }
 </script>

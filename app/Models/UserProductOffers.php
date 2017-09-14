@@ -16,10 +16,11 @@ class UserProductOffers extends Model
         'quantity',
         'comment',
         'delivery_type_id',
-        'pay_type_id'
+        'pay_type_id',
+        'buyer_email_id'
     ];
 
-    protected $with = ['userProduct', 'buyer', 'delivery', 'payment'];
+    protected $with = ['userProduct', 'buyer', 'delivery', 'payment', 'email'];
 
     public function userProduct()
     {
@@ -40,6 +41,11 @@ class UserProductOffers extends Model
     public function delivery()
     {
         return $this->hasOne(DeliveryType::class, 'id', 'delivery_type_id');
+    }
+
+    public function email()
+    {
+        return $this->hasOne(UserProductBuyersEmails::class, 'id', 'buyer_email_id');
     }
 
 }

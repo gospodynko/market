@@ -71,7 +71,7 @@
             },
             editCategory(){
                 this.$http.patch('/dashboard/categories/'+this.checkedCategory.id, this.checkedCategory).then(res => {
-                    location.href = '/dashboard/categories/';
+//                    location.href = '/dashboard/categories/';
                 }, err => {
 
                 })

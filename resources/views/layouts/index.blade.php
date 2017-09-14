@@ -12,9 +12,9 @@
 </head>
 <body>
 <div id="app">
-    <header-vue :user="{{json_encode(Auth::user())}}"></header-vue>
+    <header-vue :user="{{json_encode(Auth::user())}}" :translate="{{json_encode(trans('index.index'))}}" :cart-translate="{{json_encode(trans('index.cart'))}}"></header-vue>
     @yield('content')
-    <footer-vue :user="{{json_encode(Auth::user())}}"></footer-vue>
+    <footer-vue :user="{{json_encode(Auth::user())}}" :translate="{{json_encode(trans('index.footer'))}}"></footer-vue>
 
 </div>
 
