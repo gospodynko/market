@@ -90,7 +90,7 @@
                this.loadProduct = true;
                this.$http.post('/', {'page': ++this.page}).then(res => {
                    res.data.products.data.forEach(item => {
-                       this.allProducts.data.unshift(item);
+                       this.allProducts.data.push(item);
                    })
 
                    this.page = res.data.products.current_page;
