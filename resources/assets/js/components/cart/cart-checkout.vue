@@ -5,7 +5,7 @@
 
             <div class="all-items-cart-wrap">
                 <div class="checkout-user-wrap">
-                    <h2>Товары в корзине</h2>
+                    <h2>{{translate.goods_in_cart}}</h2>
                     <div class="product-list">
                         <div class="single-product" v-for="item in cartItems" @click="setItem(item)" :class="{'active': item.store.id == checketStoreId}">
                             <div class="logo">
@@ -23,7 +23,7 @@
                         <div class="detail-description">
                             <div class="head">
                                 <p class="title">{{checkedItem.product.name}}</p>
-                                <p class="shop-title">Магазин {{checkedItem.store.shop.name}}</p>
+                                <p class="shop-title">Магазин {{checkedItem.store.shop ? checkedItem.store.shop.name : ''}}</p>
                             </div>
                             <div class="footer">
                                 <p class="price">{{checkedItem.store.price * checkedItem.store.store_count}} грн</p>
@@ -32,30 +32,30 @@
                     </div>
                 </div>
                 <div class="detail-user-fields">
-                    <h2>Данные покупателя</h2>
+                    <h2>{{translate.buyer_data}}</h2>
                     <div class="field-list">
                         <p>
-                            <span>Имя</span>
+                            <span>{{translate.name}}</span>
                             <input type="text" v-model="checkedItem.data.user.first_name" :class="{'error': errors.first_name}">
                         </p>
                         <p>
-                            <span>Фамилия</span>
+                            <span>{{translate.last_name}}</span>
                             <input type="text" v-model="checkedItem.data.user.last_name" :class="{'error': errors.last_name}">
                         </p>
                     </div>
                     <div class="field-list">
                         <p>
-                            <span>Телефон</span>
+                            <span>{{translate.phone}}</span>
                             <input type="phone" v-model="checkedItem.data.user.phone" :class="{'error': errors.phone}">
                         </p>
                         <p>
-                            <span>Email</span>
+                            <span>{{translate.email}}</span>
                             <input type="email" v-model="checkedItem.data.user.email">
                         </p>
                     </div>
                 </div>
                 <div class="payment-delivery-wrap">
-                    <h2>Оплата</h2>
+                    <h2>{{translate.pay_type}}</h2>
                     <div class="checked-payment">
                         <div class="checked-payment">
                             <div class="single-payment" v-for="pay in checkedItem.store.pay_types" :class="[{'active': checkedItem.data.payment.payment_type == pay.id}, pay.slug]" @click="setPayment(pay)">
@@ -72,7 +72,7 @@
                         </div>
                     </div>
                     <div class="other-info">
-                        <p class="comments">Комментарий:</p>
+                        <p class="comments">{{translate.comment}}:</p>
                         <textarea name="" id="" cols="30" rows="10" v-model="checkedItem.data.delivery.delivery_comment" :class="{'error': errors.delivery_comment}"></textarea>
                     </div>
                 </div>
@@ -80,11 +80,11 @@
                 <div class="end-section">
                     <div class="two-wrap">
                         <div class="left">
-                            <p class="title">Цена товара:</p>
+                            <p class="title">{{translate.good_price}}:</p>
                             <p class="price">{{checkedItem.store.price * checkedItem.store.store_count}} грн</p>
                         </div>
                         <div class="right">
-                            <button class="btn" @click="setOrder">Оформить заказ</button>
+                            <button class="btn" @click="setOrder">{{translate.buy_item_btn}}</button>
                         </div>
                     </div>
                 </div>
@@ -98,13 +98,13 @@
             <div class="success-wrap">
                 <div class="head">
                     <div class="left">
-                        <p>Заказ №1</p>
+                        <p>{{translate.order}} №1</p>
                     </div>
                     <div class="right">
                         <p>
-                            Поздравляем, ваш заказ принят!
+                            {{translate.success_text}}
                         </p>
-                        <p>Продавец уведомлен о заказе и вскоре свяжется.</p>
+                        <p>{{translate.buyer_action}}</p>
                     </div>
                 </div>
                 <div class="main">
@@ -120,23 +120,23 @@
                                     </div>
                                     <div class="right">
                                         <p class="price">{{order.price}} грн</p>
-                                        <p class="count">количество {{order.quantity}} шт.</p>
+                                        <p class="count">{{translate.quantity}} {{order.quantity}} шт.</p>
                                     </div>
                                 </div>
-                                <p>Способ доставки: <span>{{order.delivery.name}}</span></p>
-                                <p>Способ оплаты: <span>{{order.payment.name}}</span></p>
+                                <p>{{translate.order_delivery_type}}: <span>{{order.delivery.name}}</span></p>
+                                <p>{{translate.order_pay_type}}: <span>{{order.payment.name}}</span></p>
                                 <p class="space"></p>
-                                <p>Магазин {{order.user_product.shop.name}}</p>
-                                <p>Телефон: <span>{{order.buyer.phone}}</span></p>
-                                <p>E-mail: <span>{{order.buyer.email}}</span></p>
+                                <p>Магазин {{order.user_product.shop ? order.user_product.shop.name : ''}}</p>
+                                <p>{{translate.phone}}: <span>{{order.buyer.phone}}</span></p>
+                                <p>{{translate.email}}: <span>{{order.email.email}}</span></p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="footer">
                     <div class="user-cart-full">
-                        <p v-if="cartItems.length">У вас есть заказы в корзине <a href="/checkout" class="btn">Перейти к корзине</a></p>
-                        <p><a href="/" class="btn">Продолжить покупки</a></p>
+                        <p v-if="cartItems.length">{{translate.cart_items_true}} <a href="/checkout" class="btn">{{translate.go_to_cart}}</a></p>
+                        <p><a href="/" class="btn">{{translate.go_to_index}}</a></p>
                     </div>
                 </div>
             </div>
@@ -175,7 +175,7 @@
                 },
             }
         },
-        props: ['store', 'user'],
+        props: ['store', 'user', 'translate'],
         created(){
             if(this.cartItems.length){
                 Object.assign(this.checkedItem, this.cartItems[0]);

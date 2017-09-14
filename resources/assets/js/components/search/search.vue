@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="main-search-content">
-                    <div class="filter-wrap" v-if="true">
+                    <div class="filter-wrap" v-if="false">
                         <div class="price-wrap" v-if="true">
                             <h3><i></i>Цена</h3>
                             <div class="price-sect">
@@ -134,9 +134,9 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="content-wrap">
-                        <div class="all-products-list">
-                            <div class="single-product" v-for="product in searchProducts.data">
+                    <div class="content-wrap" style="width: 100%;">
+                        <div class="all-products-list" style="width: 100%;">
+                            <div class="single-product" style="width: 23.5%; " v-for="product in searchProducts.data">
                                 <div class="img-wrap">
                                     <a :href="'/products/'+product.slug"><img :src="product.default_picture" alt=""></a>
                                 </div>

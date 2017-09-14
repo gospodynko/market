@@ -1,7 +1,7 @@
 <template>
     <section class="top-product">
         <div class="top-product-wrap">
-            <h2>Топ предложений</h2>
+            <h2>{{translate.top_items}}</h2>
             <div class="all-products-list">
                 <div class="single-product" v-for="product in allProducts.data">
                     <div class="img-wrap">
@@ -21,7 +21,7 @@
                                 <star-rating :star-size="20"></star-rating>
                             </div>
                             <div class="count-feedback-wrap">
-                                <a href="#">{{product.reviews.length}} отзывов</a>
+                                <a href="#">{{product.reviews.length}} {{translate.reviews}}</a>
                             </div>
                         </div>
                         <div class="all-detail-list">
@@ -40,17 +40,17 @@
                             <!--</div>-->
                             <div class="all-goods-btn">
                                 <a :href="'/products/'+product.slug" class="btn">
-                                    Все предложения
+                                    {{translate.all_items}}
                                 </a>
                             </div>
                             <div class="two-wrap">
                                 <div class="left">
                                     <i></i>
-                                    <span>Отслеживать товар</span>
+                                    <span>{{translate.spy_good}}</span>
                                 </div>
                                 <div class="right">
                                     <i></i>
-                                    <span>В избранное</span>
+                                    <span>{{translate.faworite}}</span>
                                 </div>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="show-all-btn-wrap" v-if="products && allProducts.total > 12">
-                    <vue-ladda class="btn"@click="getNew" :loading="loadProduct">Показать еще</vue-ladda>
+                    <vue-ladda class="btn"@click="getNew" :loading="loadProduct">{{translate.show_more}}</vue-ladda>
                     <!--<button class="btn" @click="getNew">Показать еще</button>-->
                 </div>
             </div>
@@ -78,7 +78,8 @@
             }
         },
         props: [
-          'products'
+          'products',
+            'translate'
         ],
         components: {
             StarRating,

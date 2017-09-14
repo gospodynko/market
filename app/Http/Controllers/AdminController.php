@@ -229,6 +229,7 @@ class AdminController extends Controller
 
     public function updateCategory(Request $request)
     {
+        dd($request);
         $category = $request->all();
         $category['slug'] = str_slug($category['name']);
         unset($category['parent']);
@@ -270,6 +271,7 @@ class AdminController extends Controller
         $user_product = UserProduct::find($request->input('id'));
         $user_product->price = $request->input('price');
         $user_product->currency_id = $request->input('currency')['id'];
+        $user_product->quantity_price = $request->input('quantity_price');
         $user_product->updated_by = Auth::id();
         $user_product->delivery_types()->sync(array_map(create_function('$ids', 'return $ids[\'id\'];'), $request->input('delivery_types')));
         $user_product->pay_types()->sync(array_map(create_function('$ids', 'return $ids[\'id\'];'), $request->input('pay_types')));

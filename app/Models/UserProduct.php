@@ -23,7 +23,8 @@ class UserProduct extends Model
         'view_counts',
         'status',
         'created_at',
-        'producer_id'
+        'producer_id',
+        'quantity_price'
     ];
 
     public function shop()

@@ -4,13 +4,13 @@
         <div class="unauthorized-user-popup" v-if="showAuthorized">
             <div class="head">
                 <h2>
-                    Для совершения действия нужно авторизоваться
+                    {{translate.need_auth}}
                 </h2>
                 <span class="close" @click="closeAuth"></span>
             </div>
             <div class="main">
-                <a href="/login" class="btn">Авторизоваться</a>
-                <a href="#" class="btn">Зарегистрироваться</a>
+                <a href="/login" class="btn">{{translate.auth}}</a>
+                <a href="#" class="btn">{{translate.reg}}</a>
             </div>
         </div>
         <div class="single-prod-wrap">
@@ -49,7 +49,7 @@
                         <div class="feedback-wrap two-wrap">
                             <div class="left">
                                 <star-rating :star-size="20"></star-rating>
-                                <a href="#" class="feedback-link" @click="showReviews">Отзывов {{product.reviews.length}}</a>
+                                <a href="#" class="feedback-link" @click="showReviews">{{translate.reviews}} {{product.reviews.length}}</a>
                             </div>
                             <div class="right">
                                 <p>id {{product.id}}</p>
@@ -58,24 +58,24 @@
                         <div class="price-wrap two-wrap">
                             <div class="left">
                                 <p class="price">
-                                    Цены: {{product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max}} грн
+                                    {{translate.prices}}: {{product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max}} грн
                                 </p>
                                 <p class="in-sale">
-                                    Всего предложений: {{data.storesProducts.length}} шт
+                                    {{translate.all_goods}}: {{data.storesProducts.length}} шт
                                 </p>
                             </div>
                             <div class="right">
                             </div>
                         </div>
                         <div class="prod-desc-wrap">
-                            <h2>Описание</h2>
+                            <h2>{{translate.description}}</h2>
                             <p v-html="product.description"></p>
                         </div>
                     </div>
                     <div class="detail-post-info">
                         <div class="type-payment-wrap" v-if="false">
                             <div class="post-info">
-                                <p>Доставка</p>
+                                <p>{{translate.delivery}}</p>
                                 <div class="all-post-list">
                                     <div class="single-post-list">
                                         <img src="/img/payments/np.png" alt="">
@@ -108,21 +108,21 @@
                         </div>
                         <div class="all-tabs-menu">
                             <div class="single-tab" @click="productTab = 'store'" :class="{'active': productTab === 'store'}">
-                                <p>Все предложения</p>
+                                <p>{{translate.all_goods_list}}</p>
                             </div>
                             <div class="single-tab" @click="productTab = 'charact'" :class="{'active': productTab === 'charact'}">
-                                <p>Характеристики</p>
+                                <p>{{translate.charact}}</p>
                             </div>
                             <div class="single-tab" @click="productTab = 'feedback'" :class="{'active': productTab === 'feedback'}">
                                 <p>
-                                    Отзывы {{reviews.length ? '('+reviews.length+')' : ''}}
+                                    {{translate.reviews_list}} {{reviews.length ? '('+reviews.length+')' : ''}}
                                 </p>
                             </div>
 
                         </div>
                         <div class="all-tabs-detail">
                             <div class="single-tab-detail characteristic" v-if="productTab === 'charact'">
-                                <h2>Характеристики</h2>
+                                <h2>{{translate.charact}}</h2>
                                 <div v-for="feature in features">
                                     <h3>{{feature.name}}</h3>
                                     <div v-for="param in feature.params">
@@ -137,18 +137,18 @@
                                             <img src="/img/avatars/ava.jpg" alt="">
                                         </div>
                                         <div class="shop-detail-wrap">
-                                            <h2>{{store.shop.name}}</h2>
+                                            <h2>{{store.shop ? store.shop.name : 'магазин удален'}}</h2>
                                             <div class="star-wrap">
                                                 <star-rating :star-size="20"></star-rating>
-                                                <a href="#">145 Отзывов</a>
+                                                <a href="#">145 {{translate.reviews}}</a>
                                             </div>
                                         </div>
                                         <div class="price-wrap">
-                                            <p class="price">цена {{store.price}} грн</p>
-                                            <p class="prod-status">В наличии</p>
+                                            <p class="price">{{translate.price}} {{store.price}} грн {{store.quantity_price ? '/ '+store.quantity_price : ''}}</p>
+                                            <p class="prod-status">{{translate.in_market}}</p>
                                         </div>
                                         <div class="go-shop-wrap">
-                                            <button class="btn" @click="addToCart(store)">В корзину</button>
+                                            <button class="btn" @click="addToCart(store)">{{translate.in_cart}}</button>
                                         </div>
                                     </div>
                                 </div>
@@ -156,7 +156,7 @@
                             <div class="single-tab-detail feedback-list-wrap" v-if="productTab === 'feedback'">
                                 <div class="feedback-head-wrap two-wrap">
                                     <div class="left">
-                                        <h3>Все отзывы ({{reviews.length}})</h3>
+                                        <h3>{{translate.all_reviews}} ({{reviews.length}})</h3>
                                         <div class="sort-wrap">
                                             <p class="bold">
                                                 <!--<span class="bold">Сортировать: </span>-->
@@ -170,12 +170,12 @@
                                         </div>
                                     </div>
                                     <div class="right">
-                                        <button class="btn" @click="showReviews">Написать отзыв</button>
+                                        <button class="btn" @click="showReviews">{{translate.create_review}}</button>
                                     </div>
                                 </div>
                                 <div class="new-review" v-if="showReview">
                                     <textarea name="" id="" cols="30" rows="10" v-model="reviewText"></textarea>
-                                    <button class="btn send-review" @click="sendReview">Отправить</button>
+                                    <button class="btn send-review" @click="sendReview">{{translate.send}}</button>
                                 </div>
                                 <div class="all-feedback-list-wrap">
                                     <div class="single-answer" v-for="review in reviews">
@@ -196,7 +196,7 @@
                                             </p>
                                             <div class="action-wrap">
                                                 <p class="date">{{moment(review.created_at).format('LLL')}}</p>
-                                                <span class="action-link">Ответить</span>
+                                                <span class="action-link">{{translate.answer}}</span>
                                             </div>
                                         </div>
                                         <!--<div class="comment-answer">-->
@@ -229,7 +229,7 @@
 
             </div>
             <div class="compare-products" v-if="data.suggestions.length">
-                <h2>Похожие товары</h2>
+                <h2>{{translate.compare_goods}}</h2>
                 <div class="all-products-list">
                     <div class="single-product" v-for="product in data.suggestions">
                         <div class="img-wrap">
@@ -249,7 +249,7 @@
                                     <star-rating :star-size="20"></star-rating>
                                 </div>
                                 <div class="count-feedback-wrap">
-                                    <a href="#">{{product.reviews.length}} отзывов</a>
+                                    <a href="#">{{product.reviews.length}} {{translate.reviews}}</a>
                                 </div>
                             </div>
                             <div class="all-detail-list">
@@ -268,17 +268,17 @@
                                 <!--</div>-->
                                 <div class="all-goods-btn">
                                     <a :href="'/products/'+product.slug" class="btn">
-                                        Все предложения
+                                        {{translate.all_goods_list}}
                                     </a>
                                 </div>
                                 <div class="two-wrap">
                                     <div class="left">
                                         <i></i>
-                                        <span>Отслеживать товар</span>
+                                        <span>{{translate.spy_good}}</span>
                                     </div>
                                     <div class="right">
                                         <i></i>
-                                        <span>В избранное</span>
+                                        <span>{{translate.faworite}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -308,7 +308,7 @@
                 showAuthorized: false
             }
         },
-        props: ['data', 'user'],
+        props: ['data', 'user', 'translate'],
         components: {
             StarRating
         },

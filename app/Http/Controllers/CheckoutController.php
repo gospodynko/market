@@ -28,10 +28,12 @@ class CheckoutController extends Controller
         $user_data = $request->input('data');
         $store = $request->input('store');
         $buyer = UserProductBuyers::firstOrCreate(['phone' => $user_data['user']['phone']], $user_data['user']);
+        $buyer_email = $buyer->emails()->firstOrCreate(['email' => $user_data['user']['email']], ['email' => $user_data['user']['email']]);
 
         $user_product_offer = UserProductOffers::create([
             'user_product_id' => $store['id'],
             'buyer_id' => $buyer->id,
+            'buyer_email_id' => $buyer_email->id,
             'day_start' => Carbon::now(),
             'day_end' => Carbon::now(),
             'price' => ($store['price'] * $store['store_count']),
@@ -45,7 +47,7 @@ class CheckoutController extends Controller
         $data_mail['user'] = [
             'first_name' => $buyer->first_name,
             'last_name' => $buyer->last_name,
-            'email' => $buyer->email,
+            'email' => $buyer_email->email,
             'phone' => $buyer->phone
         ];
         $data_mail['order'] = [
@@ -67,10 +69,12 @@ class CheckoutController extends Controller
             'email' => $item_offer['userProduct']->user->email
         ];
 
-        Mail::send('emails.checkout', ['data' => $data_mail], function ($message) use ($buyer, $request) {
-            $message->subject('Поздравляем! Вы купили товар '.$request->input('product')['name']);
-            $message->to($buyer->email);
-        });
+        if($buyer_email->email){
+            Mail::send('emails.checkout', ['data' => $data_mail], function ($message) use ($buyer_email, $request) {
+                $message->subject('Поздравляем! Вы купили товар '.$request->input('product')['name']);
+                $message->to($buyer_email->email);
+            });
+        }
         Mail::send('emails.checkoutSeller', ['data' => $data_mail], function ($message) use ($data_mail, $request) {
             $message->subject('Поздравляем! Вы продали товар '.$request->input('product')['name']);
             $message->to($data_mail['merchant']['email']);

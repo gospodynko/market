@@ -58,6 +58,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
+
         if(Auth::id() && Auth::user()->role == 'noselect'){
             self::setRole();
         }
@@ -70,6 +71,7 @@ class HomeController extends Controller
                 'productsTop' => $productsTop,
                 'productsSuggestions' => $productsSuggestions,
                 'events' => [],
+                'translate' => trans('index.index')
             ]]);
         } else {
             return response()->json(['products' => Product::where('status', 1)->orderBy('updated_at', 'DESC')->whereHas('user_products')->paginate($page_count)]);
@@ -156,23 +158,23 @@ class HomeController extends Controller
 
     private function setRole()
     {
-        $user = Auth::user();
-        $user_companies_tmp = CompanyUsers::whereHas('company', function($q){
-            $q->where('companyRole', 'like', '%2%');
-            $q->whereIn('status_id', [2,3,6]);
-        })->where('user_id', $user->id)->get()->load('company');
-        if(count($user_companies_tmp)){
-            foreach ($user_companies_tmp as $company_user){
-                    UserShops::create([
-                        'name' => $company_user->company->compName,
-                        'company_id' => $company_user->company_id,
-                    ]);
-            }
-            $user->role = 'seller';
-            $user->save();
-        } else {
-            $user->role = 'customer';
-            $user->save();
-        }
+//        $user = Auth::user();
+//        $user_companies_tmp = CompanyUsers::whereHas('company', function($q){
+//            $q->where('companyRole', 'like', '%2%');
+//            $q->whereIn('status_id', [2,3,6]);
+//        })->where('user_id', $user->id)->get()->load('company');
+//        if(count($user_companies_tmp)){
+//            foreach ($user_companies_tmp as $company_user){
+//                    UserShops::create([
+//                        'name' => $company_user->company->compName,
+//                        'company_id' => $company_user->company_id,
+//                    ]);
+//            }
+//            $user->role = 'seller';
+//            $user->save();
+//        } else {
+//            $user->role = 'customer';
+//            $user->save();
+//        }
     }
 }

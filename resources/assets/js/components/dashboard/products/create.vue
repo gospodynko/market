@@ -98,7 +98,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Цена:</label>
-                                <input type="price" class="form-control" v-model="price">
+                                <input type="number" class="form-control" v-model="price">
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -107,6 +107,12 @@
                                 <select class="form-control" v-model="currencyType">
                                     <option :value="currency" v-for="currency in data.currencies">{{currency.name}}</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Единица измерения:</label>
+                                <input type="text" class="form-control" v-model="quantityPrice">
                             </div>
                         </div>
                         <div class="col-lg-6">
@@ -157,6 +163,7 @@
                 currencyType: null,
                 price: 0,
                 description: '',
+                quantityPrice: '',
                 features: [
                     {
                         name: '',
@@ -188,7 +195,8 @@
                     'shop_id': this.shopId,
                     'price': +this.price,
                     'images': this.images,
-                    'features': this.features
+                    'features': this.features,
+                    'quantity_price': this.quantityPrice
                 };
                 this.$http.post('/user-shop/shop/create', data).then(res => {
                     location.href = '/admin/products';

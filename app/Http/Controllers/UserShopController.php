@@ -31,7 +31,8 @@ class UserShopController extends Controller
         'features.*.params.*.param' => 'string|max:50',
         'user_shop_id' => 'sometimes|exists:user_shops,id',
         'currency_id' => 'sometimes|exists:currencies,id',
-        'slug' => 'string|max:250'
+        'slug' => 'string|max:250',
+        'quantity_price' => 'string|max:100'
     ];
 
     public function getShops()
@@ -66,6 +67,7 @@ class UserShopController extends Controller
         $delivery_types = $request->input('delivery_type');
         $images = $request->input('images');
         $features = $request->input('features');
+        $quantity_price = $request->input('quantity_price');
 
         if (!is_numeric($producer['id'])) {
             $producer_id = self::createProducer($producer, $category);
@@ -86,7 +88,7 @@ class UserShopController extends Controller
             $product_id = $product['id'];
         }
         if ($producer_id && $product_id && $shop_id) {
-            return self::createUserProduct($product_id, $category['id'], $producer_id, $price, $shop_id, $currency, array_column($pay_types, 'id'), array_column($delivery_types, 'id'));
+            return self::createUserProduct($product_id, $category['id'], $producer_id, $price, $shop_id, $currency, array_column($pay_types, 'id'), array_column($delivery_types, 'id'), $quantity_price);
 
         }
     }
@@ -146,7 +148,7 @@ class UserShopController extends Controller
         }
     }
 
-    private function createUserProduct($product_id, $category_id, $producer_id, $price, $shop_id, $currency, $pay_types, $delivery_types)
+    private function createUserProduct($product_id, $category_id, $producer_id, $price, $shop_id, $currency, $pay_types, $delivery_types, $quantity_price)
     {
         $data_user_product = [
             'category_id' => $category_id,
@@ -158,15 +160,16 @@ class UserShopController extends Controller
             'created_by' => \Auth::id(),
             'updated_by' => \Auth::id(),
             'delivery_id' => '111',
-            'pay_id' => '111'
+            'pay_id' => '111',
+            'quantity_price' => $quantity_price
 
         ];
+
 
         $v = Validator::make($data_user_product, self::$validationRules);
         if ($v->fails()) {
             return response()->json($v->errors(), 422);
         }
-
         $user_product = UserProduct::create($data_user_product);
         $user_product->delivery_types()->sync($delivery_types);
         $user_product->pay_types()->sync($pay_types);
