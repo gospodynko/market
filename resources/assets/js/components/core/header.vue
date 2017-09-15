@@ -58,16 +58,20 @@
                         <i class="arrow-down"></i>
                     </div>
                 </div>
-                <div class="all-menu-list active" :class="{'full-size': showChild}" v-if="showMenu">
-                    <div class="menu-listing" :class="{'show': showChild}">
+                <!--:class="{'full-size': showChild}" v-if="showMenu"-->
+               <div class="all-menu-list active" :class="{'full-size': showChild}" v-if="showMenu">
+                    <!--:class="{'show': showChild}"-->
+                   <div class="menu-listing" :class="{'show': showChild}">
                         <div class="site-menu-wrap">
                             <div class="single-menu-item" v-for="category in categories" @mouseover="setChild(category.children)">
                                 <p>{{category.name}} <i></i></p>
                             </div>
                         </div>
                         <!--showChild-->
-                        <div class="site-menu-wrap child-menu" v-if="showChild" @mouseleave="showChild = false">
-                            <div class="single-menu-item" v-for="subCategory in subCategories">
+                        <!--v-if="showChild" @mouseleave="showChild = false"-->
+                       <div class="site-menu-wrap child-menu" v-if="showChild" @mouseleave="showChild = false">
+                            <div class="single-menu-item" v-for="subCategory in subCategories" :style="{'backgroundImage': 'url(/img/menu-imgs/'+subCategory.slug+'.png)'}">
+                                <!--<img :src="'/img/menu-imgs/'+subCategory.slug+'.png'" alt="">-->
                                 <p>{{subCategory.name}}</p>
                             </div>
                         </div>

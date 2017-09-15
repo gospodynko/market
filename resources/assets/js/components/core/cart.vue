@@ -21,7 +21,7 @@
                         <div class="title-wrap">
                             <h2><a href="#">{{cartItem.product.name}}</a></h2>
                             <div class="content">
-                                <p>Магазин техники "Электричка"</p>
+                                <p>Магазин {{cartItem.store.shop.name}}</p>
                                 <star-rating :star-size="20"></star-rating>
                             </div>
                         </div>

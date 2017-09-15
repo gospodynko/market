@@ -63,10 +63,12 @@ class CheckoutController extends Controller
             'id' => $item_offer['userProduct']->id,
             'slug' => $item_offer['userProduct']['mainProduct']->slug
         ];
+        $shop = $item_offer['userProduct']->shop->load('company');
+        $company = $shop->company;
         $data_mail['merchant'] = [
-            'name' => $item_offer['userProduct']->user->first_name . ' ' . $item_offer['userProduct']->user->last_name,
-            'phone' => $item_offer['userProduct']->user->phone,
-            'email' => $item_offer['userProduct']->user->email
+            'name' => $item_offer['userProduct']->shop->name,
+            'phone' => $company->compPhone,
+            'email' => $company->compMail
         ];
 
         if($buyer_email->email){
@@ -75,10 +77,14 @@ class CheckoutController extends Controller
                 $message->to($buyer_email->email);
             });
         }
-        Mail::send('emails.checkoutSeller', ['data' => $data_mail], function ($message) use ($data_mail, $request) {
-            $message->subject('Поздравляем! Вы продали товар '.$request->input('product')['name']);
-            $message->to($data_mail['merchant']['email']);
-        });
+        if($data_mail['merchant']['email']){
+            Mail::send('emails.checkoutSeller', ['data' => $data_mail], function ($message) use ($data_mail, $request) {
+                $message->subject('Поздравляем! Вы продали товар '.$request->input('product')['name']);
+                $message->to($data_mail['merchant']['email']);
+            });
+        }
         return response()->json(['order' => $item_offer, 'product_name' => $product['name']], 200);
     }
 }
+
+//gulivets@agroresurs-a.com

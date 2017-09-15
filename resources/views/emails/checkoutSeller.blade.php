@@ -9,7 +9,7 @@
                 <td><h1>Уважаемый {{$data['merchant']['name']}}!</h1></td>
             </tr>
             <tr>
-                <td>У вас на сайте dev.marketplace.agroyard.com.ua приобрели продукт <b>{{$data['product']['name']}}</b> в <b>{{$data['order']['created_at']}}</b></td>
+                <td>У вас на сайте {{env('APP_URL')}} приобрели продукт <b>{{$data['product']['name']}}</b> в <b>{{$data['order']['created_at']}}</b></td>
             </tr>
             <tr>
                 <td style="border-bottom: 2px solid #1dd659; font-weight: bold;font-size: 11pt;font-family: verdana, arial, sans-serif;white-space: nowrap;color: #515151;"><br><strong>Данные вашего заказа:</strong></td>
@@ -19,7 +19,7 @@
                 <tr>
                     <td style="background: #eeeeee;font-family: arial, helvetica, sans-serif;font-size: 10pt;vertical-align: top;padding: 3px;padding-top: 10px;" width="30%"><strong>Название:</strong></td>
                     <td style="border-left: 1px solid #c3c3c3;font-family: arial, helvetica, sans-serif;font-size: 10pt;vertical-align: top;padding: 3px;padding-top: 10px;">
-                        <a href="http://marketplace.test/products/{{$data['product']['slug']}}" target="_blank" rel="noopener">{{$data['product']['name']}}</a>({{$data['product']['id']}})</td>
+                        <a href="{{env('APP_URL')}}/products/{{$data['product']['slug']}}" target="_blank" rel="noopener">{{$data['product']['name']}}</a>({{$data['product']['id']}})</td>
                 </tr>
                 <tr>
                     <td style="border-top: 1px solid #c3c3c3;background: #eeeeee;font-family: arial, helvetica, sans-serif;font-size: 10pt;vertical-align: top;padding: 3px;padding-top: 10px;" width="30%"><strong>Цена:</strong></td>

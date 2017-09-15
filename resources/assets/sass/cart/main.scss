@@ -479,7 +479,11 @@
           width: 100%;
           border: 1px solid $light-gray;
         }
+        input.error, textarea.error{
+          border: 1px solid #f00;
+        }
       }
+
     }
     .payment-delivery-wrap{
       width: 100%;
@@ -488,6 +492,9 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
+      textarea.error{
+        border: 1px solid #f00;
+      }
       .checked-payment{
         width: 100%;
         height: 80px;
@@ -523,15 +530,16 @@
             }
           }
         }
-        .single-payment.samovyvoz{
+        .single-payment.samoviviz{
           p{
             i{
-              width: 20px;
-              height: 20px;
+              background: url("../img/delivery/samoviviz.png") no-repeat center;
+              -webkit-background-size: 23px;
+              background-size: 23px;
             }
           }
         }
-        .single-payment.novaya-pochta{
+        .single-payment.nova-poshta{
           p{
             i{
               background: url("../img/delivery/np.png") no-repeat center;
@@ -547,7 +555,7 @@
             }
           }
         }
-        .single-payment.ukrpochta{
+        .single-payment.ukrposhta{
           p{
             i{
               background: url("../img/delivery/up.png") no-repeat center;
@@ -556,9 +564,48 @@
             }
           }
         }
+        .single-payment.mastercard{
+          p{
+            i{
+              background: url("../img/payments/mastercard.png") no-repeat center;
+              -webkit-background-size: 23px;
+              background-size: 23px;
+            }
+          }
+        }
+        .single-payment.visa{
+          p{
+            i{
+              background: url("../img/payments/visa.png") no-repeat center;
+              -webkit-background-size: 23px;
+              background-size: 23px;
+            }
+          }
+        }
+        .single-payment.privat24{
+          p{
+            i{
+              background: url("../img/payments/privat24.png") no-repeat center;
+              -webkit-background-size: 23px;
+              background-size: 23px;
+            }
+          }
+        }
+        .single-payment.gotivkoyu{
+          p{
+            i{
+              background: url("../img/payments/gotivkoyu.png") no-repeat center;
+              -webkit-background-size: 23px;
+              background-size: 23px;
+            }
+          }
+        }
         .single-payment.active{
           border-color: $green-btn;
           background: #f5f7f8;
+        }
+        .single-payment.error{
+          border-color: #f00;
         }
       }
       textarea{

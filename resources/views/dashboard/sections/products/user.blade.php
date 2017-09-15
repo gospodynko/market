@@ -17,7 +17,7 @@
 			<table class="table table-hover">
 				<thead>
 					<th class="text-center">{{ trans('globals.id') }}</th>
-					<th class="text-left">Користувач (тел)</th>
+					<th class="text-left">Продукт</th>
 					<th class="text-left">Магазин</th>
 					<th class="text-left">Цена (грн)</th>
 					<th class="text-center">{{ trans('globals.status') }}</th>
@@ -30,7 +30,7 @@
 						{{--{{dd($product->toArray())}}--}}
 						<tr>
 							<td class="text-center">{{ $product->id }}</td>
-							<td class="text-left">{{ str_limit($product->user->phone, 30) }}</td>
+							<td class="text-left">{{ $product->mainProduct->name}}</td>
 							<td class="text-left">{{ $product->shop ? $product->shop->name : 'магазин удален' }}</td>
 							<td class="text-left">{{ $product->price }}</td>
 							<td class="text-center">

@@ -29,8 +29,8 @@
 					@foreach ($products as $product)
 						<tr>
 							<td class="text-center">{{ $product->id }}</td>
-							<td class="text-left">{{ str_limit($product->name, 30) }}</td>
-							<td class="text-left">{{ $product->category->name }}</td>
+							<td class="text-left">{{ str_limit($product->name, 30)?:'' }}</td>
+							<td class="text-left">{{ $product->category? $product->category->name :'нет категории' }}</td>
 							<td class="text-left">{{ $product->producer->name }}</td>
 							<td class="text-center">
 								@if ($product->status)

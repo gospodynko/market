@@ -21,8 +21,11 @@
 
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 {{--<script src="/js/svgConvert.min.js"></script>--}}
+<script src="/js/jquery.maskedinput.min.js"></script>
 <script src="/js/app.js"></script>
-
+<script>
+    $(".phone").mask("+38 (099) 999-99-99");
+</script>
 {{--<script>--}}
     {{--$(document).ready(function () {--}}
         {{--$('.svg-convert').svgConvert();--}}

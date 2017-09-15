@@ -674,14 +674,12 @@ ul li input[type="radio"]:checked:disabled + label:before {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   flex-direction: column;
-  background: url("../img/no-image/no-image.jpg") no-repeat top center;
-  background-size: 150px;
+  background: url("../img/no-image/no-image.jpg") no-repeat center;
 }
 
 .all-menu-list .child-menu .single-menu-item:hover {
-  background: url("../img/no-image/no-image.jpg") no-repeat top center;
+  background: url("../img/no-image/no-image.jpg") no-repeat center;
   border: 1px solid #1dd659;
-  background-size: 150px;
   box-shadow: 0px 7px 8px rgba(186, 204, 213, 0.3);
 }
 
@@ -3002,6 +3000,10 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
   border: 1px solid #d0d4dc;
 }
 
+.cart-checkout-wrap .all-items-cart-wrap .detail-user-fields .field-list input.error, .cart-checkout-wrap .all-items-cart-wrap .detail-user-fields .field-list textarea.error {
+  border: 1px solid #f00;
+}
+
 .cart-checkout-wrap .all-items-cart-wrap .payment-delivery-wrap {
   width: 100%;
   margin-top: 30px;
@@ -3013,6 +3015,10 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
   flex-direction: column;
   -webkit-box-pack: start;
   justify-content: flex-start;
+}
+
+.cart-checkout-wrap .all-items-cart-wrap .payment-delivery-wrap textarea.error {
+  border: 1px solid #f00;
 }
 
 .cart-checkout-wrap .all-items-cart-wrap .payment-delivery-wrap .checked-payment {
@@ -3065,12 +3071,12 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
   margin-right: 15px;
 }
 
-.cart-checkout-wrap .all-items-cart-wrap .payment-delivery-wrap .checked-payment .single-payment.samovyvoz p i {
-  width: 20px;
-  height: 20px;
+.cart-checkout-wrap .all-items-cart-wrap .payment-delivery-wrap .checked-payment .single-payment.samoviviz p i {
+  background: url("../img/delivery/samoviviz.png") no-repeat center;
+  background-size: 23px;
 }
 
-.cart-checkout-wrap .all-items-cart-wrap .payment-delivery-wrap .checked-payment .single-payment.novaya-pochta p i {
+.cart-checkout-wrap .all-items-cart-wrap .payment-delivery-wrap .checked-payment .single-payment.nova-poshta p i {
   background: url("../img/delivery/np.png") no-repeat center;
   background-size: 23px;
 }
@@ -3079,14 +3085,38 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
   background: url("../img/delivery/in.png") no-repeat center;
 }
 
-.cart-checkout-wrap .all-items-cart-wrap .payment-delivery-wrap .checked-payment .single-payment.ukrpochta p i {
+.cart-checkout-wrap .all-items-cart-wrap .payment-delivery-wrap .checked-payment .single-payment.ukrposhta p i {
   background: url("../img/delivery/up.png") no-repeat center;
+  background-size: 23px;
+}
+
+.cart-checkout-wrap .all-items-cart-wrap .payment-delivery-wrap .checked-payment .single-payment.mastercard p i {
+  background: url("../img/payments/mastercard.png") no-repeat center;
+  background-size: 23px;
+}
+
+.cart-checkout-wrap .all-items-cart-wrap .payment-delivery-wrap .checked-payment .single-payment.visa p i {
+  background: url("../img/payments/visa.png") no-repeat center;
+  background-size: 23px;
+}
+
+.cart-checkout-wrap .all-items-cart-wrap .payment-delivery-wrap .checked-payment .single-payment.privat24 p i {
+  background: url("../img/payments/privat24.png") no-repeat center;
+  background-size: 23px;
+}
+
+.cart-checkout-wrap .all-items-cart-wrap .payment-delivery-wrap .checked-payment .single-payment.gotivkoyu p i {
+  background: url("../img/payments/gotivkoyu.png") no-repeat center;
   background-size: 23px;
 }
 
 .cart-checkout-wrap .all-items-cart-wrap .payment-delivery-wrap .checked-payment .single-payment.active {
   border-color: #1dd659;
   background: #f5f7f8;
+}
+
+.cart-checkout-wrap .all-items-cart-wrap .payment-delivery-wrap .checked-payment .single-payment.error {
+  border-color: #f00;
 }
 
 .cart-checkout-wrap .all-items-cart-wrap .payment-delivery-wrap textarea {
