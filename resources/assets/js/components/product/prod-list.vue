@@ -134,13 +134,13 @@
                                 <div class="market-list-all">
                                     <div class="single-market" v-for="store in data.storesProducts">
                                         <div class="logo-shop-wrap">
-                                            <img src="/img/avatars/ava.jpg" alt="">
+                                            <img :src="store.shop.logo" alt="">
                                         </div>
                                         <div class="shop-detail-wrap">
                                             <h2>{{store.shop ? store.shop.name : 'магазин удален'}}</h2>
                                             <div class="star-wrap">
                                                 <star-rating :star-size="20"></star-rating>
-                                                <a href="#">145 {{translate.reviews}}</a>
+                                                <a href="#">0 {{translate.reviews}}</a>
                                             </div>
                                         </div>
                                         <div class="price-wrap">

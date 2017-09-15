@@ -40,7 +40,7 @@ class AdminController extends Controller
 
     public function indexProducts(Request $request)
     {
-        $products = Product::where('id', '>', '-1')
+        $products = Product::with('category','producer')
             ->paginate(20);
 
 
@@ -229,7 +229,7 @@ class AdminController extends Controller
 
     public function updateCategory(Request $request)
     {
-        dd($request);
+//        dd($request);
         $category = $request->all();
         $category['slug'] = str_slug($category['name']);
         unset($category['parent']);
@@ -243,9 +243,9 @@ class AdminController extends Controller
 
     public function indexUserProducts()
     {
-//        dd(UserProduct::all()->toArray());
+//        dd(UserProduct::with('mainProduct')->get()->toArray());
         return view('dashboard.sections.products.user', ['data' => [
-            'user_product' => UserProduct::all()
+            'user_product' => UserProduct::with('mainProduct')->get()
         ]]);
     }
 

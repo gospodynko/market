@@ -20,7 +20,7 @@ class Banner extends Model
 
     public function getImageAttribute()
     {
-        return Storage::disk('public')->url(self::BANNERS_PATH . $this->id . '.jpg');
+        return Storage::disk('public')->url(self::BANNERS_PATH . $this->id . '.png');
     }
 
     public function setImageAttribute($imagePath)

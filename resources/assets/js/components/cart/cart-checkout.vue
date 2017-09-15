@@ -35,39 +35,40 @@
                     <h2>{{translate.buyer_data}}</h2>
                     <div class="field-list">
                         <p>
-                            <span>{{translate.name}}</span>
+                            <span>{{translate.name}} *</span>
                             <input type="text" v-model="checkedItem.data.user.first_name" :class="{'error': errors.first_name}">
                         </p>
                         <p>
-                            <span>{{translate.last_name}}</span>
+                            <span>{{translate.last_name}} *</span>
                             <input type="text" v-model="checkedItem.data.user.last_name" :class="{'error': errors.last_name}">
                         </p>
                     </div>
                     <div class="field-list">
                         <p>
-                            <span>{{translate.phone}}</span>
-                            <input type="phone" v-model="checkedItem.data.user.phone" :class="{'error': errors.phone}">
+                            <span>{{translate.phone}} *</span>
+                            <masked-input mask="\+\38 (111) 111-11-11" v-model="checkedItem.data.user.phone"  :class="{'error': errors.phone}"></masked-input>
+                            <!--<input type="text" v-model="checkedItem.data.user.phone" :class="{'error': errors.phone}">-->
                         </p>
                         <p>
-                            <span>{{translate.email}}</span>
-                            <input type="email" v-model="checkedItem.data.user.email">
+                            <span>{{translate.email}} *</span>
+                            <input type="email" v-model="checkedItem.data.user.email" :class="{'error': errors.email}">
                         </p>
                     </div>
                 </div>
                 <div class="payment-delivery-wrap">
-                    <h2>{{translate.pay_type}}</h2>
+                    <h2>{{translate.pay_type}} *</h2>
                     <div class="checked-payment">
                         <div class="checked-payment">
-                            <div class="single-payment" v-for="pay in checkedItem.store.pay_types" :class="[{'active': checkedItem.data.payment.payment_type == pay.id}, pay.slug]" @click="setPayment(pay)">
+                            <div class="single-payment" v-for="pay in checkedItem.store.pay_types" :class="[{'active': checkedItem.data.payment.payment_type == pay.id}, {'error': errors && errors.payment_type}, pay.slug]" @click="setPayment(pay)">
                                 <p><i></i> {{pay.name}}</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="payment-delivery-wrap">
-                    <h2>Доставка</h2>
+                    <h2>Доставка *</h2>
                     <div class="checked-payment">
-                        <div class="single-payment" v-for="delivery in checkedItem.store.delivery_types" :class="[{'active': checkedItem.data.delivery.delivery_type == delivery.id}, delivery.slug]" @click="setDelivery(delivery)">
+                        <div class="single-payment" v-for="delivery in checkedItem.store.delivery_types" :class="[{'active': checkedItem.data.delivery.delivery_type == delivery.id}, {'error': errors && errors.delivery_type}, delivery.slug]" @click="setDelivery(delivery)">
                             <p><i></i> {{delivery.name}}</p>
                         </div>
                     </div>
@@ -145,6 +146,7 @@
 </template>
 
 <script type="text/babel">
+    import MaskedInput from 'vue-masked-input';
     export default {
         data(){
             return {
@@ -168,14 +170,13 @@
                 order: null,
                 productName: '',
                 errors: {
-//                    first_name: false,
-//                    last_name: false,
-//                    phone: false,
-//                    comment: false
                 },
             }
         },
         props: ['store', 'user', 'translate'],
+        components: {
+            MaskedInput
+        },
         created(){
             if(this.cartItems.length){
                 Object.assign(this.checkedItem, this.cartItems[0]);
@@ -201,6 +202,7 @@
                     }};
                 Object.assign(this.checkedItem, item);
                 this.checketStoreId = item.store.id;
+                this.errors = {};
             },
             getName(name){
                 var nameLength = name.split(' ').length;
@@ -218,10 +220,71 @@
             },
             setOrder(){
                 for(let u in this.checkedItem.data.user){
-                    if(!this.checkedItem.data.user[u]){
-                        this.$set(this.errors,u, true);
-                    } else {
-                        this.$set(this.errors,u, false);
+                    switch (u) {
+                        case ('first_name'):
+                            if(this.checkedItem.data.user[u].length < 2){
+                                this.$set(this.errors,u, true);
+                            } else {
+                                this.$set(this.errors,u, false);
+                            }
+                            break;
+                        case ('last_name'):
+                            if(this.checkedItem.data.user[u].length < 2){
+                                this.$set(this.errors,u, true);
+                            } else {
+                                this.$set(this.errors,u, false);
+                            }
+                            break;
+                        case ('phone'):
+                            var phone = this.checkedItem.data.user[u].match(/\d/g).join('');
+                            if(phone.length < 12){
+                                this.$set(this.errors,u, true);
+                            } else {
+                                this.$set(this.errors,u, false);
+                            }
+                            break;
+                        case ('email'):
+                            if(!this.validateEmail(this.checkedItem.data.user[u])){
+                                this.$set(this.errors,u, true);
+                            } else {
+                                this.$set(this.errors,u, false);
+                            }
+                            break;
+                    }
+
+//                    if(!this.checkedItem.data.user[u]){
+//                        this.$set(this.errors,u, true);
+//                    } else {
+//                        this.$set(this.errors,u, false);
+//                    }
+                }
+                for(let u in this.checkedItem.data.delivery) {
+                    switch (u) {
+                        case ('delivery_type'):
+                            if(this.checkedItem.data.delivery[u].length){
+                                this.$set(this.errors,u, true);
+                            } else {
+                                this.$set(this.errors,u, false);
+                            }
+                            break;
+                        case ('delivery_comment'):
+                            if(this.checkedItem.data.delivery[u].length > 255){
+                                this.$set(this.errors,u, true);
+                            } else {
+                                this.$set(this.errors,u, false);
+                            }
+                            break;
+                    }
+                }
+                for(let u in this.checkedItem.data.payment) {
+                    switch (u) {
+                        case ('payment_type'):
+                            if(this.checkedItem.data.payment[u].length){
+                                this.$set(this.errors,u, true);
+                            } else {
+                                this.$set(this.errors,u, false);
+                            }
+                            break;
                     }
                 }
                 var hasErr = false;
@@ -246,6 +309,10 @@
                 }, err => {
 
                 })
+            },
+            validateEmail(email) {
+                var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                return re.test(email);
             }
         }
 
