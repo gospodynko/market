@@ -11,12 +11,20 @@ class SearchController extends Controller
     {
         $page_count = 12;
         $q = '%' . $request->input('q') . '%';
+        $sort = $request->input('sort');
+        if($sort == 'max'){
+            $sort = ['type' => 'price_min', 'sort' => 'DESC'];
+        } else if($sort == 'min'){
+            $sort = ['type' => 'price_min', 'sort' => 'ASC'];
+        } else {
+            $sort = ['type' => 'rate_val', 'sort' => 'DESC'];
+        }
         $products = Product::where(function ($query) use ($q){
             $query->where('name', 'like', $q);
             $query->orWhere('description', 'like', $q);
-        })->whereHas('user_products')->orderby('price_min', 'ASC')->paginate($page_count);
+        })->whereHas('user_products')->orderby($sort['type'], $sort['sort'])->paginate($page_count);
 
-        return view('search',['data' => ['products' => $products, 'q' => $request->input('q')]]);
+        return view('search',['data' => ['products' => $products, 'q' => $request->input('q'), 'sort' => $request->input('sort')?:'min']]);
     }
 
     public function search(Request $request)

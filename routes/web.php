@@ -48,7 +48,7 @@ Route::get('/search-page', function (){
 Route::get('/cart-item', function (){
     return view('cart') ;
 });
-Route::get('summary', ['as' => 'home', 'uses' => 'HomeController@summary']); //while refactoring
+Route::get('summary', ['uses' => 'HomeController@summary']); //while refactoring
 
 Route::group(['prefix' => 'home'], function () {
     Route::get('/', 'HomeController@index');
@@ -57,6 +57,10 @@ Route::group(['prefix' => 'home'], function () {
 Route::prefix('search')->group(function () {
     Route::get('/', 'SearchController@index');
     Route::post('/', 'SearchController@search');
+});
+Route::group(['prefix' => 'category'], function (){
+   Route::get('/{slug}',['as' => 'category', 'uses' => 'CategoryController@index']);
+   Route::get('/{slug}/{subSlug}',['as' => 'subcategory', 'uses' => 'CategoryController@index']);
 });
 Route::group(['prefix' => 'api'],function (){
     Route::post('/check-user', 'HomeController@checkUser');

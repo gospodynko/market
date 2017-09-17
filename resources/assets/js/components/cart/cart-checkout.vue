@@ -214,9 +214,11 @@
             },
             setDelivery(delivery){
                 this.checkedItem.data.delivery.delivery_type = delivery.id;
+                this.errors.hasOwnProperty('delivery_type') ? this.errors.delivery_type = false : '';
             },
             setPayment(payment){
                 this.checkedItem.data.payment.payment_type = payment.id;
+                this.errors.hasOwnProperty('payment_type') ? this.errors.payment_type = false : '';
             },
             setOrder(){
                 for(let u in this.checkedItem.data.user){
@@ -236,11 +238,17 @@
                             }
                             break;
                         case ('phone'):
-                            var phone = this.checkedItem.data.user[u].match(/\d/g).join('');
-                            if(phone.length < 12){
+                            var phone = false;
+                            if(this.checkedItem.data.user[u].length){
+                                phone = this.checkedItem.data.user[u].match(/\d/g).join('');
+                            } else {
+                                this.$set(this.errors,u, true);
+                            }
+                            if(!phone || phone.length < 12){
                                 this.$set(this.errors,u, true);
                             } else {
                                 this.$set(this.errors,u, false);
+
                             }
                             break;
                         case ('email'):
@@ -261,10 +269,10 @@
                 for(let u in this.checkedItem.data.delivery) {
                     switch (u) {
                         case ('delivery_type'):
-                            if(this.checkedItem.data.delivery[u].length){
-                                this.$set(this.errors,u, true);
-                            } else {
+                            if(this.checkedItem.data.delivery[u]){
                                 this.$set(this.errors,u, false);
+                            } else {
+                                this.$set(this.errors,u, true);
                             }
                             break;
                         case ('delivery_comment'):
@@ -279,10 +287,10 @@
                 for(let u in this.checkedItem.data.payment) {
                     switch (u) {
                         case ('payment_type'):
-                            if(this.checkedItem.data.payment[u].length){
-                                this.$set(this.errors,u, true);
-                            } else {
+                            if(this.checkedItem.data.payment[u]){
                                 this.$set(this.errors,u, false);
+                            } else {
+                                this.$set(this.errors,u, true);
                             }
                             break;
                     }

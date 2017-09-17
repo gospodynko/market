@@ -57,7 +57,7 @@
 
                     </div>
                 </div>
-                <div class="show-all-btn-wrap" v-if="products && allProducts.total > 12">
+                <div class="show-all-btn-wrap" v-if="products && allProducts.total > 12 && !lastPage">
                     <vue-ladda class="btn"@click="getNew" :loading="loadProduct">{{translate.show_more}}</vue-ladda>
                     <!--<button class="btn" @click="getNew">Показать еще</button>-->
                 </div>
@@ -74,7 +74,8 @@
             return{
                 page: 1,
                 allProducts: this.products,
-                loadProduct: false
+                loadProduct: false,
+                lastPage: false
             }
         },
         props: [
@@ -87,13 +88,18 @@
         },
         methods: {
            getNew(){
+               if(this.lastPage) return false;
                this.loadProduct = true;
                this.$http.post('/', {'page': ++this.page}).then(res => {
                    res.data.products.data.forEach(item => {
                        this.allProducts.data.push(item);
                    })
-
-                   this.page = res.data.products.current_page;
+                    if(res.data.products.current_page !== res.data.products.last_page){
+                        this.page = res.data.products.current_page;
+                        this.lastPage = false;
+                    } else {
+                        this.lastPage = true;
+                    }
                    this.loadProduct = false;
                }, err => {
                    this.loadProduct = false;

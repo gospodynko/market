@@ -2,9 +2,31 @@
   width: 100%;
   max-width: 1315px;
   margin: 0 auto;
-  background: transparent;
-  //height: 40px;
+  background: $white;
+  height: 40px;
   margin-bottom: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  ol{
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    li{
+      &:after{
+        content: '/';
+        padding-left: 10px;
+        padding-right: 10px;
+        color: $gray-dark;
+      }
+      &:last-child{
+        &:after{
+          display: none;
+        }
+      }
+    }
+  }
 }
 .single-prod-detail{
   width: 100%;

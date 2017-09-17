@@ -24,7 +24,7 @@
 		"greggilbert/recaptcha": "2.*",
 		"barryvdh/laravel-dompdf": "0.*",
 		"predis/predis": "^1.0",
-		"davejamesmiller/laravel-breadcrumbs": "3.*",
+		"davejamesmiller/laravel-breadcrumbs": "3.0.2",
 		"milon/barcode": "5.*",
 		"antvel/shop": "1.1.*",
 		"laravel/tinker": "~1.0",
