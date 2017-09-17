@@ -27,7 +27,12 @@ class CheckoutController extends Controller
         $product = $request->input('product');
         $user_data = $request->input('data');
         $store = $request->input('store');
-        $buyer = UserProductBuyers::firstOrCreate(['phone' => $user_data['user']['phone']], $user_data['user']);
+        $user_phone = $user_data['user']['phone'];
+        preg_match_all('!\d+!', $user_phone, $matches);
+        $phone = implode('', $matches[0]);
+        $phone = substr($phone, 2);
+        $user_data['user']['phone'] = $phone;
+        $buyer = UserProductBuyers::firstOrCreate(['phone' => $phone], $user_data['user']);
         $buyer_email = $buyer->emails()->firstOrCreate(['email' => $user_data['user']['email']], ['email' => $user_data['user']['email']]);
 
         $user_product_offer = UserProductOffers::create([

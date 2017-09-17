@@ -277,6 +277,26 @@ class AdminController extends Controller
         $user_product->pay_types()->sync(array_map(create_function('$ids', 'return $ids[\'id\'];'), $request->input('pay_types')));
         $user_product->save();
 
+        $mainProduct = Product::find($user_product->product_id);
+
+        $minPrice = DB::table('user_products')
+            ->where('status', 1)
+            ->where('product_id', $user_product->product_id)
+            ->min('price');
+
+        $maxPrice = DB::table('user_products')
+            ->where('status', 1)
+            ->where('product_id', $user_product->product_id)
+            ->min('price');
+
+        $mainProduct->price_min = ($minPrice > $user_product->price) ? $user_product->price : $minPrice;
+        $mainProduct->price_max = ($maxPrice < $user_product->price) ? $user_product->price : $maxPrice;
+
+        $mainProduct->status = 1;
+
+        $mainProduct->save();
+
+
         return response()->json(['status' => 1], 200);
     }
 

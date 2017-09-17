@@ -288,7 +288,7 @@ class ProductsController extends Controller
                 ->get();
         }
 
-        $product = Product::with('category')->where('slug', $slug)->first();
+        $product = Product::with('category.parent')->where('slug', $slug)->first();
         if ($product) {
 
             //retrieving products features

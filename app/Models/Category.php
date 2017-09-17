@@ -25,6 +25,11 @@ class Category extends AntvelCategory
         return $this->hasMany(self::class, 'category_id', 'id');
     }
 
+    public function parent()
+    {
+        return $this->hasOne(self::class, 'id', 'category_id');
+    }
+
     public function producers()
     {
         return $this->belongsToMany(Producer::class);

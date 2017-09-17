@@ -4,7 +4,7 @@
             <div class="breadcrumbs"></div>
             <div class="info-search-head-wrap">
                 <div class="found-list">
-                    <h2>Найдено {{data.products.total}} результатов</h2>
+                    <h2>{{translate.search_found}} {{data.products.total}} {{translate.search_result}}</h2>
                 </div>
                 <div class="filters-list">
                     <div class="my-region-wrap">
@@ -14,10 +14,10 @@
                         <!--</label>-->
                     </div>
                     <div class="sort-wrap">
-                        <span>Сортировать по:</span>
+                        <span>{{translate.sort_by}}:</span>
                         <select @change="setFilter" v-model="filterType">
-                            <option :value="'minus'">Сначала дешевые</option>
-                            <option :value="'plus'">Сначала дорогие</option>
+                            <option :value="'min'">{{translate.sort_by_asc}}</option>
+                            <option :value="'max'">{{translate.sort_by_desc}}</option>
                             <option :value="'rating'">По рейтингу</option>
                         </select>
                     </div>
@@ -28,11 +28,11 @@
             </div>
             <div class="search-content-wrap">
                 <div class="chose-filters-head">
-                    <h3>Выбранные фильтры: </h3>
+                    <h3>{{translate.chose_filters}}: </h3>
                     <div class="all-chose-filters">
                         <div class="single-filter">
                             <p class="name">{{data.q}}</p>
-                            <span class="close"></span>
+                            <!--<span class="close"></span>-->
                         </div>
                     </div>
                 </div>
@@ -154,7 +154,7 @@
                                             <star-rating :star-size="20"></star-rating>
                                         </div>
                                         <div class="count-feedback-wrap">
-                                            <a href="#">45 отзывов</a>
+                                            <a :href="'/products/'+product.slug">{{product.reviews.length}} {{translate.reviews}}</a>
                                         </div>
                                     </div>
                                     <div class="all-detail-list">
@@ -170,17 +170,17 @@
                                         <!--</div>-->
                                         <div class="all-goods-btn">
                                             <a :href="'/products/'+product.slug" class="btn">
-                                                Все предложения
+                                                {{translate.all_items}}
                                             </a>
                                         </div>
                                         <div class="two-wrap">
                                             <div class="left">
                                                 <i></i>
-                                                <span>Отслеживать товар</span>
+                                                <span>{{translate.spy_good}}</span>
                                             </div>
                                             <div class="right">
                                                 <i></i>
-                                                <span>В избранное</span>
+                                                <span>{{translate.faworite}}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -192,15 +192,27 @@
                 </div>
                 <div class="footer-search-wrap">
                     <div class="paginate-wrap" v-if="data.products.total > 16">
-                        <ul class="paginate">
-                            <li class="prev"><i></i> Назад</li>
-                            <li>1</li>
-                            <li class="active">2</li>
-                            <li>3</li>
-                            <li class="next">Вперед <i></i></li>
-                        </ul>
+                        <!--<ul class="paginate">-->
+                            <!--<li class="prev"><i></i> Назад</li>-->
+                            <!--<li>1</li>-->
+                            <!--<li class="active">2</li>-->
+                            <!--<li>3</li>-->
+                            <!--<li class="next">Вперед <i></i></li>-->
+                        <!--</ul>-->
+                        <paginate :page-count="data.products.last_page"
+                                  :page-range="3"
+                                  :margin-pages="2"
+                                  :initial-page="page"
+                                  :click-handler="clickCallback"
+                                  :container-class="'paginate'"
+                                  :prev-text="'Назад'"
+                                  :next-text="'Вперед'"
+                                  :prev-class="'prev'"
+                                  :next-class="'next'"
+                                  ref="paginate"
+                                  :page-class="'page-item'"></paginate>
                     </div>
-                    <div class="chose-page" v-if="data.products.total > 16">
+                    <div class="chose-page" v-if="false">
                         <span>Перейти к странице</span>
                         <label for="chose-page-id">
                             <input type="text" id="chose-page-id">
@@ -215,29 +227,42 @@
 
 <script type="text/babel">
     import StarRating from 'vue-star-rating';
+    import paginate from 'vuejs-paginate';
 
     export default{
         data(){
             return {
-                filterType: 'minus',
-                searchProducts: this.data.products
+                filterType: this.data.sort,
+                searchProducts: this.data.products,
+                page: this.data.products.current_page - 1
             }
         },
-        props: ['data'],
+        props: ['data', 'translate'],
         components: {
-            StarRating
+            StarRating,
+            paginate
         },
         methods: {
             setFilter(){
-                if(!this.filterType) return false;
-                let data = {
-                    sort: this.filterType
+                location.href = location.pathname+'?q='+this.data.q+'&sort='+this.filterType
+//                if(!this.filterType) return false;
+//                let data = {
+//                    sort: this.filterType
+//                }
+//                this.$http.post('/search', data).then(res => {
+//                    this.searchProducts = res.data.products;
+//                }, err => {
+//
+//                })
+            },
+            clickCallback(newPage){
+                if(this.page < newPage){
+                    location.href = this.data.products.next_page_url+'&q='+this.data.q+'&sort='+this.filterType;
+                } else {
+                    location.href = this.data.products.prev_page_url+'&q='+this.data.q+'&sort='+this.filterType;
                 }
-                this.$http.post('/search', data).then(res => {
-                    this.searchProducts = res.data.products;
-                }, err => {
 
-                })
+
             }
         }
     }
