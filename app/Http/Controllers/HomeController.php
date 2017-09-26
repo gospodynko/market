@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
 
+
+
     /**
      * The products repository.
      *
@@ -49,6 +51,8 @@ class HomeController extends Controller
         $this->middleware('auth')->only('dashboard');
 
         $this->products = $products;
+//        self::updDb();
+
     }
 
     /**
@@ -56,6 +60,31 @@ class HomeController extends Controller
      *
      * @return void
      */
+
+    private function updDb()
+    {
+        foreach (Product::all() as $product){
+            $mainProduct = $product;
+
+            $minPrice = \DB::table('user_products')
+                ->where('status', 1)
+                ->where('product_id', $mainProduct->id)
+                ->min('price');
+
+            $maxPrice = \DB::table('user_products')
+                ->where('status', 1)
+                ->where('product_id', $mainProduct->id)
+                ->max('price');
+
+            $mainProduct->price_min = $minPrice;
+            $mainProduct->price_max = $maxPrice;
+
+            $mainProduct->status = 1;
+
+            $mainProduct->save();
+        }
+
+    }
     public function index(Request $request)
     {
 

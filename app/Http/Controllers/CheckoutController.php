@@ -88,6 +88,10 @@ class CheckoutController extends Controller
                 $message->to($data_mail['merchant']['email']);
             });
         }
+        Mail::send('emails.checkoutSeller', ['data' => $data_mail], function ($message) use ($data_mail, $request) {
+            $message->subject('Поздравляем! Вы продали товар '.$request->input('product')['name']);
+            $message->to('market@agroyard.ua');
+        });
         return response()->json(['order' => $item_offer, 'product_name' => $product['name']], 200);
     }
 }

@@ -15,7 +15,7 @@
         </div>
         <div class="single-prod-wrap">
             <div class="breadcrumbs">
-                <div v-html="breadcrumbs"></div>
+
             </div>
             <div class="single-prod-detail">
                 <div class="detail-product-wrap">
@@ -134,13 +134,13 @@
                                 <div class="market-list-all">
                                     <div class="single-market" v-for="store in data.storesProducts">
                                         <div class="logo-shop-wrap">
-                                            <img :src="store.shop.logo" alt="">
+                                            <img src="/img/avatars/ava.jpg" alt="">
                                         </div>
                                         <div class="shop-detail-wrap">
                                             <h2>{{store.shop ? store.shop.name : 'магазин удален'}}</h2>
                                             <div class="star-wrap">
                                                 <star-rating :star-size="20"></star-rating>
-                                                <a href="#">0 {{translate.reviews}}</a>
+                                                <a href="#">145 {{translate.reviews}}</a>
                                             </div>
                                         </div>
                                         <div class="price-wrap">
@@ -308,7 +308,7 @@
                 showAuthorized: false
             }
         },
-        props: ['data', 'user', 'translate', 'breadcrumbs'],
+        props: ['data', 'user', 'translate'],
         components: {
             StarRating
         },
