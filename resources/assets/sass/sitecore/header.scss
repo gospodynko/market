@@ -19,7 +19,7 @@
     width: 45%;
   }
   .site-menu{
-    width: 100%;
+    width: 95%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -236,6 +236,8 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        font-weight: 300;
+        font-size: 16px;
         i{
           display: inline-block;
           width: 10px;
@@ -246,14 +248,13 @@
       }
     }
     .single-menu-item.active{
-        background: $green;
+      background: $green;
       p{
         color: $white;
         i{
           background-position: -10px 0;
         }
       }
-
     }
   }
   .child-menu{
@@ -294,7 +295,6 @@
       align-items: center;
       flex-direction: column;
       background: url("../img/no-image/no-image.jpg") no-repeat center;
-
       &:hover{
         background: url("../img/no-image/no-image.jpg") no-repeat center;
         border: 1px solid $green-btn;

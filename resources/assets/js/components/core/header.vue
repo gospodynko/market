@@ -58,27 +58,18 @@
                         <i class="arrow-down"></i>
                     </div>
                 </div>
-                <!--:class="{'full-size': showChild}" v-if="showMenu"-->
-               <div class="all-menu-list active" :class="{'full-size': showChild}" v-if="showMenu">
-                    <!--:class="{'show': showChild}"-->
-                   <div class="menu-listing" :class="{'show': showChild}">
+                <div class="all-menu-list active" :class="{'full-size': showChild}" v-if="showMenu">
+                    <div class="menu-listing" :class="{'show': showChild}">
                         <div class="site-menu-wrap">
-                            <a :href="'/category/'+category.slug" v-for="category in categories" >
-                                <div class="single-menu-item" :class="{'active': checkedCat && checkedCat.id == category.id}" @mouseover="setChild(category)">
-                                    <p>{{category.name}} <i></i></p>
-                                </div>
-
-                            </a>
+                            <div class="single-menu-item" v-for="category in categories" @mouseover="setChild(category.children)">
+                                <p>{{category.name}} <i></i></p>
+                            </div>
                         </div>
                         <!--showChild-->
-                        <!--v-if="showChild" @mouseleave="showChild = false"-->
-                       <div class="site-menu-wrap child-menu" v-if="showChild" @mouseleave="showChild = false">
-                           <a :href="'/category/'+checkedCat.slug+'/'+subCategory.slug" v-for="subCategory in subCategories">
-                            <div class="single-menu-item" :style="{'backgroundImage': 'url(/img/menu-imgs/'+subCategory.slug+'.png)'}">
-                                <!--<img :src="'/img/menu-imgs/'+subCategory.slug+'.png'" alt="">-->
+                        <div class="site-menu-wrap child-menu" v-if="showChild" @mouseleave="showChild = false">
+                            <div class="single-menu-item" v-for="subCategory in subCategories">
                                 <p>{{subCategory.name}}</p>
                             </div>
-                           </a>
                         </div>
                     </div>
                 </div>
@@ -118,8 +109,7 @@
                 showCart: false,
                 showPopup: false,
                 showOverlayPopup: false,
-                q: '',
-                checkedCat: null
+                q: ''
             }
         },
         props: ['user', 'translate', 'cartTranslate'],
@@ -146,10 +136,9 @@
             })
         },
         methods: {
-            setChild(category){
+            setChild(children){
                 this.showChild = true;
-                this.subCategories = category.children;
-                this.checkedCat = category;
+                this.subCategories = children;
             },
             logout(){
                 this.$http.post('/logout', {}).then(res => {
@@ -173,7 +162,6 @@
             },
             closeMenu()
             {
-                this.checkedCat = null;
                 this.showOverlay = false;
                 this.showChild = false;
                 if(location.pathname == '/') return;

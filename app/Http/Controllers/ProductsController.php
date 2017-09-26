@@ -56,7 +56,7 @@ class ProductsController extends Controller
         'bar_code' => 'max:255|required',
         'category_id' => 'required',
         'producer_id' => 'required',
-        'description' => 'required|max:500',
+        'description' => 'required|max:65000',
         'type' => 'required',
         'name' => 'required|max:100',
     ];

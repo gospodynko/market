@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Ubuntu:400,500&subset=cyrillic,cyrillic-ext");
+@import url("https://fonts.googleapis.com/css?family=Ubuntu:300,400,500&subset=cyrillic,cyrillic-ext");
 body {
   min-width: 1315px;
   margin: 0 auto;
@@ -370,7 +370,7 @@ ul li input[type="radio"]:checked:disabled + label:before {
 }
 
 .header .site-menu {
-  width: 100%;
+  width: 95%;
   display: -webkit-box;
   display: flex;
   -webkit-box-pack: justify;
@@ -630,6 +630,8 @@ ul li input[type="radio"]:checked:disabled + label:before {
   justify-content: space-between;
   -webkit-box-align: center;
   align-items: center;
+  font-weight: 300;
+  font-size: 16px;
 }
 
 .all-menu-list .site-menu-wrap .single-menu-item p i {
@@ -895,7 +897,6 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li {
   height: 70px;
   opacity: .5;
   cursor: pointer;
-  margin-bottom: 0;
   margin-top: 15px;
   margin-bottom: 15px;
 }
