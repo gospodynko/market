@@ -14,7 +14,10 @@ class CategoryController extends Controller
         $currSlug = $subSlug?: $slug;
         $category = Category::with('parent')->where('slug', $currSlug)->first();
         if(!$category) return abort(404);
-        $products = Product::where('category_id', $category->id)->whereHas('user_products');
+        $products = Product::where('category_id', $category->id)
+                            ->whereHas('user_products.shop', function ($q){
+                                $q->where('status', 1);
+                            });
         return view('category', ['data' => ['products' => $products->paginate($per_page), 'cat_name' => $category->name],'category' => $category]);
     }
 }

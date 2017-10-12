@@ -9,7 +9,8 @@ class UserShops extends Model
     protected $fillable = [
         'name',
         'rating',
-        'company_id'
+        'company_id',
+        'status'
     ];
     public $timestamps = false;
     protected $with = ['companyUsers'];
