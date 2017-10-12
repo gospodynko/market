@@ -57,11 +57,11 @@
 		</div>
 	</div>
 
-	{{--<div class="row">--}}
-		{{--<div class="col-lg-12">--}}
-			{{--<hr>--}}
-        	{{--{!! $data['user_product']->render() !!}--}}
-        {{--</div>--}}
-    {{--</div>--}}
+	<div class="row">
+		<div class="col-lg-12">
+			<hr>
+        	{!! $data['user_product']->render() !!}
+        </div>
+    </div>
 
 @endsection

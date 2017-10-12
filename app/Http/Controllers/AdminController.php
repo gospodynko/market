@@ -245,8 +245,9 @@ class AdminController extends Controller
     public function indexUserProducts()
     {
 //        dd(UserProduct::with('mainProduct')->get()->toArray());
+        $page_count = 20;
         return view('dashboard.sections.products.user', ['data' => [
-            'user_product' => UserProduct::with('mainProduct')->get()
+            'user_product' => UserProduct::with('mainProduct')->paginate($page_count)
         ]]);
     }
 
