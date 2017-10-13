@@ -152,20 +152,20 @@
             return {
                 cartItems: JSON.parse(localStorage.getItem('cart')),
                 checkedItem: {'data': {
-                            'user': {
-                                'first_name': this.user ? this.user.first_name : '',
-                                'last_name': this.user ?  this.user.last_name : '',
-                                'phone': this.user ?  this.user.phone : '',
-                                'email': this.user ?  this.user.email : ''
-                            },
-                            'delivery': {
-                                'delivery_type': '',
-                                'delivery_comment': ''
-                            },
-                            'payment': {
-                                'payment_type': ''
-                            }
-                    }},
+                    'user': {
+                        'first_name': this.user ? this.user.first_name : '',
+                        'last_name': this.user ?  this.user.last_name : '',
+                        'phone': this.user ?  this.user.phone : '',
+                        'email': this.user ?  this.user.email : ''
+                    },
+                    'delivery': {
+                        'delivery_type': '',
+                        'delivery_comment': ''
+                    },
+                    'payment': {
+                        'payment_type': ''
+                    }
+                }},
                 showSuccess: false,
                 order: null,
                 productName: '',
@@ -186,20 +186,20 @@
         methods: {
             setItem(item){
                 this.checkedItem = {'data': {
-                        'user': {
-                            'first_name': this.user ? this.user.first_name : '',
-                            'last_name': this.user ?  this.user.last_name : '',
-                            'phone': this.user ?  this.user.phone : '',
-                            'email': this.user ?  this.user.email : ''
-                        },
-                        'delivery': {
-                            'delivery_type': '',
-                            'delivery_comment': ''
-                        },
-                        'payment': {
-                            'payment_type': ''
-                        }
-                    }};
+                    'user': {
+                        'first_name': this.user ? this.user.first_name : '',
+                        'last_name': this.user ?  this.user.last_name : '',
+                        'phone': this.user ?  this.user.phone : '',
+                        'email': this.user ?  this.user.email : ''
+                    },
+                    'delivery': {
+                        'delivery_type': '',
+                        'delivery_comment': ''
+                    },
+                    'payment': {
+                        'payment_type': ''
+                    }
+                }};
                 Object.assign(this.checkedItem, item);
                 this.checketStoreId = item.store.id;
                 this.errors = {};
@@ -214,9 +214,11 @@
             },
             setDelivery(delivery){
                 this.checkedItem.data.delivery.delivery_type = delivery.id;
+                this.errors.hasOwnProperty('delivery_type') ? this.errors.delivery_type = false : '';
             },
             setPayment(payment){
                 this.checkedItem.data.payment.payment_type = payment.id;
+                this.errors.hasOwnProperty('payment_type') ? this.errors.payment_type = false : '';
             },
             setOrder(){
                 for(let u in this.checkedItem.data.user){
@@ -246,6 +248,7 @@
                                 this.$set(this.errors,u, true);
                             } else {
                                 this.$set(this.errors,u, false);
+
                             }
                             break;
                         case ('email'):
@@ -266,10 +269,10 @@
                 for(let u in this.checkedItem.data.delivery) {
                     switch (u) {
                         case ('delivery_type'):
-                            if(this.checkedItem.data.delivery[u].length){
-                                this.$set(this.errors,u, true);
-                            } else {
+                            if(this.checkedItem.data.delivery[u]){
                                 this.$set(this.errors,u, false);
+                            } else {
+                                this.$set(this.errors,u, true);
                             }
                             break;
                         case ('delivery_comment'):
@@ -284,10 +287,10 @@
                 for(let u in this.checkedItem.data.payment) {
                     switch (u) {
                         case ('payment_type'):
-                            if(this.checkedItem.data.payment[u].length){
-                                this.$set(this.errors,u, true);
-                            } else {
+                            if(this.checkedItem.data.payment[u]){
                                 this.$set(this.errors,u, false);
+                            } else {
+                                this.$set(this.errors,u, true);
                             }
                             break;
                     }

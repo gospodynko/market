@@ -64,4 +64,9 @@ Route::group(['roles' => ['admin'], 'middleware' => ['auth', 'roles']], function
     Route::get('admin/moderation/accept/{id}', 'AdminController@acceptProduct');
     Route::get('admin/moderation/show/{id}', 'AdminController@viewProduct');
 
+    Route::group(['prefix' => 'admin/shops'], function (){
+       Route::any('/', 'AdminController@viewShops');
+       Route::post('/{id}/edit', 'AdminController@changeStatusShop');
+    });
+
 });

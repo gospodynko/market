@@ -5,6 +5,7 @@ use App\Models\Currency;
 use App\Models\DeliveryType;
 use App\Models\PayType;
 use App\Models\UserProductOffers;
+use App\Models\UserShops;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\UserProduct;
@@ -244,8 +245,9 @@ class AdminController extends Controller
     public function indexUserProducts()
     {
 //        dd(UserProduct::with('mainProduct')->get()->toArray());
+        $page_count = 20;
         return view('dashboard.sections.products.user', ['data' => [
-            'user_product' => UserProduct::with('mainProduct')->get()
+            'user_product' => UserProduct::with('mainProduct')->paginate($page_count)
         ]]);
     }
 
@@ -319,5 +321,24 @@ class AdminController extends Controller
         return view('dashboard.sections.orders.index', ['data' => [
             'orders' => UserProductOffers::all()
         ]]);
+    }
+
+    public function viewShops(Request $request)
+    {
+        $per_page = 20;
+        $shops = UserShops::paginate($per_page)->toJson();
+        if($request->method() == 'GET'){
+            return view('dashboard.sections.shops.index', compact('shops'));
+        } else {
+            return $shops;
+        }
+    }
+
+    public function changeStatusShop($id, Request $request)
+    {
+        $shop = UserShops::findOrFail($id);
+        $shop->status = $request->input('status');
+        $shop->save();
+        return json_encode(['status' => 1]);
     }
 }

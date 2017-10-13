@@ -66,6 +66,11 @@
                                     </a>
                                 </li>
                                 <li>
+                                    <a href="/admin/shops">
+                                        <i class="glyphicon glyphicon-menu-right"></i>&nbsp;Магазины
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="/admin/moderation">
                                         <i class="glyphicon glyphicon-menu-right"></i>&nbsp;Модерация
                                     </a>
