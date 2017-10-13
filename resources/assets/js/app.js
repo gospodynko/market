@@ -35,6 +35,8 @@ import ShopsVue from './components/dashboard/shops/index.vue';
 Vue.use(VueResource);
 
 Vue.http.headers.common['X-CSRF-TOKEN'] = $('meta[name="csrf-token"]').attr('content');
+Vue.config.devtools = process.env.NODE_ENV != 'production';
+Vue.config.silent = process.env.NODE_ENV == 'production';
 
 export const Events = new Vue({});
 const app = new Vue({
