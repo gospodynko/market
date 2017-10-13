@@ -15,7 +15,7 @@
         </div>
         <div class="single-prod-wrap">
             <div class="breadcrumbs">
-
+                <div v-html="breadcrumbs"></div>
             </div>
             <div class="single-prod-detail">
                 <div class="detail-product-wrap">
