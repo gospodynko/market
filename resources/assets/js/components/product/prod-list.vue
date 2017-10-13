@@ -308,7 +308,7 @@
                 showAuthorized: false
             }
         },
-        props: ['data', 'user', 'translate'],
+        props: ['data', 'user', 'translate', 'breadcrumbs'],
         components: {
             StarRating
         },
