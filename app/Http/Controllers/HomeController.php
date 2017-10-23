@@ -92,8 +92,19 @@ class HomeController extends Controller
             self::setRole();
         }
         $page_count = 12;
-        $productsTop = Product::where(['status' => 1, 'moderation' => 0])->orderBy('updated_at', 'DESC')->whereHas('user_products')->paginate($page_count);
-        $productsSuggestions = Product::orderBy('created_at', 'ASC')->paginate($page_count);
+
+        $productsTop = Product::where(['status' => 1, 'moderation' => 0])
+                                ->orderBy('updated_at', 'DESC')
+                                ->whereHas('user_products.shop', function ($q){
+                                    $q->where('status', 1);
+                                })
+                                ->paginate($page_count);
+
+        $productsSuggestions = Product::orderBy('created_at', 'ASC')
+                                            ->whereHas('user_products.shop', function ($q){
+                                                $q->where('status', 1);
+                                            })
+                                            ->paginate($page_count);
         if($request->method() == 'GET'){
             return view('main', ['data' =>[
                 'banner' => Banner::all(),
@@ -103,7 +114,12 @@ class HomeController extends Controller
                 'translate' => trans('index.index')
             ]]);
         } else {
-            return response()->json(['products' => Product::where('status', 1)->orderBy('updated_at', 'DESC')->whereHas('user_products')->paginate($page_count)]);
+            return response()->json(['products' => Product::where('status', 1)
+                                                    ->orderBy('updated_at', 'DESC')
+                                                    ->whereHas('user_products.shop', function ($q){
+                                                        $q->where('status', 1);
+                                                    })
+                                                    ->paginate($page_count)]);
         }
     }
 

@@ -20,9 +20,14 @@ class SearchController extends Controller
             $sort = ['type' => 'rate_val', 'sort' => 'DESC'];
         }
         $products = Product::where(function ($query) use ($q){
-            $query->where('name', 'like', $q);
-            $query->orWhere('description', 'like', $q);
-        })->whereHas('user_products')->orderby($sort['type'], $sort['sort'])->paginate($page_count);
+                                $query->where('name', 'like', $q);
+                                $query->orWhere('description', 'like', $q);
+                            })
+                            ->whereHas('user_products.shop', function ($q){
+                                $q->where('status', 1);
+                            })
+                            ->orderby($sort['type'], $sort['sort'])
+                            ->paginate($page_count);
 
         return view('search',['data' => ['products' => $products, 'q' => $request->input('q'), 'sort' => $request->input('sort')?:'min']]);
     }
@@ -40,7 +45,13 @@ class SearchController extends Controller
         }
 
         $q = '%' . $request->input('q') . '%';
-        $products = Product::where('name', 'like', $q)->orWhere('description', 'like', $q)->orderby($filter_type['type'], $filter_type['sort'])->paginate($page_count);
+        $products = Product::where('name', 'like', $q)
+                            ->orWhere('description', 'like', $q)
+                            ->whereHas('user_products.shop', function ($q){
+                                $q->where('status', 1);
+                            })
+                            ->orderby($filter_type['type'], $filter_type['sort'])
+                            ->paginate($page_count);
 
         return response()->json(['products' => $products], 200);
     }
