@@ -14,9 +14,13 @@ section.slider{
         position: relative;
         ul>li{
           height: 500px!important;
-          img{
-            max-height: 100%;
-            object-fit: cover;
+          a {
+            width: 100%;
+            height: 100%;
+            img{
+              max-height: 100%;
+              object-fit: cover;
+            }
           }
         }
       }
@@ -56,11 +60,15 @@ section.slider{
           cursor: pointer;
           margin-top: 15px;
           margin-bottom: 15px;
-          img{
-            width: 90%;
-            max-height: 100%;
-            object-fit: cover;
-            margin: 0 auto;
+          a {
+            width: 100%;
+            height: 100%;
+            img{
+              width: 90%;
+              max-height: 100%;
+              object-fit: cover;
+              margin: 0 auto;
+            }
           }
           span{
             display: none;
