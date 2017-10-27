@@ -58,7 +58,7 @@
                         <div class="price-wrap two-wrap">
                             <div class="left">
                                 <p class="price">
-                                    {{translate.prices}}: {{product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max}} грн
+                                    {{translate.prices}}: {{numberWithSpaces(product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max)}} грн
                                 </p>
                                 <p class="in-sale">
                                     {{translate.all_goods}}: {{data.storesProducts.length}} шт
@@ -69,7 +69,14 @@
                         </div>
                         <div class="prod-desc-wrap">
                             <h2>{{translate.description}}</h2>
-                            <p v-html="product.description"></p>
+                            <p v-html="product.description.slice(0, textLength) || translate.no_description"></p>
+                            <a v-if="product.description.length >= 400"
+                               @click.prevent="viewAll"
+                               href=""
+                               class="prod-desc-wrap-link">
+                                <i v-bind:class="{ arrowDown: textLength > 400 }" class="arrowUp"></i>
+                                {{translate.more}}
+                            </a>
                         </div>
                     </div>
                     <div class="detail-post-info">
@@ -144,7 +151,7 @@
                                             </div>
                                         </div>
                                         <div class="price-wrap">
-                                            <p class="price">{{translate.price}} {{store.price}} грн {{store.quantity_price ? '/ '+store.quantity_price : ''}}</p>
+                                            <p class="price">{{translate.price}} {{numberWithSpaces(store.price)}} грн {{store.quantity_price ? '/ '+store.quantity_price : ''}}</p>
                                             <p class="prod-status">{{translate.in_market}}</p>
                                         </div>
                                         <div class="go-shop-wrap">
@@ -240,7 +247,7 @@
                                 <a :href="'/products/'+product.slug">{{product.name}}</a>
                             </p>
                             <p class="price">
-                                {{product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max}} грн.
+                                {{numberWithSpaces(product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max)}} грн.
                         </p>
                         </div>
                         <div class="detail-prod-wrap">
@@ -305,7 +312,8 @@
                 reviewText: '',
                 showReview: false,
                 features: JSON.parse(this.data.product.features),
-                showAuthorized: false
+                showAuthorized: false,
+                textLength: 400
             }
         },
         props: ['data', 'user', 'translate', 'breadcrumbs'],
@@ -316,6 +324,16 @@
             this.product.description = this.product.description.replace(/(?:\r\n|\r|\n)/g, '<br>');
         },
         methods: {
+            numberWithSpaces(x) {
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+            },
+            viewAll() {
+                if (this.textLength == 400) {
+                    this.textLength = this.product.description.length;
+                } else {
+                    this.textLength = 400;
+                }
+            },
             checkImages(img){
                 this.checkImage = img.path;
             },
