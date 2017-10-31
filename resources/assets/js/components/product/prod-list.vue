@@ -134,13 +134,14 @@
                                 <div class="market-list-all">
                                     <div class="single-market" v-for="store in data.storesProducts">
                                         <div class="logo-shop-wrap">
-                                            <img src="/img/avatars/ava.jpg" alt="">
+                                            <img :src="store.logo" alt="" v-if="store.logo">
+                                            <img src="/img/avatars/ava.png" alt="" v-else>
                                         </div>
                                         <div class="shop-detail-wrap">
                                             <h2>{{store.shop ? store.shop.name : 'магазин удален'}}</h2>
                                             <div class="star-wrap">
                                                 <star-rating :star-size="20"></star-rating>
-                                                <a href="#">145 {{translate.reviews}}</a>
+                                                <a href="#">0 {{translate.reviews}}</a>
                                             </div>
                                         </div>
                                         <div class="price-wrap">
@@ -181,7 +182,7 @@
                                     <div class="single-answer" v-for="review in reviews">
                                         <div class="comment-head">
                                             <div class="logo-user">
-                                                <img src="/img/avatars/ava.jpg" alt="">
+                                                <img src="/img/avatars/ava.png" alt="">
                                             </div>
                                             <div class="star-rating-wrap">
                                                 <p class="user-name">{{review.user.first_name + ' ' + review.user.last_name}}</p>
@@ -202,7 +203,7 @@
                                         <!--<div class="comment-answer">-->
                                             <!--<div class="comment-head">-->
                                                 <!--<div class="logo-user">-->
-                                                    <!--<img src="/img/avatars/ava.jpg" alt="">-->
+                                                    <!--<img src="/img/avatars/ava.png" alt="">-->
                                                 <!--</div>-->
                                                 <!--<div class="star-rating-wrap">-->
                                                     <!--<p class="user-name">Артур Пирожков (Менеджер "Рога и Копыта" отвечает)</p>-->

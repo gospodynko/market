@@ -32,7 +32,7 @@
                         </div>
                         <div class="item">
                             <div class="user-wrap" v-if="user">
-                                <img src="/img/avatars/ava.jpg" alt="" class="avatar">
+                                <img src="/img/avatars/ava.png" alt="" class="avatar">
                                 <span class="logout" @click="logout">{{translate.exit}}</span>
                             </div>
 

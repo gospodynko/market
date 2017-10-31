@@ -251,7 +251,7 @@
                                     <div class="single-answer">
                                         <div class="comment-head">
                                             <div class="logo-user">
-                                                <img src="/img/avatars/ava.jpg" alt="">
+                                                <img src="/img/avatars/ava.png" alt="">
                                             </div>
                                             <div class="star-rating-wrap">
                                                 <p class="user-name">Артур Пирожков</p>
@@ -274,7 +274,7 @@
                                         <div class="comment-answer">
                                             <div class="comment-head">
                                                 <div class="logo-user">
-                                                    <img src="/img/avatars/ava.jpg" alt="">
+                                                    <img src="/img/avatars/ava.png" alt="">
                                                 </div>
                                                 <div class="star-rating-wrap">
                                                     <p class="user-name">Артур Пирожков (Менеджер "Рога и Копыта" отвечает)</p>
@@ -295,7 +295,7 @@
                                     <div class="single-answer">
                                         <div class="comment-head">
                                             <div class="logo-user">
-                                                <img src="/img/avatars/ava.jpg" alt="">
+                                                <img src="/img/avatars/ava.png" alt="">
                                             </div>
                                             <div class="star-rating-wrap">
                                                 <p class="user-name">Артур Пирожков</p>
@@ -330,7 +330,7 @@
                                     <div class="single-answer">
                                         <div class="comment-head">
                                             <div class="logo-user">
-                                                <img src="/img/avatars/ava.jpg" alt="">
+                                                <img src="/img/avatars/ava.png" alt="">
                                             </div>
                                             <div class="star-rating-wrap">
                                                 <p class="user-name">Артур Пирожков</p>
@@ -354,7 +354,7 @@
                                     <div class="single-answer">
                                         <div class="comment-head">
                                             <div class="logo-user">
-                                                <img src="/img/avatars/ava.jpg" alt="">
+                                                <img src="/img/avatars/ava.png" alt="">
                                             </div>
                                             <div class="star-rating-wrap">
                                                 <p class="user-name">Артур Пирожков</p>
@@ -378,7 +378,7 @@
                                     <div class="single-answer">
                                         <div class="comment-head">
                                             <div class="logo-user">
-                                                <img src="/img/avatars/ava.jpg" alt="">
+                                                <img src="/img/avatars/ava.png" alt="">
                                             </div>
                                             <div class="star-rating-wrap">
                                                 <p class="user-name">Артур Пирожков</p>
