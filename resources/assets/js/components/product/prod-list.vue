@@ -141,7 +141,7 @@
                                 <div class="market-list-all">
                                     <div class="single-market" v-for="store in data.storesProducts">
                                         <div class="logo-shop-wrap">
-                                            <img :src="store.logo" alt="" v-if="store.logo">
+                                            <img :src="store.shop.logo" alt="" v-if="store.shop.hasOwnProperty('logo')">
                                             <img src="/img/avatars/ava.png" alt="" v-else>
                                         </div>
                                         <div class="shop-detail-wrap">
