@@ -35,7 +35,6 @@
 	<![endif]-->
 </head>
 <body>
-1234
 <section class = "@yield('page_class', 'home')">
 
 	{{-- Navigation bar section --}}

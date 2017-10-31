@@ -12,7 +12,7 @@
                             <a :href="'/products/'+product.slug">{{product.name}}</a>
                         </p>
                         <p class="price">
-                            {{product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max}} грн.
+                            {{numberWithSpaces(product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max)}} грн.
                         </p>
                     </div>
                     <div class="detail-prod-wrap">
@@ -58,7 +58,7 @@
                     </div>
                 </div>
                 <div class="show-all-btn-wrap" v-if="products && allProducts.total > 12">
-                    <vue-ladda class="btn"@click="getNew" :loading="loadProduct">{{translate.show_more}}</vue-ladda>
+                    <vue-ladda class="btn show-more"@click="getNew" :loading="loadProduct">{{translate.show_more}}</vue-ladda>
                     <!--<button class="btn" @click="getNew">Показать еще</button>-->
                 </div>
             </div>
@@ -98,7 +98,10 @@
                }, err => {
                    this.loadProduct = false;
                })
-           }
+           },
+            numberWithSpaces(x) {
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+            },
         }
     }
 </script>

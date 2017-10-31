@@ -48,6 +48,8 @@ return [
         'prices' => 'Ціни',
         'all_goods' => 'Всього пропозицій',
         'description' => 'Опис',
+        'no_description' => 'Немає опису',
+        'more' => 'Детальніше',
         'all_goods_list' => 'Всі пропозиції',
         'charact' => 'Характеристики',
         'reviews_list' => 'Відгуки',

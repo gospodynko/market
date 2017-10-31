@@ -82,7 +82,7 @@
                     <div class="two-wrap">
                         <div class="left">
                             <p class="title">{{translate.good_price}}:</p>
-                            <p class="price">{{checkedItem.store.price * checkedItem.store.store_count}} грн</p>
+                            <p class="price">{{numberWithSpaces(checkedItem.store.price * checkedItem.store.store_count)}} грн</p>
                         </div>
                         <div class="right">
                             <button class="btn" @click="setOrder">{{translate.buy_item_btn}}</button>
@@ -120,7 +120,7 @@
                                         <h2>{{productName}}</h2>
                                     </div>
                                     <div class="right">
-                                        <p class="price">{{order.price}} грн</p>
+                                        <p class="price">{{numberWithSpaces(order.price)}} грн</p>
                                         <p class="count">{{translate.quantity}} {{order.quantity}} шт.</p>
                                     </div>
                                 </div>
@@ -184,6 +184,9 @@
             }
         },
         methods: {
+            numberWithSpaces(x) {
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+            },
             setItem(item){
                 this.checkedItem = {'data': {
                     'user': {

@@ -287,6 +287,25 @@
         p{
           line-height: 24px;
         }
+        .prod-desc-wrap-link {
+          color: #48a2ff;
+          display: block;
+          text-align: right;
+          position: relative;
+        }
+        .arrowUp {
+          display: inline-block;
+          width: 16px;
+          height: 9px;
+          background: url(../img/product-photos/arrow.png) no-repeat center;
+          transform: rotate(0deg);
+          transition: all .5s;
+          margin-right: 10px;
+        }
+        .arrowDown {
+          transform: rotate(180deg);
+          transition: all .5s;
+        }
       }
     }
     .detail-post-info{
