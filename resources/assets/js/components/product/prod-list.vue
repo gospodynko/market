@@ -45,7 +45,9 @@
                         </div>
                     </div>
                     <div class="detail-description">
-                        <h1>{{product.name}}</h1>
+                        <h1>{{product.name}}
+                            <button  class="btn" @click="addToCart(store)">{{translate.in_cart}}</button>
+                        </h1>
                         <div class="feedback-wrap two-wrap">
                             <div class="left">
                                 <star-rating :star-size="20"></star-rating>
@@ -114,9 +116,6 @@
                             </div>
                         </div>
                         <div class="all-tabs-menu">
-                            <div class="single-tab" @click="productTab = 'store'" :class="{'active': productTab === 'store'}">
-                                <p>{{translate.all_goods_list}}</p>
-                            </div>
                             <div class="single-tab" @click="productTab = 'charact'" :class="{'active': productTab === 'charact'}">
                                 <p>{{translate.charact}}</p>
                             </div>
@@ -125,7 +124,9 @@
                                     {{translate.reviews_list}} {{reviews.length ? '('+reviews.length+')' : ''}}
                                 </p>
                             </div>
-
+                            <div class="single-tab" @click="productTab = 'store'" :class="{'active': productTab === 'store'}">
+                                <p>{{translate.all_goods_list}}</p>
+                            </div>
                         </div>
                         <div class="all-tabs-detail">
                             <div class="single-tab-detail characteristic" v-if="productTab === 'charact'">
@@ -138,30 +139,67 @@
                                 </div>
                             </div>
                             <div class="single-tab-detail market-list-wrap" v-if="productTab === 'store'">
-                                <div class="market-list-all">
-                                    <div class="single-market" v-for="store in data.storesProducts">
-                                        <div class="logo-shop-wrap">
-                                            <img :src="store.logo" alt="" v-if="store.logo">
-                                            <img src="/img/avatars/ava.png" alt="" v-else>
-                                        </div>
-                                        <div class="shop-detail-wrap">
-                                            <h2>{{store.shop ? store.shop.name : 'магазин удален'}}</h2>
-                                            <div class="star-wrap">
-                                                <star-rating :star-size="20"></star-rating>
-                                                <a href="#">0 {{translate.reviews}}</a>
+                                <div class="compare-products" v-if="data.suggestions.length">
+                                    <div class="all-products-list">
+                                        <div class="single-product" v-for="product in data.suggestions">
+                                            <div class="img-wrap">
+                                                <a :href="'/products/'+product.slug"><img :src="product.default_picture" alt=""></a>
                                             </div>
-                                        </div>
-                                        <div class="price-wrap">
-                                            <p class="price">{{translate.price}} {{numberWithSpaces(store.price)}} грн {{store.quantity_price ? '/ '+store.quantity_price : ''}}</p>
-                                            <p class="prod-status">{{translate.in_market}}</p>
-                                        </div>
-                                        <div class="go-shop-wrap">
-                                            <button class="btn" @click="addToCart(store)">{{translate.in_cart}}</button>
+                                            <div class="detail-wrap">
+                                                <p class="product-title">
+                                                    <a :href="'/products/'+product.slug">{{product.name}}</a>
+                                                </p>
+                                                <p class="price">
+                                                    {{numberWithSpaces(product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max)}} грн.
+                                                </p>
+                                            </div>
+                                            <div class="detail-prod-wrap">
+                                                <div class="feedback-wrap">
+                                                    <div class="rating-wrap">
+                                                        <star-rating :star-size="20"></star-rating>
+                                                    </div>
+                                                    <div class="count-feedback-wrap">
+                                                        <a href="#">{{product.reviews.length}} {{translate.reviews}}</a>
+                                                    </div>
+                                                </div>
+                                                <div class="all-detail-list">
+                                                    <ul>
+                                                        <li>{{product.description.length > 100 ? product.description.slice(0, 100) + ' ...' : product.description }}</li>
+                                                    </ul>
+                                                </div>
+                                                <div class="hide-list-wrap">
+                                                    <!--<div class="all-detail-list">-->
+                                                    <!--<ul>-->
+                                                    <!--&lt;!&ndash;<li>Масса конструкционная, кг	5100</li>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<li>Масса эксплуатационная, кг	5260</li>&ndash;&gt;-->
+                                                    <!--&lt;!&ndash;<li>База , мм	2450</li>&ndash;&gt;-->
+                                                    <!--<li>{{product.description}}</li>-->
+                                                    <!--</ul>-->
+                                                    <!--</div>-->
+                                                    <div class="all-goods-btn">
+                                                        <a :href="'/products/'+product.slug" class="btn">
+                                                            {{translate.all_goods_list}}
+                                                        </a>
+                                                    </div>
+                                                    <div class="two-wrap">
+                                                        <div class="left">
+                                                            <i></i>
+                                                            <span>{{translate.spy_good}}</span>
+                                                        </div>
+                                                        <div class="right">
+                                                            <i></i>
+                                                            <span>{{translate.faworite}}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="single-tab-detail feedback-list-wrap" v-if="productTab === 'feedback'">
+
                                 <div class="feedback-head-wrap two-wrap">
                                     <div class="left">
                                         <h3>{{translate.all_reviews}} ({{reviews.length}})</h3>
@@ -231,67 +269,30 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
             </div>
-            <div class="compare-products" v-if="data.suggestions.length">
-                <h2>{{translate.compare_goods}}</h2>
-                <div class="all-products-list">
-                    <div class="single-product" v-for="product in data.suggestions">
-                        <div class="img-wrap">
-                            <a :href="'/products/'+product.slug"><img :src="product.default_picture" alt=""></a>
+            <div class="market-list-all">
+                <h2>Всі пропозиції</h2>
+                <div class="single-market" v-for="store in data.storesProducts">
+                    <div class="logo-shop-wrap">
+                        <img :src="store.logo" alt="" v-if="store.logo">
+                        <img src="/img/avatars/ava.png" alt="" v-else>
+                    </div>
+                    <div class="shop-detail-wrap">
+                        <h2>{{store.shop ? store.shop.name : 'магазин удален'}}</h2>
+                        <div class="star-wrap">
+                            <star-rating :star-size="20"></star-rating>
+                            <a href="#">0 {{translate.reviews}}</a>
                         </div>
-                        <div class="detail-wrap">
-                            <p class="product-title">
-                                <a :href="'/products/'+product.slug">{{product.name}}</a>
-                            </p>
-                            <p class="price">
-                                {{numberWithSpaces(product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max)}} грн.
-                        </p>
-                        </div>
-                        <div class="detail-prod-wrap">
-                            <div class="feedback-wrap">
-                                <div class="rating-wrap">
-                                    <star-rating :star-size="20"></star-rating>
-                                </div>
-                                <div class="count-feedback-wrap">
-                                    <a href="#">{{product.reviews.length}} {{translate.reviews}}</a>
-                                </div>
-                            </div>
-                            <div class="all-detail-list">
-                                <ul>
-                                    <li>{{product.description.length > 100 ? product.description.slice(0, 100) + ' ...' : product.description }}</li>
-                                </ul>
-                            </div>
-                            <div class="hide-list-wrap">
-                                <!--<div class="all-detail-list">-->
-                                    <!--<ul>-->
-                                        <!--&lt;!&ndash;<li>Масса конструкционная, кг	5100</li>&ndash;&gt;-->
-                                        <!--&lt;!&ndash;<li>Масса эксплуатационная, кг	5260</li>&ndash;&gt;-->
-                                        <!--&lt;!&ndash;<li>База , мм	2450</li>&ndash;&gt;-->
-                                        <!--<li>{{product.description}}</li>-->
-                                    <!--</ul>-->
-                                <!--</div>-->
-                                <div class="all-goods-btn">
-                                    <a :href="'/products/'+product.slug" class="btn">
-                                        {{translate.all_goods_list}}
-                                    </a>
-                                </div>
-                                <div class="two-wrap">
-                                    <div class="left">
-                                        <i></i>
-                                        <span>{{translate.spy_good}}</span>
-                                    </div>
-                                    <div class="right">
-                                        <i></i>
-                                        <span>{{translate.faworite}}</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
+                    </div>
+                    <div class="price-wrap">
+                        <p class="price">{{translate.price}} {{numberWithSpaces(store.price)}} грн {{store.quantity_price ? '/ '+store.quantity_price : ''}}</p>
+                        <p class="prod-status">{{translate.in_market}}</p>
+                    </div>
+                    <div class="go-shop-wrap">
+                        <button class="btn" @click="addToCart(store)">{{translate.detailed}}</button>
+                        <!--<a class="btn btnLink" :href="'/products/' + store.slug">{{translate.detailed}}</a>-->
                     </div>
                 </div>
             </div>
@@ -307,7 +308,7 @@
         data(){
             return {
                 product: this.data.product,
-                productTab: 'store',
+                productTab: 'charact',
                 checkImage: this.data.product.pictures.length && this.data.product.pictures[0].hasOwnProperty('path') ? this.data.product.pictures[0].path : '',
                 reviews: this.data.product.reviews,
                 reviewText: '',

@@ -233,6 +233,18 @@
         font-weight: 500;
         line-height: 36px;
         margin-bottom: 15px;
+        display: flex;
+        justify-content: space-between;
+        button {
+          background: #48a2ff;
+          border: 1px solid #2d92fa;
+          text-transform: uppercase;
+          color: #fff;
+          font-size: 20px;
+          font-weight: 500;
+          padding: 10px 30px;
+          border-radius: 3px;
+        }
       }
       .feedback-wrap{
         width: 100%;
@@ -419,71 +431,6 @@
               &:last-child{
                 text-align: left;
                 min-width: 120px;
-              }
-            }
-          }
-        }
-        .single-tab-detail.market-list-wrap{
-          .market-list-all{
-            width: 100%;
-            .single-market{
-              width: 100%;
-              height: 130px;
-              display: flex;
-              justify-content: space-between;
-              align-items: center;
-              border-bottom: 1px solid $light-gray;
-              .logo-shop-wrap{
-                width: 15%;
-                text-align: center;
-                img{
-                  max-width: 120px;
-                }
-              }
-              .shop-detail-wrap{
-                width: 45%;
-                padding: 0 15px;
-                h2{
-                  font-size: 20px;
-                  margin-bottom: 15px;
-                  line-height: 24px;
-                }
-                .star-wrap{
-                  display: flex;
-                  justify-content: flex-start;
-                  align-items: center;
-                  a{
-                    display: inline-block;
-                    margin-left: 15px;
-                    color: $blue-btn;
-                  }
-                }
-              }
-              .price-wrap{
-                width: 20%;
-                .price{
-                  color: $green;
-                  font-size: 20px;
-                  font-weight: 500;
-                  margin-bottom: 15px;
-                }
-              }
-              .go-shop-wrap{
-                width: 20%;
-                text-align: center;
-                .btn{
-                  background: $blue-btn;
-                  border: 1px solid $blue-btn-bd;
-                  width: 80%;
-                  text-transform: uppercase;
-                  color: $white;
-                  font-size: 20px;
-                  font-weight: 500;
-                  -webkit-border-radius: 3px;
-                  -moz-border-radius: 3px;
-                  border-radius: 3px;
-                }
-
               }
             }
           }
@@ -687,3 +634,77 @@
     margin-bottom: 15px;
   }
 }
+
+.btnLink {
+  padding: 10px 30px;
+}
+
+
+  .market-list-all{
+    width: 1315px;
+    margin: 40px auto 40px auto;
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .single-market{
+      width: 100%;
+      height: 130px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid $light-gray;
+      .logo-shop-wrap{
+        width: 15%;
+        text-align: center;
+        img{
+          max-width: 120px;
+        }
+      }
+      .shop-detail-wrap{
+        width: 45%;
+        padding: 0 15px;
+        h2{
+          font-size: 20px;
+          margin-bottom: 15px;
+          line-height: 24px;
+        }
+        .star-wrap{
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          a{
+            display: inline-block;
+            margin-left: 15px;
+            color: $blue-btn;
+          }
+        }
+      }
+      .price-wrap{
+        width: 20%;
+        .price{
+          color: $green;
+          font-size: 20px;
+          font-weight: 500;
+          margin-bottom: 15px;
+        }
+      }
+      .go-shop-wrap{
+        width: 20%;
+        text-align: center;
+        .btn{
+          background: $blue-btn;
+          border: 1px solid $blue-btn-bd;
+          width: 80%;
+          text-transform: uppercase;
+          color: $white;
+          font-size: 20px;
+          font-weight: 500;
+          -webkit-border-radius: 3px;
+          -moz-border-radius: 3px;
+          border-radius: 3px;
+        }
+
+      }
+    }
+  }

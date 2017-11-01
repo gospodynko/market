@@ -13,6 +13,7 @@
                         </p>
                         <p class="price">
                             {{numberWithSpaces(product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max)}} грн.
+                            <!--{{numberWithSpaces(product.price)}} грн.-->
                         </p>
                     </div>
                     <div class="detail-prod-wrap">
