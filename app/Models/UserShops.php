@@ -13,7 +13,6 @@ class UserShops extends Model
         'status'
     ];
     public $timestamps = false;
-    protected $with = ['companyUsers'];
 
     public function company()
     {

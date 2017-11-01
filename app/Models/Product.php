@@ -2,53 +2,70 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\DeliveryType;
 use Antvel\Product\Models\Concerns\Pictures;
-use App\Models\UserProduct;
-use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
 {
 
     use Pictures;
-    protected $fillable = [
-        'moderation',
-        'category_id',
-        'created_by',
-        'updated_by',
-        'name',
-        'description',
-        'price',
-        'cost',
-        'stock',
-        'features',
-        'barcode',
-        'condition',
-        'rate_val',
-        'tags',
-        'brand',
-        'rate_count',
-        'low_stock',
-        'status',
-        'parent_id',
-        'producer_id',
-        'slug'
-    ];
+
+    protected $with = ['user_shop', 'pay_types', 'delivery_types', 'reviews', 'pictures'];
+    protected $fillable = ['product_id', 'category_id', 'price', 'currency_id', 'delivery_id', 'pay_id', 'created_by', 'updated_by', 'user_shop_id', 'sale_counts', 'view_counts', 'status', 'created_at', 'producer_id', 'quantity_price',];
     protected $appends = ['default_picture'];
-    protected $with = ['user_products', 'pictures', 'reviews'];
 
-    public function category()
+    public function user_shop()
     {
-        return $this->belongsTo(Category::class);
+        return $this->hasOne(UserShops::class, 'id', 'user_shop_id');
     }
 
-    public function producer()
+    public function parent_product()
     {
-        return $this->belongsTo(Producer::class);
+        return $this->hasOne(self::class);
     }
 
-    public function user_products()
+    public function getIsRootAttribute() {
+        return $this->parent_product_id === null;
+    }
+    
+    public function getOtherProductsAttribute()
     {
-        return $this->hasMany(UserProduct::class, 'product_id', 'id');
+        return $this->is_root 
+            ? self::where('parent_product_id', $this->id)->get() 
+            : self::where('parent_product_id', $this->parent_product_id)->orWhere('id', $this->parent_product_id)->get()->where('id', '!=', $this->id);
+    }
+
+    public function delivery_types()
+    {
+        return $this->belongsToMany(DeliveryType::class);
+    }
+
+    public function pay_types()
+    {
+        return $this->belongsToMany(PayType::class);
+    }
+
+    public function currency()
+    {
+        return $this->hasOne(Currency::class, 'id', 'currency_id');
+    }
+
+    public function getPrice()
+    {
+        $price = \App\Helpers\CurrencyRates::convertToUAH($this->price, $this->currency_id);
+        return number_format($price, 2, '.', '');
+    }
+
+    public function getCompanyName()
+    {
+        $userId = $this->created_by;
+        $res = \DB::select(\DB::raw("SELECT ac.id, ac.companyRole, ac.compName FROM agroyard_companies AS ac, agroyard_company_users AS acu 
+                                  WHERE ac.id = acu.company_id AND acu.user_id={$userId} "));
+        foreach ($res AS $item) {
+            if (strpos($item->companyRole, '2')) {
+                return $item->compName;
+            }
+        }
     }
 
     public function user()
@@ -61,5 +78,8 @@ class Product extends Model
         return $this->hasMany(ProductReviews::class, 'product_id', 'id')->orderBy('created_at', 'DESC');
     }
 
-
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

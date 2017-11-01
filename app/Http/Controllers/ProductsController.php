@@ -289,6 +289,7 @@ class ProductsController extends Controller
         }
 
         $product = Product::with('category.parent')->where('slug', $slug)->first();
+
         if ($product) {
 
             //retrieving products features
@@ -310,15 +311,9 @@ class ProductsController extends Controller
                 ->take(5)
                 ->get();
 
-            $suggestions = Product::where('category_id', $product->category_id)
-                                    ->where('id', '!=', $product->id)
-                                    ->whereHas('user_products.shop', function ($q){
-                                        $q->where('status', 1);
-                                    })
-                                    ->limit(4)
-                                    ->get();
+            $otherProducts = $product->other_products;
 
-            $storesProducts = UserProduct::where('product_id', '=', $product->id)
+            $storesProducts = Product::where('parent_product_id', $product->id)
                 ->where('status', '=', 1)
                 ->get();
             return view('prod-list', ['data' => compact('product', 'allWishes', 'reviews', 'freeproductId', 'features', 'suggestions', 'storesProducts')]);
