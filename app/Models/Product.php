@@ -12,7 +12,7 @@ class Product extends Model
 
     protected $with = ['user_shop', 'pay_types', 'delivery_types', 'reviews', 'pictures'];
     protected $fillable = ['product_id', 'category_id', 'price', 'currency_id', 'delivery_id', 'pay_id', 'created_by', 'updated_by', 'user_shop_id', 'sale_counts', 'view_counts', 'status', 'created_at', 'producer_id', 'quantity_price',];
-    protected $appends = ['default_picture'];
+    protected $appends = ['default_picture', 'rate'];
 
     public function user_shop()
     {
@@ -24,15 +24,14 @@ class Product extends Model
         return $this->hasOne(self::class);
     }
 
-    public function getIsRootAttribute() {
+    public function getIsRootAttribute()
+    {
         return $this->parent_product_id === null;
     }
-    
+
     public function getOtherProductsAttribute()
     {
-        return $this->is_root 
-            ? self::where('parent_product_id', $this->id)->get() 
-            : self::where('parent_product_id', $this->parent_product_id)->orWhere('id', $this->parent_product_id)->get()->where('id', '!=', $this->id);
+        return $this->is_root ? self::where('parent_product_id', $this->id)->get() : self::where('parent_product_id', $this->parent_product_id)->orWhere('id', $this->parent_product_id)->get()->where('id', '!=', $this->id);
     }
 
     public function delivery_types()
@@ -82,4 +81,77 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function getRateAttribute()
+    {
+        return (int) $this->reviews()->avg('rate');
+    }
+
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = $value;
+        $this->slug = $this->id . '-' . str_slug($value);
+    }
+
+    public static function scopeBySlugs($query, $market, $product)
+    {
+        return $query->where('slug', $product)->whereHas('user_shop', function ($query) use ($market) {
+                $query->where('slug', $market);
+            });
+    }
+
+    public static function validateFilters($input)
+    {
+        $rules = array(
+            'id' => 'array',
+            'id.*' => 'numeric',
+            'title' => 'string',
+            'classified_type' => 'array',
+            'classified_type.*' => 'in:buy,sell',
+            'user_id' => 'array',
+            'user_id.*' => 'numeric',
+            'city_id' => 'array',
+            'city_id.*' => 'numeric',
+            'area_id' => 'array',
+            'area_id.*' => 'numeric',
+            'region_id>' => 'array',
+            'region_id.*' => 'numeric',
+            'sub_category_id' => 'array',
+            'sub_category_id.*' => 'numeric',
+            'category_id' => 'array',
+            'category_id.*' => 'numeric',
+            'main_category_id' => 'array',
+            'main_category_id.*' => 'numeric',
+            'is_top' => 'array',
+            'is_top.*' => 'boolean',
+            'is_favorite' => 'boolean',
+            'status' => 'array',
+            'status.*' => 'in:active,inactive,moderation,not_moderated',
+            'form_payment_id' => 'array',
+            'form_payment_id.*' => 'in:1,2',
+            'payment_method_id' => 'array',
+            'payment_method_id.*' => 'numeric',
+            'supplys_id' => 'array',
+            'supplys_id.*' => 'numeric',
+            'created_at_from' => 'date',
+            'created_at_to' => 'date',
+        );
+
+        $validation = Validator::make($input, $rules);
+
+        if ($validation->fails()) {
+            return response()->json(['message' => 'validation error', 'error' => $validation->getMessageBag()->toArray()], 422);
+        }
+
+        if (array_key_exists('is_favorite', $input) && auth()->guest()) {
+            return response()->json(['message' => __('messages.guest_cannot_use_filter', ['filter' => 'is_favorite'])], 403);
+        }
+
+        return response()->json(['message' => 'success'], 200);
+    }
+
+//    public static function scopeApplyFilters($query, $filters)
+//    {
+//        if ()
+//    }
 }

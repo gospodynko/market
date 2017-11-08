@@ -192,4 +192,10 @@ class UserShopController extends Controller
 
         $mainProduct->save();
     }
+    
+    public function getShopPage(UserShops $shop) {
+        dd($shop->products()->groupBy('category_id')->selectRaw('count(id)')->toSql());
+    $shop->load('products');
+        dd($shop->toArray());
+    }
 }
