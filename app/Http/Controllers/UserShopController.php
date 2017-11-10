@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Models\Category;
@@ -38,10 +37,10 @@ class UserShopController extends Controller
     public function getShops()
     {
 //        dd(DB::table('agroyard_company_users')->where('user_id', Auth::id())->get());
-        $companies_id = CompanyUsers::whereHas('company', function($q){
-            $q->where('companyRole', 'like', '%2%');
-            $q->whereIn('status_id', [2,3,6]);
-        })->where(['user_id' => Auth::id()])->get()->pluck('company_id')->toArray();
+        $companies_id = CompanyUsers::whereHas('company', function($q) {
+                $q->where('companyRole', 'like', '%2%');
+                $q->whereIn('status_id', [2, 3, 6]);
+            })->where(['user_id' => Auth::id()])->get()->pluck('company_id')->toArray();
         return view('user_shop.shops.index', ['shops' => UserShops::whereIn('company_id', $companies_id)->get()]);
     }
 
@@ -89,7 +88,6 @@ class UserShopController extends Controller
         }
         if ($producer_id && $product_id && $shop_id) {
             return self::createUserProduct($product_id, $category['id'], $producer_id, $price, $shop_id, $currency, array_column($pay_types, 'id'), array_column($delivery_types, 'id'), $quantity_price);
-
         }
     }
 
@@ -162,7 +160,6 @@ class UserShopController extends Controller
             'delivery_id' => '111',
             'pay_id' => '111',
             'quantity_price' => $quantity_price
-
         ];
 
 
@@ -192,10 +189,23 @@ class UserShopController extends Controller
 
         $mainProduct->save();
     }
-    
-    public function getShopPage(UserShops $shop) {
-        dd($shop->products()->groupBy('category_id')->selectRaw('count(id)')->toSql());
-    $shop->load('products');
-        dd($shop->toArray());
+
+    public function getShopPage(UserShops $shop)
+    {
+        $categories = Category
+            ::with(['children' => function ($query) {
+                $query
+                ->selectRaw('count(products.id) as `products_count`')
+                ->addSelect('categories.id', 'categories.name')
+                ->join('products', 'products.category_id', 'categories.id')
+                ->groupBy('products.category_id', 'categories.id', 'categories.name');
+            }
+        ])->get();
+        dd($categories->toArray());
+//    $shop->load('products.category', function ($query) {
+//    $query->whereHas('products')->groupBy('category_id');
+//
+//    });
+        dd($shop->toSql());
     }
 }
