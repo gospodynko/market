@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Antvel\Categories\Models\Category as AntvelCategory;
@@ -22,12 +21,12 @@ class Category extends AntvelCategory
 
     public function children()
     {
-        return $this->hasMany(self::class, 'category_id', 'id');
+        return $this->hasMany(self::class, 'parent_category_id', 'id');
     }
 
-    public function parent()
+    public function parent_category()
     {
-        return $this->hasOne(self::class, 'id', 'category_id');
+        return $this->hasOne(self::class, 'id', 'parent_category_id');
     }
 
     public function producers()
@@ -35,4 +34,8 @@ class Category extends AntvelCategory
         return $this->belongsToMany(Producer::class);
     }
 
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
 }
