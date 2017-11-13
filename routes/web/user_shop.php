@@ -1,5 +1,5 @@
 <?php
-Route::group(['prefix' => 'user-shop', 'roles' => ['seller', 'admin'], 'middleware' => ['auth', 'roles']], function () {
+Route::group(['prefix' => 'shop', 'roles' => ['seller', 'admin']], function () {
     Route::get('/{shop}', ['uses' => 'UserShopController@getShopPage', 'as' => 'user_shop.show']);
 
     Route::group(['prefix' => 'shop'], function () {
