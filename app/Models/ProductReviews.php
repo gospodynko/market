@@ -26,6 +26,6 @@ class ProductReviews extends Model
 
     public function answers()
     {
-        return $this->hasMany(self::class, 'id', 'parent_review_id');
+        return $this->hasMany(self::class, 'parent_review_id', 'id');
     }
 }

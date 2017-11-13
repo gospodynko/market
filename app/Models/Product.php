@@ -74,7 +74,7 @@ class Product extends Model
 
     public function reviews()
     {
-        return $this->hasMany(ProductReviews::class, 'product_id', 'id')->orderBy('created_at', 'DESC');
+        return $this->hasMany(ProductReviews::class, 'product_id', 'id')->where('parent_review_id', null)->orderBy('created_at', 'DESC');
     }
 
     public function category()
