@@ -9,7 +9,7 @@ class Category extends AntvelCategory
 
     protected $with = ['children', 'producers'];
     protected $fillable = [
-        'category_id',
+        'parent_category_id',
         'name',
         'description',
         'icon',

@@ -290,7 +290,7 @@ class ProductsController extends Controller
                 ->get();
         }
 
-        $product->load('category.parent', 'user_shop.company');
+        $product->load('category.parent_category', 'user_shop.company');
 
         if ($product) {
 
