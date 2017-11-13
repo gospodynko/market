@@ -12,7 +12,6 @@ use App\Models\UserProduct;
 use App\Models\UserShops;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class UserShopController extends Controller
@@ -190,22 +189,33 @@ class UserShopController extends Controller
         $mainProduct->save();
     }
 
+    public function loadProducts()
+    {
+        $filters = $request->input();
+
+        $validation = Product::validateFilters($filters);
+        if (!$validation->isSuccessful()) {
+            return $validation;
+        }
+
+        $products = Product::applyFilters($filters)->paginate(6);
+        return $products;
+    }
+
     public function getShopPage(UserShops $shop)
     {
         $categories = Category
-            ::with(['children' => function ($query) {
-                $query
-                ->selectRaw('count(products.id) as `products_count`')
-                ->addSelect('categories.id', 'categories.name')
-                ->join('products', 'products.category_id', 'categories.id')
-                ->groupBy('products.category_id', 'categories.id', 'categories.name');
-            }
-        ])->get();
-        dd($categories->toArray());
-//    $shop->load('products.category', function ($query) {
-//    $query->whereHas('products')->groupBy('category_id');
-//
-//    });
-        dd($shop->toSql());
+            ::selectRaw('count(`categories`.`id`) as `products_count`')
+            ->addSelect('categories.id')
+            ->addSelect('categories.name')
+            ->addSelect('parent_category.name as parent_name')
+            ->join('products', 'products.category_id', 'categories.id')
+            ->join('categories as parent_category', 'parent_category.id', 'categories.parent_category_id')
+            ->groupBy(['id', 'name', 'parent_category.name'])
+            ->get()
+            ->makeHidden('parent_name')
+            ->groupBy('parent_name');
+
+        return view('user_shops.shop.show', compact('shop', 'categories'));
     }
 }

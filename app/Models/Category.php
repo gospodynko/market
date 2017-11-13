@@ -7,7 +7,7 @@ use App\Events\CategoryEvent;
 class Category extends AntvelCategory
 {
 
-    protected $with = ['children', 'producers'];
+    protected $with = ['children'];
     protected $fillable = [
         'parent_category_id',
         'name',
