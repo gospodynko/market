@@ -58,7 +58,7 @@ class Product extends Model
     public function getCompanyName()
     {
         $userId = $this->created_by;
-        $res = \DB::select(\DB::raw("SELECT ac.id, ac.companyRole, ac.compName FROM agroyard_companies AS ac, agroyard_company_users AS acu 
+        $res = \DB::select(\DB::raw("SELECT ac.id, ac.companyRole, ac.compName FROM agroyard_companies AS ac, agroyard_company_users AS acu
                                   WHERE ac.id = acu.company_id AND acu.user_id={$userId} "));
         foreach ($res AS $item) {
             if (strpos($item->companyRole, '2')) {
@@ -103,38 +103,10 @@ class Product extends Model
     public static function validateFilters($input)
     {
         $rules = array(
-            'id' => 'array',
-            'id.*' => 'numeric',
-            'title' => 'string',
-            'classified_type' => 'array',
-            'classified_type.*' => 'in:buy,sell',
-            'user_id' => 'array',
-            'user_id.*' => 'numeric',
-            'city_id' => 'array',
-            'city_id.*' => 'numeric',
-            'area_id' => 'array',
-            'area_id.*' => 'numeric',
-            'region_id>' => 'array',
-            'region_id.*' => 'numeric',
-            'sub_category_id' => 'array',
-            'sub_category_id.*' => 'numeric',
             'category_id' => 'array',
             'category_id.*' => 'numeric',
-            'main_category_id' => 'array',
-            'main_category_id.*' => 'numeric',
-            'is_top' => 'array',
-            'is_top.*' => 'boolean',
-            'is_favorite' => 'boolean',
-            'status' => 'array',
-            'status.*' => 'in:active,inactive,moderation,not_moderated',
-            'form_payment_id' => 'array',
-            'form_payment_id.*' => 'in:1,2',
-            'payment_method_id' => 'array',
-            'payment_method_id.*' => 'numeric',
-            'supplys_id' => 'array',
-            'supplys_id.*' => 'numeric',
-            'created_at_from' => 'date',
-            'created_at_to' => 'date',
+            'order_by' => 'in:price,created_at',
+            'order_by_type' => 'required_with:order_by|in:asc,desc',
         );
 
         $validation = Validator::make($input, $rules);
@@ -143,15 +115,21 @@ class Product extends Model
             return response()->json(['message' => 'validation error', 'error' => $validation->getMessageBag()->toArray()], 422);
         }
 
-        if (array_key_exists('is_favorite', $input) && auth()->guest()) {
-            return response()->json(['message' => __('messages.guest_cannot_use_filter', ['filter' => 'is_favorite'])], 403);
-        }
-
         return response()->json(['message' => 'success'], 200);
     }
 
-//    public static function scopeApplyFilters($query, $filters)
-//    {
-//        if ()
-//    }
+    public static function scopeApplyFilters($query, $filters)
+    {
+        if (array_key_exists('category_id', $filters)) {
+            $query->whereIn('category_id', $filters['category_id']);
+        }
+
+        if (array_key_exists('order_by', $filters)) {
+            $query->orderBy($filters['order_by'], $filters['order_by_type']);
+        } else {
+            $query->orderBy('created_at', 'desc');
+        }
+
+        return $query;
+    }
 }
