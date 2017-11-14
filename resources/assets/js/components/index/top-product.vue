@@ -5,15 +5,15 @@
             <div class="all-products-list">
                 <div class="single-product" v-for="product in allProducts.data">
                     <div class="img-wrap">
-                        <a :href="'/products/'+product.slug"><img :src="product.default_picture" alt=""></a>
+                        <a :href="'/shop/' + product.user_shop.slug + '/' + product.slug"><img :src="product.default_picture" alt=""></a>
                     </div>
                     <div class="detail-wrap">
                         <p class="product-title">
-                            <a :href="'/products/'+product.slug">{{product.name}}</a>
+                            <a :href="'/shop/' + product.user_shop.slug + '/' + product.slug">{{product.name}}</a>
                         </p>
                         <p class="price">
-                            {{numberWithSpaces(product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max)}} грн.
-                            <!--{{numberWithSpaces(product.price)}} грн.-->
+                            <!--{{product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max}} грн.-->
+                            {{numberWithSpaces(product.price)}} грн.
                         </p>
                     </div>
                     <div class="detail-prod-wrap">
