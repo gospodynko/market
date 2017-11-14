@@ -1,5 +1,22 @@
 <template>
     <section class="single-prod-sect">
+        <div class="sps-adres" v-if="showAdres">
+            <div class="sps-adres-header">
+                <span class="circle-close" @click.prevent="callShowAdres">x</span>
+                {{product.user_shop.company.address}}
+            </div>
+        </div>
+
+        <div class="sps-contacts" v-if="showPhone">
+            <div class="sps-contacts-header">
+                <span class="circle-close" @click.prevent="callShowPhone">x</span>
+                Контакты
+            </div>
+            <ul>
+                <li v-for="tel in product.user_shop.phones">{{tel}}</li>
+            </ul>
+        </div>
+        <div class="overlay-contacts" v-if="showPhone || showAdres" @click.prevent="closeAll"></div>
         <div class="overlay" style="z-index: 6" :class="{'show': showAuthorized}" @click="closeAuth"></div>
         <div class="unauthorized-user-popup" v-if="showAuthorized">
             <div class="head">
@@ -21,9 +38,11 @@
                 <div class="detail-product-wrap">
                     <div class="shop-gallery">
                         <div class="small-photos">
-                            <div class="single-small-photo" v-for="(smallImage, index) in product.pictures" @click="checkImages(smallImage)" :class="{'active': checkImage == smallImage.path}" v-if="index <= 3">
+                            <span v-if="product.pictures.length > 3" class="small-photos-btn small-photos-btn-prev" @click.prevent="scrollPrev"></span>
+                            <div class="single-small-photo" v-for="(smallImage, index) in product.pictures.slice(galleryStart, galleryEnd)" @click="checkImages(smallImage)" :class="{'active': checkImage == smallImage.path}" v-if="index <= 3">
                                 <img :src="smallImage.path" alt="">
                             </div>
+                            <span v-if="product.pictures.length > 3" class="small-photos-btn small-photos-btn-next" @click.prevent="scrollNext"></span>
                             <!--<p class="show-all">еще 6</p>-->
                         </div>
                         <div class="full-photo">
@@ -32,11 +51,11 @@
                         <div class="product-options" v-if="false">
                             <div class="find-good">
                                 <i></i>
-                                <p class="find-good-action"> Отслеживать товар</p>
+                                <p class="find-good-action">Відстежити товар</p>
                             </div>
                             <div class="faworite">
                                 <i></i>
-                                <p class="faworite-action">В избранное</p>
+                                <p class="faworite-action">В обране</p>
                             </div>
                             <div class="compare">
                                 <i></i>
@@ -46,24 +65,17 @@
                     </div>
                     <div class="detail-description">
                         <h1>{{product.name}}
-                            <button  class="btn" @click="addToCart(store)">{{translate.in_cart}}</button>
                         </h1>
                         <div class="feedback-wrap two-wrap">
                             <div class="left">
-                                <star-rating :star-size="20"></star-rating>
+                                <star-rating :star-size="20" :increment="0.01" :rating=product.rate :read-only="true" :show-rating="false"></star-rating>
                                 <a href="#" class="feedback-link" @click="showReviews">{{translate.reviews}} {{product.reviews.length}}</a>
-                            </div>
-                            <div class="right">
-                                <p>id {{product.id}}</p>
                             </div>
                         </div>
                         <div class="price-wrap two-wrap">
                             <div class="left">
-                                <p class="price">
-                                    {{translate.prices}}: {{numberWithSpaces(product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max)}} грн
-                                </p>
                                 <p class="in-sale">
-                                    {{translate.all_goods}}: {{data.storesProducts.length}} шт
+                                    {{translate.all_goods}}: {{data.otherProducts.length}} шт
                                 </p>
                             </div>
                             <div class="right">
@@ -81,6 +93,54 @@
                             </a>
                         </div>
                     </div>
+
+                    <div class="detail-info">
+                        <div class="di-header">
+                            <span class="di-header-id">id {{product.id}}</span>
+                            <span class="di-header-view">{{product.view_counts}}</span>
+                        </div>
+                        <div class="di-price">
+                            {{numberWithSpaces(product.price)}} грн
+                        </div>
+                        <button  class="di-buy" @click="addToCart(store)">{{translate.in_cart}}</button>
+                        <div class="di-info">
+                            <div class="di-info-img">
+                                <img :src=product.user_shop.logo :alt=product.user_shop.name>
+                            </div>
+                            <h3>{{product.user_shop.name}}</h3>
+                            <div class="di-info-adres" @click.prevent="callShowAdres">
+                                Адрес
+                            </div>
+                            <div class="di-info-phone" @click.prevent="callShowPhone">
+                                Номер телефону
+                            </div>
+                            <div class="di-info-rate">
+                                рейтинг:
+                                <star-rating :star-size="20" :increment="0.01" :rating=product.user_shop.rate :read-only="true"></star-rating>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="datail-service">
+                        <div class="ds-pay">
+                            <h3>Способы оплаты</h3>
+                            <ul>
+                                <li v-for="pay in product.pay_types">
+                                    <img :src=pay.logo :alt=pay.name :title="pay.name">
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="del-pay">
+                            <h3>Доставка</h3>
+                        <ul>
+                            <li v-for="del in product.delivery_types">
+                                <img :src=del.logo :alt=del.name :title="del.name">
+                            </li>
+                        </ul>
+                        </div>
+                    </div>
+
                     <div class="detail-post-info">
                         <div class="type-payment-wrap" v-if="false">
                             <div class="post-info">
@@ -125,7 +185,7 @@
                                 </p>
                             </div>
                             <div class="single-tab" @click="productTab = 'store'" :class="{'active': productTab === 'store'}">
-                                <p>{{translate.all_goods_list}}</p>
+                                <p>{{translate.compare_goods}}</p>
                             </div>
                         </div>
                         <div class="all-tabs-detail">
@@ -143,20 +203,23 @@
                                     <div class="all-products-list">
                                         <div class="single-product" v-for="product in data.suggestions">
                                             <div class="img-wrap">
-                                                <a :href="'/products/'+product.slug"><img :src="product.default_picture" alt=""></a>
+                                                <a :href="'/shop/' + product.user_shop.slug + '/' + product.slug">
+                                                    <img :src="'../../' + product.default_picture" alt="">
+                                                </a>
                                             </div>
                                             <div class="detail-wrap">
                                                 <p class="product-title">
-                                                    <a :href="'/products/'+product.slug">{{product.name}}</a>
+                                                    <a :href="'/shop/' + product.user_shop.slug + '/' + product.slug">{{product.name}}</a>
                                                 </p>
                                                 <p class="price">
-                                                    {{numberWithSpaces(product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max)}} грн.
+                                                    <!--{{numberWithSpaces(product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max)}} грн.-->
+                                                    {{numberWithSpaces(product.price)}} грн.
                                                 </p>
                                             </div>
                                             <div class="detail-prod-wrap">
                                                 <div class="feedback-wrap">
                                                     <div class="rating-wrap">
-                                                        <star-rating :star-size="20"></star-rating>
+                                                        <star-rating :star-size="20" :increment="0.01" :rating=product.rate :read-only="true" :show-rating="false"></star-rating>
                                                     </div>
                                                     <div class="count-feedback-wrap">
                                                         <a href="#">{{product.reviews.length}} {{translate.reviews}}</a>
@@ -177,8 +240,8 @@
                                                     <!--</ul>-->
                                                     <!--</div>-->
                                                     <div class="all-goods-btn">
-                                                        <a :href="'/products/'+product.slug" class="btn">
-                                                            {{translate.all_goods_list}}
+                                                        <a :href="'/shop/' + product.user_shop.slug + '/' + product.slug" class="btn">
+                                                            {{translate.more}}
                                                         </a>
                                                     </div>
                                                     <div class="two-wrap">
@@ -216,7 +279,7 @@
                                         </div>
                                     </div>
                                     <div class="right">
-                                        <button class="btn" @click="showReviews">{{translate.create_review}}</button>
+                                        <!--<button class="btn" @click="showReviews">{{translate.create_review}}</button>-->
                                     </div>
                                 </div>
                                 <div class="new-review" v-if="showReview">
@@ -227,12 +290,14 @@
                                     <div class="single-answer" v-for="review in reviews">
                                         <div class="comment-head">
                                             <div class="logo-user">
-                                                <img src="/img/avatars/ava.png" alt="">
+                                                <img :src=review.user.profile_photo alt="">
+                                                <!--<img src="/img/avatars/ava.png" alt="">-->
                                             </div>
-                                            <div class="star-rating-wrap">
+                                            <div v-if="review.user" class="star-rating-wrap">
                                                 <p class="user-name">{{review.user.first_name + ' ' + review.user.last_name}}</p>
                                                 <div class="rating-wrap">
-                                                    <!--<span class="rating">Рейтинг </span><star-rating :star-size="20"></star-rating>-->
+                                                    <span class="rating">Рейтинг </span>
+                                                    <star-rating :star-size="20" :increment="0.01" :rating=review.rate :read-only="true" :show-rating="false"></star-rating>
                                                 </div>
                                             </div>
                                         </div>
@@ -241,30 +306,28 @@
                                                 {{review.text}}
                                             </p>
                                             <div class="action-wrap">
-                                                <p class="date">{{moment(review.created_at).format('LLL')}}</p>
-                                                <span class="action-link">{{translate.answer}}</span>
+                                                <p class="date">{{moment(review.updated_at).format('LLL')}}</p>
+                                                <!--<span class="action-link">{{translate.answer}}</span>-->
                                             </div>
                                         </div>
-                                        <!--<div class="comment-answer">-->
-                                            <!--<div class="comment-head">-->
-                                                <!--<div class="logo-user">-->
-                                                    <!--<img src="/img/avatars/ava.png" alt="">-->
-                                                <!--</div>-->
-                                                <!--<div class="star-rating-wrap">-->
-                                                    <!--<p class="user-name">Артур Пирожков (Менеджер "Рога и Копыта" отвечает)</p>-->
-                                                <!--</div>-->
-                                            <!--</div>-->
-                                            <!--<div class="comment-wrap">-->
-                                                <!--<p class="comment">Lorem ipsum dolor sit amet, consectetur adipisicing elit.-->
-                                             <!--Aspernatur autem, eligendi excepturi facere minima nemo nihil-->
-                                              <!--odio perferendis temporibus.-->
-                                             <!--Assumenda aut qui ullam veritatis. Dignissimos earum ipsum maxime-->
-                                              <!--sunt veritatis.</p>-->
-                                                <!--<div class="action-wrap">-->
-                                                    <!--<p class="date">21 августа 2017г</p>-->
-                                                <!--</div>-->
-                                            <!--</div>-->
-                                        <!--</div>-->
+
+                                        <div class="comment-answer" v-for="answer in review.answers">
+                                            <div class="comment-head">
+                                                <div class="logo-user">
+                                                    <img :src=answer.user.profile_photo alt="">
+                                                </div>
+                                                <div class="star-rating-wrap">
+                                                    <p class="user-name">{{answer.user.first_name + ' ' + answer.user.last_name}}</p>
+                                                </div>
+                                            </div>
+                                            <div class="comment-wrap">
+                                                <p class="comment">{{answer.text}}</p>
+                                                <div class="action-wrap">
+                                                    <p class="date">{{moment(answer.updated_at).format('LLL')}}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -274,25 +337,32 @@
             </div>
             <div class="market-list-all">
                 <h2>Всі пропозиції</h2>
-                <div class="single-market" v-for="store in data.storesProducts">
+                <div class="single-market" v-for="store in data.otherProducts">
                     <div class="logo-shop-wrap">
-                        <img :src="store.logo" alt="" v-if="store.logo">
-                        <img src="/img/avatars/ava.png" alt="" v-else>
+                        <a :href="'/shop/' + store.user_shop.slug + '/' + store.slug">
+                            <img :src="'../../' + store.default_picture" alt="">
+                        </a>
+                        <!--<img src="/img/avatars/ava.png" alt="" v-else>-->
                     </div>
                     <div class="shop-detail-wrap">
-                        <h2>{{store.shop ? store.shop.name : 'магазин удален'}}</h2>
+                        <!--<h2>{{store.shop ? store.shop.name : 'магазин удален'}}</h2>-->
+                        <a :href="'/shop/' + store.user_shop.slug + '/' + store.slug">
+                            <h2>{{store.name}}</h2>
+                        </a>
                         <div class="star-wrap">
-                            <star-rating :star-size="20"></star-rating>
-                            <a href="#">0 {{translate.reviews}}</a>
+                            <star-rating :star-size="20" :increment="0.01" :rating=store.rate :read-only="true" :show-rating="false"></star-rating>
+                            <a href="#">{{store.reviews.length}} {{translate.reviews}}</a>
                         </div>
                     </div>
                     <div class="price-wrap">
-                        <p class="price">{{translate.price}} {{numberWithSpaces(store.price)}} грн {{store.quantity_price ? '/ '+store.quantity_price : ''}}</p>
-                        <p class="prod-status">{{translate.in_market}}</p>
+                        <p class="price">{{translate.price}}
+                            <!--{{numberWithSpaces(store.price)}} грн {{store.quantity_price ? '/ '+store.quantity_price : ''}}</p>-->
+                            {{numberWithSpaces(store.price)}} грн</p>
+                        <!--<p class="prod-status">{{translate.in_market}}</p>-->
                     </div>
                     <div class="go-shop-wrap">
-                        <button class="btn" @click="addToCart(store)">{{translate.detailed}}</button>
-                        <!--<a class="btn btnLink" :href="'/products/' + store.slug">{{translate.detailed}}</a>-->
+                        <!--<button class="btn" @click="addToCart(store)">{{translate.detailed}}</button>-->
+                        <a class="btn btnLink" :href="'/shop/' + store.user_shop.slug + '/' + store.slug">{{translate.detailed}}</a>
                     </div>
                 </div>
             </div>
@@ -307,6 +377,8 @@
     export default {
         data(){
             return {
+                showPhone: false,
+                showAdres: false,
                 product: this.data.product,
                 productTab: 'charact',
                 checkImage: this.data.product.pictures.length && this.data.product.pictures[0].hasOwnProperty('path') ? this.data.product.pictures[0].path : '',
@@ -315,7 +387,9 @@
                 showReview: false,
                 features: JSON.parse(this.data.product.features),
                 showAuthorized: false,
-                textLength: 400
+                textLength: 400,
+                galleryStart: 0,
+                galleryEnd: 3
             }
         },
         props: ['data', 'user', 'translate', 'breadcrumbs'],
@@ -326,6 +400,34 @@
             this.product.description = this.product.description.replace(/(?:\r\n|\r|\n)/g, '<br>');
         },
         methods: {
+            callShowPhone () {
+              this.showPhone = !this.showPhone
+            },
+            callShowAdres () {
+                this.showAdres = !this.showAdres
+            },
+            closeAll () {
+                this.showAdres = false
+                this.showPhone = false
+            },
+            scrollPrev () {
+                if (this.galleryEnd === 3) {
+                    this.galleryStart =  this.product.pictures.length - 3
+                    this.galleryEnd =  this.product.pictures.length
+                } else {
+                    this.galleryStart =  this.galleryStart - 1
+                    this.galleryEnd =  this.galleryEnd - 1
+                }
+            },
+            scrollNext () {
+                if (this.galleryEnd === this.product.pictures.length) {
+                    this.galleryStart =  0
+                    this.galleryEnd =  3
+                } else {
+                    this.galleryStart =  this.galleryStart + 1
+                    this.galleryEnd =  this.galleryEnd + 1
+                }
+            },
             numberWithSpaces(x) {
                 return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
             },
