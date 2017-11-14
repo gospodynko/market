@@ -23,9 +23,6 @@ class SearchController extends Controller
                                 $query->where('name', 'like', $q);
                                 $query->orWhere('description', 'like', $q);
                             })
-                            ->whereHas('user_products.shop', function ($q){
-                                $q->where('status', 1);
-                            })
                             ->orderby($sort['type'], $sort['sort'])
                             ->paginate($page_count);
 
