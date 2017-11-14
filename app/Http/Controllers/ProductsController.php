@@ -291,6 +291,7 @@ class ProductsController extends Controller
         }
 
         $product->load('category.parent_category', 'user_shop.company');
+        $product->user_shop->phones = $product->user_shop->company->users()->pluck('phone');
 
         if ($product) {
 
