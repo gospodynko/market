@@ -2412,12 +2412,17 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
 }
 
 .sps-adres .sps-adres-header {
-  padding: 15px 15px 15px 40px;
+  padding: 15px 40px 15px 40px;
   text-align: left;
   font-weight: bold;
   position: relative;
   color: #42b9fd;
   text-transform: uppercase;
+}
+
+.sps-adres .sps-adres-header img {
+  max-width: 100%;
+  margin-top: 40px;
 }
 
 .sps-adres .sps-adres-header .circle-close {
@@ -2434,9 +2439,8 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
   align-items: center;
   font-weight: bold;
   position: absolute;
-  right: 20px;
-  top: 0;
-  bottom: 0;
+  right: 10px;
+  top: 10px;
   margin: auto;
   cursor: pointer;
 }
