@@ -13,17 +13,16 @@ class SearchController extends Controller
         $q = '%' . $request->input('q') . '%';
         $sort = $request->input('sort');
         if($sort == 'max'){
-            $sort = ['type' => 'price_min', 'sort' => 'DESC'];
+            $sort = ['type' => 'price', 'sort' => 'DESC'];
         } else if($sort == 'min'){
-            $sort = ['type' => 'price_min', 'sort' => 'ASC'];
+            $sort = ['type' => 'price', 'sort' => 'ASC'];
         } else {
-            $sort = ['type' => 'rate_val', 'sort' => 'DESC'];
+            $sort = ['type' => 'rate', 'sort' => 'DESC'];
         }
         $products = Product::where(function ($query) use ($q){
                                 $query->where('name', 'like', $q);
                                 $query->orWhere('description', 'like', $q);
                             })
-                            ->orderby($sort['type'], $sort['sort'])
                             ->paginate($page_count);
 
         return view('search',['data' => ['products' => $products, 'q' => $request->input('q'), 'sort' => $request->input('sort')?:'min']]);

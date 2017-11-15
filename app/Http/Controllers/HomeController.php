@@ -112,7 +112,7 @@ class HomeController extends Controller
 
     public function getCategories()
     {
-        return Category::where('category_id', null)->get()->toJson();
+        return response()->json(Category::where('parent_category_id', null)->get(), 200);
     }
 
     /**
