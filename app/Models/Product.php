@@ -8,7 +8,9 @@ use Antvel\Product\Models\Concerns\Pictures;
 class Product extends Model
 {
 
-    use Pictures;
+    use Pictures {
+        getDefaultPictureAttribute as getDefaultPicture;
+    }
 
     protected $with = ['user_shop', 'pay_types', 'delivery_types', 'reviews', 'pictures'];
     protected $fillable = ['product_id', 'category_id', 'price', 'currency_id', 'delivery_id', 'pay_id', 'created_by', 'updated_by', 'user_shop_id', 'sale_counts', 'view_counts', 'status', 'created_at', 'producer_id', 'quantity_price',];
@@ -131,5 +133,14 @@ class Product extends Model
         }
 
         return $query;
+    }
+
+    public function getDefaultPictureAttribute()
+    {
+        if ($this->parent_product_id === null) {
+            return $this->getDefaultPicture();
+        } else {
+            return $this->parent_product->default_picture;
+        }
     }
 }
