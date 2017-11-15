@@ -10,9 +10,9 @@ class CategoryController extends Controller
     public function index($slug, $subSlug = false)
     {
         $per_page = 12;
+        $category = Category::where('slug', $slug)->first();
 
         if (!$subSlug) {
-            $category = Category::where('slug', $slug)->first();
             $categories = $category->children()->orWhere('id', $category->id);
         } else {
             $categories = Category::where('slug', $subSlug);
