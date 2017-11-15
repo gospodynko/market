@@ -1,10 +1,9 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Models\UserProduct;
-use App\Models\UserProductBuyers;
-use App\Models\UserProductOffers;
+use App\Models\Product;
+use App\Models\ProductBuyers;
+use App\Models\ProductOffers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,6 +11,7 @@ use Illuminate\Support\Facades\Mail;
 
 class CheckoutController extends Controller
 {
+
     public function index()
     {
         return view('cart.cart', ['user' => Auth::user()]);
@@ -24,30 +24,29 @@ class CheckoutController extends Controller
 
     public function setOrder(Request $request)
     {
-        $product = $request->input('product');
         $user_data = $request->input('data');
-        $store = $request->input('store');
+        $product = Product::findOrFail($request->input('product_id'));
+        $count = $request->input('count');
         $user_phone = $user_data['user']['phone'];
+        $matches = null;
         preg_match_all('!\d+!', $user_phone, $matches);
-        $phone = implode('', $matches[0]);
-        $phone = substr($phone, 2);
+        $phone = substr(implode('', $matches[0]), 2);
         $user_data['user']['phone'] = $phone;
-        $buyer = UserProductBuyers::firstOrCreate(['phone' => $phone], $user_data['user']);
+        $buyer = ProductBuyers::firstOrCreate(['phone' => $phone], $user_data['user']);
         $buyer_email = $buyer->emails()->firstOrCreate(['email' => $user_data['user']['email']], ['email' => $user_data['user']['email']]);
 
-        $user_product_offer = UserProductOffers::create([
-            'user_product_id' => $store['id'],
-            'buyer_id' => $buyer->id,
-            'buyer_email_id' => $buyer_email->id,
-            'day_start' => Carbon::now(),
-            'day_end' => Carbon::now(),
-            'price' => ($store['price'] * $store['store_count']),
-            'quantity' => $store['store_count'],
-            'comment' => $user_data['delivery']['delivery_comment'],
-            'pay_type_id' => $user_data['payment']['payment_type'],
-            'delivery_type_id' => $user_data['delivery']['delivery_type']
+        $product_offer = UserProductOffers::create([
+                'product_id' => $product->id,
+                'buyer_id' => $buyer->id,
+                'buyer_email_id' => $buyer_email->id,
+                'day_start' => Carbon::now(),
+                'day_end' => Carbon::now(),
+                'price' => ($product->price * $count),
+                'quantity' => $count,
+                'comment' => $user_data['delivery']['delivery_comment'],
+                'pay_type_id' => $user_data['payment']['payment_type'],
+                'delivery_type_id' => $user_data['delivery']['delivery_type']
         ]);
-        $item_offer = $user_product_offer->load('userProduct.mainProduct');
         $data_mail = array();
         $data_mail['user'] = [
             'first_name' => $buyer->first_name,
@@ -56,43 +55,43 @@ class CheckoutController extends Controller
             'phone' => $buyer->phone
         ];
         $data_mail['order'] = [
-            'created_at' => $item_offer->created_at,
-            'price' => $item_offer->price,
-            'quantity' => $item_offer->quantity,
-            'payment' => $item_offer->payment->name,
-            'delivery' => $item_offer->delivery->name,
-            'comment' => $item_offer->comment
+            'created_at' => $product_offer->created_at,
+            'price' => $product_offer->price,
+            'quantity' => $product_offer->quantity,
+            'payment' => $product_offer->payment->name,
+            'delivery' => $product_offer->delivery->name,
+            'comment' => $product_offer->comment
         ];
         $data_mail['product'] = [
-            'name' => $request->input('product')['name'],
-            'id' => $item_offer['userProduct']->id,
-            'slug' => $item_offer['userProduct']['mainProduct']->slug
+            'name' => $product->name,
+            'id' => $product->id,
+            'slug' => $product->slug
         ];
-        $shop = $item_offer['userProduct']->shop->load('company');
+        $shop = $product->shop;
         $company = $shop->company;
         $data_mail['merchant'] = [
-            'name' => $item_offer['userProduct']->shop->name,
+            'name' => $shop->name,
             'phone' => $company->compPhone,
             'email' => $company->compMail
         ];
 
-        if($buyer_email->email){
-            Mail::send('emails.checkout', ['data' => $data_mail], function ($message) use ($buyer_email, $request) {
-                $message->subject('Поздравляем! Вы купили товар '.$request->input('product')['name']);
+        if ($buyer_email->email) {
+            Mail::send('emails.checkout', ['data' => $data_mail], function ($message) use ($buyer_email, $product) {
+                $message->subject('Поздравляем! Вы купили товар ' . $product->name);
                 $message->to($buyer_email->email);
             });
         }
-        if($data_mail['merchant']['email']){
-            Mail::send('emails.checkoutSeller', ['data' => $data_mail], function ($message) use ($data_mail, $request) {
-                $message->subject('Поздравляем! Вы продали товар '.$request->input('product')['name']);
+        if ($data_mail['merchant']['email']) {
+            Mail::send('emails.checkoutSeller', ['data' => $data_mail], function ($message) use ($data_mail, $product) {
+                $message->subject('Поздравляем! Вы продали товар ' . $product->name);
                 $message->to($data_mail['merchant']['email']);
             });
         }
-        Mail::send('emails.checkoutSeller', ['data' => $data_mail], function ($message) use ($data_mail, $request) {
-            $message->subject('Поздравляем! Вы продали товар '.$request->input('product')['name']);
+        Mail::send('emails.checkoutSeller', ['data' => $data_mail], function ($message, $product) {
+            $message->subject('Поздравляем! Вы продали товар ' . $product->name);
             $message->to('market@agroyard.ua');
         });
-        return response()->json(['order' => $item_offer, 'product_name' => $product['name']], 200);
+        return response()->json(['order' => $product_offer, 'product_name' => $product->name], 200);
     }
 }
 
