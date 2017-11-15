@@ -24,7 +24,7 @@ class CheckoutController extends Controller
 
     public function setOrder(Request $request)
     {
-        $user_data = $request->input('data');
+        $user_data = $request->input('user');
         $product = Product::findOrFail($request->input('product_id'));
         $count = $request->input('count');
         $user_phone = $user_data['user']['phone'];
@@ -35,7 +35,7 @@ class CheckoutController extends Controller
         $buyer = ProductBuyers::firstOrCreate(['phone' => $phone], $user_data['user']);
         $buyer_email = $buyer->emails()->firstOrCreate(['email' => $user_data['user']['email']], ['email' => $user_data['user']['email']]);
 
-        $product_offer = UserProductOffers::create([
+        $product_offer = ProductOffers::create([
                 'product_id' => $product->id,
                 'buyer_id' => $buyer->id,
                 'buyer_email_id' => $buyer_email->id,
@@ -67,7 +67,7 @@ class CheckoutController extends Controller
             'id' => $product->id,
             'slug' => $product->slug
         ];
-        $shop = $product->shop;
+        $shop = $product->load('user_shop.company')->user_shop;
         $company = $shop->company;
         $data_mail['merchant'] = [
             'name' => $shop->name,
@@ -87,7 +87,7 @@ class CheckoutController extends Controller
                 $message->to($data_mail['merchant']['email']);
             });
         }
-        Mail::send('emails.checkoutSeller', ['data' => $data_mail], function ($message, $product) {
+        Mail::send('emails.checkoutSeller', ['data' => $data_mail], function ($message) use ($product) {
             $message->subject('Поздравляем! Вы продали товар ' . $product->name);
             $message->to('market@agroyard.ua');
         });
