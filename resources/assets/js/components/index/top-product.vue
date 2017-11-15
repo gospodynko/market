@@ -40,8 +40,8 @@
                                 <!--&lt;!&ndash;</ul>&ndash;&gt;-->
                             <!--</div>-->
                             <div class="all-goods-btn">
-                                <a :href="'/products/'+product.slug" class="btn">
-                                    {{translate.all_items}}
+                                <a :href="'/shop/' + product.user_shop.slug + '/' + product.slug" class="btn">
+                                    Детальніше
                                 </a>
                             </div>
                             <div class="two-wrap">

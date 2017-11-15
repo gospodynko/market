@@ -4,6 +4,7 @@
             <div class="sps-adres-header">
                 <span class="circle-close" @click.prevent="callShowAdres">x</span>
                 {{product.user_shop.company.address}}
+                <img :src="'https://maps.googleapis.com/maps/api/staticmap?center=' + product.user_shop.company.address + '&zoom=13&size=600x300&maptype=roadmap&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=AIzaSyDsGaGMT-t0qFIwMM3j2nY0Hc5LcTmRNzY'" alt="">
             </div>
         </div>
 
@@ -102,7 +103,7 @@
                         <div class="di-price">
                             {{numberWithSpaces(product.price)}} грн
                         </div>
-                        <button  class="di-buy" @click="addToCart(store)">{{translate.in_cart}}</button>
+                        <button  class="di-buy" @click="addToCart(product)">{{translate.in_cart}}</button>
                         <div class="di-info">
                             <div class="di-info-img">
                                 <img :src=product.user_shop.logo :alt=product.user_shop.name>
@@ -335,7 +336,7 @@
                     </div>
                 </div>
             </div>
-            <div class="market-list-all">
+            <div v-if="data.otherProducts.length > 0" class="market-list-all">
                 <h2>Всі пропозиції</h2>
                 <div class="single-market" v-for="store in data.otherProducts">
                     <div class="logo-shop-wrap">
@@ -442,6 +443,7 @@
                 this.checkImage = img.path;
             },
             addToCart(item){
+                console.log(item)
                 var userBuys = JSON.parse(localStorage.getItem('cart'));
                 item.store_count = 0;
                 if(!userBuys){

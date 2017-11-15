@@ -165,7 +165,9 @@
                     'payment': {
                         'payment_type': ''
                     }
-                }},
+                },
+                    'store_count': ''
+                },
                 showSuccess: false,
                 order: null,
                 productName: '',
@@ -305,7 +307,12 @@
                     }
                 }
                 if(hasErr) return false;
-                this.$http.post('/set-order', this.checkedItem).then(res => {
+                let data ={
+                    product_id: this.checkedItem.store.id,
+                    count: this.checkedItem.store.store_count,
+                    user: this.checkedItem.data
+                }
+                this.$http.post('/set-order', data).then(res => {
                     if(res.data.order){
                         this.showSuccess = true;
                         this.order = res.data.order;
