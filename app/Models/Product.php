@@ -13,7 +13,7 @@ class Product extends Model
     }
 
     protected $with = ['user_shop', 'pay_types', 'delivery_types', 'reviews', 'pictures'];
-    protected $fillable = ['product_id', 'category_id', 'price', 'currency_id', 'delivery_id', 'pay_id', 'created_by', 'updated_by', 'user_shop_id', 'sale_counts', 'view_counts', 'status', 'created_at', 'producer_id', 'quantity_price',];
+    protected $fillable = ['category_id', 'price', 'currency_id', 'delivery_id', 'pay_id', 'created_by', 'updated_by', 'user_shop_id', 'sale_counts', 'view_counts', 'status', 'created_at', 'producer_id', 'quantity_price',];
     protected $appends = ['default_picture', 'rate'];
 
     public function user_shop()
@@ -86,7 +86,7 @@ class Product extends Model
 
     public function getRateAttribute()
     {
-        return (int) $this->reviews()->avg('rate');
+        return (int) $this->reviews->avg('rate');
     }
 
     public function setNameAttribute($value)
