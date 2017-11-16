@@ -65,7 +65,8 @@ class CheckoutController extends Controller
         $data_mail['product'] = [
             'name' => $product->name,
             'id' => $product->id,
-            'slug' => $product->slug
+            'slug' => $product->slug,
+            'full_url' => url($product->url),
         ];
         $shop = $product->load('user_shop.company')->user_shop;
         $company = $shop->company;
