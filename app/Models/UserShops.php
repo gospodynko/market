@@ -12,7 +12,7 @@ class UserShops extends Model
         'company_id',
         'status'
     ];
-    protected $appends = ['rate'];
+    protected $appends = ['rate', 'url'];
     public $timestamps = false;
 
     public function company()
@@ -38,5 +38,10 @@ class UserShops extends Model
     public function getRateAttribute()
     {
         return $this->products()->get()->avg('rate');
+    }
+
+    public function getUrlAttribute()
+    {
+        return 'shop/' . $this->slug;
     }
 }
