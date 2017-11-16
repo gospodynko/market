@@ -32,7 +32,7 @@
                         </div>
                         <div class="item">
                             <div class="user-wrap" v-if="user">
-                                <img src="/img/avatars/ava.jpg" alt="" class="avatar">
+                                <img src="/img/avatars/ava.png" alt="" class="avatar">
                                 <span class="logout" @click="logout">{{translate.exit}}</span>
                             </div>
 
@@ -73,7 +73,8 @@
                         <!--showChild-->
                         <!--v-if="showChild" @mouseleave="showChild = false"-->
                         <div class="site-menu-wrap child-menu" v-if="showChild" @mouseleave="showChild = false">
-                            <a :href="'/category/'+checkedCat.slug+'/'+subCategory.slug" v-for="subCategory in subCategories">
+                            <div v-if="!subCategories">Оберіть категорію товарів</div>
+                            <a v-if="checkedCat" :href="'/category/'+checkedCat.slug+'/'+subCategory.slug" v-for="subCategory in subCategories">
                                 <div class="single-menu-item" :style="{'backgroundImage': 'url(/img/menu-imgs/'+subCategory.slug+'.png)'}">
                                     <!--<img :src="'/img/menu-imgs/'+subCategory.slug+'.png'" alt="">-->
                                     <p>{{subCategory.name}}</p>
@@ -169,6 +170,7 @@
             {
                 if(location.pathname == '/') return;
                 this.showOverlay = true;
+                this.showChild = true;
                 this.showMenu = !this.showMenu;
             },
             closeMenu()

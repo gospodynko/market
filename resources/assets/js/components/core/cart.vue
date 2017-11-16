@@ -16,22 +16,23 @@
                 <div class="cart-detail-list">
                     <div class="single-item-cart" v-for="cartItem in cartItems">
                         <div class="logo-wrap">
-                            <img :src="cartItem.product.default_picture" alt="">
+                            <img :src="cartItem.store.default_picture" alt="">
                         </div>
                         <div class="title-wrap">
-                            <h2><a href="#">{{cartItem.product.name}}</a></h2>
+                            <h2><a href="#">{{cartItem.store.name}}</a></h2>
                             <div class="content">
-                                <p>Магазин {{cartItem.store.shop.name}}</p>
-                                <star-rating :star-size="20"></star-rating>
+                                <p>Магазин {{cartItem.store.user_shop.name}}</p>
+                                <star-rating :star-size="20" :increment="0.01" :rating=cartItem.product.rate :read-only="true" :show-rating="false"></star-rating>
                             </div>
                         </div>
                         <div class="price-wrap">
-                            <p class="price-title">{{+cartItem.store.price * cartItem.store.store_count}} грн</p>
+                            <p class="price-title">{{numberWithSpaces(+cartItem.store.price * cartItem.store.store_count)}} грн</p>
                             <div class="count-items-wrap">
                                 <span @click="changeCount('minus', cartItem)">-</span><input type="text" :value="cartItem.store.store_count"><span class="to" @click="changeCount('plus', cartItem)">+</span>
                             </div>
                             <span class="close" @click="delFromCart(cartItem)"></span>
                         </div>
+
                         <!--<div class="checkout-wrap">-->
                         <!--<a :href="'/checkout/'+cartItem.store.id" class="btn">Оформить заказ</a>-->
                         <!--</div>-->
@@ -68,6 +69,9 @@
             starRating
         },
         methods: {
+            numberWithSpaces(x) {
+                return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+            },
             delFromCart(item){
                 this.cartItems.forEach((cartItem,i) => {
                     if(cartItem.store.id === item.store.id){

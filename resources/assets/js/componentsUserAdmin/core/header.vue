@@ -15,7 +15,7 @@
                     </form>
                 </li>
                 <li>
-                    <a class="profile-pic" href="#"> <img src="/img/avatars/ava.jpg" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">Maruti</b> </a>
+                    <a class="profile-pic" href="#"> <img src="/img/avatars/ava.png" alt="user-img" width="36" class="img-circle"><b class="hidden-xs">Maruti</b> </a>
                 </li>
             </ul>
         </div>
