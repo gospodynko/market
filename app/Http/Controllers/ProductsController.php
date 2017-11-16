@@ -296,7 +296,9 @@ class ProductsController extends Controller
         if ($product) {
 
             //increasing product counters, in order to have a suggestion orden
-            $this->setCounters($product, ['view_counts' => trans('globals.product_value_counters.view')], 'viewed');
+//            $this->setCounters($product, ['view_counts' => trans('globals.product_value_counters.view')], 'viewed');
+            $product->view_counts++;
+            $product->save();
 
             //saving the product tags into users preferences
             if (trim($product->tags) != '') {
