@@ -15,6 +15,25 @@ class Product extends Model
     protected $with = ['pictures', 'user_shop', 'reviews'];
     protected $fillable = ['category_id', 'price', 'currency_id', 'delivery_id', 'pay_id', 'created_by', 'updated_by', 'user_shop_id', 'sale_counts', 'view_counts', 'status', 'created_at', 'producer_id', 'quantity_price',];
     protected $appends = ['default_picture', 'rate', 'url'];
+    public static $onlyActive = true;
+
+    public static function scopeActive($query)
+    {
+        return $query->whereHas('user_shop', function ($query) {
+                $query->where('status', 1);
+            });
+    }
+
+    public function newQuery()
+    {
+        $query = parent::newQuery();
+
+        if (self::$onlyActive === true) {
+            $query->active();
+        }
+
+        return $query;
+    }
 
     public function user_shop()
     {
