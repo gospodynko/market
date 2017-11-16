@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 /*
@@ -7,6 +6,7 @@ namespace App\Http\Controllers;
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
+
 use App\Models\Producer;
 use App\Models\ProductReviews;
 use App\Models\UserShops;
@@ -16,6 +16,7 @@ use App\Helpers\File;
 use App\ProductDetail;
 use App\FreeProductOrder;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreReviewRequest;
 use App\Helpers\FeaturesHelper; //WIP
 use App\Helpers\ProductsHelper;
 use Illuminate\Support\Collection;
@@ -158,9 +159,9 @@ class ProductsController extends Controller
 //        $productsDetails = new FeaturesHelper();
 //        $producers = ($product) ? $product->category->producers : [];
         return view('dashboard.sections.products.create', ['data' => ['shops' => UserShops::all(),
-            'categories' => Category::with('producers.products')->get(),
-            'currencies' => Currency::all(), 'delivery_type' => DeliveryType::all(),
-            'pay_type' => PayType::all()]]);
+                'categories' => Category::with('producers.products')->get(),
+                'currencies' => Currency::all(), 'delivery_type' => DeliveryType::all(),
+                'pay_type' => PayType::all()]]);
     }
 
     /**
@@ -274,8 +275,9 @@ class ProductsController extends Controller
      *
      * @return Response
      */
-    public function show($slug)
+    public function show($market, Product $product)
     {
+
         $user = \Auth::user();
         $allWishes = '';
 
@@ -288,40 +290,29 @@ class ProductsController extends Controller
                 ->get();
         }
 
-        $product = Product::with('category.parent')->where('slug', $slug)->first();
+        $product->load('category.parent_category', 'user_shop.company', 'delivery_types', 'pay_types');
+        $product->user_shop->phones = $product->user_shop->company->users()->pluck('phone');
+
         if ($product) {
 
-            //retrieving products features
-            $features = ProductDetail::all()->toArray();
-
             //increasing product counters, in order to have a suggestion orden
-            $this->setCounters($product, ['view_counts' => trans('globals.product_value_counters.view')], 'viewed');
+//            $this->setCounters($product, ['view_counts' => trans('globals.product_value_counters.view')], 'viewed');
+            $product->view_counts++;
+            $product->save();
 
             //saving the product tags into users preferences
             if (trim($product->tags) != '') {
                 Users::updatePreferences('product_viewed', $product->tags);
             }
 
-            //receiving products user reviews & comments
-            $reviews = OrderDetail::where('product_id', $product->id)
-                ->whereNotNull('rate_comment')
-                ->select('rate', 'rate_comment', 'updated_at')
-                ->orderBy('updated_at', 'desc')
-                ->take(5)
-                ->get();
-
             $suggestions = Product::where('category_id', $product->category_id)
-                                    ->where('id', '!=', $product->id)
-                                    ->whereHas('user_products.shop', function ($q){
-                                        $q->where('status', 1);
-                                    })
-                                    ->limit(4)
-                                    ->get();
-
-            $storesProducts = UserProduct::where('product_id', '=', $product->id)
-                ->where('status', '=', 1)
+                ->where('id', '!=', $product->id)
+                ->limit(4)
                 ->get();
-            return view('prod-list', ['data' => compact('product', 'allWishes', 'reviews', 'freeproductId', 'features', 'suggestions', 'storesProducts')]);
+
+            $otherProducts = $product->other_products;
+
+            return view('prod-list', ['data' => compact('product', 'allWishes', 'suggestions', 'otherProducts')]);
         } else {
             return redirect(route('products.index'));
         }
@@ -507,9 +498,8 @@ class ProductsController extends Controller
 //        $productsDetails = new FeaturesHelper();
 //        $producers = ($product) ? $product->category->producers : [];
 //        compact('product', 'panel', 'features', 'categories', 'condition', 'typeItem', 'disabled', 'edit', 'oldFeatures', 'productsDetails', 'producers')
-        return view('dashboard.sections.products.edit',
-                                                ['data' => ['product' => $product->load('category', 'producer.products'),
-                                                            'categories' => Category::where('status', 1)->get()]]);
+        return view('dashboard.sections.products.edit', ['data' => ['product' => $product->load('category', 'producer.products'),
+                'categories' => Category::where('status', 1)->get()]]);
     }
 
     /**
@@ -583,7 +573,7 @@ class ProductsController extends Controller
      */
     public function updateAdmin($id, Request $request)
     {
-    //        if (!$request->input('type')) {
+        //        if (!$request->input('type')) {
 //            return redirect()->back()
 //                    ->withErrors(['induced_error' => [trans('globals.error') . ' ' . trans('globals.induced_error')]])->withInput();
 //        }
@@ -617,14 +607,14 @@ class ProductsController extends Controller
             $product->category_id = $request->input('category')['id'];
         }
         $product->description = $request->input('description');
-        $product->bar_code = $request->input('bar_code')?:'111';
+        $product->bar_code = $request->input('bar_code') ?: '111';
         $product->producer_id = $request->input('producer')['id'];
         $product->features = json_encode($request->input('features'));
         $product->updated_by = \Auth::id();
         $product->save();
         $product->pictures()->delete();
-        if(count($request->input('pictures'))){
-            foreach ($request->input('pictures') as $image){
+        if (count($request->input('pictures'))) {
+            foreach ($request->input('pictures') as $image) {
                 $product->pictures()->create(['path' => $image['path']]);
             }
         }
@@ -1084,15 +1074,15 @@ class ProductsController extends Controller
         return json_encode(\App\Models\Product::select('id', 'name')->where('category_id', '=', $categoryId)->get());
     }
 
-    public function storeReview($slug, Request $request)
+    public function storeReview($market, Product $product, StoreReviewRequest $request)
     {
-        $product = Product::where('slug', $slug)->firstOrFail();
-
         $review = ProductReviews::create([
-           'text' => $request->input('text'),
-            'user_id' => Auth::id(),
-            'product_id' => $product->id
+                'text' => $request->input('text'),
+                'user_id' => Auth::id(),
+                'product_id' => $product->id,
+                'rate' => $request->has('parent_review_id') ? null : $request->input('rate'),
         ]);
+
         return response()->json(['review' => $review->load('user')], 200);
     }
 }

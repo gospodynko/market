@@ -4,11 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserProductOffers extends Model
+class ProductOffers extends Model
 {
-    protected $table = 'user_product_offers';
+    protected $table = 'product_offers';
     protected $fillable = [
-        'user_product_id',
+        'product_id',
         'buyer_id',
         'day_start',
         'day_end',
@@ -20,11 +20,11 @@ class UserProductOffers extends Model
         'buyer_email_id'
     ];
 
-    protected $with = ['userProduct', 'buyer', 'delivery', 'payment', 'email'];
+    protected $with = ['product', 'buyer', 'delivery', 'payment', 'email'];
 
-    public function userProduct()
+    public function product()
     {
-        return $this->hasOne(UserProduct::class, 'id', 'user_product_id');
+        return $this->hasOne(UserProduct::class, 'id', 'product_id');
     }
 
 

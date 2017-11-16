@@ -5,20 +5,20 @@
             <div class="all-products-list">
                 <div class="single-product" v-for="product in allProducts.data">
                     <div class="img-wrap">
-                        <a :href="'/products/'+product.slug"><img :src="product.default_picture" alt=""></a>
+                        <a :href="product.url"><img :src="product.default_picture" alt=""></a>
                     </div>
                     <div class="detail-wrap">
                         <p class="product-title">
-                            <a :href="'/products/'+product.slug">{{product.name}}</a>
+                            <a :href="product.url">{{product.name}}</a>
                         </p>
                         <p class="price">
-                            {{numberWithSpaces(product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max)}} грн.
+                            {{numberWithSpaces(product.price)}} грн.
                         </p>
                     </div>
                     <div class="detail-prod-wrap">
                         <div class="feedback-wrap">
                             <div class="rating-wrap">
-                                <star-rating :star-size="20"></star-rating>
+                                <star-rating :star-size="20" :increment="0.01" :rating=product.rate :read-only="true" :show-rating="true"></star-rating>
                             </div>
                             <div class="count-feedback-wrap">
                                 <a href="#">{{product.reviews.length}} {{translate.reviews}}</a>
@@ -39,8 +39,8 @@
                                 <!--&lt;!&ndash;</ul>&ndash;&gt;-->
                             <!--</div>-->
                             <div class="all-goods-btn">
-                                <a :href="'/products/'+product.slug" class="btn">
-                                    {{translate.all_items}}
+                                <a :href="product.url" class="btn">
+                                    Детальніше
                                 </a>
                             </div>
                             <div class="two-wrap">

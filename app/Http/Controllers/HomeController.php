@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 /*
@@ -7,6 +6,7 @@ namespace App\Http\Controllers;
  *
  * @author  Gustavo Ocanto <gustavoocanto@gmail.com>
  */
+
 //use App\Http\Requests\Request;
 use App\Models\AgroUser;
 use App\Models\CompanyUsers;
@@ -22,8 +22,6 @@ use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-
-
 
     /**
      * The products repository.
@@ -52,7 +50,6 @@ class HomeController extends Controller
 
         $this->products = $products;
 //        self::updDb();
-
     }
 
     /**
@@ -60,10 +57,9 @@ class HomeController extends Controller
      *
      * @return void
      */
-
     private function updDb()
     {
-        foreach (Product::all() as $product){
+        foreach (Product::all() as $product) {
             $mainProduct = $product;
 
             $minPrice = \DB::table('user_products')
@@ -83,49 +79,39 @@ class HomeController extends Controller
 
             $mainProduct->save();
         }
-
     }
+
     public function index(Request $request)
     {
-
-        if(Auth::id() && Auth::user()->role == 'noselect'){
+        if (Auth::id() && Auth::user()->role == 'noselect') {
             self::setRole();
         }
         $page_count = 12;
 
         $productsTop = Product::where(['status' => 1, 'moderation' => 0])
-                                ->orderBy('updated_at', 'DESC')
-                                ->whereHas('user_products.shop', function ($q){
-                                    $q->where('status', 1);
-                                })
-                                ->paginate($page_count);
+            ->orderBy('updated_at', 'DESC')
+            ->paginate($page_count);
 
         $productsSuggestions = Product::orderBy('created_at', 'ASC')
-                                            ->whereHas('user_products.shop', function ($q){
-                                                $q->where('status', 1);
-                                            })
-                                            ->paginate($page_count);
-        if($request->method() == 'GET'){
-            return view('main', ['data' =>[
-                'banner' => Banner::all(),
-                'productsTop' => $productsTop,
-                'productsSuggestions' => $productsSuggestions,
-                'events' => [],
-                'translate' => trans('index.index')
+            ->paginate($page_count);
+        if ($request->method() == 'GET') {
+            return view('main', ['data' => [
+                    'banner' => Banner::all(),
+                    'productsTop' => $productsTop,
+                    'productsSuggestions' => $productsSuggestions,
+                    'events' => [],
+                    'translate' => trans('index.index')
             ]]);
         } else {
             return response()->json(['products' => Product::where('status', 1)
-                                                    ->orderBy('updated_at', 'DESC')
-                                                    ->whereHas('user_products.shop', function ($q){
-                                                        $q->where('status', 1);
-                                                    })
-                                                    ->paginate($page_count)]);
+                        ->orderBy('updated_at', 'DESC')
+                        ->paginate($page_count)]);
         }
     }
 
     public function getCategories()
     {
-        return Category::where('category_id', null)->get()->toJson();
+        return response()->json(Category::where('parent_category_id', null)->get(), 200);
     }
 
     /**
