@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserProductBuyers extends Model
+class ProductBuyers extends Model
 {
-    protected $table = 'user_product_buyers';
+    protected $table = 'product_buyers';
     protected $fillable = [
         'first_name',
         'last_name',
@@ -16,7 +16,7 @@ class UserProductBuyers extends Model
 
     public function emails()
     {
-        return $this->hasMany(UserProductBuyersEmails::class, 'buyer_id', 'id');
+        return $this->hasMany(ProductBuyersEmails::class, 'buyer_id', 'id');
     }
 
 }

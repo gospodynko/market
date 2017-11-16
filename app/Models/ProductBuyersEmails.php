@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class UserProductBuyersEmails extends Model
+class ProductBuyersEmails extends Model
 {
-    protected $table = 'user_product_buyers_emails';
+    protected $table = 'product_buyers_emails';
     protected $fillable = [
       'email',
     ];

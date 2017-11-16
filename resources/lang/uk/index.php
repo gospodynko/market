@@ -57,6 +57,7 @@ return [
         'price' => 'Ціна',
         'in_market' => 'В наявності',
         'in_cart' => 'В кошик',
+        'detailed' => 'Детальніше',
         'all_reviews' => 'Усі відгуки',
         'create_review' => 'Написати відгук',
         'send' => 'Відправити',
