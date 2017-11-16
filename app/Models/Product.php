@@ -14,7 +14,7 @@ class Product extends Model
 
     protected $with = ['pictures', 'user_shop', 'reviews'];
     protected $fillable = ['category_id', 'price', 'currency_id', 'delivery_id', 'pay_id', 'created_by', 'updated_by', 'user_shop_id', 'sale_counts', 'view_counts', 'status', 'created_at', 'producer_id', 'quantity_price',];
-    protected $appends = ['default_picture', 'rate'];
+    protected $appends = ['default_picture', 'rate', 'url'];
 
     public function user_shop()
     {
@@ -142,5 +142,10 @@ class Product extends Model
         } else {
             return $this->parent_product->default_picture;
         }
+    }
+
+    public function getUrlAttribute()
+    {
+        return $this->user_shop->url . '/' . $this->slug;
     }
 }
