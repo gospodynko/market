@@ -69,7 +69,7 @@
                         </h1>
                         <div class="feedback-wrap two-wrap">
                             <div class="left">
-                                <star-rating :star-size="20" :increment="0.01" :rating=product.rate :read-only="true" :show-rating="false"></star-rating>
+                                <star-rating :star-size="20" :increment="0.01" :rating=product.rate :read-only="true" :show-rating="true"></star-rating>
                                 <a href="#" class="feedback-link" @click="showReviews">{{translate.reviews}} {{product.reviews.length}}</a>
                             </div>
                         </div>
@@ -499,7 +499,7 @@
     }
 </script>
 
-<style lang="scss">
+<style>
     .small-photos{
         height: 0;
     }
