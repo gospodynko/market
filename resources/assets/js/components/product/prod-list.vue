@@ -498,3 +498,9 @@
         }
     }
 </script>
+
+<style lang="scss">
+    .small-photos{
+        height: 0;
+    }
+</style>
