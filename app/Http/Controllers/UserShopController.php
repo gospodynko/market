@@ -204,17 +204,17 @@ class UserShopController extends Controller
 
     public function getShopPage(UserShops $shop)
     {
-        $categories = Category
-            ::selectRaw('count(`categories`.`id`) as `products_count`')
-            ->addSelect('categories.id')
-            ->addSelect('categories.name')
-            ->addSelect('parent_category.name as parent_name')
-            ->join('products', 'products.category_id', 'categories.id')
-            ->join('categories as parent_category', 'parent_category.id', 'categories.parent_category_id')
-            ->groupBy(['id', 'name', 'parent_category.name'])
+        $categories = Category::where('parent_category_id', null)->whereHas('children.products', function ($query) use ($shop) {
+                $query->where('user_shop_id', $shop->id);
+            })
             ->get()
-            ->makeHidden('parent_name')
-            ->groupBy('parent_name');
+        ;
+        foreach ($categories as $category) {
+            foreach ($category->children as $child) {
+                $child->products_count = $child->products()->count();
+            }
+        }
+
         return view('user_shop.shops.show', compact('shop', 'categories'));
     }
 }

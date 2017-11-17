@@ -42,7 +42,7 @@ class Product extends Model
 
     public function parent_product()
     {
-        return $this->hasOne(self::class);
+        return $this->hasOne(self::class, 'id', 'parent_product_id');
     }
 
     public function getIsRootAttribute()
