@@ -215,7 +215,6 @@ class UserShopController extends Controller
             ->get()
             ->makeHidden('parent_name')
             ->groupBy('parent_name');
-
-        return view('user_shops.shop.show', compact('shop', 'categories'));
+        return view('user_shop.shops.show', compact('shop', 'categories'));
     }
 }

@@ -6,3 +6,133 @@
 @import "product/main";
 @import "search/main";
 @import "cart/main";
+.main-content {
+  display: flex;
+  width: var(--container-width);
+  padding-top: 20px;
+  margin: 0 auto;
+  justify-content: space-between;
+}
+
+.main-content aside { flex-basis: 23.57%; color: var(--primary-text-color); background: var(--primary-bg)}
+.main-content .content { flex-basis: 74.52%}
+.main-content .agro-info {
+  height: 220px;
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  background: var(--primary-bg);
+}
+.main-content .agro-info .bg {
+  background-image: url(../img/agro-bg.png);
+  height: 110px;
+  flex-basis: 100%;
+}
+.main-content .agro-info .info {display: flex; width: 79.08%; justify-content: space-between; padding-right: 4.51%; font-size: var(--info-title-size); color: var(--primary-text-color)}
+.main-content .agro-info .info .agro-contact{display: flex; width: 100%; justify-content: space-between; margin-top: 25px; font-size: 15px; color: #34b5ff;}
+.info .agro-contact span {display: flex; margin-right: 15px}
+.info .agro-contact span img{padding-right: 5px;}
+.main-content .agro-info .agro-logo {
+  position: absolute;
+  left: 30px;
+  top: 40px;
+  width: 110px;
+  height: 110px;
+  img{
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 50%;
+  }
+}
+.main-content .agro-info .rating { font-size: var(--info-text-size)}
+.filter-products { display: flex; justify-content: space-between; color: #1dab4b;  padding-top: 23px; font-size: var(--info-title-size)}
+
+.sort-view { display: flex; width: 47.448%; justify-content: space-between; font-size: var(--info-text-size); color: var(--primary-text-color); }
+.filters {display: flex; justify-content: space-around; align-items: center; width: 60.21%; height: 40px; font-size: var(--info-text-size); background: var(--primary-bg)}
+.filters select { border: none; background: white; color: #48a2ff;}
+.view {flex-basis: 34.4%; display: flex; height: 40px; justify-content: space-around; align-items: center; background: var(--primary-bg)}
+.view span a { display: inline-block; width: 22px; height: 22px;}
+[data-view="first"] {background-image: url("../img/first-view.png")}
+[data-view="second"] {background-image: url("../img/scnd-view.png")}
+.products { margin-top: 30px; color: var(--primary-text-color)}
+.products h4 { font-size: var(--info-title-size)}
+.product-items {display: flex; justify-content: space-between; flex-wrap: wrap; margin-top: 24px;}
+.product-item {flex-basis: calc(29% - 15px); height: 415px; display: flex; flex-direction: column; justify-content: space-around; align-items: center; margin-bottom: 24px; padding: 20px; background: var(--primary-bg); border-radius: 3px;}
+.product-item .product-descr {border-bottom: 1px solid #444444}
+.product-item button { display: none;}
+.product-item .product-descr h4:nth-child(2){ color: #33cc65; margin: 13px 0;}
+.product-item .reviews { margin-bottom: 24px;}
+.product-item .reviews .hidden-text {display: none;}
+.product-item .prod-info { width: 100%;}
+.product-item .prod-info .hidden-button  ul { list-style: none; line-height: 1.3em;}
+.product-item .prod-info .hidden-button  button{width: 100%; font-size: 18px; font-weight: bold; background: #48a2ff; padding: 15px 0; border: none; border-radius: 3px; color: white;}
+.product-item:hover button {display: block;}
+.product-item:hover ul {display: none;}
+.product-items .show-more {width: 100%; color: white; background: #14c44d; text-align: center; padding: 15px 0; font-size: var(--info-title-size); border: none; border-radius: 3px;}
+
+/* aside drop menu */
+
+.dropdown {position: relative; padding: 25px 17px;}
+.dropdown:after{content: ""; position: absolute; width: 260px; right: 0; bottom: 0; border: 1px solid #edeff3}
+.dropdown .category { display: flex; align-items: center;  position: relative}
+.dropdown .category img{ margin-right: 10px;}
+.dropdown .category:after{content: ""; position: absolute; right: 0; width: 24px; height: 24px; background: url("../img/drop-arrow.png") center no-repeat; border: 1px solid #dddfe5; border-radius: 30px;}
+
+.foot-titles { background: #3bbf66; margin-top: 70px;}
+.foot-titles ul{display: flex; margin: 0 auto; width: var(--container-width);}
+.foot-titles ul li {width: 20%; font-size: var(--info-text-size); color: white; padding: 20px 0; list-style: none; text-align: left;}
+.foot-titles ul li:first-child{margin-left: 70px;}
+.foot-info {background: #36ad5c}
+.foot-info .foot-wrapper {display: flex; width: var(--container-width); margin: 0 auto; color: white; font-size: var(--info-text-size);}
+.foot-wrapper a { color: white; font-size: var(--info-text-size)}
+.company-foot, .foot-instruments, .foot-contacts, .location{width: 20%; text-align: left; margin-top: 40px;}
+.qr-code { width:20%; margin-top: 40px; text-align: right;}
+.foot-wrapper div:first-child {margin-left: 70px;}
+.foot-wrapper > div ul { list-style: none; line-height: 1.7em}
+.foot-wrapper .location { width: 200px;}
+.social { display: flex; flex-direction: column;}
+.social h4 {margin: 30px 0 30px 0}
+.soc-icons {display: flex; width: 70px; justify-content: space-between;}
+.soc-icons a {display: inline-block; width: 28px; height: 28px;}
+
+[data-social="fb"] {background-image: url("../img/facebook.png")}
+[data-social="vk"] {background-image: url("../img/vk.png")}
+
+
+
+/* list view */
+.list {
+  flex-basis: 100%;
+  height: 150px;
+  display: flex;
+  justify-content: baseline;
+  flex-wrap: wrap;
+}
+.list .product-cover {display: inline-flex; width: 13%;}
+.list .product-descr, .list .prod-info {
+  display: inline-flex;
+  border: none;
+  width: 83.17%;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.list .prod-info { height: 100px;}
+.list .prod-info {display: inline-flex; justify-content: space-between; align-items: center;}
+.list .hidden-button ul {display: none;}
+.list .prod-info .reviews {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+.list .prod-info .reviews .hidden-text {display: block; margin-bottom: 20px;}
+.list .prod-info .hidden-button button {padding: 10px 20px;}
+:root{
+  --info-text-size: 13px;
+  --nav-text-size: 15px;
+  --info-title-size: 20px;
+  --container-width: 1315px;
+  --primary-text-color: #444444;
+  --primary-bg: white;
+}
+

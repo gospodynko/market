@@ -30,6 +30,7 @@ import AdminUserProductEdit from './components/dashboard/products/user-edit.vue'
 import DashboardCategoriesEdit from './components/dashboard/categories/edit.vue';
 import CategoryVue from './components/category/index.vue';
 import ShopsVue from './components/dashboard/shops/index.vue';
+import ShopVue from './components/shop/index.vue';
 // Vue.use(VueSocketio, 'http://localhost:8303');
 // Vue.use(VueRouter);
 Vue.use(VueResource);
@@ -67,7 +68,8 @@ const app = new Vue({
         AdminProductEdit,
         AdminUserProductEdit,
         CategoryVue,
-        ShopsVue
+        ShopsVue,
+        ShopVue
     }
 
 
