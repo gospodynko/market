@@ -2,9 +2,19 @@
     <div class="main-content">
         <aside>
             <div class="dropdown">
-                <div class="category">
-                    <img src="/img/gsm.png" alt="">
-                    <span>ППМ</span>
+                <div class="category" v-for="category in categories">
+                    <div class="root-path">
+                        <img src="/img/gsm.png" alt="">
+                        <span>{{category.name}}</span>
+                    </div>
+                    <div class="sub-cuts-wrap">
+                        <ul>
+                            <li v-for="child in category.children" v-if="child.products_count">
+                                <input type="checkbox" name="subcat-name" :id="'subcat-child-' + child.id">
+                                <label :for="'subcat-child-' + child.id">{{child.name + ' ' + '(' + child.products_count + ')'}}</label>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </aside>
