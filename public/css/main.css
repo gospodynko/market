@@ -4065,6 +4065,7 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
 
 .product-item .product-descr {
   border-bottom: 1px solid #444444;
+  width: 100%;
 }
 
 .product-item button {
@@ -4295,6 +4296,14 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
   display: -webkit-inline-box;
   display: inline-flex;
   width: 13%;
+  height: 100px;
+}
+
+.product-cover img {
+  max-width: 100%;
+  max-width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
 }
 
 .list .product-descr, .list .prod-info {

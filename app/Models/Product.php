@@ -4,6 +4,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\DeliveryType;
 use Antvel\Product\Models\Concerns\Pictures;
+use Illuminate\Support\Facades\Validator;
 
 class Product extends Model
 {
