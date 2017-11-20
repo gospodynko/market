@@ -189,7 +189,7 @@ class UserShopController extends Controller
         $mainProduct->save();
     }
 
-    public function loadProducts()
+    public function loadProducts(UserShops $shop)
     {
         $filters = $request->input();
 
@@ -198,23 +198,28 @@ class UserShopController extends Controller
             return $validation;
         }
 
-        $products = Product::applyFilters($filters)->paginate(6);
+        $products = $shop->products()->applyFilters($filters)->paginate(6);
         return $products;
     }
 
     public function getShopPage(UserShops $shop)
     {
-        $categories = Category::where('parent_category_id', null)->whereHas('children.products', function ($query) use ($shop) {
+        $categories = Category
+            ::where('parent_category_id', null)
+            ->whereHas('children.products', function ($query) use ($shop) {
                 $query->where('user_shop_id', $shop->id);
             })
             ->get()
         ;
+
         foreach ($categories as $category) {
             foreach ($category->children as $child) {
                 $child->products_count = $child->products()->count();
             }
         }
 
-        return view('user_shop.shops.show', compact('shop', 'categories'));
+        $products = $shop->products()->paginate(6);
+
+        return view('user_shop.shops.show', compact('shop', 'categories', 'products'));
     }
 }
