@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="rating">
-                        <h3>РЕЙТИНГ МАГАЗИНА</h3>
+                        <h3>РЕЙТИНГ МАГАЗИНУ</h3>
                         <div class="rating-wrap">
                             <star-rating :star-size="20" :increment="0.01" :rating=shop.rate :read-only="true" :show-rating="true"></star-rating>
                         </div>
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="filter-products">
-                <h4>Всего товаров в магазине: {{allProducts.total}}</h4>
+                <h4>Всього товарів в магазині: {{allProducts.total}}</h4>
                 <div class="sort-view">
                     <div class="filters">
                         <h4>сортировать по:</h4>
