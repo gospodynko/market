@@ -189,7 +189,7 @@ class UserShopController extends Controller
         $mainProduct->save();
     }
 
-    public function loadProducts(UserShops $shop)
+    public function loadProducts(UserShops $shop, Request $request)
     {
         $filters = $request->input();
 

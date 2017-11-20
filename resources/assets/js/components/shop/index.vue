@@ -38,14 +38,13 @@
                 </div>
             </div>
             <div class="filter-products">
-                <h4>Всего товаров в магазине: 1685</h4>
+                <h4>Всего товаров в магазине: {{products.total}}</h4>
                 <div class="sort-view">
                     <div class="filters">
                         <h4>сортировать по:</h4>
-                        <select>
-                            <option>по умолчанию</option>
-                            <option>one more option</option>
-                            <option>some awesome option</option>
+                        <select @change="sortData" v-model="sortType">
+                            <option selected="selected" value="null">По умолчанию</option>
+                            <option :value="sort.id" v-for="sort in sortTypes">{{sort.name}}</option>
                         </select>
                     </div>
                     <div class="view">
@@ -57,218 +56,93 @@
             </div>
 
             <div id="grass-defend" class="products">
-                <h3>Засоби захисту рослин</h3>
                 <div class="product-items">
-                    <div class="product-item">
+                    <div class="product-item" v-for="product in shopProducts">
                         <div class="product-cover">
-                            <img src="/img/prod-img.png" alt="">
+                            <img :src="product.default_picture" alt="">
                         </div>
                         <div class="product-descr">
-                            <h4>ТРАКТОР МТ3 синий, красный тюнинг</h4>
-                            <h4>10000 грн.</h4>
+                            <h4>{{product.name}}</h4>
+                            <h4>{{product.price}} грн.</h4>
                         </div>
                         <div class="prod-info">
                             <div class="reviews">
-                                <p class="hidden-text">Вакула ФАО 250 Гібрид української селекції ОСОБЛИВОСТІ ГІБРИДУ Високий вихід зерна, добре пере ...</p>
-                                <p class="review-counter">45 отзывов</p>
+                                <p class="hidden-text">{{product.description}}</p>
+                                <p class="review-counter">{{product.reviews.length}} отзывов</p>
                             </div>
                             <div class="hidden-button">
                                 <ul>
-                                    <li>Масса конструкционная,кг 5100</li>
-                                    <li>Масса эксплуатационная, кг 5260</li>
-                                    <li>База, мм 2450</li>
+                                    <li v-for="(feature, i) in JSON.parse(product.features)[0].params" v-if="i < 3">{{feature.title +' '+ feature.param}}</li>
+                                    <!--<li>Масса эксплуатационная, кг 5260</li>-->
+                                    <!--<li>База, мм 2450</li>-->
                                 </ul>
-                                <button>ДЕТАЛЬНЕЕ</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!--  -->
-                    <!--  -->
-                    <div class="product-item">
-                        <div class="product-cover">
-                            <img src="/img/prod-img.png" alt="">
-                        </div>
-                        <div class="product-descr">
-                            <h4>ТРАКТОР МТ3 синий, красный тюнинг</h4>
-                            <h4>10000 грн.</h4>
-                        </div>
-                        <div class="prod-info">
-                            <div class="reviews">
-                                <p class="hidden-text">Вакула ФАО 250 Гібрид української селекції ОСОБЛИВОСТІ ГІБРИДУ Високий вихід зерна, добре пере ...</p>
-                                <p class="review-counter">45 отзывов</p>
-                            </div>
-                            <div class="hidden-button">
-                                <ul>
-                                    <li>Масса конструкционная,кг 5100</li>
-                                    <li>Масса эксплуатационная, кг 5260</li>
-                                    <li>База, мм 2450</li>
-                                </ul>
-                                <button>ДЕТАЛЬНЕЕ</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!--  -->
-                    <div class="product-item">
-                        <div class="product-cover">
-                            <img src="/img/prod-img.png" alt="">
-                        </div>
-                        <div class="product-descr">
-                            <h4>ТРАКТОР МТ3 синий, красный тюнинг</h4>
-                            <h4>10000 грн.</h4>
-                        </div>
-                        <div class="prod-info">
-                            <div class="reviews">
-                                <p class="hidden-text">Вакула ФАО 250 Гібрид української селекції ОСОБЛИВОСТІ ГІБРИДУ Високий вихід зерна, добре пере ...</p>
-                                <p class="review-counter">45 отзывов</p>
-                            </div>
-                            <div class="hidden-button">
-                                <ul>
-                                    <li>Масса конструкционная,кг 5100</li>
-                                    <li>Масса эксплуатационная, кг 5260</li>
-                                    <li>База, мм 2450</li>
-                                </ul>
-                                <button>ДЕТАЛЬНЕЕ</button>
+
+                                <button >ДЕТАЛЬНЕЕ</button>
                             </div>
                         </div>
                     </div>
                     <!--  -->
                     <!-- list view  -->
-                    <div class="product-item list">
-                        <div class="product-cover">
-                            <img src="/img/prod-img.png" alt="">
-                        </div>
-                        <div class="product-descr">
-                            <h4>ТРАКТОР МТ3 синий, красный тюнинг</h4>
-                            <h4>10000 грн.</h4>
-                        </div>
-                        <div class="prod-info">
-                            <div class="reviews">
-                                <p class="hidden-text">Вакула ФАО 250 Гібрид української селекції ОСОБЛИВОСТІ ГІБРИДУ Високий вихід зерна, добре пере ...</p>
-                                <p class="review-counter">45 отзывов</p>
-                            </div>
-                            <div class="hidden-button">
-                                <ul>
-                                    <li>Масса конструкционная,кг 5100</li>
-                                    <li>Масса эксплуатационная, кг 5260</li>
-                                    <li>База, мм 2450</li>
-                                </ul>
-                                <button>ДЕТАЛЬНЕЕ</button>
-                            </div>
-                        </div>
-                    </div>
                     <!-- list view -->
-                    <button class="show-more">ПОКАЗАТЬ ЕЩЕ</button>
+                    <vue-ladda class="show-more"@click="getNew" :loading="loadProduct" v-if="!hideShowMore">ПОКАЗАТЬ ЕЩЕ</vue-ladda>
                 </div>
                 <!-- new products list -->
             </div>
-            <div id="spares" class="products">
-                <h3>Запчастини та шини</h3>
-                <div class="product-items">
-                    <div class="product-item">
-                        <div class="product-cover">
-                            <img src="/img/prod-img.png" alt="">
-                        </div>
-                        <div class="product-descr">
-                            <h4>ТРАКТОР МТ3 синий, красный тюнинг</h4>
-                            <h4>10000 грн.</h4>
-                        </div>
-                        <div class="prod-info">
-                            <div class="reviews">
-                                <p class="hidden-text">Вакула ФАО 250 Гібрид української селекції ОСОБЛИВОСТІ ГІБРИДУ Високий вихід зерна, добре пере ...</p>
-                                <p class="review-counter">45 отзывов</p>
-                            </div>
-                            <div class="hidden-button">
-                                <ul>
-                                    <li>Масса конструкционная,кг 5100</li>
-                                    <li>Масса эксплуатационная, кг 5260</li>
-                                    <li>База, мм 2450</li>
-                                </ul>
-                                <button>ДЕТАЛЬНЕЕ</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!--  -->
-                    <!--  -->
-                    <div class="product-item">
-                        <div class="product-cover">
-                            <img src="/img/prod-img.png" alt="">
-                        </div>
-                        <div class="product-descr">
-                            <h4>ТРАКТОР МТ3 синий, красный тюнинг</h4>
-                            <h4>10000 грн.</h4>
-                        </div>
-                        <div class="prod-info">
-                            <div class="reviews">
-                                <p class="hidden-text">Вакула ФАО 250 Гібрид української селекції ОСОБЛИВОСТІ ГІБРИДУ Високий вихід зерна, добре пере ...</p>
-                                <p class="review-counter">45 отзывов</p>
-                            </div>
-                            <div class="hidden-button">
-                                <ul>
-                                    <li>Масса конструкционная,кг 5100</li>
-                                    <li>Масса эксплуатационная, кг 5260</li>
-                                    <li>База, мм 2450</li>
-                                </ul>
-                                <button>ДЕТАЛЬНЕЕ</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!--  -->
-                    <div class="product-item">
-                        <div class="product-cover">
-                            <img src="/img/prod-img.png" alt="">
-                        </div>
-                        <div class="product-descr">
-                            <h4>ТРАКТОР МТ3 синий, красный тюнинг</h4>
-                            <h4>10000 грн.</h4>
-                        </div>
-                        <div class="prod-info">
-                            <div class="reviews">
-                                <p class="hidden-text">Вакула ФАО 250 Гібрид української селекції ОСОБЛИВОСТІ ГІБРИДУ Високий вихід зерна, добре пере ...</p>
-                                <p class="review-counter">45 отзывов</p>
-                            </div>
-                            <div class="hidden-button">
-                                <ul>
-                                    <li>Масса конструкционная,кг 5100</li>
-                                    <li>Масса эксплуатационная, кг 5260</li>
-                                    <li>База, мм 2450</li>
-                                </ul>
-                                <button>ДЕТАЛЬНЕЕ</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- test list product -->
-                    <div class="product-item list">
-                        <div class="product-cover">
-                            <img src="/img/prod-img.png" alt="">
-                        </div>
-                        <div class="product-descr">
-                            <h4>ТРАКТОР МТ3 синий, красный тюнинг</h4>
-                            <h4>10000 грн.</h4>
-                        </div>
-                        <div class="prod-info">
-                            <div class="reviews">
-                                <p class="hidden-text">Вакула ФАО 250 Гібрид української селекції ОСОБЛИВОСТІ ГІБРИДУ Високий вихід зерна, добре пере ...</p>
-                                <p class="review-counter">45 отзывов</p>
-                            </div>
-                            <div class="hidden-button">
-                                <ul>
-                                    <li>Масса конструкционная,кг 5100</li>
-                                    <li>Масса эксплуатационная, кг 5260</li>
-                                    <li>База, мм 2450</li>
-                                </ul>
-                                <button>ДЕТАЛЬНЕЕ</button>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="show-more">ПОКАЗАТЬ ЕЩЕ</button>
-                </div>
-            </div>
-        </div>
+    </div>
     </div>
 </template>
 
 <script type="text/babel">
     export default {
-        props: ['shop', 'categories']
+        data () {
+            return {
+                loadProduct: false,
+                page: this.products.current_page,
+                shopProducts: this.products.data,
+                hideShowMore: false,
+                sortType: null,
+                sortTypes: [
+                    {
+                        id: 1,
+                        type: 'desc',
+                        slug: 'price',
+                        name: 'Цена: От большей к меньшей'
+                    },
+                    {
+                        id: 2,
+                        type: 'asc',
+                        slug: 'price',
+                        name: 'Цена: От меньшей к большей'
+                    },
+                    {
+                        id: 3,
+                        type: 'desc',
+                        slug: 'created_at',
+                        name: 'Сначала новые'
+                    },
+
+                ]
+            }
+        },
+        props: ['shop', 'categories', 'products'],
+        methods: {
+            getNew () {
+                this.loadProduct = true
+                ++this.page
+                this.$http.post('/shop/' + this.shop.slug + '/load', {page: this.page}).then(res => {
+                    if (res.data.last_page === this.page) {
+                        this.hideShowMore = true
+                    }
+                    let arrConcat = this.shopProducts.concat(res.data.data)
+                    this.shopProducts = arrConcat
+                    this.loadProduct = false
+                }, err => {
+                    this.loadProduct = false
+                })
+            },
+            sortFilter () {
+
+            }
+        }
     }
 </script>
