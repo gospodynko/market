@@ -38,8 +38,8 @@ return [
         'tenders' => 'Тендери Riaito',
         'contacts' => 'Контакти',
         'address' => 'Адреса',
-        'detail_address_1' => '49044, м. Дніпро',
-        'detail_address_2' => 'вул. Виконкомівська 12А, офіс 21.',
+        'detail_address_1' => '49044, Україна, м. Дніпро',
+        'detail_address_2' => 'вул. Південна 2Б',
         'all_right' => 'Всі права захищені',
         'site_create' => 'Сайт розроблений та підтримується компанією Unique Techologies'
     ],

@@ -24,13 +24,13 @@ class ProductOffers extends Model
 
     public function product()
     {
-        return $this->hasOne(UserProduct::class, 'id', 'product_id');
+        return $this->hasOne(Product::class, 'id', 'product_id');
     }
 
 
     public function buyer()
     {
-        return $this->hasOne(UserProductBuyers::class, 'id', 'buyer_id');
+        return $this->hasOne(ProductBuyers::class, 'id', 'buyer_id');
     }
 
     public function payment()
@@ -45,7 +45,7 @@ class ProductOffers extends Model
 
     public function email()
     {
-        return $this->hasOne(UserProductBuyersEmails::class, 'id', 'buyer_email_id');
+        return $this->hasOne(ProductBuyersEmails::class, 'id', 'buyer_email_id');
     }
 
 }

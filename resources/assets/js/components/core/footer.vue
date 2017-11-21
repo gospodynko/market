@@ -25,7 +25,7 @@
                         <li><a href="#">{{translate.add_adv}}</a></li>
                         <li><a href="#">{{translate.adv}}</a></li>
                         <li><a href="#">{{translate.auction}}</a></li>
-                        <li><a href="#">{{translate.tenders}}</a></li>
+                        <!--<li><a href="#">{{translate.tenders}}</a></li>-->
                     </ul>
                 </div>
                 <div class="single-menu-item">
@@ -34,7 +34,7 @@
                         <li><a href="tel:0501992141">(050) 199 21 41</a></li>
                         <li><a href="tel:0961992141">(067) 199 21 41</a></li>
                         <li><a href="tel:0931992141">(093) 199 21 41</a></li>
-                        <li><a href="mailto:info@agroyard.com.ua">info@agroyard.com.ua</a></li>
+                        <li><a href="mailto:info@agroyard.com.ua">info@agroyard.ua</a></li>
                     </ul>
                 </div>
                 <div class="single-menu-item">
