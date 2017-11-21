@@ -209,12 +209,18 @@ class UserShopController extends Controller
             ->whereHas('children.products', function ($query) use ($shop) {
                 $query->where('user_shop_id', $shop->id);
             })
+            ->with(['children.products' => function ($query) use ($shop) {
+                    $query->where('user_shop_id', $shop->id);
+                }])
             ->get()
         ;
 
         foreach ($categories as $category) {
-            foreach ($category->children as $child) {
-                $child->products_count = $child->products()->count();
+            foreach ($category->children as $key => $child) {
+                $child->products_count = $child->products()->where('user_shop_id', $shop->id)->count();
+                if ($child->products_count === 0) {
+                    $category->children->forget($key);
+                }
             }
         }
 
