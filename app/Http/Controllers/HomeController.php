@@ -83,7 +83,6 @@ class HomeController extends Controller
 
     public function index(Request $request)
     {
-
         if (Auth::id() && Auth::user()->role == 'noselect') {
             self::setRole();
         }

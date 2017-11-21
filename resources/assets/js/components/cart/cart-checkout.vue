@@ -112,7 +112,7 @@
                     <div class="product-list">
                         <div class="single-product">
                             <div class="logo-wrap">
-                                <img :src="order.user_product.main_product.default_picture" alt="">
+                                <img :src="checkedItem.product.default_picture" alt="">
                             </div>
                             <div class="product-wrap">
                                 <div class="head-product two-wrap">
@@ -127,9 +127,9 @@
                                 <p>{{translate.order_delivery_type}}: <span>{{order.delivery.name}}</span></p>
                                 <p>{{translate.order_pay_type}}: <span>{{order.payment.name}}</span></p>
                                 <p class="space"></p>
-                                <p>Магазин {{order.user_product.shop ? order.user_product.shop.name : ''}}</p>
-                                <p>{{translate.phone}}: <span>{{order.buyer.phone}}</span></p>
-                                <p>{{translate.email}}: <span>{{order.email.email}}</span></p>
+                                <p>Магазин {{checkedItem.product.user_shop ? checkedItem.product.user_shop.name : ''}}</p>
+                                <p>{{translate.phone}}: <span>{{checkedItem.data.user.phone}}</span></p>
+                                <p>{{translate.email}}: <span>{{checkedItem.data.user.email}}</span></p>
                             </div>
                         </div>
                     </div>
@@ -318,7 +318,7 @@
                         this.order = res.data.order;
                         this.productName = res.data.product_name;
                         this.cartItems.forEach((item, i) => {
-                            if(item.store.id == res.data.order.user_product_id){
+                            if(item.store.id == res.data.order.product_id){
                                 this.cartItems.splice(i, 1);
                             }
                         })

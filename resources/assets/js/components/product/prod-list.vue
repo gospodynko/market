@@ -69,7 +69,7 @@
                         </h1>
                         <div class="feedback-wrap two-wrap">
                             <div class="left">
-                                <star-rating :star-size="20" :increment="0.01" :rating=product.rate :read-only="true" :show-rating="false"></star-rating>
+                                <star-rating :star-size="20" :increment="0.01" :rating=product.rate :read-only="true" :show-rating="true"></star-rating>
                                 <a href="#" class="feedback-link" @click="showReviews">{{translate.reviews}} {{product.reviews.length}}</a>
                             </div>
                         </div>
@@ -106,9 +106,10 @@
                         <button  class="di-buy" @click="addToCart(product)">{{translate.in_cart}}</button>
                         <div class="di-info">
                             <div class="di-info-img">
-                                <img :src=product.user_shop.logo :alt=product.user_shop.name>
+                                <img :src=product.user_shop.logo :alt=product.user_shop.name v-if="product.user_shop.logo">
+                                <img src="/img/avatars/ava.png" alt="" v-else>
                             </div>
-                            <h3>{{product.user_shop.name}}</h3>
+                            <h3><a :href="'/shop/' + product.user_shop.slug">{{product.user_shop.name}}</a></h3>
                             <div class="di-info-adres" @click.prevent="callShowAdres">
                                 Адрес
                             </div>
@@ -245,7 +246,7 @@
                                                             {{translate.more}}
                                                         </a>
                                                     </div>
-                                                    <div class="two-wrap">
+                                                    <div class="two-wrap" v-if="false">
                                                         <div class="left">
                                                             <i></i>
                                                             <span>{{translate.spy_good}}</span>
@@ -256,7 +257,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -498,3 +498,9 @@
         }
     }
 </script>
+
+<style>
+    .small-photos{
+        height: 0;
+    }
+</style>

@@ -138,23 +138,23 @@
                         <div class="all-products-list" style="width: 100%;">
                             <div class="single-product" style="width: 23.5%; " v-for="product in searchProducts.data">
                                 <div class="img-wrap">
-                                    <a :href="'/products/'+product.slug"><img :src="product.default_picture" alt=""></a>
+                                    <a :href="product.url"><img :src="product.default_picture" alt=""></a>
                                 </div>
                                 <div class="detail-wrap">
                                     <p class="product-title">
-                                        <a :href="'/products/'+product.slug">{{product.name}}</a>
+                                        <a :href="product.url">{{product.name}}</a>
                                     </p>
                                     <p class="price">
-                                        {{product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max}} грн.
+                                        {{product.price}} грн.
                                     </p>
                                 </div>
                                 <div class="detail-prod-wrap">
                                     <div class="feedback-wrap">
                                         <div class="rating-wrap">
-                                            <star-rating :star-size="20"></star-rating>
+                                            <star-rating :star-size="20" :increment="0.01" :rating=product.rate :read-only="true" :show-rating="true"></star-rating>
                                         </div>
                                         <div class="count-feedback-wrap">
-                                            <a href="#">45 отзывов</a>
+                                            <a href="#">{{product.reviews.length}} Відгуків</a>
                                         </div>
                                     </div>
                                     <div class="all-detail-list">
@@ -169,11 +169,11 @@
                                             <!--</ul>-->
                                         <!--</div>-->
                                         <div class="all-goods-btn">
-                                            <a :href="'/products/'+product.slug" class="btn">
-                                                Все предложения
+                                            <a :href="product.url" class="btn">
+                                                Детальніше
                                             </a>
                                         </div>
-                                        <div class="two-wrap">
+                                        <div class="two-wrap" v-if="false">
                                             <div class="left">
                                                 <i></i>
                                                 <span>Отслеживать товар</span>
@@ -190,7 +190,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="footer-search-wrap">
+                <div class="footer-search-wrap" v-if="false">
                     <div class="paginate-wrap" v-if="data.products.total > 16">
                         <ul class="paginate">
                             <li class="prev"><i></i> Назад</li>
