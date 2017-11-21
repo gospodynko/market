@@ -1480,6 +1480,8 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
   max-width: 100%;
   width: 100%;
   height: 100%;
+  -o-object-fit: none;
+  object-fit: none;
 }
 
 .single-prod-detail .detail-product-wrap .shop-gallery .product-options {
@@ -1723,9 +1725,12 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
 }
 
 .single-prod-detail .detail-product-wrap .detail-info .di-info h3 {
+  text-align: center;
+}
+
+.single-prod-detail .detail-product-wrap .detail-info .di-info h3 a {
   font-weight: bold;
   font-size: 18px;
-  text-align: center;
   color: #1dab4b;
 }
 
