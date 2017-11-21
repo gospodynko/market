@@ -189,7 +189,7 @@ class UserShopController extends Controller
         $mainProduct->save();
     }
 
-    public function loadProducts()
+    public function loadProducts(UserShops $shop, Request $request)
     {
         $filters = $request->input();
 
@@ -198,24 +198,34 @@ class UserShopController extends Controller
             return $validation;
         }
 
-        $products = Product::applyFilters($filters)->paginate(6);
+        $products = $shop->products()->applyFilters($filters)->paginate(6);
         return $products;
     }
 
     public function getShopPage(UserShops $shop)
     {
         $categories = Category
-            ::selectRaw('count(`categories`.`id`) as `products_count`')
-            ->addSelect('categories.id')
-            ->addSelect('categories.name')
-            ->addSelect('parent_category.name as parent_name')
-            ->join('products', 'products.category_id', 'categories.id')
-            ->join('categories as parent_category', 'parent_category.id', 'categories.parent_category_id')
-            ->groupBy(['id', 'name', 'parent_category.name'])
+            ::where('parent_category_id', null)
+            ->whereHas('children.products', function ($query) use ($shop) {
+                $query->where('user_shop_id', $shop->id);
+            })
+            ->with(['children.products' => function ($query) use ($shop) {
+                    $query->where('user_shop_id', $shop->id);
+                }])
             ->get()
-            ->makeHidden('parent_name')
-            ->groupBy('parent_name');
+        ;
 
-        return view('user_shops.shop.show', compact('shop', 'categories'));
+        foreach ($categories as $category) {
+            foreach ($category->children as $key => $child) {
+                $child->products_count = $child->products()->where('user_shop_id', $shop->id)->count();
+                if ($child->products_count === 0) {
+                    $category->children->forget($key);
+                }
+            }
+        }
+
+        $products = $shop->products()->paginate(6);
+
+        return view('user_shop.shops.show', compact('shop', 'categories', 'products'));
     }
 }
