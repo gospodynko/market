@@ -34,6 +34,9 @@
                     </div>
                     <div class="rating">
                         <h3>РЕЙТИНГ МАГАЗИНА</h3>
+                        <div class="rating-wrap">
+                            <star-rating :star-size="20" :increment="0.01" :rating=shop.rate :read-only="true" :show-rating="true"></star-rating>
+                        </div>
                     </div>
                 </div>
             </div>
