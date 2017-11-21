@@ -14,17 +14,16 @@
             <div class="all-items-menu-wrap">
                 <div class="single-menu-item">
                     <ul class="list-company-info">
-                        <li><a href="#">{{translate.news}}</a></li>
-                        <li><a href="#">{{translate.about}}</a></li>
-                        <li><a href="#">{{translate.feedback}}</a></li>
+                        <li><a href="https://agroyard.ua/news">{{translate.news}}</a></li>
+                        <li><a href="https://agroyard.ua/about">{{translate.about}}</a></li>
+                        <li><a href="https://agroyard.ua/callback">{{translate.feedback}}</a></li>
                     </ul>
                 </div>
                 <div class="single-menu-item">
                     <ul class="list-company-info">
-                        <li><a href="#">{{translate.sell_crop}}</a></li>
-                        <li><a href="#">{{translate.add_adv}}</a></li>
-                        <li><a href="#">{{translate.adv}}</a></li>
-                        <li><a href="#">{{translate.auction}}</a></li>
+                        <li><a href="https://agroyard.ua/auctions/all">{{translate.sell_crop}}</a></li>
+                        <li><a href="https://agroyard.ua/classifieds/gsm?id=1">{{translate.adv}}</a></li>
+                        <li><a href="https://agroyard.ua/auctions/all">{{translate.auction}}</a></li>
                         <!--<li><a href="#">{{translate.tenders}}</a></li>-->
                     </ul>
                 </div>

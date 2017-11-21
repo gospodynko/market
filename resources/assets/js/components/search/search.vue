@@ -173,7 +173,7 @@
                                                 Детальніше
                                             </a>
                                         </div>
-                                        <div class="two-wrap">
+                                        <div class="two-wrap" v-if="false">
                                             <div class="left">
                                                 <i></i>
                                                 <span>Отслеживать товар</span>
@@ -190,7 +190,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="footer-search-wrap">
+                <div class="footer-search-wrap" v-if="false">
                     <div class="paginate-wrap" v-if="data.products.total > 16">
                         <ul class="paginate">
                             <li class="prev"><i></i> Назад</li>

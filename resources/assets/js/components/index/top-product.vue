@@ -43,7 +43,7 @@
                                     Детальніше
                                 </a>
                             </div>
-                            <div class="two-wrap">
+                            <div class="two-wrap" v-if="false">
                                 <div class="left">
                                     <i></i>
                                     <span>{{translate.spy_good}}</span>

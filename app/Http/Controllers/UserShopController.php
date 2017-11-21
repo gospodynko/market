@@ -204,6 +204,7 @@ class UserShopController extends Controller
 
     public function getShopPage(UserShops $shop)
     {
+        $shop->load('company');
         $categories = Category
             ::where('parent_category_id', null)
             ->whereHas('children.products', function ($query) use ($shop) {

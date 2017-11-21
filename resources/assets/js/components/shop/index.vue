@@ -28,8 +28,8 @@
                     <div>
                         <h3>{{shop.name}}</h3>
                         <div class="agro-contact">
-                            <span><img src="/img/blue_place.png">Днепр</span>
-                            <span><img src="/img/phone.png">Номер телефона</span>
+                            <span><img src="/img/blue_place.png">{{shop.company.address}}</span>
+                            <span @click="showPhone = !showPhone" style="cursor: pointer;"><img src="/img/phone.png" v-if="shop.company.compPhone">{{!showPhone ? 'Номер телефона' : shop.company.compPhone}}</span>
                         </div>
                     </div>
                     <div class="rating">
@@ -46,7 +46,7 @@
                     <div class="filters">
                         <h4>сортировать по:</h4>
                         <select @change="sortFilter" v-model="sortType">
-                            <option selected="selected" value="null">По умолчанию</option>
+                            <option selected="selected" value="null">За замовчуванням</option>
                             <option :value="sort.id" v-for="sort in sortTypes">{{sort.name}}</option>
                         </select>
                     </div>
@@ -110,7 +110,7 @@
                                         <star-rating :star-size="20" :increment="0.01" :rating=product.rate :read-only="true" :show-rating="true"></star-rating>
                                     </div>
                                     <div class="count-feedback-wrap">
-                                        <a href="#">{{product.reviews.length}} отзывов</a>
+                                        <a href="#">{{product.reviews.length}} відгуків</a>
                                     </div>
                                 </div>
                                 <div class="all-detail-list">
@@ -140,7 +140,7 @@
                         </div>
                     </div>
                     <div class="show-all-btn-wrap" v-if="allProducts && allProducts.total > 6 && !hideShowMore">
-                        <vue-ladda class="btn show-more" @click="getNew" :loading="loadProduct">ПОКАЗАТЬ ЕЩЕ</vue-ladda>
+                        <vue-ladda class="btn show-more" @click="getNew" :loading="loadProduct">Показати ще</vue-ladda>
                     </div>
                 </div>
             </div>
@@ -162,24 +162,25 @@
                 sortType: null,
                 showList: false,
                 categoryIds: [],
+                showPhone: false,
                 sortTypes: [
                     {
                         id: 1,
                         type: 'desc',
                         slug: 'price',
-                        name: 'Цена: От большей к меньшей'
+                        name: 'Ціна: Від більшої до меншої'
                     },
                     {
                         id: 2,
                         type: 'asc',
                         slug: 'price',
-                        name: 'Цена: От меньшей к большей'
+                        name: 'Ціна: Від меншої до більшої'
                     },
                     {
                         id: 3,
                         type: 'desc',
                         slug: 'created_at',
-                        name: 'Сначала новые'
+                        name: 'Спочатку нові'
                     },
 
                 ]
