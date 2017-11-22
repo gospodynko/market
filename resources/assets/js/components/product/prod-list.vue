@@ -98,7 +98,7 @@
                     <div class="detail-info">
                         <div class="di-header">
                             <span class="di-header-id">id {{product.id}}</span>
-                            <span class="di-header-view">{{product.view_counts}}</span>
+                            <span class="di-header-view" v-if="false">{{product.view_counts}}</span>
                         </div>
                         <div class="di-price">
                             {{numberWithSpaces(product.price)}} грн
