@@ -20,6 +20,7 @@
     "laravel-elixir-vue-2": "^0.3.0",
     "laravel-elixir-webpack-official": "^1.0.10",
     "moment": "^2.18.1",
+    "node-sass": "^4.7.2",
     "pgwslider": "^2.3.1",
     "swiper": "^3.4.2",
     "vue": "^2.4.2",
