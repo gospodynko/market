@@ -19,7 +19,7 @@
                             <img :src="cartItem.store.default_picture" alt="">
                         </div>
                         <div class="title-wrap">
-                            <h2><a href="#">{{cartItem.store.name}}</a></h2>
+                            <h2><a :href="'/' + cartItem.product.url">{{cartItem.store.name}}</a></h2>
                             <div class="content">
                                 <p>Магазин {{cartItem.store.user_shop.name}}</p>
                                 <star-rating :star-size="20" :increment="0.01" :rating=cartItem.product.rate :read-only="true" :show-rating="false"></star-rating>
