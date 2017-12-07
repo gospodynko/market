@@ -623,7 +623,7 @@
           p{
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: flex-end;
             width: 45%;
             position: relative;
             margin-bottom: 15px;
@@ -633,7 +633,7 @@
               bottom: 0;
               left: 0;
               border: 1px dotted $light-gray;
-              width: 100%;
+              width: 98%;
             }
             span{
               display: inline-block;
