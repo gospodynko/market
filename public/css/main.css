@@ -3993,11 +3993,8 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
   justify-content: space-between;
   color: #1dab4b;
   padding-top: 23px;
-  font-size: var(--info-title-size);
-}
-
-.content .filter-products #sum-h {
-  margin-top: 12px;
+  font-size: var(--info-title-size) h4;
+  font-size-padding-top: 10px;
 }
 
 .sort-view {
