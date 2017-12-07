@@ -960,8 +960,8 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
 
 .all-products-list .show-all-btn-wrap .btn {
   width: 100%;
-  background: #48a2ff;
-  border: 1px solid #2d92fa;
+  background: #26c85a;
+  border: 1px solid #26c85a;
   border-radius: 4px;
   padding: 0;
 }
@@ -1983,8 +1983,8 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
   display: flex;
   -webkit-box-pack: justify;
   justify-content: space-between;
-  -webkit-box-align: center;
-  align-items: center;
+  -webkit-box-align: end;
+  align-items: flex-end;
   width: 45%;
   position: relative;
   margin-bottom: 15px;
@@ -1996,7 +1996,7 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
   bottom: 0;
   left: 0;
   border: 1px dotted #d0d4dc;
-  width: 100%;
+  width: 98%;
 }
 
 .single-prod-detail .detail-product-wrap .detail-post-info .all-tabs-detail .single-tab-detail.characteristic p span {
@@ -3013,6 +3013,10 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
   width: 100%;
 }
 
+.cart-wrap .cart-list-wrap .cart-detail-list .empty-basket {
+  padding-left: 20px;
+}
+
 .cart-wrap .cart-list-wrap .cart-detail-list .single-item-cart {
   display: -webkit-box;
   display: flex;
@@ -3203,6 +3207,11 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
 
 .cart-wrap .cart-list-wrap .cart-footer-action .right {
   text-align: right;
+}
+
+.cart-wrap .cart-list-wrap .cart-footer-action .right .basket-btn {
+  display: inline-block;
+  height: 45px;
 }
 
 .cart-blocked-wrap {
@@ -3931,6 +3940,10 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
   color: var(--primary-text-color);
 }
 
+.main-content .agro-info .info h3 {
+  font-weight: 700;
+}
+
 .main-content .agro-info .info .agro-contact {
   display: -webkit-box;
   display: flex;
@@ -3964,10 +3977,15 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
   max-width: 100%;
   max-height: 100%;
   border-radius: 50%;
+  box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.5);
 }
 
 .main-content .agro-info .rating {
   font-size: var(--info-text-size);
+}
+
+.main-content .agro-info .rating .rating-wrap {
+  margin-top: 27px;
 }
 
 .filter-products {
@@ -3977,7 +3995,8 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
   justify-content: space-between;
   color: #1dab4b;
   padding-top: 23px;
-  font-size: var(--info-title-size);
+  font-size: var(--info-title-size) h4;
+  font-size-padding-top: 10px;
 }
 
 .sort-view {
@@ -4372,8 +4391,8 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
 }
 
 .view span a svg {
-  width: 25px;
-  height: 25px;
+  width: 18px;
+  height: 18px;
 }
 
 .view span a svg path {
