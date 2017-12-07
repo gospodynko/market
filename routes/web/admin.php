@@ -60,7 +60,7 @@ Route::group(['roles' => ['admin'], 'middleware' => ['auth', 'roles']], function
         Route::get('/create', 'AdminController@paymentCreate');
         Route::post('/create', 'AdminController@storePayment');
     });
-//    Route::get('admin/payments', 'AdminController@paymentList');
+
     Route::get('admin/moderation/accept/{id}', 'AdminController@acceptProduct');
     Route::get('admin/moderation/show/{id}', 'AdminController@viewProduct');
 

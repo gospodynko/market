@@ -45,7 +45,6 @@ class LoginController extends Controller
      */
     public function login(LoginRequest $request)
     {
-        dd('123');
         $credentials = [
             'email' => $request->input('email'),
             'password' => $request->input('password')
@@ -85,7 +84,6 @@ class LoginController extends Controller
 
         $client = new Client();
         $response = $client->request('POST', env('AGROYARD_API_AUTH'), [
-            'auth' => ['UT-agroyard', '![8a1ypLKE6-]9K'],
             'form_params' => [
                 'phone' => $request->input('phone'),
                 'password' => $request->input('password'),

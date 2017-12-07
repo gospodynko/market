@@ -10,6 +10,7 @@ Route::group(['prefix' => 'shop', 'roles' => ['seller', 'admin']], function () {
             return view('user_shop.main.main');
         });
         Route::get('/{id}/create', 'UserShopController@createProduct');
+
         Route::post('/create', 'UserShopController@storeProduct');
     });
 

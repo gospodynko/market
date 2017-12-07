@@ -31,7 +31,8 @@
 		"laravel/dusk": "^1.0",
 		"barryvdh/laravel-debugbar": "^2.4",
 		"doctrine/dbal":"*",
-		"guzzlehttp/guzzle": "~6.0"
+		"guzzlehttp/guzzle": "~6.0",
+		"dwij/laraadmin": "1.0.40"
 	},
 	"require-dev": {
 		"friendsofphp/php-cs-fixer": "^1.10",

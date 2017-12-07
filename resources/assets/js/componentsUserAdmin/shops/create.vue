@@ -2,8 +2,11 @@
     <div id="page-wrapper">
         <div class="container-fluid">
             <div class="row">
+                    <h2>&nbsp;&nbsp;Добавьте новый продукт</h2>
+
                     <div class="col-md-12">
                         <div class="col-md-3">
+                            <!--<br/>-->
                             <label>Выбор категории:</label>
                             <select class="form-control" @change="setProducer" v-model="checkedCategory">
                                 <option :value="null" disabled selected>Выберите категорию</option>
@@ -84,7 +87,7 @@
                     <div class="col-md-12">
                         <div class="col-lg-12">
                             <hr>
-                            <a href="/user-shops/shop/all-shops" class="btn btn-danger">
+                            <a href="/all-shops" class="btn btn-danger">
                                 <i class="glyphicon glyphicon-remove"></i>&nbsp;
                                 Отмена
 					        </a>
@@ -152,8 +155,8 @@
                     'images': this.images,
                     'features': this.features
                 };
-                this.$http.post('/user-shop/shop/create', data).then(res => {
-                    location.href = '/user-shop/all-shops';
+                this.$http.post('/shop/shop/create', data).then(res => {
+//                    location.href = '/all-shops';
                 }, err => {
 
                 })
