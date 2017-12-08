@@ -4415,7 +4415,7 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
 .type-list .single-product {
   width: 100%;
   height: 150px;
-  margin: 0 0 15px 0;
+  margin: 0;
   display: -webkit-box;
   display: flex;
   -webkit-box-orient: horizontal;
@@ -4423,6 +4423,8 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
   flex-direction: row;
   padding: 10px 15px;
   flex-wrap: wrap;
+  border: none;
+  border-bottom: 1px solid #d0d4dc;
 }
 
 .type-list .single-product .img-wrap {
@@ -4434,6 +4436,14 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
 .type-list .single-product .for-list {
   width: 80%;
   height: auto;
+}
+
+.type-list .single-product .for-list .btn {
+  visibility: hidden;
+}
+
+.type-list .single-product .for-list:hover .btn {
+  visibility: visible;
 }
 
 .type-list .single-product .detail-wrap {
