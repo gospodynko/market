@@ -112,6 +112,8 @@ class UserShopController extends Controller
                 'currency'
             ]);
             $product_id = self::createProductSeller($data, $producer_id);
+
+
         } else {
             $product_id = $product['id'];
         }
