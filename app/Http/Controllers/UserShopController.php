@@ -112,6 +112,8 @@ class UserShopController extends Controller
                 'currency'
             ]);
             $product_id = self::createProductSeller($data, $producer_id);
+
+
         } else {
             $product_id = $product['id'];
         }
@@ -146,7 +148,7 @@ class UserShopController extends Controller
 
     private function createProductSeller($data, $producer_id)
     {
-        $check_product = Product::where('name', $data['product']['name'])->first();
+        $check_product = Product::where(['name' => $data['product']['name'], 'user_shop_id' => $data['shop_id']])->first();
 //        $check_product = false;
         if ($check_product) {
             return $check_product->id;

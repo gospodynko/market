@@ -1008,11 +1008,8 @@ class ProductsController extends Controller
     public static function getTopRated($point = '5', $limit = 5, $tags = false)
     {
         if ($tags == true) {
-            $products = Product::select(['id', 'tags', 'rate_count', 'rate_val'])
+            $products = Product::select(['id', 'tags'])
                 ->WhereNotNull('tags')
-                ->free()
-                ->orderBy('rate_count', 'desc')
-                ->orderBy('rate_val', 'desc')
                 ->take($limit)
                 ->get();
 
@@ -1030,8 +1027,6 @@ class ProductsController extends Controller
         } else {
             $products = Product::select(['id', 'name', 'description', 'features', 'price', 'type', 'stock'])
                 ->free()
-                ->orderBy('rate_count', 'desc')
-                ->orderBy('rate_val', 'desc')
                 ->take($limit)
                 ->get();
 

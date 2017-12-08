@@ -198,7 +198,7 @@
                     'features': this.features,
                     'quantity_price': this.quantityPrice
                 };
-                this.$http.post('/user-shop/shop/create', data).then(res => {
+                this.$http.post('/shop/shop/create', data).then(res => {
                     location.href = '/admin/products';
                 }, err => {
 

@@ -30,10 +30,11 @@
                         </div>
 
                     </div>
-                    <div v-if="checkedProduct && !Number.isInteger(checkedProduct.id)">
+                    <!--<div v-if="checkedProduct && !Number.isInteger(checkedProduct.id)">-->
+                <div v-if="checkedProduct">
                         <div class="col-lg-12">
                             <label>Описание продукта</label>
-                            <textarea class="form-control" v-model="description"></textarea>
+                            <textarea class="form-control" v-model="description" :options="checkedProduct.hasOwnProperty('products') ? checkedProduct.products : description" :multiple="false"></textarea>
                         </div>
                         <div class="col-md-12">
                             <h2>Характеристики</h2>
