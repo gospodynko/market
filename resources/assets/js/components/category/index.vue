@@ -22,6 +22,9 @@
                 <div class="main-search-content">
                     <div class="content-wrap" style="width: 100%;">
                         <div class="all-products-list" style="width: 100%;">
+                            <div  v-if="!categoryProducts.data.length">
+                                <h3>"На жаль в даному розділі немає товарів, спробуйте знайти щось інше"</h3>
+                            </div>
                             <div class="single-product" style="width: 23.5%; " v-for="product in categoryProducts.data">
                                 <div class="img-wrap">
                                     <a :href="'/' + product.url"><img :src="product.default_picture" alt=""></a>
