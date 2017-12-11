@@ -974,13 +974,12 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
 .all-products-list .single-product {
   width: 25%;
   height: 430px;
-  border: 1px solid #d0d4dc;
   background: #fff;
   padding: 10px 25px;
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
-  border-radius: 3px;
+  border-radius: 5px;
   width: 23.5%;
   margin-right: 2%;
   margin-bottom: 20px;
@@ -994,7 +993,7 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
   visibility: hidden;
   opacity: 0;
   position: absolute;
-  top: 416px;
+  top: 350px;
   left: -1px;
   width: calc(100% + 2px);
   height: auto;
@@ -1061,24 +1060,6 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
 
 .all-products-list .single-product .hide-list-wrap .two-wrap .right i {
   background: url("../img/products/faworite.png") no-repeat center;
-}
-
-.all-products-list .single-product:hover {
-  overflow: visible;
-  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.15);
-}
-
-.all-products-list .single-product:hover .hide-list-wrap {
-  display: block;
-  opacity: 1;
-  visibility: visible;
-  z-index: 5;
-  opacity: 1;
-  transition: all .5s;
-}
-
-.all-products-list .single-product:hover:after {
-  display: none;
 }
 
 .all-products-list .single-product:after {
@@ -1150,6 +1131,23 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
   font-size: 13px;
   margin-bottom: 5px;
   line-height: 18px;
+}
+
+.single-product:hover {
+  overflow: visible;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.15);
+}
+
+.single-product:hover .hide-list-wrap {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  z-index: 5;
+  opacity: 1;
+}
+
+.single-product:hover:after {
+  display: none;
 }
 
 .popular-categories {
@@ -3995,8 +3993,11 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
   justify-content: space-between;
   color: #1dab4b;
   padding-top: 23px;
-  font-size: var(--info-title-size) h4;
-  font-size-padding-top: 10px;
+  font-size: var(--info-title-size);
+}
+
+.content .filter-products #sum-h {
+  margin-top: 12px;
 }
 
 .sort-view {

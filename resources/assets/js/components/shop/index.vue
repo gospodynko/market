@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="filter-products">
-                <h4>Всього товарів у магазині: {{allProducts.total}}</h4>
+                <h4 id="sum-h">Всього товарів у магазині: {{allProducts.total}}</h4>
                 <div class="sort-view">
                     <div class="filters">
                         <h4>тип сортування:</h4>
