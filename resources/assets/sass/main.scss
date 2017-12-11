@@ -55,10 +55,10 @@
     margin-top: 27px;
   }
 }
-.filter-products { display: flex; justify-content: space-between; color: #1dab4b;  padding-top: 23px; font-size: var(--info-title-size)
-  h4{
-    padding-top: 10px;
-  }
+.filter-products { display: flex; justify-content: space-between; color: #1dab4b;  padding-top: 23px; font-size: var(--info-title-size) }
+
+.content .filter-products #sum-h{
+  margin-top: 12px;
 }
 
 .sort-view { display: flex; width: 55%; justify-content: space-between; font-size: var(--info-text-size); color: var(--primary-text-color); }

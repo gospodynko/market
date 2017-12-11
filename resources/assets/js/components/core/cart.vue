@@ -16,10 +16,8 @@
                 <div class="cart-detail-list">
                     <div v-if="!cartItems.length">
                         <h3 class="empty-basket">В корзині немає товарів. Але ви можете це виправити :)</h3>
-                        <!--<div class="right" style="width: 70%;">-->
-                            <!--<a href="/checkout" class="btn" style="pointer-events: none;">{{translate.buy_item}}</a>-->
-                        <!--</div>-->
                     </div>
+                    <div v-else>
                       <div class="single-item-cart" v-for="cartItem in cartItems">
                         <div class="logo-wrap">
                             <img :src="cartItem.store.default_picture" alt="">
@@ -42,6 +40,7 @@
                         <!--<div class="checkout-wrap">-->
                         <!--<a :href="'/checkout/'+cartItem.store.id" class="btn">Оформить заказ</a>-->
                         <!--</div>-->
+                    </div>
                     </div>
                 </div>
                 <div class="cart-footer-action two-wrap">
