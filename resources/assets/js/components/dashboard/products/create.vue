@@ -37,7 +37,7 @@
 
                         <div class="form-group">
                             <label>Описание:</label>
-                            <textarea class="form-control" v-model="description" :options="checkedTag.hasOwnProperty('description') ? checkedTag.description : checkedProducts" :multiple="false" :taggable="true" @tag="getDescription"></textarea>
+                            <textarea class="form-control" v-model="description"></textarea>
                         </div>
 
                     </div>
@@ -219,10 +219,10 @@
                     this.checkedProducts.push(this.checkedProducers.products);
                 }
             },
-            getDescription(newTag){
-                this.checkedProduct.push({'descriprion': newTag});
-                console.log(newTag);
-            },
+//            getDescription(newTag){
+//                this.checkedProduct.push({'descriprion': newTag});
+//                console.log(newTag);
+//            },
             fileLoad(e){
                 let data = new FormData();
                 data.append('file', e.target.files[0]);
