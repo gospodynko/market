@@ -140,6 +140,27 @@
         components: {
             Multiselect
         },
+        watch: {
+            checkedProduct: function (val) {
+                if (val.hasOwnProperty('description')) {
+                    this.description = val.description
+                    this.features = JSON.parse(val.features)
+                } else {
+                    this.description = ''
+                    this.features = [
+                        {
+                            name: '',
+                            params: [
+                                {
+                                    title: '',
+                                    param: ''
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
         methods: {
             createProduct(){
                 let data = {
