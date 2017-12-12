@@ -19,7 +19,6 @@
                 <!--<li>-->
                     <!--<a href="/all-shops" class="waves-effect">Магазины</a>-->
                 <!--</li>-->
-
                 <li>
                     <a href="/user/orders" class="waves-effect"> Мои заказы</a>
                 </li>
