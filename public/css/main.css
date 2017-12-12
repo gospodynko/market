@@ -2596,6 +2596,7 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
 .info-search-head-wrap .filters-list .sort-wrap select {
   border: none;
   color: #48a2ff;
+  background-color: white;
 }
 
 .info-search-head-wrap .filters-list .type-view {
@@ -2741,6 +2742,7 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
 .search-content-wrap .main-search-content .content-wrap {
   padding: 15px 10px;
   box-sizing: border-box;
+  background-color: #f5f7f8;
 }
 
 .search-content-wrap .main-search-content .filter-wrap {
@@ -2831,6 +2833,10 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
 
 .search-content-wrap .main-search-content .content-wrap .all-products-list .single-product {
   width: 33.33%;
+}
+
+.search-content-wrap .main-search-content .content-wrap .all-products-list .single-product .hide-list-wrap .two-wrap {
+  display: none;
 }
 
 .search-content-wrap .footer-search-wrap {
@@ -3204,6 +3210,7 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
 }
 
 .cart-wrap .cart-list-wrap .cart-footer-action .right {
+  display: block;
   text-align: right;
 }
 

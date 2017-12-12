@@ -51,7 +51,7 @@
             </div>
         </div>
     </div>
-</template>
+   </template>
 
 <script type="text/babel">
     import starRating from 'vue-star-rating';
