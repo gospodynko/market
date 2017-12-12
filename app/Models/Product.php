@@ -142,7 +142,7 @@ class Product extends Model
 
     public static function scopeApplyFilters($query, $filters)
     {
-        if (array_key_exists('category_id', $filters)) {
+        if (array_key_exists('category_id', $filters) && count($filters['category_id']) > 0) {
             $query->whereIn('category_id', $filters['category_id']);
         }
 
