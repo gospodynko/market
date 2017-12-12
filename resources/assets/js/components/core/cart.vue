@@ -14,13 +14,10 @@
                     </div>
                 </div>
                 <div class="cart-detail-list">
-                    <div v-if="!cartItems.length">
-                        <h3 class="empty-basket">В корзині немає товарів. Але ви можете це виправити :)</h3>
-                        <!--<div class="right" style="width: 70%;">-->
-                            <!--<a href="/checkout" class="btn" style="pointer-events: none;">{{translate.buy_item}}</a>-->
-                        <!--</div>-->
+                    <div v-if="!cartItems || !cartItems.length">
+                        <h3 class="empty-basket">В корзині немає товарів. Але ви можете це виправити.</h3>
                     </div>
-                      <div class="single-item-cart" v-for="cartItem in cartItems">
+                      <div class="single-item-cart" v-for="cartItem in cartItems" v-if="cartItems && cartItems.length">
                         <div class="logo-wrap">
                             <img :src="cartItem.store.default_picture" alt="">
                         </div>
@@ -38,19 +35,15 @@
                             </div>
                             <span class="close" @click="delFromCart(cartItem)"></span>
                         </div>
-
-                        <!--<div class="checkout-wrap">-->
-                        <!--<a :href="'/checkout/'+cartItem.store.id" class="btn">Оформить заказ</a>-->
-                        <!--</div>-->
                     </div>
                 </div>
                 <div class="cart-footer-action two-wrap">
                     <div class="left" style="width: 30%"></div>
                     <div class="right" style="width: 70%;">
-                        <div v-if="!cartItems.length">
+                        <div v-if="!cartItems || !cartItems.length">
                             <a href="/checkout" class="btn basket-btn" style="pointer-events: none;">{{translate.buy_item}}</a>
                         </div>
-                        <div v-else>
+                        <div v-if="cartItems.length">
                             <a href="/checkout" class="btn basket-btn">{{translate.buy_item}}</a>
                         </div>
                     </div>

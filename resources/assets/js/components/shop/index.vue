@@ -8,7 +8,7 @@
                         <span>{{category.name}}</span>
                     </div>
                     <div class="sub-cuts-wrap">
-                        <ul>
+                         <ul>
                             <li v-for="child in category.children" v-if="child.products_count">
                                 <input type="checkbox" name="subcat-name" :id="'subcat-child-' + child.id" @change="setSort" :value="child.id" v-model="categoryIds">
                                 <label :for="'subcat-child-' + child.id">{{child.name + ' ' + '(' + child.products_count + ')'}}</label>
@@ -29,7 +29,7 @@
                         <h3>{{shop.name}}</h3>
                         <div class="agro-contact">
                             <span><img src="/img/blue_place.png">{{shop.company.address}}</span>
-                            <span @click="showPhone = !showPhone" style="cursor: pointer;"><img src="/img/phone.png" v-if="shop.company.compPhone">{{!showPhone ? 'Номер телефона' : shop.company.compPhone}}</span>
+                            <span @click="showPhone = !showPhone" style="cursor: pointer;"><img src="/img/phone.png" v-if="shop.company.compPhone">{{!showPhone ? 'Номер телефону' : shop.company.compPhone}}</span>
                         </div>
                     </div>
                     <div class="rating">
@@ -41,10 +41,10 @@
                 </div>
             </div>
             <div class="filter-products">
-                <h4>Всього товарів в магазині: {{allProducts.total}}</h4>
+                <h4 id="sum-h">Всього товарів у магазині: {{allProducts.total}}</h4>
                 <div class="sort-view">
                     <div class="filters">
-                        <h4>сортировать по:</h4>
+                        <h4>тип сортування:</h4>
                         <select @change="sortFilter" v-model="sortType">
                             <option selected="selected" value="null">За замовчуванням</option>
                             <option :value="sort.id" v-for="sort in sortTypes">{{sort.name}}</option>
