@@ -98,6 +98,7 @@
       select{
         border: none;
         color: $blue-btn;
+        background-color: white;
       }
     }
     .type-view{
@@ -137,7 +138,7 @@
     }
   }
 }
-.search-content-wrap{
+.search-content-wrap {
   width: 100%;
   border: 1px solid $light-gray;
   background: $white;
@@ -145,7 +146,7 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  .chose-filters-head{
+  .chose-filters-head {
     width: 100%;
     display: flex;
     justify-content: flex-start;
@@ -156,18 +157,18 @@
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    h3{
+    h3 {
       font-size: 17px;
       font-weight: 500;
       margin-right: 20px;
       width: 200px;
     }
-    .all-chose-filters{
+    .all-chose-filters {
       width: calc(100% - 200px);
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      .single-filter{
+      .single-filter {
         padding: 10px 20px;
         background: $white;
         -webkit-border-radius: 25px;
@@ -177,12 +178,12 @@
         justify-content: space-between;
         align-items: center;
         margin-right: 15px;
-        .name{
+        .name {
           font-size: 13px;
           font-weight: 500;
           margin-right: 10px;
         }
-        .close{
+        .close {
           display: inline-block;
           width: 14px;
           height: 14px;
@@ -206,18 +207,19 @@
       }
     }
   }
-  .main-search-content{
+  .main-search-content {
     width: 100%;
     background: $white;
     display: flex;
     justify-content: flex-start;
-    .content-wrap{
+    .content-wrap {
       padding: 15px 10px;
       box-sizing: border-box;
+      background-color: #f5f7f8;
     }
-    .filter-wrap{
+    .filter-wrap {
       width: 25%;
-      & > div{
+      & > div {
         padding: 0 20px;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -226,7 +228,7 @@
         padding-bottom: 25px;
         margin-bottom: 25px;
         margin-top: 15px;
-        h3{
+        h3 {
           font-size: 17px;
           font-weight: 500;
           margin-bottom: 25px;
@@ -234,7 +236,7 @@
           display: flex;
           justify-content: flex-start;
           align-items: center;
-          i{
+          i {
             width: 20px;
             height: 20px;
             display: inline-block;
@@ -242,18 +244,18 @@
             background: url("../img/arrow-top.png") no-repeat center;
           }
         }
-        ul{
-          li{
+        ul {
+          li {
             margin-bottom: 15px;
-            label{
+            label {
               font-size: 13px;
             }
           }
         }
 
       }
-      .shop-rating-list{
-        i.star{
+      .shop-rating-list {
+        i.star {
           display: inline-block;
           width: 20px;
           height: 20px;
@@ -261,18 +263,18 @@
           background: url("../img/star.png") no-repeat center;
         }
       }
-      .price-wrap{
+      .price-wrap {
         width: 100%;
         display: flex;
         justify-content: flex-start;
         align-items: center;
         flex-wrap: wrap;
-        h3{
-          i{
+        h3 {
+          i {
             background: transparent;
           }
         }
-        input{
+        input {
           width: 33%;
           height: 35px;
           border: 1px solid $light-gray;
@@ -281,25 +283,28 @@
           border-radius: 4px;
           background: #f5f7f8;
         }
-        span{
+        span {
           display: inline-block;
           margin-right: 15px;
         }
-        .to{
+        .to {
           margin-left: 15px;
         }
       }
     }
-    .content-wrap{
+    .content-wrap {
       width: 75%;
-      .all-products-list{
-        .single-product{
+      .all-products-list {
+        .single-product {
           width: 33.33%;
+          .hide-list-wrap .two-wrap {
+            display: none;
+          }
         }
       }
     }
   }
-  .footer-search-wrap{
+  .footer-search-wrap {
     width: 100%;
     height: 70px;
     display: flex;
@@ -307,65 +312,65 @@
     background: #e2e9f0;
     border-top: 1px solid $light-gray;
     align-items: center;
-    .paginate-wrap{
+    .paginate-wrap {
       width: 35%;
-      .paginate{
+      .paginate {
         width: 100%;
         display: flex;
         justify-content: flex-start;
         align-items: center;
-        li{
+        li {
           margin-right: 15px;
           background: $white;
           -webkit-border-radius: 4px;
           -moz-border-radius: 4px;
           border-radius: 4px;
           border: 1px solid $light-gray;
-          a{
+          a {
             display: inline-block;
             padding: 10px 15px;
             font-size: 16px;
           }
         }
-        li.active{
+        li.active {
           background: $green;
           color: $white;
           border-color: $green-btn-bd;
           font-weight: 500;
-          a{
+          a {
             color: $white;
           }
         }
-        .next,.prev{
+        .next, .prev {
           display: flex;
           justify-content: flex-start;
           align-items: center;
-          i{
+          i {
             display: inline-block;
             width: 10px;
             height: 14px;
           }
         }
-        .next{
-          i{
+        .next {
+          i {
             margin-left: 10px;
             background: url("../img/arrow-right.png") no-repeat center;
           }
         }
-        .prev{
-          i{
+        .prev {
+          i {
             margin-right: 10px;
             background: url("../img/arrow-left.png") no-repeat center;
           }
         }
       }
     }
-    .chose-page{
+    .chose-page {
       width: 25%;
       display: flex;
       justify-content: space-around;
       align-items: center;
-      input{
+      input {
         width: 50px;
         border: 1px solid $light-gray;
         -webkit-border-radius: 4px;
@@ -376,13 +381,13 @@
         padding-left: 0;
         font-size: 16px;
       }
-      label{
+      label {
         display: flex;
         justify-content: flex-start;
         align-items: center;
         width: 35%;
       }
-      .btn{
+      .btn {
         display: inline-block;
         width: 50px;
         height: 38px;
@@ -393,7 +398,7 @@
         margin-left: -5px;
         text-align: center;
         line-height: 38px;
-        border-top-right-radius:4px;
+        border-top-right-radius: 4px;
         border-bottom-right-radius: 4px;
         color: $white;
       }
