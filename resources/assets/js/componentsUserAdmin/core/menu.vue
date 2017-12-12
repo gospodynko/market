@@ -21,7 +21,7 @@
                 <!--</li>-->
 
                 <li>
-                    <a href="/user/seller/orders" class="waves-effect"> Мои заказы</a>
+                    <a href="/user/orders" class="waves-effect"> Мои заказы</a>
                 </li>
             </ul>
         </div>
