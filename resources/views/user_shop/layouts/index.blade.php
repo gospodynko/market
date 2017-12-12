@@ -13,7 +13,7 @@
     <!-- Bootstrap Core CSS -->
     {!! Html::style('/antvel-bower/bootstrap/dist/css/bootstrap.css') !!}
     {!! Html::style('/antvel-bower/metisMenu/dist/metisMenu.min.css') !!}
-    {!! Html::style('/antvel-bower/morrisjs/morris.css') !!}
+    {!! Html::style('/antvel-bower/morris.js/morris.css') !!}
     <!-- Menu CSS -->
     <!-- Menu CSS -->
     <!-- Custom CSS -->
@@ -41,8 +41,8 @@
 {!! Html::script('/antvel-bower/jquery/dist/jquery.min.js') !!}
 {!! Html::script('/antvel-bower/bootstrap/dist/js/bootstrap.min.js') !!}
 {!! Html::script('/antvel-bower/metisMenu/dist/metisMenu.min.js') !!}
-{!! Html::script('/antvel-bower/morrisjs/morris.min.js') !!}
-{!! Html::script('/antvel-bower/raphael/raphael-min.js') !!}
+{!! Html::script('/antvel-bower/morris.js/morris.min.js') !!}
+{!! Html::script('/antvel-bower/raphael/raphael.min.js') !!}
 <!--Nice scroll JavaScript -->
 <script src="/js/jquery.nicescroll.js"></script>
 <script src="/js/appUserAdmin.js"></script>

@@ -2619,8 +2619,6 @@ CREATE TABLE `products` (
   `manufacturer` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
   `tags` mediumtext COLLATE utf8mb4_unicode_ci,
   `features` text CHARACTER SET utf8,
-  `rate_val` double(10,2) DEFAULT '0.00',
-  `rate_count` int(11) DEFAULT '0',
   `sale_counts` int(10) unsigned NOT NULL DEFAULT '0',
   `view_counts` int(10) unsigned NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
