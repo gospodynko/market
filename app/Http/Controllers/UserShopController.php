@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ValidationProduct;
 use App\Models\Category;
 use App\Models\CompanyUsers;
 use App\Models\Currency;
@@ -53,34 +54,10 @@ class UserShopController extends Controller
                 'pay_type' => PayType::all()]]);
     }
 
-    public function storeProduct(Request $request)
+    public function storeProduct(ValidationProduct $request)
     {
-        $validator = Validator::make($request->all(), [
-            'producer' => 'required|array',
-            'producer.id' => 'required',
-            'producer.name' => 'required|string',
-            'product' => 'required|array',
-            'product.id' => 'required',
-            'product.name' => 'required|string',
-            'description' => 'required|string|min:6',
-            'price' => 'required|integer',
-            'shop_id' => 'required|exists:user_shops,id',
-            'currency' => 'required|array',
-            'currency.id' => 'required|exists:currencies,id',
-            'pay_type' => 'required|array',
-            'pay_type.*.id' => 'required|exists:pay_types,id',
-            'delivery_type' => 'required|array',
-            'delivery_type.*.id' => 'required|exists:delivery_types,id',
-            'images' => 'array'
-        ]);
-
-        if (count($validator->errors())) {
-            return response()->json(['status' => 0], 400);
-        }
-
         $producer = $request->input('producer');
         $category = $request->input('category');
-        $product = $request->input('product');
         $shop_id = $request->input('shop_id');
 
         //.validate user_shop_id
@@ -98,7 +75,8 @@ class UserShopController extends Controller
         } else {
             $producer_id = $producer['id'];
         }
-        if (!is_numeric($product['id']) && $producer_id) {
+
+        if ($producer_id) {
             $data = $request->only([
                 'product',
                 'category',
@@ -111,15 +89,8 @@ class UserShopController extends Controller
                 'price',
                 'currency'
             ]);
-            $product_id = self::createProductSeller($data, $producer_id);
-
-
-        } else {
-            $product_id = $product['id'];
+            self::createProductSeller($data, $producer_id);
         }
-//        if ($producer_id && $product_id && $shop_id) {
-//            return self::createUserProduct($product_id, $category['id'], $producer_id, $price, $shop_id, $currency, array_column($pay_types, 'id'), array_column($delivery_types, 'id'), $quantity_price);
-//        }
     }
 
     private function createProducer($producer, $category)
@@ -148,44 +119,31 @@ class UserShopController extends Controller
 
     private function createProductSeller($data, $producer_id)
     {
-        $check_product = Product::where(['name' => $data['product']['name'], 'user_shop_id' => $data['shop_id']])->first();
-//        $check_product = false;
-        if ($check_product) {
-            return $check_product->id;
-        } else {
-            $data_product = [
-                'name' => $data['product']['name'] . rand(1,25),
-                'description' => $data['description'],
-                'price'=> $data['price'],
-                'created_by' => \Auth::id(),
-                'updated_by' => \Auth::id(),
-                'category_id' => $data['category']['id'],
-                'currency_id' => $data['currency']['id'],
-                'delivery_id' => 111,
-                'pay_id' => 111,
-                'user_shop_id' => $data['shop_id'],
-                'bar_code' => '777',
-                'producer_id' => $producer_id,
-                'moderation' => 1,
-                'status' => 0,
-                'features' => json_encode($data['features']),
-                'slug' => str_slug($data['product']['name'] . rand(1,25))
-            ];
+        $data_product = [
+            'name' => $data['product']['name'] . rand(1,25),
+            'description' => $data['description'],
+            'price'=> $data['price'],
+            'created_by' => \Auth::id(),
+            'updated_by' => \Auth::id(),
+            'category_id' => $data['category']['id'],
+            'currency_id' => $data['currency']['id'],
+            'delivery_id' => 111,
+            'pay_id' => 111,
+            'user_shop_id' => $data['shop_id'],
+            'bar_code' => '777',
+            'producer_id' => $producer_id,
+            'moderation' => 1,
+            'status' => 0,
+            'features' => json_encode($data['features']),
+            'slug' => str_slug($data['product']['name'] . rand(1,25))
+        ];
 
-            $v = Validator::make($data_product, self::$validationRules);
-            if ($v->fails()) {
-                return response()->json($v->errors(), 422);
-            }
-
-            $product_id = Product::create($data_product);
-            $product_id->updatePictures($data['images']);
-            $delivery_ids = array_map(create_function('$o', 'return $o[\'id\'];'), $data['delivery_type']);
-            $pay_ids = array_map(create_function('$o', 'return $o[\'id\'];'), $data['pay_type']);
-            $product_id->pay_types()->attach($pay_ids);
-            $product_id->delivery_types()->attach($delivery_ids);
-            return response()->json(['status' => 1], 201);
-//            return $product_id->id;
-        }
+        $product = Product::create($data_product);
+        $product->updatePictures($data['images']);
+        $delivery_ids = array_map(function ($obj) { return $obj['id']; }, $data['delivery_type']);
+        $pay_ids = array_map(function ($obj) { return $obj['id']; }, $data['pay_type']);
+        $product->pay_types()->attach($pay_ids);
+        $product->delivery_types()->attach($delivery_ids);
     }
 
     private function createUserProduct($product_id, $category_id, $producer_id, $price, $shop_id, $currency, $pay_types, $delivery_types, $quantity_price)

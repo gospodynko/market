@@ -177,11 +177,14 @@
                     'images': this.images,
                     'features': this.features
                 };
-                this.$http.post('/shop/shop/create', data).then(res => {
+                axios.post('/shop/shop/create', data)
+                    .then(response => {
+                        console.log(response);
 //                    location.href = '/all-shops';
-                }, err => {
-
-                })
+                    })
+                    .catch(function (error) {
+                        console.log(error.response.data);
+                 });
             },
             setProducer(){
                 this.checkedProducers = this.checkedCategory.producers;
