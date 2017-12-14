@@ -1,1 +1,0 @@
-{"version":3,"sources":["useradmin.scss"],"names":[],"mappings":"AAAA;EACE,kBAAkB;CAKnB;;AAND;EAII,iBAAiB;CAClB;;AAEH;EACE,iCAAiC;CAClC","file":"useradmin.css","sourcesContent":["#page-wrapper{\n  padding-top: 40px;\n\n  .add-new-product{\n    margin-top: 30px;\n  }\n}\n.form-control{\n  border-color: #e8e8e8 !important;\n}"]}
