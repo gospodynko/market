@@ -616,11 +616,14 @@
       }
       textarea{
         width: 100%;
+        max-width:1000px;
         height: 120px;
         border: 1px solid $light-gray;
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
         border-radius: 5px;
+        overflow-x: hidden;
+        overflow-y: auto;
       }
       .other-info{
         p{
