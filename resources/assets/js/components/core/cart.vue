@@ -17,7 +17,7 @@
                     <div v-if="!cartItems || !cartItems.length">
                         <h3 class="empty-basket">В корзині немає товарів. Але ви можете це виправити.</h3>
                     </div>
-                      <div class="single-item-cart" v-for="cartItem in cartItems" v-if="cartItems && cartItems.length">
+                    <div class="single-item-cart" v-for="cartItem in cartItems" v-else>
                         <div class="logo-wrap">
                             <img :src="cartItem.store.default_picture" alt="">
                         </div>
