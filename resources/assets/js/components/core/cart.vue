@@ -85,7 +85,7 @@
                 localStorage.setItem('cart', JSON.stringify(this.cartItems));
                 Events.$emit('updateCart', true);
                 if(!this.cartItems.length){
-                    this.closeCart();
+                    this.closeCart()
                 }
             },
             settingsCart(status){
