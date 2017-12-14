@@ -3668,9 +3668,12 @@ section.slider .all-slides-wrap .pgwSlider .ps-list li span {
 
 .cart-checkout-wrap .all-items-cart-wrap .payment-delivery-wrap textarea {
   width: 100%;
+  max-width: 1000px;
   height: 120px;
   border: 1px solid #d0d4dc;
   border-radius: 5px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .cart-checkout-wrap .all-items-cart-wrap .payment-delivery-wrap .other-info p {
