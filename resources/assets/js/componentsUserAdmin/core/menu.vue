@@ -11,16 +11,16 @@
                     </div>
                 </li>
                 <li>
-                    <a href="/user/shop" class="waves-effect">Главная</a>
-                </li>
-                <li>
-                    <a href="/user-shop/all-shops" class="waves-effect">Магазины</a>
-                </li>
-                <li>
                     <a href="/user/data" class="waves-effect">Личные данные</a>
                 </li>
                 <li>
-                    <a href="/user/seller/orders" class="waves-effect"> Мои заказы</a>
+                    <a href="/all-shops" class="waves-effect">Магазины и продукты</a>
+                </li>
+                <!--<li>-->
+                    <!--<a href="/all-shops" class="waves-effect">Магазины</a>-->
+                <!--</li>-->
+                <li>
+                    <a href="/user/orders" class="waves-effect"> Мои заказы</a>
                 </li>
             </ul>
         </div>

@@ -2,8 +2,11 @@
     <div id="page-wrapper">
         <div class="container-fluid">
             <div class="row">
+                    <h2>&nbsp;&nbsp;Добавьте новый продукт</h2>
+
                     <div class="col-md-12">
                         <div class="col-md-3">
+                            <!--<br/>-->
                             <label>Выбор категории:</label>
                             <select class="form-control" @change="setProducer" v-model="checkedCategory">
                                 <option :value="null" disabled selected>Выберите категорию</option>
@@ -27,10 +30,11 @@
                         </div>
 
                     </div>
-                    <div v-if="checkedProduct && !Number.isInteger(checkedProduct.id)">
+                    <!--<div v-if="checkedProduct && !Number.isInteger(checkedProduct.id)">-->
+                <div v-if="checkedProduct">
                         <div class="col-lg-12">
                             <label>Описание продукта</label>
-                            <textarea class="form-control" v-model="description"></textarea>
+                            <textarea class="form-control" v-model="description" :options="checkedProduct.hasOwnProperty('products') ? checkedProduct.products : description" :multiple="false"></textarea>
                         </div>
                         <div class="col-md-12">
                             <h2>Характеристики</h2>
@@ -84,7 +88,7 @@
                     <div class="col-md-12">
                         <div class="col-lg-12">
                             <hr>
-                            <a href="/user-shops/shop/all-shops" class="btn btn-danger">
+                            <a href="/all-shops" class="btn btn-danger">
                                 <i class="glyphicon glyphicon-remove"></i>&nbsp;
                                 Отмена
 					        </a>
@@ -136,6 +140,27 @@
         components: {
             Multiselect
         },
+        watch: {
+            checkedProduct: function (val) {
+                if (val.hasOwnProperty('description')) {
+                    this.description = val.description
+                    this.features = JSON.parse(val.features)
+                } else {
+                    this.description = ''
+                    this.features = [
+                        {
+                            name: '',
+                            params: [
+                                {
+                                    title: '',
+                                    param: ''
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        },
         methods: {
             createProduct(){
                 let data = {
@@ -152,11 +177,14 @@
                     'images': this.images,
                     'features': this.features
                 };
-                this.$http.post('/user-shop/shop/create', data).then(res => {
-                    location.href = '/user-shop/all-shops';
-                }, err => {
-
-                })
+                axios.post('/shop/shop/create', data)
+                    .then(response => {
+                        console.log(response);
+//                    location.href = '/all-shops';
+                    })
+                    .catch(function (error) {
+                        console.log(error.response.data);
+                 });
             },
             setProducer(){
                 this.checkedProducers = this.checkedCategory.producers;
