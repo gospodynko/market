@@ -34,16 +34,11 @@ class UserShopController extends Controller
         'quantity_price' => 'string|max:100'
     ];
 
-    public function getShops()
+    public function getShops(UserShops $shops)
     {
-//        dd(DB::table('agroyard_company_users')->where('user_id', Auth::id())->get());
-        $companies_id = CompanyUsers::whereHas('company', function($q) {
-                $q->where('companyRole', 'like', '%2%');
-                $q->whereIn('status_id', [2, 3, 6]);
-            })->where(['user_id' => Auth::id()])->get()->pluck('company_id')->toArray();
+        $shops = $shops->shops;
 
-//        dd(CompanyUsers::where('user_id', Auth::id())->get()->toArray());
-        return view('user_shop.shops.index', ['shops' => UserShops::whereIn('company_id', $companies_id)->get()]);
+        return view('user_shop.shops.index', compact('shops'));
     }
 
     public function createProduct($id)
@@ -54,6 +49,13 @@ class UserShopController extends Controller
                 'pay_type' => PayType::all()]]);
     }
 
+    public function getShopOrders(UserShops $shops)
+    {
+        $userShops = $shops->shops;
+        $orders = $shops->getOrders();
+
+        return view('user_shop.shops.orders', compact('userShops', 'orders'));
+    }
     public function storeProduct(ValidationProduct $request)
     {
         $producer = $request->input('producer');

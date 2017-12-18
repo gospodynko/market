@@ -12,6 +12,7 @@ import MenuVue from './componentsUserAdmin/core/menu.vue';
 import IndexVue from './componentsUserAdmin/main/index.vue';
 import ShopsVue from './componentsUserAdmin/shops/index.vue';
 import ShopsCreateVue from './componentsUserAdmin/shops/create.vue';
+import ShopsOrdersVue from './componentsUserAdmin/shops/orders.vue';
 Vue.use(VueResource);
 
 Vue.http.headers.common['X-CSRF-TOKEN'] = $('meta[name="csrf-token"]').attr('content');
@@ -25,7 +26,8 @@ const app = new Vue({
         MenuVue,
         IndexVue,
         ShopsVue,
-        ShopsCreateVue
+        ShopsCreateVue,
+        ShopsOrdersVue
     }
 
 
