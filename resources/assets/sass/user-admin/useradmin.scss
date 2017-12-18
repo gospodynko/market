@@ -8,3 +8,64 @@
 .form-control{
   border-color: #e8e8e8 !important;
 }
+.post-block, .currency-block, .load-file-block, .props-block, .btn-bock, .btn-lg-block{
+  padding-left: 0;
+}
+.btn{
+  width: 270px;
+  height: 46px;
+  font-size: 15px;
+  transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+  position: relative;
+  padding: 10px 40px;
+  margin: 0px 10px 10px 0px;
+  float: left;
+  border-radius: 10px;
+  color: #FFF;
+  text-decoration: none;
+  background-color: #82BF56;
+  border-bottom: 5px solid #669644;
+  text-shadow: 0px -2px #669644;
+}
+.cancel-btn{
+  background: #f96262;
+  border-bottom: 5px solid #c15353
+
+}
+.title{
+  font-size: 28px;
+}
+.mini-title{
+  font-style: italic;
+  font-weight: 400;
+}
+.head-param-title, .param-block{
+  margin-bottom: 15px;
+}
+.load-file-block{
+  margin-bottom: 50px;
+  margin-top: 10px;
+}
+.description-form{
+  margin-bottom: 20px;
+}
+.description-block{
+  margin-top: 10px;
+}
+.add-btn-span{
+  padding-left: 5px;
+}
+.load-btn{
+  margin-top: 10px;
+}
+.after-load-hr{
+  margin-top: -20px;
+}
+.props-block{
+  margin-bottom: 10px;
+}
+
+
+
+
