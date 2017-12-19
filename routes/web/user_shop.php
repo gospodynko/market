@@ -4,6 +4,8 @@ Route::get('/all-shops', 'UserShopController@getShops');
 
 Route::group(['prefix' => 'shop', 'roles' => ['seller', 'admin']], function () {
 
+    Route::post('/product/details', ['uses' => 'UserShopController@getShopDetailsProduct']);
+
     Route::get('/orders', ['uses' => 'UserShopController@getShopOrders', 'as' => 'user_shop.orders']);
 
     Route::get('/{shop}', ['uses' => 'UserShopController@getShopPage', 'as' => 'user_shop.show']);

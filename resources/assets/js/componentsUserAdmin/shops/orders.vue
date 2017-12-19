@@ -10,12 +10,10 @@
             'orders'
         ],
         
-        // methods: {
-        //     setShop(e,shop){
-        //         e.preventDefault();
-        //         this.activeId = shop.id;
-        //         this.checkedShop = shop;
-        //     }
-        // }
+        methods: {
+            orderDetails(id){
+                console.log(id);
+            }
+        }
     }
 </script>

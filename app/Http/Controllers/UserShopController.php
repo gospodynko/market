@@ -36,9 +36,14 @@ class UserShopController extends Controller
 
     public function getShops(UserShops $shops)
     {
-        $shops = $shops->shops;
+        $shops = $shops->getShops();
 
         return view('user_shop.shops.index', compact('shops'));
+    }
+
+    public function getShopDetailsProduct(Request $request, UserShops $shops)
+    {
+        return $shops->getShopProductDetails($request->input('id'));
     }
 
     public function createProduct($id)
@@ -51,7 +56,7 @@ class UserShopController extends Controller
 
     public function getShopOrders(UserShops $shops)
     {
-        $userShops = $shops->shops;
+        $userShops = $shops->getShops();
         $orders = $shops->getOrders();
 
         return view('user_shop.shops.orders', compact('userShops', 'orders'));

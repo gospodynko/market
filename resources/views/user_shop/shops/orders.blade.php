@@ -9,10 +9,11 @@
                     <ul class="nav nav-tabs nav-justified">
                         @foreach($userShops as $userShop)
                             <li>
-                                {{ $userShop->name }}
+                                <button v-on:click="orderDetails({{$userShop->id}})">
+                                    {{ $userShop->name }} - {{ $userShop->getOrdersCount() }}
+                                </button>
                             </li>
                         @endforeach
-                        {{--<li :class="" v-for="order in orders"><a href="#">@{{order.id}}</a></li>--}}
                     </ul>
                 </div>
             </div>

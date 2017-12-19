@@ -38,8 +38,8 @@
     @yield('user-shop-content')
 </div>
 <!-- /#wrapper -->
-{!! Html::script('/antvel-bower/jquery/dist/jquery.min.js') !!}
-{{--<script src="https://code.jquery.com/jquery-2.x-git.min.js"></script>--}}
+{{--{!! Html::script('/antvel-bower/jquery/dist/jquery.min.js') !!}--}}
+<script src="https://code.jquery.com/jquery-2.x-git.min.js"></script>
 {!! Html::script('/antvel-bower/bootstrap/dist/js/bootstrap.min.js') !!}
 {!! Html::script('/antvel-bower/metisMenu/dist/metisMenu.min.js') !!}
 {!! Html::script('/antvel-bower/morris.js/morris.min.js') !!}
