@@ -93,7 +93,7 @@
                                 <i class="glyphicon glyphicon-remove"></i>&nbsp;
                                 Отмена
 					        </a>
-                            <button class="btn btn-success send-btn" @click="createProduct">
+                            <button class="btn send-btn" @click="createProduct">
                                 <i class="glyphicon glyphicon-send"></i>&nbsp;
                                 Створити
 					        </button>
