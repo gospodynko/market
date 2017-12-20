@@ -36,6 +36,11 @@ class Product extends Model
         return $query;
     }
 
+    public function user_product_offers()
+    {
+        return $this->hasMany(UserProductOffers::class, 'user_product_id', 'id');
+    }
+
     public function user_shop()
     {
         return $this->hasOne(UserShops::class, 'id', 'user_shop_id');
@@ -172,5 +177,12 @@ class Product extends Model
     public function producer()
     {
         return $this->hasOne(Producer::class, 'id');
+    }
+
+    public function getUrl()
+    {
+        $company = $this->user_shop;
+
+        return !empty($company) ?url("/shop/{$company->slug}/{$this->slug}") : new \Exception("No company");
     }
 }

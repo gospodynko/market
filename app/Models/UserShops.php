@@ -13,6 +13,8 @@ class UserShops extends Model
         'status'
     ];
     protected $appends = ['rate', 'url'];
+    protected $_shops = [];
+
     public $timestamps = false;
 
     public function company()
@@ -43,5 +45,70 @@ class UserShops extends Model
     public function getUrlAttribute()
     {
         return 'shop/' . $this->slug;
+    }
+
+    public function getOrders()
+    {
+        $shops = $this->getShops();
+
+        $orders = [];
+        foreach ($shops as $shop) {
+            foreach ($shop->products as $item) {
+                foreach ($item->user_product_offers as $order) {
+                    $orders[] = $order;
+                }
+            }
+        }
+
+        return $orders;
+    }
+
+    public function getOrdersCount()
+    {
+        $count = 0;
+        foreach ($this->products as $item) {
+            if (!empty($item->user_product_offers)) $count += $item->user_product_offers->count();
+        }
+
+        return $count;
+    }
+
+    public function getProductsCount()
+    {
+        $count = 0;
+        if (!empty($this->products)) $count = $this->products->count();
+
+        return $count;
+    }
+
+    public function getShops()
+    {
+        if (empty($this->_shops))
+        {
+            $companies_id = CompanyUsers::whereHas('company', function($q) {
+                $q->where('companyRole', 'like', '%2%');
+                $q->whereIn('status_id', [2, 3, 6]);
+            })->where(['user_id' => \Auth::id()])->get()->pluck('company_id')->toArray();
+
+            $this->_shops = self::whereIn('company_id', $companies_id)->get();
+        }
+
+        return $this->_shops;
+    }
+
+    public function getShopProductDetails($shop_id)
+    {
+        $this->getShops();
+
+        $products = [];
+        foreach ($this->_shops as $item) {
+            if ($item->id == $shop_id)
+            {
+                $products = $item->products;
+                break;
+            }
+        };
+
+        return $products;
     }
 }
