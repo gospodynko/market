@@ -23,7 +23,7 @@
                         </div>
                         <div class="col-md-3 ">
                             <label class="mini-title prod-title">Продукт:</label>
-                            <multiselect v-model="checkedProduct" tag-placeholder="Add this as new tag" placeholder="Search or add a tag" label="name" track-by="id" :options="checkedTag.hasOwnProperty('products') ? checkedTag.products : checkedProducts" :multiple="false" :taggable="true" @tag="addTagProduct"></multiselect>
+                            <multiselect  v-model="checkedProduct" tag-placeholder="Add this as new tag" placeholder="Search or add a tag" label="name" track-by="id" :options="checkedTag.hasOwnProperty('products') ? checkedTag.products : checkedProducts" :multiple="false" :taggable="true" @tag="addTagProduct"></multiselect>
                         </div>
                     </div>
                     <!--<div v-if="checkedProduct && !Number.isInteger(checkedProduct.id)">-->
