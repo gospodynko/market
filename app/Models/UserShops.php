@@ -116,15 +116,24 @@ class UserShops extends Model
     {
         $this->getOrders();
 
-        $products = [];
+        $orders = [];
         foreach ($this->_shops as $item) {
             if ($item->id == $order_id)
             {
-                $products = $item->products;
-                break;
+               foreach ($item->products as $product)
+                   foreach ($product->user_product_offers as $offer){
+                       $orders[] = [
+                           'id' => $offer->id,
+                           'date' => $offer->created_at,
+                           'buyer' => $offer->buyer,
+                           'name' => $product->name,
+                           'link' => $product->getUrl(),
+                           ];
+                   }
+               }
             }
-        };
 
-        return $products;
+
+        return $orders;
     }
 }

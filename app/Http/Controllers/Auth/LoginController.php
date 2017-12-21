@@ -81,22 +81,22 @@ class LoginController extends Controller
             'phone' => $request->input('phone'),
             'password' => $request->input('password')
         ];
+//
+//        $client = new Client();
+//        $response = $client->request('POST', env('AGROYARD_API_AUTH'), [
+//            'form_params' => [
+//                'phone' => $request->input('phone'),
+//                'password' => $request->input('password'),
+//            ]
+//        ]);
 
-        $client = new Client();
-        $response = $client->request('POST', env('AGROYARD_API_AUTH'), [
-            'form_params' => [
-                'phone' => $request->input('phone'),
-                'password' => $request->input('password'),
-            ]
-        ]);
-
-        if ((string) $response->getBody() != '0') {
+//        if ((string) $response->getBody() != '0') {
             $attempt = \Auth::attempt($credentials);
             if ($attempt) {
                 $user->autosetRole();
                 return redirect(url('/'));
             }
-        }
+//        }
 
         return redirect()->back()
                 ->withInput($request->only('phone'))

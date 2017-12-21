@@ -22,17 +22,19 @@
                     <thead>
                     <tr>
                         <th>id</th>
+                        <th>Date</th>
                         <th>Name</th>
-                        <th>Description</th>
-                        <th>Price</th>
+                        <th>Link</th>
+                        <th>Phone</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr v-for="detail in details">
                         <td>@{{ detail.id }}</td>
+                        <td>@{{ detail.created_at }}</td>
                         <td>@{{ detail.name }}</td>
-                        <td>@{{ detail.description }}</td>
-                        <td>@{{ detail.price }}</td>
+                        <td>@{{ detail.link }}</td>
+                        <td>@{{ detail.buyer }}</td>
                     </tr>
 
                     </tbody>

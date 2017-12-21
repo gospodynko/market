@@ -47,7 +47,7 @@ class UserShopController extends Controller
     }
     public function getOrderDetails(Request $request, UserShops $shops)
     {
-        return $shops->getOrderDetails($request->input('id'));
+        return $shops->getOrdersDetails($request->input('id'));
     }
 
     public function createProduct($id)
