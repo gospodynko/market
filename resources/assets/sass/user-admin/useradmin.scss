@@ -21,17 +21,40 @@
   padding: 10px 40px;
   margin: 0px 10px 10px 0px;
   float: left;
-  border-radius: 10px;
   color: #FFF;
   text-decoration: none;
-  background-color: #82BF56;
-  border-bottom: 5px solid #669644;
-  text-shadow: 0px -2px #669644;
+  background-color: #4caf50;
+    vertical-align: middle;
+    &:hover {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+      transition:all 0.1s;
+      background-color: #4caf50;
+      opacity:1;
+      border: none;
+    }
 }
 .cancel-btn{
   background: #f96262;
-  border-bottom: 5px solid #c15353
-
+  &:hover {
+      background-color: #f96262;
+    }
+}
+.send-btn{
+  background:  #4caf50;
+    &:focus, &:hover{
+      color:#fff;
+    }
+}
+.nav-tabs .product-add {
+  color: #fff;
+  width: 165px;
+  background-color: #6164c1;
+  //border-bottom: 5px solid #5454a6;
+  text-shadow: 0px -2px #5454a6;
+    &:hover {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+      transition:all 0.1s;
+    }
 }
 .title{
   font-size: 28px;
@@ -65,6 +88,30 @@
 .props-block{
   margin-bottom: 10px;
 }
+.product-table {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+.product-table td, .product-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+.product-table tr:nth-child(even){background-color: #fff;}
+
+.product-table tr:hover {background-color: #ddd;}
+
+.product-table th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+
+
 
 
 
