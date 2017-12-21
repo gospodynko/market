@@ -111,4 +111,20 @@ class UserShops extends Model
 
         return $products;
     }
+
+    public function getOrderstDetails($order_id)
+    {
+        $this->getOrders();
+
+        $products = [];
+        foreach ($this->_shops as $item) {
+            if ($item->id == $order_id)
+            {
+                $products = $item->products;
+                break;
+            }
+        };
+
+        return $products;
+    }
 }

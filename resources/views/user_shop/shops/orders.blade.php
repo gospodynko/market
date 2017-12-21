@@ -17,6 +17,7 @@
                     </ul>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-md-12 add-new-product">
                     <!--<a :href="'/shop/shop/'+checkedShop.id+'/create'" class="btn btn-success btn-lg">Добавить продукт</a>-->
