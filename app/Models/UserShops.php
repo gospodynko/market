@@ -112,7 +112,7 @@ class UserShops extends Model
         return $products;
     }
 
-    public function getOrderstDetails($order_id)
+    public function getOrdersDetails($order_id)
     {
         $this->getOrders();
 
