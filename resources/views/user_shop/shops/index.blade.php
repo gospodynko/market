@@ -9,7 +9,7 @@
                         <ul class="nav nav-tabs nav-justified">
                             @foreach($shops as $shop)
                                 <li>
-                                    <button v-on:click="productDetails({{$shop->id}})">
+                                    <button class="btn product-add" @click="productDetails({{$shop->id}})">
                                         {{ $shop->name }} ({{ $shop->getProductsCount() }})
                                     </button>
                                 </li>
@@ -19,10 +19,10 @@
                 </div>
 
                 <div class="container">
-                    <table v-if="details" class="table">
+                    <table v-if="details" class="table product-table">
                         <thead>
                         <tr>
-                            <th>id</th>
+                            <th>Product ID</th>
                             <th>Name</th>
                             <th>Description</th>
                             <th>Price</th>
