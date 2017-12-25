@@ -1,16 +1,16 @@
 @extends('user_shop.layouts.index')
 
 @section('user-shop-content')
-<shops-orders-vue inline-template :orders="{{ json_encode($orders) }}" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<shops-orders-vue inline-template>
     <div id="page-wrapper">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <ul class="nav nav-tabs nav-justified">
-                        @foreach($userShops as $userShop)
+                        @foreach($shops as $shop)
                             <li>
-                                <button v-on:click="orderDetails({{$userShop->id}})">
-                                    {{ $userShop->name }} - {{ $userShop->getOrdersCount() }}
+                                <button @click="orderDetails({{$shop->id}})">
+                                    {{ $shop->name }} - {{ $shop->getOrdersCount() }}
                                 </button>
                             </li>
                         @endforeach
@@ -25,7 +25,7 @@
                         <th>Date</th>
                         <th>Name</th>
                         <th>Link</th>
-                        <th>Phone</th>
+                        <th>Info</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -34,7 +34,7 @@
                         <td>@{{ detail.created_at }}</td>
                         <td>@{{ detail.name }}</td>
                         <td>@{{ detail.link }}</td>
-                        <td>@{{ detail.buyer }}</td>
+                        <td>@{{ detail.buyer_info }}</td>
                     </tr>
 
                     </tbody>

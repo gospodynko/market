@@ -122,13 +122,15 @@ class UserShops extends Model
             {
                foreach ($item->products as $product)
                    foreach ($product->user_product_offers as $offer){
-                       $orders[] = [
+                       $orders[] =
+                           [
                            'id' => $offer->id,
                            'date' => $offer->created_at,
-                           'buyer' => $offer->buyer,
+                           'buyer_info' => !empty($offer->buyer) ? $offer->buyer->fullInfo() : '',
                            'name' => $product->name,
                            'link' => $product->getUrl(),
-                           ];
+                           ]
+                       ;
                    }
                }
             }

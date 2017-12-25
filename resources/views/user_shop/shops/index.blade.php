@@ -1,7 +1,7 @@
 @extends('user_shop.layouts.index')
 
 @section('user-shop-content')
-    <shops-vue inline-template :shops="{{json_encode($shops)}}">
+    <shops-vue inline-template>
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row">
