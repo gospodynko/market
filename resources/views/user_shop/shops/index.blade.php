@@ -22,6 +22,7 @@
                     <table v-if="details" class="table product-table">
                         <thead>
                         <tr>
+                            <th></th>
                             <th>Product ID</th>
                             <th>Name</th>
                             <th>Description</th>
@@ -30,6 +31,7 @@
                         </thead>
                         <tbody>
                         <tr v-for="detail in details">
+                            <td><button @click="editProduct(detail.id)">Edit</button></td>
                             <td>@{{ detail.id }}</td>
                             <td>@{{ detail.name }}</td>
                             <td>@{{ detail.description }}</td>
