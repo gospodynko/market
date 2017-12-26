@@ -16,7 +16,12 @@ class ProductBuyers extends Model
 
     public function emails()
     {
-        return $this->hasMany(ProductBuyersEmails::class, 'buyer_id', 'id');
+        return $this->hasOne(ProductBuyersEmails::class, 'buyer_id', 'id');
     }
 
+    public function fullInfo()
+    {
+        $email = !empty($this->emails) ? $this->emails->email : '';
+        return $this->first_name .' '. $this->last_name .' '. $this->phone .' '. $email;
+    }
 }

@@ -22,3 +22,5 @@ vendor/
 /public/antvel-bower
 
 !/vendor/antvel
+
+composer.lock

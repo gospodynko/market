@@ -342,7 +342,7 @@
   http://itsolutionstuff.com/post/laravel-5-clear-cache-from-route-view-config-and-all-cache-data-from-applicationexample.html
   http://laravel-recipes.com/recipes/283/generating-a-new-application-key -->
  <target name="laravel-prepare">
-         <copy file=".env.example" overwrite="false" tofile=".env"/>
+         <copy file=".env" overwrite="false" tofile=".env"/>
         <exec executable="php">
             <arg value="artisan"/>
             <arg value="key:generate"/>

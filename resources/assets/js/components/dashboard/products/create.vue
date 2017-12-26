@@ -23,7 +23,7 @@
 
                         <div class="form-group">
                             <label>Продукт:</label>
-                            <multiselect v-model="checkedProduct" tag-placeholder="Add this as new tag" placeholder="Search or add a tag" label="name" track-by="id" :options="checkedTag.hasOwnProperty('products') ? checkedTag.products : checkedProducts" :multiple="false" :taggable="true" @tag="addTagProduct"></multiselect>
+                            <multiselect v-model="checkedProduct" tag-placeholder="Add this as new tag" placeholder="Search or add a tag" label="name" track-by="id" :options="checkedTag.hasOwnProperty('products') ? checkedTag.products : checkedProducts" :taggable="true" @tag="addTagProduct"></multiselect>
                         </div>
 
                     </div>
@@ -55,7 +55,7 @@
                         </div>
 
 					<div class="form-group">
-                        <label for="">Добавить изображения: </label>
+                        <label>Добавить изображения: </label>
                         <input type="file" class="form-control" name="" @change="fileLoad">
                     </div>
 
@@ -198,7 +198,7 @@
                     'features': this.features,
                     'quantity_price': this.quantityPrice
                 };
-                this.$http.post('/user-shop/shop/create', data).then(res => {
+                this.$http.post('/shop/shop/create', data).then(res => {
                     location.href = '/admin/products';
                 }, err => {
 
@@ -219,6 +219,10 @@
                     this.checkedProducts.push(this.checkedProducers.products);
                 }
             },
+//            getDescription(newTag){
+//                this.checkedProduct.push({'descriprion': newTag});
+//                console.log(newTag);
+//            },
             fileLoad(e){
                 let data = new FormData();
                 data.append('file', e.target.files[0]);
