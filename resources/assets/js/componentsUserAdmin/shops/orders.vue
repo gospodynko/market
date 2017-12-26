@@ -2,17 +2,21 @@
     export default{
         data(){
             return{
-                // activeId: this.shops[0].id,
-                // checkedShop: this.shops[0]
+                details: null
             }
         },
-        props: [
-            'orders'
-        ],
-        
+
         methods: {
-            orderDetails(id){
-                console.log(id);
+            orderDetails (id) {
+                axios.post('/shop/orders/details', { id: id })
+                    .then(response => {
+
+                        this.details = response.data;
+                        this.checkedShopId = id;
+                    })
+                    .catch(function (error) {
+                        console.log(error.response.data);
+                    });
             }
         }
     }

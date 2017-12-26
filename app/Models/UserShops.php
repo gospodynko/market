@@ -111,4 +111,31 @@ class UserShops extends Model
 
         return $products;
     }
+
+    public function getOrdersDetails($order_id)
+    {
+        $this->getOrders();
+
+        $orders = [];
+        foreach ($this->_shops as $item) {
+            if ($item->id == $order_id)
+            {
+               foreach ($item->products as $product)
+                   foreach ($product->user_product_offers as $offer){
+                       $orders[] =
+                           [
+                           'id' => $offer->id,
+                           'date' => $offer->created_at,
+                           'buyer_info' => !empty($offer->buyer) ? $offer->buyer->fullInfo() : '',
+                           'name' => $product->name,
+                           'link' => $product->getUrl(),
+                           ]
+                       ;
+                   }
+               }
+            }
+
+
+        return $orders;
+    }
 }

@@ -41,9 +41,21 @@ class UserShopController extends Controller
         return view('user_shop.shops.index', compact('shops'));
     }
 
+
+    public function getShopOrders(UserShops $shops)
+    {
+        $shops = $shops->getShops();
+
+        return view('user_shop.shops.orders', compact('shops'));
+    }
+
     public function getShopDetailsProduct(Request $request, UserShops $shops)
     {
         return $shops->getShopProductDetails($request->input('id'));
+    }
+    public function getOrderDetails(Request $request, UserShops $shops)
+    {
+        return $shops->getOrdersDetails($request->input('id'));
     }
 
     public function createProduct($id)
@@ -54,13 +66,6 @@ class UserShopController extends Controller
                 'pay_type' => PayType::all()]]);
     }
 
-    public function getShopOrders(UserShops $shops)
-    {
-        $userShops = $shops->getShops();
-        $orders = $shops->getOrders();
-
-        return view('user_shop.shops.orders', compact('userShops', 'orders'));
-    }
     public function storeProduct(ValidationProduct $request)
     {
         $producer = $request->input('producer');
