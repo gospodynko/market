@@ -19,6 +19,10 @@
                     .catch(function (error) {
                         console.log(error.response.data);
                     });
+            },
+
+            editProduct (id) {
+                location.href = '/shop/product/edit/'+id;
             }
         }
     }
