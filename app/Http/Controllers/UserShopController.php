@@ -66,6 +66,11 @@ class UserShopController extends Controller
                 'pay_type' => PayType::all()]]);
     }
 
+    public function editProduct($id)
+    {
+
+    }
+
     public function storeProduct(ValidationProduct $request)
     {
         $producer = $request->input('producer');
