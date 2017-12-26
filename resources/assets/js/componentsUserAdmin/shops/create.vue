@@ -15,10 +15,6 @@
                         </div>
                         <div class="col-md-3">
                             <label class="mini-title creator-title">Производитель:</label>
-                            <!--<select class="form-control">-->
-                                <!--<option value="0" disabled selected>Выберите производителя</option>-->
-                                <!---->
-                            <!--</select>-->
                             <multiselect v-model="checkedTag" tag-placeholder="Add this as new tag" placeholder="Search or add a tag" label="name" track-by="id" :options="checkedProducers" :multiple="false" :taggable="true" @tag="addTag"></multiselect>
                         </div>
                         <div class="col-md-3 ">
@@ -26,14 +22,11 @@
                             <multiselect  v-model="checkedProduct" tag-placeholder="Add this as new tag" placeholder="Search or add a tag" label="name" track-by="id" :options="checkedTag.hasOwnProperty('products') ? checkedTag.products : checkedProducts" :multiple="false" :taggable="true" @tag="addTagProduct"></multiselect>
                         </div>
                     </div>
-                    <!--<div v-if="checkedProduct && !Number.isInteger(checkedProduct.id)">-->
                 <div v-if="checkedProduct">
                         <div class="col-lg-12 description-block">
                             <label class="mini-title description-title">Описание продукта</label>
-                            <textarea class="form-control description-form" v-model="description" :options="checkedProduct.hasOwnProperty('products') ? checkedProduct.products : description" :multiple="false"></textarea>
-                            <div class="col-md-12">
-                                <hr>
-                            </div>
+                            <textarea class="form-control description-form" v-model="description"></textarea>
+
                         </div>
                         <div class="col-md-12">
                             <h2 class="props-title">Характеристики</h2>
@@ -144,8 +137,8 @@
         watch: {
             checkedProduct: function (val) {
                 if (val.hasOwnProperty('description')) {
-                    this.description = val.description
-                    this.features = JSON.parse(val.features)
+//                    this.description = val.description
+//                    this.features = JSON.parse(val.features)
                 } else {
                     this.description = ''
                     this.features = [
