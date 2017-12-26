@@ -132,7 +132,7 @@ class UserShopController extends Controller
     private function createProductSeller($data, $producer_id)
     {
         $data_product = [
-            'name' => $data['product']['name'] . rand(1,25),
+            'name' => $data['product']['name'],
             'description' => $data['description'],
             'price'=> $data['price'],
             'created_by' => \Auth::id(),
