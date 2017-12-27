@@ -200,6 +200,7 @@
                 this.checkedProduct = {'name': newTag, 'id': newTag};
                 this.checkedProducts.push({'name': newTag, 'id': newTag});
             },
+            //fix
             fileLoad(e){
                 let data = new FormData();
                 data.append('file', e.target.files[0]);
