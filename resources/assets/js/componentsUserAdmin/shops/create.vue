@@ -180,7 +180,7 @@
                 };
                 axios.post('/shop/shop/create', data)
                     .then(response => {
-                        // location.href = '/all-shops';
+                         location.href = '/all-shops';
                     })
                     .catch(function (error) {
                         console.log(error.response.data);
