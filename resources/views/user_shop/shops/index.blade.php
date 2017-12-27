@@ -31,7 +31,8 @@
                         </thead>
                         <tbody>
                         <tr v-for="detail in details">
-                            <td><button @click="editProduct(detail.id)">Edit</button></td>
+                            {{--<td><button @click="editProduct(detail.id)">Edit</button></td>--}}
+                            <td><button >Edit</button></td>
                             <td>@{{ detail.id }}</td>
                             <td>@{{ detail.name }}</td>
                             <td>@{{ detail.description }}</td>

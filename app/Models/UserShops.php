@@ -126,9 +126,9 @@ class UserShops extends Model
                            [
                            'id' => $offer->id,
                            'date' => $offer->created_at,
-                           'buyer_info' => !empty($offer->buyer) ? $offer->buyer->fullInfo() : '',
                            'name' => $product->name,
                            'link' => $product->getUrl(),
+                           'buyer' => $offer->buyer
                            ]
                        ;
                    }

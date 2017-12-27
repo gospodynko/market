@@ -46,6 +46,11 @@ class Product extends Model
         return $this->hasOne(UserShops::class, 'id', 'user_shop_id');
     }
 
+    public function picture()
+    {
+        return $this->hasMany(ProductPicture::class, 'product_id', 'id');
+    }
+
     public function parent_product()
     {
         return $this->hasOne(self::class, 'id', 'parent_product_id');
