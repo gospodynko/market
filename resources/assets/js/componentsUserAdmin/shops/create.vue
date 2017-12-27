@@ -45,6 +45,13 @@
                                 <label class="mini-title load-title">Загрузить картинки (макс 5шт)</label>
                                 <input type="file" class="load-btn" @change="fileLoad">
                             </div>
+
+                            <div class="pictures" v-if="images.length == 0">
+                                <div class="col-md-3" v-for="pictures in checkedProduct.pictures">
+                                    <img :src="pictures.path" alt="image">
+                                </div>
+                            </div>
+
                             <div class="col-md-3" v-for="image in images">
                                 <img :src="image.path" alt="image">
                             </div>
