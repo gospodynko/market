@@ -210,6 +210,7 @@
 
                 })
             },
+            //fix for test
             addParameter(feature){
                 feature.params.push({
                     title: '',
