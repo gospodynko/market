@@ -13,7 +13,7 @@ class Product extends Model
         getDefaultPictureAttribute as getDefaultPicture;
     }
 
-    protected $with = ['pictures', 'user_shop', 'reviews'];
+    protected $with = ['pictures', 'user_shop', 'reviews', 'user_product_offers'];
     protected $fillable = ['category_id', 'name', 'description', 'currency_id', 'price', 'currency_id', 'delivery_id', 'pay_id', 'created_by', 'updated_by', 'user_shop_id', 'sale_counts', 'view_counts', 'status', 'created_at', 'producer_id', 'quantity_price',];
     protected $appends = ['default_picture', 'rate', 'url'];
     public static $onlyActive = true;

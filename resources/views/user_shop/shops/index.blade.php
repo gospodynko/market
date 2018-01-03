@@ -1,25 +1,23 @@
 @extends('user_shop.layouts.index')
 
 @section('user-shop-content')
-    <shops-vue inline-template>
+    <shops-vue inline-template :shops="{{ $shops }}">
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
                         <ul class="nav nav-tabs nav-justified">
-                            @foreach($shops as $shop)
-                                <li>
-                                    <button class="btn product-add" @click="productDetails({{$shop->id}})">
-                                        {{ $shop->name }} ({{ $shop->getProductsCount() }})
+                                <li v-for="shop in shops">
+                                    <button @click="productDetails(shop)">
+                                        @{{ shop.name }} (@{{ productsCount(shop) }})
                                     </button>
                                 </li>
-                            @endforeach
                         </ul>
                     </div>
                 </div>
 
                 <div class="container">
-                    <table v-if="details" class="table product-table">
+                    <table v-if="products.length" class="table product-table">
                         <thead>
                         <tr>
                             <th></th>
@@ -30,13 +28,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="detail in details">
-                            {{--<td><button @click="editProduct(detail.id)">Edit</button></td>--}}
+                        <tr v-for="product in products">
+                            {{--<td><button @click="editProduct(product.id)">Edit</button></td>--}}
                             <td><button >Edit</button></td>
-                            <td>@{{ detail.id }}</td>
-                            <td>@{{ detail.name }}</td>
-                            <td>@{{ detail.description }}</td>
-                            <td>@{{ detail.price }}</td>
+                            <td>@{{ product.id }}</td>
+                            <td>@{{ product.name }}</td>
+                            <td>@{{ product.description }}</td>
+                            <td>@{{ product.price }}</td>
                         </tr>
 
                         </tbody>
