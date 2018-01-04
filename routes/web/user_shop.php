@@ -1,14 +1,11 @@
 <?php
-Route::get('/all-shops', 'UserShopController@getShops');
 
+Route::group(['prefix' => 'shop', 'middleware' => 'auth'], function () {
 
-Route::group(['prefix' => 'shop', 'roles' => ['seller', 'admin']], function () {
-
-    Route::post('/product/details', ['uses' => 'UserShopController@getShopDetailsProduct']);
-    Route::get('/product/edit/{id}', ['uses' => 'UserShopController@editProduct']);
-    Route::post('/orders/details', ['uses' => 'UserShopController@getOrderDetails']);
-
+    Route::get('/products', 'UserShopController@getShops');
     Route::get('/orders', ['uses' => 'UserShopController@getShopOrders', 'as' => 'user_shop.orders']);
+
+    Route::get('/product/edit/{id}', ['uses' => 'UserShopController@editProduct']);
 
     Route::get('/{shop}', ['uses' => 'UserShopController@getShopPage', 'as' => 'user_shop.show']);
     Route::post('/{shop}/load', ['uses' => 'UserShopController@loadProducts', 'as' => 'user_shop.load_products']);
