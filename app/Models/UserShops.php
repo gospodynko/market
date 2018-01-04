@@ -16,6 +16,7 @@ class UserShops extends Model
     protected $_shops = [];
 
     public $shop_products;
+    public $shop_orders;
 
     public $timestamps = false;
 
@@ -51,18 +52,17 @@ class UserShops extends Model
 
     public function getOrders()
     {
-        $shops = $this->getShops();
+        $this->getShops();
 
-        $orders = [];
-        foreach ($shops as $shop) {
+        foreach ($this->_shops as &$shop) {
             foreach ($shop->products as $item) {
                 foreach ($item->user_product_offers as $order) {
-                    $orders[] = $order;
+                    $shop->shop_orders = $order;
                 }
             }
         }
 
-        return $orders;
+        return $this->_shops;
     }
 
     public function getProducts()

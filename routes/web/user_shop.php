@@ -2,7 +2,7 @@
 
 Route::group(['prefix' => 'shop', 'middleware' => 'auth'], function () {
 
-    Route::get('/products', 'UserShopController@getShops');
+    Route::get('/products', 'UserShopController@getShopProducts');
     Route::get('/orders', ['uses' => 'UserShopController@getShopOrders', 'as' => 'user_shop.orders']);
 
     Route::get('/product/edit/{id}', ['uses' => 'UserShopController@editProduct']);

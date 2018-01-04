@@ -35,7 +35,7 @@ class UserShopController extends Controller
         'quantity_price' => 'string|max:100'
     ];
 
-    public function getShops(UserShops $shops)
+    public function getShopProducts(UserShops $shops)
     {
         $shops = $shops->getProducts();
 
