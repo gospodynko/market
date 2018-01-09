@@ -1,24 +1,32 @@
 <script>
-    import axios from 'axios';
-
     export default{
         data(){
             return{
                 checkedShopId: null,
-                details: null
+                products: []
             }
         },
-        methods: {
-            productDetails (id) {
-                axios.post('/shop/product/details', { id: id})
-                    .then(response => {
 
-                        this.details = response.data;
-                        this.checkedShopId = id;
-                    })
-                    .catch(function (error) {
-                        console.log(error.response.data);
-                    });
+        props: [
+            'shops'
+        ],
+
+        methods: {
+            productsCount (shop) {
+                return shop.products.length;
+            },
+
+            productDetails (shop) {
+                this.products = [];
+                this.checkedShopId = shop.id;
+
+                $.each(shop.products, function (key, product) {
+                    this.products.push(product);
+                }.bind(this));
+            },
+
+            editProduct (id) {
+                location.href = '/shop/product/edit/'+id;
             }
         }
     }

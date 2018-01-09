@@ -9,6 +9,7 @@ use App\Models\DeliveryType;
 use App\Models\PayType;
 use App\Models\Producer;
 use App\Models\Product;
+use App\Models\ProductPicture;
 use App\Models\UserProduct;
 use App\Models\UserShops;
 use Illuminate\Http\Request;
@@ -34,9 +35,9 @@ class UserShopController extends Controller
         'quantity_price' => 'string|max:100'
     ];
 
-    public function getShops(UserShops $shops)
+    public function getShopProducts(UserShops $shops)
     {
-        $shops = $shops->getShops();
+        $shops = $shops->getProducts();
 
         return view('user_shop.shops.index', compact('shops'));
     }
@@ -44,18 +45,9 @@ class UserShopController extends Controller
 
     public function getShopOrders(UserShops $shops)
     {
-        $shops = $shops->getShops();
+        $shops = $shops->getProducts();
 
         return view('user_shop.shops.orders', compact('shops'));
-    }
-
-    public function getShopDetailsProduct(Request $request, UserShops $shops)
-    {
-        return $shops->getShopProductDetails($request->input('id'));
-    }
-    public function getOrderDetails(Request $request, UserShops $shops)
-    {
-        return $shops->getOrdersDetails($request->input('id'));
     }
 
     public function createProduct($id)
@@ -64,6 +56,13 @@ class UserShopController extends Controller
                 'categories' => Category::with('producers.products')->get(),
                 'currencies' => Currency::all(), 'delivery_type' => DeliveryType::all(),
                 'pay_type' => PayType::all()]]);
+    }
+
+    public function editProduct($id, Product $product)
+    {
+//        $product = $product->findOrFail($id);
+        return view('user_shop.shops.edit', compact('edit'));
+
     }
 
     public function storeProduct(ValidationProduct $request)
@@ -132,7 +131,7 @@ class UserShopController extends Controller
     private function createProductSeller($data, $producer_id)
     {
         $data_product = [
-            'name' => $data['product']['name'] . rand(1,25),
+            'name' => $data['product']['name'],
             'description' => $data['description'],
             'price'=> $data['price'],
             'created_by' => \Auth::id(),
@@ -151,11 +150,20 @@ class UserShopController extends Controller
         ];
 
         $product = Product::create($data_product);
-        $product->updatePictures($data['images']);
         $delivery_ids = array_map(function ($obj) { return $obj['id']; }, $data['delivery_type']);
         $pay_ids = array_map(function ($obj) { return $obj['id']; }, $data['pay_type']);
         $product->pay_types()->attach($pay_ids);
         $product->delivery_types()->attach($delivery_ids);
+
+        foreach ($data['images'] as $image){
+            ProductPicture::create([
+                'product_id'=>$product->id,
+                'path'=>$image['path'],
+                'default'=>0
+            ]);
+
+        }
+
     }
 
     private function createUserProduct($product_id, $category_id, $producer_id, $price, $shop_id, $currency, $pay_types, $delivery_types, $quantity_price)

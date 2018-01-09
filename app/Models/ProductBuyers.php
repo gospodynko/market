@@ -18,10 +18,4 @@ class ProductBuyers extends Model
     {
         return $this->hasOne(ProductBuyersEmails::class, 'buyer_id', 'id');
     }
-
-    public function fullInfo()
-    {
-        $email = !empty($this->emails) ? $this->emails->email : '';
-        return $this->first_name .' '. $this->last_name .' '. $this->phone .' '. $email;
-    }
 }
