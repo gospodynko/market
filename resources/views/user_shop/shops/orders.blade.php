@@ -34,7 +34,9 @@
                         <td>@{{ detail.created_at }}</td>
                         <td>@{{ detail.name }}</td>
                         <td>@{{ detail.link }}</td>
-                        <td>@{{ detail.buyer_info }}</td>
+                        <td v-if="detail.buyer">
+                            @{{ detail.buyer.first_name }} @{{ detail.buyer.first_name }} @{{ detail.buyer.phone }} @{{ detail.emails ? detail.emails.email : '' }}
+                        </td>
                     </tr>
 
                     </tbody>

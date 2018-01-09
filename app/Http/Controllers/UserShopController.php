@@ -9,6 +9,7 @@ use App\Models\DeliveryType;
 use App\Models\PayType;
 use App\Models\Producer;
 use App\Models\Product;
+use App\Models\ProductPicture;
 use App\Models\UserProduct;
 use App\Models\UserShops;
 use Illuminate\Http\Request;
@@ -156,11 +157,20 @@ class UserShopController extends Controller
         ];
 
         $product = Product::create($data_product);
-        $product->updatePictures($data['images']);
         $delivery_ids = array_map(function ($obj) { return $obj['id']; }, $data['delivery_type']);
         $pay_ids = array_map(function ($obj) { return $obj['id']; }, $data['pay_type']);
         $product->pay_types()->attach($pay_ids);
         $product->delivery_types()->attach($delivery_ids);
+
+        foreach ($data['images'] as $image){
+            ProductPicture::create([
+                'product_id'=>$product->id,
+                'path'=>$image['path'],
+                'default'=>0
+            ]);
+
+        }
+
     }
 
     private function createUserProduct($product_id, $category_id, $producer_id, $price, $shop_id, $currency, $pay_types, $delivery_types, $quantity_price)
