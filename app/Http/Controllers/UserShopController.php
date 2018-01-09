@@ -35,9 +35,9 @@ class UserShopController extends Controller
         'quantity_price' => 'string|max:100'
     ];
 
-    public function getShops(UserShops $shops)
+    public function getShopProducts(UserShops $shops)
     {
-        $shops = $shops->getShops();
+        $shops = $shops->getProducts();
 
         return view('user_shop.shops.index', compact('shops'));
     }
@@ -45,18 +45,9 @@ class UserShopController extends Controller
 
     public function getShopOrders(UserShops $shops)
     {
-        $shops = $shops->getShops();
+        $shops = $shops->getProducts();
 
         return view('user_shop.shops.orders', compact('shops'));
-    }
-
-    public function getShopDetailsProduct(Request $request, UserShops $shops)
-    {
-        return $shops->getShopProductDetails($request->input('id'));
-    }
-    public function getOrderDetails(Request $request, UserShops $shops)
-    {
-        return $shops->getOrdersDetails($request->input('id'));
     }
 
     public function createProduct($id)
@@ -67,8 +58,10 @@ class UserShopController extends Controller
                 'pay_type' => PayType::all()]]);
     }
 
-    public function editProduct($id)
+    public function editProduct($id, Product $product)
     {
+//        $product = $product->findOrFail($id);
+        return view('user_shop.shops.edit', compact('edit'));
 
     }
 

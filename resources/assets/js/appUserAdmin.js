@@ -14,6 +14,7 @@ import MenuVue from './componentsUserAdmin/core/menu.vue';
 import IndexVue from './componentsUserAdmin/main/index.vue';
 import ShopsVue from './componentsUserAdmin/shops/index.vue';
 import ShopsCreateVue from './componentsUserAdmin/shops/create.vue';
+import ShopsEditVue from './componentsUserAdmin/shops/edit.vue';
 import ShopsOrdersVue from './componentsUserAdmin/shops/orders.vue';
 Vue.use(VueResource);
 
@@ -38,6 +39,7 @@ const app = new Vue({
         IndexVue,
         ShopsVue,
         ShopsCreateVue,
+        ShopsEditVue,
         ShopsOrdersVue
     }
 
