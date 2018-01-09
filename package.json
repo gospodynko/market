@@ -23,7 +23,7 @@
     "node-sass": "^4.7.2",
     "pgwslider": "^2.3.1",
     "swiper": "^3.4.2",
-    "vue": "^2.4.2",
+    "vue": "^2.5.13",
     "vue-ladda": "0.0.13",
     "vue-masked-input": "^0.5.2",
     "vue-multiselect": "^2.0.2",
@@ -31,6 +31,7 @@
     "vue-router": "^2.5.3",
     "vue-socket.io": "^2.1.1-a",
     "vue-star-rating": "^1.4.0",
+    "vue-template-compiler": "^2.5.13",
     "vuejs-datepicker": "^0.9.0",
     "vuejs-paginate": "^0.9.1"
   }

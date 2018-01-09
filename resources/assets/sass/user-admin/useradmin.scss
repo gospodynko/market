@@ -24,26 +24,26 @@
   color: #FFF;
   text-decoration: none;
   background-color: #4caf50;
-    vertical-align: middle;
-    &:hover {
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
-      transition:all 0.1s;
-      background-color: #4caf50;
-      opacity:1;
-      border: none;
-    }
+  vertical-align: middle;
+  &:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+    transition:all 0.1s;
+    background-color: #4caf50;
+    opacity:1;
+    border: none;
+  }
 }
 .cancel-btn{
   background: #f96262;
   &:hover {
-      background-color: #f96262;
-    }
+    background-color: #f96262;
+  }
 }
 .send-btn{
   background:  #4caf50;
-    &:focus, &:hover{
-      color:#fff;
-    }
+  &:focus, &:hover{
+    color:#fff;
+  }
 }
 .nav-tabs .product-add {
   color: #fff;
@@ -51,10 +51,10 @@
   background-color: #6164c1;
   //border-bottom: 5px solid #5454a6;
   text-shadow: 0px -2px #5454a6;
-    &:hover {
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
-      transition:all 0.1s;
-    }
+  &:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+    transition:all 0.1s;
+  }
 }
 .title{
   font-size: 28px;
@@ -92,28 +92,21 @@
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
-  max-width: 1024px;
-  }
+}
 
 .product-table td, .product-table th {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
+  border: 1px solid #ddd;
+  padding: 8px;
+}
 
 .product-table tr:nth-child(even){background-color: #fff;}
 
 .product-table tr:hover {background-color: #ddd;}
 
 .product-table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #4CAF50;
-    color: white;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
 }
-
-
-
-
-
-

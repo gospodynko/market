@@ -190,4 +190,8 @@ class Product extends Model
 
         return !empty($company) ?url("/shop/{$company->slug}/{$this->slug}") : new \Exception("No company");
     }
+
+    public function edit(){
+        dd(123);
+    }
 }

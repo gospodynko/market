@@ -58,8 +58,10 @@ class UserShopController extends Controller
                 'pay_type' => PayType::all()]]);
     }
 
-    public function editProduct($id)
+    public function editProduct($id, Product $product)
     {
+//        $product = $product->findOrFail($id);
+        return view('user_shop.shops.edit', compact('edit'));
 
     }
 
