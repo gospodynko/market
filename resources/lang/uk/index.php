@@ -41,7 +41,7 @@ return [
         'detail_address_1' => '49044, Україна, м. Дніпро',
         'detail_address_2' => 'вул. Південна 2Б',
         'all_right' => 'Всі права захищені',
-        'site_create' => 'Сайт розроблений та підтримується компанією Unique Techonologies'
+        'site_create' => 'Сайт розроблений та підтримується компанією Unique Technologies'
     ],
     'product' => [
         'reviews' => 'Відгуків',
