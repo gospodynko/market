@@ -58,11 +58,26 @@ class UserShopController extends Controller
                 'pay_type' => PayType::all()]]);
     }
 
-    public function editProduct($id, Product $product)
+    public function editProduct($id)
     {
-//        $product = $product->findOrFail($id);
-        return view('user_shop.shops.edit', compact('edit'));
+        $product = Product::findOrFail($id)->load('payTypes', 'deliveryTypes');
 
+        $product->pay_type = PayType::all();
+        $product->currencies = Currency::all();
+        $product->delivery_type = DeliveryType::all();
+
+        return view('user_shop.shops.edit' , compact('product'));
+    }
+
+    public function updateProduct(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+        $product->update($request->only(['description', 'features', 'price', 'currency']));
+        $delivery_ids = array_map(function ($obj) { return $obj['id']; }, $request->input('delivery_types'));
+        $pay_ids = array_map(function ($obj) { return $obj['id']; }, $request->input('pay_types'));
+        $product->payTypes()->sync($pay_ids);
+        $product->deliveryTypes()->sync($delivery_ids);
+        return response()->json(['status'=>1], 202);
     }
 
     public function storeProduct(ValidationProduct $request)
