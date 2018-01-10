@@ -58,9 +58,26 @@ class UserShopController extends Controller
                 'pay_type' => PayType::all()]]);
     }
 
-    public function editProduct($id)
+    public function editProduct($id, Product $product)
     {
+        $product = $product
+            ->findOrFail($id)
+            ->getPayType()
+            ->getDeliveryType()
+            ->getFeaturesDecode()
+        ;
 
+        $product->pay_type = PayType::all();
+        $product->currencies = Currency::all();
+        $product->delivery_type = DeliveryType::all();
+
+        return view('user_shop.shops.edit' , compact('product'));
+    }
+
+    public function updateProduct(Request $request)
+    {
+        //TODO Обновить продукт и все таблицы что связан с ней.
+        dd($request->all());
     }
 
     public function storeProduct(ValidationProduct $request)

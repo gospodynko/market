@@ -29,8 +29,7 @@
                         </thead>
                         <tbody>
                         <tr v-for="product in products">
-                            {{--<td><button @click="editProduct(product.id)">Edit</button></td>--}}
-                            <td><button >Edit</button></td>
+                            <td><button @click="editProduct(product.id)">Edit</button></td>
                             <td>@{{ product.id }}</td>
                             <td>@{{ product.name }}</td>
                             <td>@{{ product.description }}</td>

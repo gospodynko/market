@@ -89,7 +89,7 @@
                     <div class="col-md-12 btn-block">
                         <div class="col-lg-12 btn-lg-block">
                             <hr class="after-line">
-                            <a href="/all-shops" class="btn btn-danger cancel-btn">
+                            <a href="/shop/products/" class="btn btn-danger cancel-btn">
                                 <i class="glyphicon glyphicon-remove"></i>&nbsp;
                                 Отмена
 					        </a>
@@ -180,7 +180,7 @@
                 };
                 axios.post('/shop/shop/create', data)
                     .then(response => {
-                         location.href = '/all-shops';
+                         location.href = '/shop/products/';
                     })
                     .catch(function (error) {
                         console.log(error.response.data);

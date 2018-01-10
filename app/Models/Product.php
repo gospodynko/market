@@ -6,6 +6,10 @@ use App\Models\DeliveryType;
 use Antvel\Product\Models\Concerns\Pictures;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * @property DeliveryTypeProduct delivery_types
+ * @property PayTypeProduct pay_types
+ */
 class Product extends Model
 {
 
@@ -13,7 +17,7 @@ class Product extends Model
         getDefaultPictureAttribute as getDefaultPicture;
     }
 
-    protected $with = ['pictures', 'user_shop', 'reviews', 'user_product_offers'];
+    protected $with = ['pictures', 'user_shop', 'reviews', 'user_product_offers', 'category', 'currency'];
     protected $fillable = ['category_id', 'name', 'description', 'currency_id', 'price', 'currency_id', 'delivery_id', 'pay_id', 'created_by', 'updated_by', 'user_shop_id', 'sale_counts', 'view_counts', 'status', 'created_at', 'producer_id', 'quantity_price',];
     protected $appends = ['default_picture', 'rate', 'url'];
     public static $onlyActive = true;
@@ -68,12 +72,12 @@ class Product extends Model
 
     public function delivery_types()
     {
-        return $this->belongsToMany(DeliveryType::class);
+        return $this->hasMany(DeliveryTypeProduct::class);
     }
 
     public function pay_types()
     {
-        return $this->belongsToMany(PayType::class);
+        return $this->hasMany(PayTypeProduct::class);
     }
 
     public function currency()
@@ -189,5 +193,30 @@ class Product extends Model
         $company = $this->user_shop;
 
         return !empty($company) ?url("/shop/{$company->slug}/{$this->slug}") : new \Exception("No company");
+    }
+
+    public function getDeliveryType()
+    {
+        foreach ($this->delivery_types as &$delivery_type) {
+            $delivery_type->name = $delivery_type->delivery ? $delivery_type->delivery->name : '';
+        }
+
+        return $this;
+    }
+
+    public function getPayType()
+    {
+        foreach ($this->pay_types as &$pay_type) {
+            $pay_type->name = $pay_type->pay ? $pay_type->pay->name : '';
+        }
+
+        return $this;
+    }
+
+    public function getFeaturesDecode()
+    {
+        $this->features = json_decode($this->features);
+
+        return $this;
     }
 }

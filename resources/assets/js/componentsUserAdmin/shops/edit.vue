@@ -1,0 +1,57 @@
+<script type="text/babel">
+    import Multiselect from 'vue-multiselect'
+    export default{
+        data(){
+            return{
+                checkedProduct: this.product,
+                images: []
+            }
+        },
+        props: ['product'],
+        components: {
+            Multiselect
+        },
+        methods: {
+            updateProduct() {
+                axios.post('/shop/product/update', this.product)
+                    .then(response => {
+
+                    })
+                    .catch(function (error) {
+                        console.log(error.response.data);
+                    })
+                ;
+            },
+            fileLoad(e) {
+                let data = new FormData();
+                data.append('file', e.target.files[0]);
+
+                axios.post('/products/upload', data)
+                    .then(response => {
+                        this.images.push({'path': response.data});
+                    })
+                    .catch(function (error) {
+                        console.log(error.response.data);
+                    })
+                ;
+            },
+            addParameter(feature) {
+                feature.params.push({
+                    title: '',
+                    param: ''
+                });
+            },
+            addFeature() {
+                this.product.features.push({
+                    name: '',
+                    params: [
+                        {
+                            title: '',
+                            param: ''
+                        }
+                    ]
+                })
+            }
+        }
+    }
+</script>
