@@ -9,6 +9,7 @@ class PayTypeProduct extends Model
     protected $table = 'pay_type_product';
     protected $fillable = ['pay_type_id', 'product_id'];
     protected $with = ['pay'];
+    public $timestamps = false;
 
     public function pay()
     {

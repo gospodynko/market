@@ -70,14 +70,14 @@ class Product extends Model
         return $this->is_root ? self::where('parent_product_id', $this->id)->get() : self::where('parent_product_id', $this->parent_product_id)->orWhere('id', $this->parent_product_id)->get()->where('id', '!=', $this->id);
     }
 
-    public function delivery_types()
+    public function deliveryTypes()
     {
-        return $this->hasMany(DeliveryTypeProduct::class);
+        return $this->belongsToMany(DeliveryType::class, 'delivery_type_product', 'product_id', 'delivery_type_id');
     }
 
-    public function pay_types()
+    public function payTypes()
     {
-        return $this->hasMany(PayTypeProduct::class);
+        return $this->belongsToMany(PayType::class, 'pay_type_product', 'product_id', 'pay_type_id');
     }
 
     public function currency()
@@ -193,24 +193,6 @@ class Product extends Model
         $company = $this->user_shop;
 
         return !empty($company) ?url("/shop/{$company->slug}/{$this->slug}") : new \Exception("No company");
-    }
-
-    public function getDeliveryType()
-    {
-        foreach ($this->delivery_types as &$delivery_type) {
-            $delivery_type->name = $delivery_type->delivery ? $delivery_type->delivery->name : '';
-        }
-
-        return $this;
-    }
-
-    public function getPayType()
-    {
-        foreach ($this->pay_types as &$pay_type) {
-            $pay_type->name = $pay_type->pay ? $pay_type->pay->name : '';
-        }
-
-        return $this;
     }
 
     public function getFeaturesDecode()

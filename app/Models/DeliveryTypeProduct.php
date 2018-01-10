@@ -9,6 +9,7 @@ class DeliveryTypeProduct extends Model
     protected $table = 'delivery_type_product';
     protected $fillable = ['delivery_type_id', 'product_id'];
     protected $with = ['delivery'];
+    public $timestamps = false;
 
     public function delivery()
     {
