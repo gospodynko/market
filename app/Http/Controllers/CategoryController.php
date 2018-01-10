@@ -17,7 +17,7 @@ class CategoryController extends Controller
         } else {
             $categories = Category::where('slug', $subSlug);
         }
-        $products = Product::whereIn('category_id', $categories->pluck('id'));
+        $products = Product::whereIn('category_id', $categories->pluck('id'))->orderBy('created_at', 'DESC');
 
         return view('category', ['data' => ['products' => $products->paginate($per_page), 'cat_name' => $category->name], 'category' => $category]);
     }
