@@ -16,6 +16,12 @@
                     </div>
                 </div>
 
+                <div class="row">
+                    <div class="col-md-12 add-new-product">
+                        <a v-if="checkedShopId" :href="'/shop/shop/'+checkedShopId+'/create'" class="btn btn-success btn-lg">Добавить продукт</a>
+                    </div>
+                </div>
+
                 <div class="container">
                     <table v-if="products.length" class="table product-table">
                         <thead>
@@ -40,11 +46,6 @@
                     </table>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-12 add-new-product">
-                        <a v-if="checkedShopId" :href="'/shop/shop/'+checkedShopId+'/create'" class="btn btn-success btn-lg">Добавить продукт</a>
-                    </div>
-                </div>
             </div>
         </div>
     </shops-vue>
