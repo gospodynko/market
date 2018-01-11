@@ -98,7 +98,7 @@
                             </a>
                             <button class="btn send-btn" @click="updateProduct">
                                 <i class="glyphicon glyphicon-send"></i>&nbsp;
-                                Створити
+                                Редактировать
                             </button>
                         </div>
                     </div>
