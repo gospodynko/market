@@ -167,8 +167,8 @@ class UserShopController extends Controller
         $product = Product::create($data_product);
         $delivery_ids = array_map(function ($obj) { return $obj['id']; }, $data['delivery_type']);
         $pay_ids = array_map(function ($obj) { return $obj['id']; }, $data['pay_type']);
-        $product->pay_types()->attach($pay_ids);
-        $product->delivery_types()->attach($delivery_ids);
+        $product->payTypes()->sync($pay_ids);
+        $product->deliveryTypes()->sync($delivery_ids);
 
         foreach ($data['images'] as $image){
             ProductPicture::create([
