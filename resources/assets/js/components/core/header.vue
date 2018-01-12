@@ -25,7 +25,7 @@
                             <!--<p class="city"><i></i> Город</p>-->
                         </div>
                         <div class="item">
-                            <a href="/user-shop/all-shops" class="shop" v-if="user && user.role == 'seller'"><i></i> {{translate.my_shop}}</a>
+                            <a href="/shop/products" class="shop" v-if="user && user.role == 'seller'"><i></i> {{translate.my_shop}}</a>
                         </div>
                         <div class="item">
                             <a href="#" class="basket" @click="showCartFunc"><i></i><span class="badge" :class="{'badge': cart}" v-if="cart && cart.length">{{cart.length}}</span> {{translate.cart}}</a>
