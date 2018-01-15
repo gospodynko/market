@@ -54,10 +54,12 @@
 
                         </div>
                         <div v-else>
-                            <div class="col-md-3" v-for="image in images">
-                                <img :src="image.path" alt="image">
-                                <button @click="removeImage">Remove image</button>
-                             </div>
+                            <div class="col-md-3" v-for="image in images" style="width: auto">
+                                <div class="col-md-3">
+                                    <img :src="image.path" alt="image">
+                                    <button @click="removeImage">Remove image</button>
+                                 </div>
+                            </div>
                         </div>
                     </div>
                 </div>
