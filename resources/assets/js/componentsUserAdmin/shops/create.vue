@@ -55,7 +55,7 @@
                         </div>
                         <div v-else>
                             <div class="col-md-3" v-for="image in images" style="width: auto">
-                                <div class="col-md-3">
+                                <div class="img">
                                     <img :src="image.path" alt="image">
                                     <button @click="removeImage">Remove image</button>
                                  </div>
@@ -214,7 +214,8 @@
                 })
             },
             removeImage(e) {
-                return this.images.splice(e,1)
+                e.preventDefault();
+                this.images.splice(0,1);
             },
             //fix for test
             addParameter(feature){
