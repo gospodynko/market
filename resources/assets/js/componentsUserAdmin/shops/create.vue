@@ -45,19 +45,22 @@
                             <label class="mini-title load-title">Загрузить картинки (макс 5шт)</label>
                             <input type="file" class="load-btn" @change="fileLoad">
                         </div>
-
-                        <div class="pictures" v-if="images.length == 0">
-                            <div class="col-md-3" v-for="pictures in checkedProduct.pictures">
-                                <img :src="pictures.path" alt="image">
-                            </div>
-                        </div>
-
-                        <div class="col-md-3" v-for="image in images">
-                            <img :src="image.path" alt="image">
-                        </div>
                     </div>
                     <div class="col-md-12 after-load-hr">
-                        <hr>
+                        <div class="pictures" v-if="images.length == 0">
+                            <!--<div class="col-md-3" v-for="pictures in checkedProduct.pictures">-->
+                                <!--<img :src="pictures.path" alt="image">-->
+                            <!--</div>-->
+
+                        </div>
+                        <div v-else>
+                            <div class="col-md-3" v-for="image in images" style="width: auto">
+                                <div class="img">
+                                    <img :src="image.path" alt="image">
+                                    <button @click="removeImage">Remove image</button>
+                                 </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-12 currency-block">
@@ -209,6 +212,10 @@
                 }, err => {
 
                 })
+            },
+            removeImage(e) {
+                e.preventDefault();
+                this.images.splice(0,1);
             },
             //fix for test
             addParameter(feature){
