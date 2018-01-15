@@ -1,7 +1,7 @@
 @extends('user_shop.layouts.index')
 
 @section('user-shop-content')
-    <shops-edit-vue inline-template :product="{{$product}}">
+    <shops-edit-vue inline-template :product="{{$product}}" xmlns:v-on="http://www.w3.org/1999/xhtml">
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row">
@@ -66,7 +66,7 @@
                     <div class="col-md-12 currency-block">
                         <div class="col-lg-3">
                             <label class="mini-title price-title">Цена:</label>
-                            <input type="number" class="form-control price-form" v-model="checkedProduct.price" value="@{{ checkedProduct.price }}">
+                            <input type="number" class="form-control price-form" v-model="checkedProduct.price" value="@{{ checkedProduct.price }}" v-on:keypress="checkSymbol">
                         </div>
                         <div class="col-lg-3">
                             <label class="mini-title currency-title">Валюта:</label>
