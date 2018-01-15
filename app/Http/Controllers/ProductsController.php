@@ -290,7 +290,7 @@ class ProductsController extends Controller
                 ->get();
         }
 
-        $product->load('category.parent_category', 'user_shop.company', 'delivery_types', 'pay_types');
+        $product->load('category.parent_category', 'user_shop.company', 'deliveryTypes', 'payTypes');
         $product->user_shop->phones = $product->user_shop->company->users()->pluck('phone');
 
         if ($product) {
@@ -525,10 +525,6 @@ class ProductsController extends Controller
                     ->withErrors($v->errors())->withInput();
         }
         $product = UserProduct::find($id);
-        // if (\Auth::id() != $product->user_id) {
-        //     return redirect('products/'.$product->user_id)->withErrors(['feature_images' => [trans('globals.not_access')]]);
-        // }
-
         $product->category_id = $request->input('category_id');
         $product->producer_id = $request->input('producer_id');
         $product->product_id = $request->input('product_id');

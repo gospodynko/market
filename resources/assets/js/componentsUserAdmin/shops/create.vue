@@ -66,7 +66,7 @@
                 <div class="col-md-12 currency-block">
                     <div class="col-lg-3">
                         <label class="mini-title price-title">Цена:</label>
-                        <input type="number" class="form-control price-form" v-model="price">
+                        <input  type="text" pattern="\d[0-9]{6}" class="form-control price-form" v-model="price" v-on:keypress="checkSymbol">
                     </div>
                     <div class="col-lg-3">
                         <label class="mini-title currency-title">Валюта:</label>
@@ -150,7 +150,7 @@
 //                    this.description = val.description
 //                    this.features = JSON.parse(val.features)
                 } else {
-                    this.description = ''
+                    this.description = '',
                     this.features = [
                         {
                             name: '',
@@ -165,6 +165,7 @@
                 }
             }
         },
+
         methods: {
             createProduct(){
                 let data = {
@@ -217,7 +218,7 @@
                 e.preventDefault();
                 this.images.splice(0,1);
             },
-            //fix for test
+
             addParameter(feature){
                 feature.params.push({
                     title: '',
@@ -234,6 +235,14 @@
                         }
                     ]
                 })
+            },
+            checkSymbol (e){
+                var charCode = (e.which) ? e.which : e.keyCode
+                if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+                    e.preventDefault()
+                } else {
+                    return true
+                }
             }
         }
     }
