@@ -19,11 +19,15 @@
                         </div>
                         <div class="col-md-12">
                             <h2 class="props-title">Характеристики</h2>
-                            <div v-for="feature in checkedProduct.features">
-                                <input type="text" placeholder="Заголовок характеристики" class="form-control head-param-title" v-model="feature.name">
-                                <div v-for="param in feature.params" class="param-block">
+                            <div v-for="(feature, i) in checkedProduct.features">
+                                <div style="display:flex">
+                                    <input type="text" placeholder="Заголовок характеристики" class="form-control head-param-title" v-model="feature.name">
+                                    <button @click="deleteFeature(i)" style="height:38px; margin-left:7px">x</button>
+                                </div>
+                                <div v-for="(param, i) in feature.params" class="param-block">
                                     <input type="text" class="param-name" placeholder="Назва параметру" v-model="param.title">
                                     <input type="text" class="parametr" placeholder="Параметр" v-model="param.param">
+                                    <button @click="deleteParam(feature, i)">x</button>
                                 </div>
                                 <button class="btn btn-success add-param-btn" @click="addParameter(feature)"><i class="glyphicon glyphicon-plus"></i><span class="add-btn-text"> Додати параметр</span></button>
                             </div>
