@@ -7,24 +7,24 @@
                 <div class="col-md-12 props-block">
                     <div class="col-md-3">
                         <!--<br/>-->
-                        <label class="mini-title category-title">Вибір категорії:</label>
+                        <label class="mini-title category-title">Вибір категорії*:</label>
                         <select class="form-control category-form" @change="setProducer" v-model="checkedCategory">
                             <option :value="null" disabled selected>Оберіть категорію</option>
                             <option :value="category" v-for="category in categories">{{category.name}}</option>
                         </select>
                     </div>
                     <div class="col-md-3">
-                        <label class="mini-title creator-title">Виробник:</label>
+                        <label class="mini-title creator-title">Виробник*:</label>
                         <multiselect v-model="checkedTag" tag-placeholder="Додайте новий тег" placeholder="Пошук тегу" label="name" track-by="id" :options="checkedProducers" :multiple="false" :taggable="true" @tag="addTag"></multiselect>
                     </div>
                     <div class="col-md-3 ">
-                        <label class="mini-title prod-title">Продукт:</label>
+                        <label class="mini-title prod-title">Продукт*:</label>
                         <multiselect  v-model="checkedProduct" tag-placeholder="Додайте новий тег" placeholder="Пошук тегу" label="name" track-by="id" :options="checkedTag.hasOwnProperty('products') ? checkedTag.products : checkedProducts" :multiple="false" :taggable="true" @tag="addTagProduct"></multiselect>
                     </div>
                 </div>
                 <div v-if="checkedProduct">
                     <div class="col-lg-12 description-block">
-                        <label class="mini-title description-title">Опис продукту: </label>
+                        <label class="mini-title description-title">Опис продукту*: </label>
                         <textarea class="form-control description-form" v-model="description"></textarea>
 
                     </div>
@@ -67,11 +67,11 @@
                 </div>
                 <div class="col-md-12 currency-block">
                     <div class="col-lg-3">
-                        <label class="mini-title price-title">Ціна:</label>
+                        <label class="mini-title price-title">Ціна*:</label>
                         <input  type="text" class="form-control price-form" v-model="price" v-on:keypress="checkSymbol">
                     </div>
                     <div class="col-lg-3">
-                        <label class="mini-title currency-title">Валюта:</label>
+                        <label class="mini-title currency-title">Валюта*:</label>
                         <select class="form-control currency-form" v-model="currencyType">
                             <option :value="null">Оберіть валюту</option>
                             <option :value="currency" v-for="currency in data.currencies">{{currency.name}}</option>
@@ -83,11 +83,11 @@
                 </div>
                 <div class="col-md-12 post-block">
                     <div class="col-lg-3">
-                        <label class="mini-title post-title">Тип доставки:</label>
-                        <multiselect v-model="deliveryType" tag-placeholder="Додайте новий тег" placeholder="Пошук тегу" selected-label = "Обрано" select-label="Натисніть enter" deselect-label="Зняти" label="name" track-by="id" :options="data.delivery_type" :multiple="true"></multiselect>
+                        <label class="mini-title post-title">Тип доставки*:</label>
+                        <multiselect v-model="deliveryType" tag-placeholder="Додайте новий тег" placeholder="Пошук тегу" selected-label = "Обрано" select-label="Натисніть enter" deselect-label="Зняти"  label="name" track-by="id" :options="data.delivery_type" :multiple="true"></multiselect>
                     </div>
                     <div class="col-lg-3">
-                        <label class="mini-title pay-type-title">Тип оплати:</label>
+                        <label class="mini-title pay-type-title">Тип оплати*:</label>
                         <multiselect v-model="paymentType" tag-placeholder="Додайте новий тег" select-label="Натисніть enter" selected-label = "Обрано" deselect-label="Зняти" placeholder="Пошук тегу" label="name" track-by="id" :options="data.pay_type" :multiple="true"></multiselect>
                     </div>
                 </div>
