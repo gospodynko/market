@@ -42,7 +42,9 @@
                     </div>
                     <div class="col-md-12 load-file-block">
                         <div class="col-md-3">
-                            <label class="mini-title load-title">Завантажити зображення (макс 5шт)</label>
+                            <label class="mini-title load-title">Завантажити зображення(макс 5шт)</label>
+                        </div>
+                        <div class="col-md-3">
                             <input type="file" class="load-btn" @change="fileLoad">
                         </div>
                     </div>
@@ -82,11 +84,11 @@
                 <div class="col-md-12 post-block">
                     <div class="col-lg-3">
                         <label class="mini-title post-title">Тип доставки:</label>
-                        <multiselect v-model="deliveryType" tag-placeholder="Додайте новий тег" placeholder="Пошук тегу" label="name" track-by="id" :options="data.delivery_type" :multiple="true"></multiselect>
+                        <multiselect v-model="deliveryType" tag-placeholder="Додайте новий тег" placeholder="Пошук тегу" selected-label = "Обрано" select-label="Натисніть enter" deselect-label="Зняти" label="name" track-by="id" :options="data.delivery_type" :multiple="true"></multiselect>
                     </div>
                     <div class="col-lg-3">
-                        <label class="mini-title pay-type-title">Тип оплаты:</label>
-                        <multiselect v-model="paymentType" tag-placeholder="Додайте новий тег" placeholder="Пошук тегу" label="name" track-by="id" :options="data.pay_type" :multiple="true"></multiselect>
+                        <label class="mini-title pay-type-title">Тип оплати:</label>
+                        <multiselect v-model="paymentType" tag-placeholder="Додайте новий тег" select-label="Натисніть enter" selected-label = "Обрано" deselect-label="Зняти" placeholder="Пошук тегу" label="name" track-by="id" :options="data.pay_type" :multiple="true"></multiselect>
                     </div>
                 </div>
                 <div class="col-md-12 btn-block">

@@ -68,11 +68,12 @@
                     <div class="col-md-12 post-block">
                         <div class="col-lg-3">
                             <label class="mini-title post-title">Тип доставки:</label>
-                            <multiselect v-model="checkedProduct.delivery_types" tag-placeholder="Додайте новий тег" placeholder="Пошук тегу" select-label="dsfjklghsdokfg awpsdfjoap" label="name" track-by="id" :options="checkedProduct.delivery_type" :multiple="true"></multiselect>
+
+                            <multiselect v-model="checkedProduct.delivery_types" tag-placeholder="Додайте новий тег" selected-label = "Обрано" select-label="Натисніть enter" deselect-label="Зняти" placeholder="Пошук тегу" label="name" track-by="id" :options="checkedProduct.delivery_type" :multiple="true"></multiselect>
                         </div>
                         <div class="col-lg-3">
                             <label class="mini-title pay-type-title">Тип оплати:</label>
-                            <multiselect v-model="checkedProduct.pay_types" tag-placeholder="Додайте новий тег" placeholder="Пошук тегу" label="name" track-by="id" :options="checkedProduct.pay_type" :multiple="true"></multiselect>
+                            <multiselect v-model="checkedProduct.pay_types" tag-placeholder="Додайте новий тег"  selected-label = "Обрано" select-label="Натисніть enter" deselect-label="Зняти" placeholder="Пошук тегу" label="name" track-by="id" :options="checkedProduct.pay_type" :multiple="true"></multiselect>
                         </div>
                     </div>
                     <div class="col-md-12 btn-block">
