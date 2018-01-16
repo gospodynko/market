@@ -18,7 +18,7 @@
 
                 <div class="row">
                     <div class="col-md-12 add-new-product">
-                        <a v-if="checkedShopId" :href="'/shop/shop/'+checkedShopId+'/create'" class="btn btn-success btn-lg">Добавить продукт</a>
+                        <a v-if="checkedShopId" :href="'/shop/shop/'+checkedShopId+'/create'" class="btn btn-success btn-lg">Додати продукт</a>
                     </div>
                 </div>
 
@@ -27,15 +27,15 @@
                         <thead>
                         <tr>
                             <th></th>
-                            <th>Product ID</th>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Price</th>
+                            <th>ID товару</th>
+                            <th>Назва товару</th>
+                            <th>Опис товару</th>
+                            <th>Ціна</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="product in products">
-                            <td><button @click="editProduct(product.id)">Edit</button></td>
+                            <td><button @click="editProduct(product.id)">Редагувати</button></td>
                             <td>@{{ product.id }}</td>
                             <td>@{{ product.name }}</td>
                             <td>@{{ product.description }}</td>
