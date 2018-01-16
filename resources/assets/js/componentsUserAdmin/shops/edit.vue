@@ -35,12 +35,6 @@
                     })
                 ;
             },
-            addParameter(feature) {
-                feature.params.push({
-                    title: '',
-                    param: ''
-                });
-            },
             checkSymbol (e){
                 var charCode = (e.which) ? e.which : e.keyCode
                 if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
@@ -48,6 +42,12 @@
                 } else {
                     return true
                 }
+            },
+            addParameter(feature) {
+                feature.params.push({
+                    title: '',
+                    param: ''
+                });
             },
             addFeature() {
                 this.product.features.push({
