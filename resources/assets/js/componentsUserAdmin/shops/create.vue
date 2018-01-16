@@ -15,11 +15,11 @@
                     </div>
                     <div class="col-md-3">
                         <label class="mini-title creator-title">Виробник*:</label>
-                        <multiselect v-model="checkedTag" tag-placeholder="Додайте новий тег" placeholder="Пошук тегу" label="name" track-by="id" :options="checkedProducers" :multiple="false" :taggable="true" @tag="addTag"></multiselect>
+                        <multiselect v-model="checkedTag" tag-placeholder="Додайте нового виробника" placeholder="Пошук виробника" selected-label = "Обрано" select-label="Натисніть enter" deselect-label="Зняти" label="name" track-by="id" :options="checkedProducers" :multiple="false" :taggable="true" @tag="addTag"></multiselect>
                     </div>
                     <div class="col-md-3 ">
                         <label class="mini-title prod-title">Продукт*:</label>
-                        <multiselect  v-model="checkedProduct" tag-placeholder="Додайте новий тег" placeholder="Пошук тегу" label="name" track-by="id" :options="checkedTag.hasOwnProperty('products') ? checkedTag.products : checkedProducts" :multiple="false" :taggable="true" @tag="addTagProduct"></multiselect>
+                        <multiselect  v-model="checkedProduct" tag-placeholder="Додайте новий товар" placeholder="Пошук товару" selected-label = "Обрано" select-label="Натисніть enter" deselect-label="Зняти" label="name" track-by="id" :options="checkedTag.hasOwnProperty('products') ? checkedTag.products : checkedProducts" :multiple="false" :taggable="true" @tag="addTagProduct"></multiselect>
                     </div>
                 </div>
                 <div v-if="checkedProduct">
@@ -180,7 +180,7 @@
                     'producer': this.checkedTag,
                     'category': this.checkedCategory,
                     'shop_id': this.shop.id,
-                    'price': +this.price,
+                    'price': + this.price,
                     'images': this.images,
                     'features': this.features
                 };
