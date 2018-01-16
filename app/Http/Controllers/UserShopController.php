@@ -12,6 +12,7 @@ use App\Models\Product;
 use App\Models\ProductPicture;
 use App\Models\UserProduct;
 use App\Models\UserShops;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -84,8 +85,14 @@ class UserShopController extends Controller
     }
 
     public function removeProduct( $id){
-        $product = Product::findOrFail($id)->delete();
-        return response()->json(['status'=>1], 202);
+        $product = Product::findOrFail($id);
+        $user_ids = $product->user_shop->companyUsers->users()->get()->pluck('id');
+        if ($user_ids->search(Auth::id(), true) === false) {
+            return response()->json(['status' => 0, 'msg' => 'forbidden'], 406);
+        } else {
+            $product->delete();
+            return response()->json(['status' => 1], 202);
+        }
     }
 
     public function storeProduct(ValidationProduct $request)
