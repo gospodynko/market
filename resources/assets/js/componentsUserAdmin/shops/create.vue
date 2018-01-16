@@ -2,29 +2,29 @@
     <div id="page-wrapper">
         <div class="container-fluid">
             <div class="row">
-                <h2 class="title">&nbsp;&nbsp;Добавьте новый продукт</h2>
+                <h2 class="title">&nbsp;&nbsp;Створення нового продукту: </h2>
 
                 <div class="col-md-12 props-block">
                     <div class="col-md-3">
                         <!--<br/>-->
-                        <label class="mini-title category-title">Выбор категории:</label>
+                        <label class="mini-title category-title">Вибір категорії:</label>
                         <select class="form-control category-form" @change="setProducer" v-model="checkedCategory">
-                            <option :value="null" disabled selected>Выберите категорию</option>
+                            <option :value="null" disabled selected>Оберіть категорію</option>
                             <option :value="category" v-for="category in categories">{{category.name}}</option>
                         </select>
                     </div>
                     <div class="col-md-3">
-                        <label class="mini-title creator-title">Производитель:</label>
-                        <multiselect v-model="checkedTag" tag-placeholder="Add this as new tag" placeholder="Search or add a tag" label="name" track-by="id" :options="checkedProducers" :multiple="false" :taggable="true" @tag="addTag"></multiselect>
+                        <label class="mini-title creator-title">Виробник:</label>
+                        <multiselect v-model="checkedTag" tag-placeholder="Додайте новий тег" placeholder="Пошук тегу" label="name" track-by="id" :options="checkedProducers" :multiple="false" :taggable="true" @tag="addTag"></multiselect>
                     </div>
                     <div class="col-md-3 ">
                         <label class="mini-title prod-title">Продукт:</label>
-                        <multiselect  v-model="checkedProduct" tag-placeholder="Add this as new tag" placeholder="Search or add a tag" label="name" track-by="id" :options="checkedTag.hasOwnProperty('products') ? checkedTag.products : checkedProducts" :multiple="false" :taggable="true" @tag="addTagProduct"></multiselect>
+                        <multiselect  v-model="checkedProduct" tag-placeholder="Додайте новий тег" placeholder="Пошук тегу" label="name" track-by="id" :options="checkedTag.hasOwnProperty('products') ? checkedTag.products : checkedProducts" :multiple="false" :taggable="true" @tag="addTagProduct"></multiselect>
                     </div>
                 </div>
                 <div v-if="checkedProduct">
                     <div class="col-lg-12 description-block">
-                        <label class="mini-title description-title">Описание продукта</label>
+                        <label class="mini-title description-title">Опис продукту: </label>
                         <textarea class="form-control description-form" v-model="description"></textarea>
 
                     </div>
@@ -33,16 +33,18 @@
                         <div v-for="feature in features">
                             <input type="text" placeholder="Заголовок характеристики" class="form-control head-param-title" v-model="feature.name">
                             <div v-for="param in feature.params" class="param-block">
-                                <input type="text" class="param-name" placeholder="Название параметра" v-model="param.title">
+                                <input type="text" class="param-name" placeholder="Назва параметру" v-model="param.title">
                                 <input type="text" class="parametr" placeholder="Параметр" v-model="param.param">
                             </div>
-                            <button class="btn btn-success add-param-btn" @click="addParameter(feature)"><i class="glyphicon glyphicon-plus"></i><span class="add-btn-text"> Добавить параметр</span></button>
+                            <button class="btn btn-success add-param-btn" @click="addParameter(feature)"><i class="glyphicon glyphicon-plus"></i><span class="add-btn-text"> Додати параметр</span></button>
                         </div>
-                        <button class="btn btn-success add-prop-btn" @click="addFeature"><i class="glyphicon glyphicon-plus"></i><span class="add-btn-text"> Добавить характеристику</span></button>
+                        <button class="btn btn-success add-prop-btn" @click="addFeature"><i class="glyphicon glyphicon-plus"></i><span class="add-btn-text"> Додати характеристику</span></button>
                     </div>
                     <div class="col-md-12 load-file-block">
                         <div class="col-md-3">
-                            <label class="mini-title load-title">Загрузить картинки (макс 5шт)</label>
+                            <label class="mini-title load-title">Завантажити зображення(макс 5шт)</label>
+                        </div>
+                        <div class="col-md-3">
                             <input type="file" class="load-btn" @change="fileLoad">
                         </div>
                     </div>
@@ -57,7 +59,7 @@
                             <div class="col-md-3" v-for="image in images" style="width: auto">
                                 <div class="img">
                                     <img :src="image.path" alt="image">
-                                    <button @click="removeImage">Remove image</button>
+                                    <button @click="removeImage">Видалити</button>
                                  </div>
                             </div>
                         </div>
@@ -65,13 +67,13 @@
                 </div>
                 <div class="col-md-12 currency-block">
                     <div class="col-lg-3">
-                        <label class="mini-title price-title">Цена:</label>
-                        <input  type="text" pattern="\d[0-9]{6}" class="form-control price-form" v-model="price" v-on:keypress="checkSymbol">
+                        <label class="mini-title price-title">Ціна:</label>
+                        <input  type="text" class="form-control price-form" v-model="price" v-on:keypress="checkSymbol">
                     </div>
                     <div class="col-lg-3">
                         <label class="mini-title currency-title">Валюта:</label>
                         <select class="form-control currency-form" v-model="currencyType">
-                            <option :value="null">Выберите валюту</option>
+                            <option :value="null">Оберіть валюту</option>
                             <option :value="currency" v-for="currency in data.currencies">{{currency.name}}</option>
                         </select>
                     </div>
@@ -82,24 +84,24 @@
                 <div class="col-md-12 post-block">
                     <div class="col-lg-3">
                         <label class="mini-title post-title">Тип доставки:</label>
-                        <multiselect v-model="deliveryType" tag-placeholder="Add this as new tag" placeholder="Search or add a tag" label="name" track-by="id" :options="data.delivery_type" :multiple="true"></multiselect>
+                        <multiselect v-model="deliveryType" tag-placeholder="Додайте новий тег" placeholder="Пошук тегу" selected-label = "Обрано" select-label="Натисніть enter" deselect-label="Зняти" label="name" track-by="id" :options="data.delivery_type" :multiple="true"></multiselect>
                     </div>
                     <div class="col-lg-3">
-                        <label class="mini-title pay-type-title">Тип оплаты:</label>
-                        <multiselect v-model="paymentType" tag-placeholder="Add this as new tag" placeholder="Search or add a tag" label="name" track-by="id" :options="data.pay_type" :multiple="true"></multiselect>
+                        <label class="mini-title pay-type-title">Тип оплати:</label>
+                        <multiselect v-model="paymentType" tag-placeholder="Додайте новий тег" select-label="Натисніть enter" selected-label = "Обрано" deselect-label="Зняти" placeholder="Пошук тегу" label="name" track-by="id" :options="data.pay_type" :multiple="true"></multiselect>
                     </div>
                 </div>
                 <div class="col-md-12 btn-block">
                     <div class="col-lg-12 btn-lg-block">
                         <hr class="after-line">
-                        <a href="/shop/products/" class="btn btn-danger cancel-btn">
-                            <i class="glyphicon glyphicon-remove"></i>&nbsp;
-                            Отмена
-                        </a>
                         <button class="btn send-btn" @click="createProduct">
                             <i class="glyphicon glyphicon-send"></i>&nbsp;
                             Створити
                         </button>
+                        <a href="/shop/products/" class="btn btn-danger cancel-btn">
+                            <i class="glyphicon glyphicon-remove"></i>&nbsp;
+                            Відміна
+                        </a>
                     </div>
                 </div>
 
