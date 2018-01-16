@@ -65,6 +65,7 @@ class UserShopController extends Controller
         $product->pay_type = PayType::all();
         $product->currencies = Currency::all();
         $product->delivery_type = DeliveryType::all();
+        $product->features = json_decode($product->features);
 
         return view('user_shop.shops.edit' , compact('product'));
     }
@@ -72,7 +73,9 @@ class UserShopController extends Controller
     public function updateProduct(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        $product->update($request->only(['description', 'features', 'price', 'currency']));
+        $data = $request->only(['description', 'price', 'currency']);
+        $data['features'] = json_encode($request->input('features'));
+        $product->update($data);
         $delivery_ids = array_map(function ($obj) { return $obj['id']; }, $request->input('delivery_types'));
         $pay_ids = array_map(function ($obj) { return $obj['id']; }, $request->input('pay_types'));
         $product->payTypes()->sync($pay_ids);

@@ -50,15 +50,37 @@
                 });
             },
             addFeature() {
-                this.product.features.push({
-                    name: '',
-                    params: [
-                        {
-                            title: '',
-                            param: ''
-                        }
-                    ]
-                })
+                if (this.product.features) {
+                    console.log(1)
+                    this.product.features.push({
+                        name: '',
+                        params: [
+                            {
+                                title: '',
+                                param: ''
+                            }
+                        ]
+                    })
+                } else {
+                    console.log(2)
+                    this.product.features = [];
+                    this.product.features.push({
+                        name: '',
+                        params: [
+                            {
+                                title: '',
+                                param: ''
+                            }
+                        ]
+                    })
+                }
+            },
+            deleteFeature (i) {
+                console.log(i);
+                this.product.features.splice(i,1);
+            },
+            deleteParam (feature, i) {
+                feature.params.splice(i,1);
             }
         }
     }
