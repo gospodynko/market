@@ -22,6 +22,16 @@
                     })
                 ;
             },
+            removeProduct() {
+                axios.post('/shop/product/remove/' + this.product.id, this.product)
+                    .then(response => {
+                        location.href = '/shop/products/';
+                    })
+                    .catch(function (error) {
+                        console.log(error.response.data);
+                    })
+                ;
+            },
             fileLoad(e) {
                 let data = new FormData();
                 data.append('file', e.target.files[0]);

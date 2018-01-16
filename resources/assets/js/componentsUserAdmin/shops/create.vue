@@ -56,14 +56,17 @@
 
                         </div>
                         <div v-else>
-                            <div class="col-md-3" v-for="image in images" style="width: auto">
+                            <div class="col-md-3" v-for="(image, i) in images" style="width: auto">
                                 <div class="img">
-                                    <img :src="image.path" alt="image">
-                                    <button @click="removeImage">Видалити</button>
+                                    <img :src="image.path" alt="image" width="100px" height="100px" border="0">
                                  </div>
+                                <button @click="removeImage(i)">Видалити</button>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="col-md-12">
+                    <hr>
                 </div>
                 <div class="col-md-12 currency-block">
                     <div class="col-lg-3">
@@ -207,6 +210,7 @@
                 this.checkedProducts.push({'name': newTag, 'id': newTag});
             },
             fileLoad(e){
+                if (this.images && this.images.length >= 5) return false
                 let data = new FormData();
                 data.append('file', e.target.files[0]);
 
@@ -216,9 +220,8 @@
 
                 })
             },
-            removeImage(e) {
-                e.preventDefault();
-                this.images.splice(0,1);
+            removeImage(i) {
+                this.images.splice(i,1);
             },
 
             addParameter(feature){
