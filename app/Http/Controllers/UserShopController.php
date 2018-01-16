@@ -83,6 +83,11 @@ class UserShopController extends Controller
         return response()->json(['status'=>1], 202);
     }
 
+    public function removeProduct( $id){
+        $product = Product::findOrFail($id)->delete();
+        return response()->json(['status'=>1], 202);
+    }
+
     public function storeProduct(ValidationProduct $request)
     {
         $producer = $request->input('producer');

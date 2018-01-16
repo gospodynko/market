@@ -64,7 +64,7 @@
                         <div class="col-lg-3">
                             <label class="mini-title currency-title">Валюта*:</label>
                             <select class="form-control currency-form" v-model="checkedProduct.currency">
-                                <option :value="null" selected>@{{ checkedProduct.currency.name }}</option>
+                                {{--<option :value="null" selected>@{{ checkedProduct.currency.name }}</option>--}}
                                 <option :value="currency" v-for="currency in checkedProduct.currencies">@{{  currency.name }}</option>
                             </select>
                         </div>
@@ -75,7 +75,6 @@
                     <div class="col-md-12 post-block">
                         <div class="col-lg-3">
                             <label class="mini-title post-title">Тип доставки*:</label>
-
                             <multiselect v-model="checkedProduct.delivery_types" tag-placeholder="Додайте новий тег" selected-label = "Обрано" select-label="Натисніть enter" deselect-label="Зняти" placeholder="Пошук тегу" label="name" track-by="id" :options="checkedProduct.delivery_type" :multiple="true"></multiselect>
                         </div>
                         <div class="col-lg-3">
@@ -86,14 +85,18 @@
                     <div class="col-md-12 btn-block">
                         <div class="col-lg-12 btn-lg-block">
                             <hr class="after-line">
-                            <button class="btn send-btn" @click="updateProduct">
-                                <i class="glyphicon glyphicon-send"></i>&nbsp;
-                                Редагувати
-                            </button>
                             <a href="{{ route('user_shop.products') }}" class="btn btn-danger cancel-btn">
                                 <i class="glyphicon glyphicon-remove"></i>&nbsp;
                                 Відміна
                             </a>
+                            <button class="btn send-btn" @click="updateProduct">
+                                <i class="glyphicon glyphicon-send"></i>&nbsp;
+                                Редагувати
+                            </button>
+                            <button class="btn send-btn" @click="removeProduct">
+                                <i class="glyphicon glyphicon-send"></i>&nbsp;
+                                Видалити продукт
+                            </button>
                         </div>
                     </div>
 
