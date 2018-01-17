@@ -24,7 +24,7 @@
                 </div>
                 <div v-if="checkedProduct">
                     <div class="col-lg-12 description-block">
-                        <label class="mini-title description-title">Опис продукту*: </label>
+                        <label class="mini-title description-title">Опис продукту (мiнiмальна кiлькiсть символiв 10*: </label>
                         <textarea class="form-control description-form" v-model="description"></textarea>
 
                     </div>
