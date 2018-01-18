@@ -15,7 +15,7 @@
             updateProduct() {
                 axios.post('/shop/product/update/' + this.product.id, this.product)
                     .then(response => {
-                        location.href = '/shop/products/';
+//                        location.href = '/shop/products/';
                     })
                     .catch(function (error) {
                         console.log(error.response.data);

@@ -101,8 +101,8 @@ class UserShopController extends Controller
 
     public function removeProduct( $id){
         $product = Product::findOrFail($id);
-        $user_ids = $product->user_shop->companyUsers->users()->get()->pluck('id');
-        if ($user_ids->search(Auth::id(), true) === false) {
+        $user_ids = $product->user_shop->companyUsers()->get()->pluck('user_id');
+        if ($user_ids->search(Auth::id()) === false) {
             return response()->json(['status' => 0, 'msg' => 'forbidden'], 406);
         } else {
             $product->delete();
