@@ -33,15 +33,21 @@
                 ;
             },
             fileLoad(e) {
+                if (this.checkedProduct.pictures && this.checkedProduct.pictures.length >= 5) return false
                 let data = new FormData();
                 data.append('file', e.target.files[0]);
 
                 axios.post('/products/upload', data)
                     .then(response => {
-                        this.images.push({'path': response.data});
+                        if (!this.checkedProduct.pictures) {
+                            this.checkedProduct.pictures = [];
+                            this.checkedProduct.pictures.push({'id': 0, 'path': response.data});
+                        } else {
+                            this.checkedProduct.pictures.push({'id': 0, 'path': response.data});
+                        }
                     })
                     .catch(function (error) {
-                        console.log(error.response.data);
+                        console.log(error);
                     })
                 ;
             },
@@ -91,6 +97,24 @@
             },
             deleteParam (feature, i) {
                 feature.params.splice(i,1);
+            },
+            removeImage (i, id) {
+                if (id) {
+                    let data = []
+                    data.push(id)
+                    axios.post('/shop/product/' + this.checkedProduct.id + '/delete-image', data)
+                        .then(response => {
+                            if (response.status == 202) {
+                                this.checkedProduct.pictures.splice(i, 1)
+                            }
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                } else {
+                    this.checkedProduct.pictures.splice(i, 1)
+                }
+
             }
         }
     }

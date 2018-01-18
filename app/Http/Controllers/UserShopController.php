@@ -73,15 +73,30 @@ class UserShopController extends Controller
 
     public function updateProduct(Request $request, $id)
     {
+//        abort(404);
         $product = Product::findOrFail($id);
-        $data = $request->only(['description', 'price', 'currency']);
+        $data = $request->only(['name', 'description', 'price']);
         $data['features'] = json_encode($request->input('features'));
+        $currency = $request->input('currency');
+        $data['currency_id'] = $currency['id'];
         $product->update($data);
         $delivery_ids = array_map(function ($obj) { return $obj['id']; }, $request->input('delivery_types'));
         $pay_ids = array_map(function ($obj) { return $obj['id']; }, $request->input('pay_types'));
         $product->payTypes()->sync($pay_ids);
         $product->deliveryTypes()->sync($delivery_ids);
+        $product->updatePictures($request->input('pictures'));
         return response()->json(['status'=>1], 202);
+    }
+
+    public function removeImage($id, Request $request)
+    {
+        try {
+            $product = Product::findOrFail($id);
+            $product->deletePictures($request->all());
+            return response()->json([], 202);
+        } catch (\ErrorException $e) {
+            return response()->json(['status' => 0], 400);
+        }
     }
 
     public function removeProduct( $id){
@@ -180,6 +195,8 @@ class UserShopController extends Controller
         ];
 
         $product = Product::create($data_product);
+        $product->slug = $product->id . '-' . str_slug($product->name);
+        $product->save();
         $delivery_ids = array_map(function ($obj) { return $obj['id']; }, $data['delivery_type']);
         $pay_ids = array_map(function ($obj) { return $obj['id']; }, $data['pay_type']);
         $product->payTypes()->sync($pay_ids);

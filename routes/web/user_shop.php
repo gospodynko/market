@@ -8,6 +8,7 @@ Route::group(['prefix' => 'shop', 'middleware' => 'auth'], function () {
     Route::get('/product/edit/{id}', ['uses' => 'UserShopController@editProduct']);
     Route::post('/product/update/{id}', ['uses' => 'UserShopController@updateProduct']);
     Route::post('/product/remove/{id}', ['uses' => 'UserShopController@removeProduct']);
+    Route::post('/product/{id}/delete-image', ['uses' => 'UserShopController@removeImage']);
 
     Route::get('/{shop}', ['uses' => 'UserShopController@getShopPage', 'as' => 'user_shop.show']);
     Route::post('/{shop}/load', ['uses' => 'UserShopController@loadProducts', 'as' => 'user_shop.load_products']);

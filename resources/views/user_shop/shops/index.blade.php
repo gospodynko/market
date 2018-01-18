@@ -31,6 +31,7 @@
                             <th>Назва товару</th>
                             <th>Опис товару</th>
                             <th>Ціна</th>
+                            <th>Валюта</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -40,6 +41,7 @@
                             <td>@{{ product.name }}</td>
                             <td>@{{ product.description }}</td>
                             <td>@{{ product.price }}</td>
+                            <td>@{{ product.currency.name }}</td>
                         </tr>
 
                         </tbody>

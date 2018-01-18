@@ -29,7 +29,7 @@
                             </div>
                         </div>
                         <div class="price-wrap">
-                            <p class="price-title">{{numberWithSpaces(+cartItem.store.price * cartItem.store.store_count)}} грн</p>
+                            <p class="price-title">{{numberWithSpaces(+cartItem.store.price * cartItem.store.store_count)}} {{cartItem.store.currency.name}}</p>
                             <div class="count-items-wrap">
                                 <span @click="changeCount('minus', cartItem)">-</span><input type="text" :value="cartItem.store.store_count"><span class="to" @click="changeCount('plus', cartItem)">+</span>
                             </div>
