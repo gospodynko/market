@@ -1,6 +1,7 @@
 <?php
 namespace App\Models;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class UserShops extends Model
@@ -27,7 +28,7 @@ class UserShops extends Model
 
     public function companyUsers()
     {
-        return $this->hasOne(CompanyUsers::class, 'company_id', 'company_id');
+        return $this->hasMany(CompanyUsers::class, 'company_id', 'company_id');
     }
 
     public function products()
