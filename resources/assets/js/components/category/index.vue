@@ -34,7 +34,7 @@
                                         <a :href="'/' + product.url">{{product.name}}</a>
                                     </p>
                                     <p class="price">
-                                        {{product.price}} грн.
+                                        {{product.price}} {{product.currency.name}}
                                     </p>
                                 </div>
                                 <div class="detail-prod-wrap">

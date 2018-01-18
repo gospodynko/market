@@ -12,7 +12,7 @@
                             <a :href="product.url">{{product.name}}</a>
                         </p>
                         <p class="price">
-                            {{numberWithSpaces(product.price)}} грн.
+                            {{numberWithSpaces(product.price)}} {{product.currency.name}}
                         </p>
                     </div>
                     <div class="detail-prod-wrap">
