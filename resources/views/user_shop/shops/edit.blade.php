@@ -38,23 +38,15 @@
                                 <label class="mini-title load-title">Загрузить картинки (макс 5шт)</label>
                                 <input type="file" class="load-btn" @change="fileLoad">
                             </div>
-
-                            <div class="pictures" v-if="images.length == 0">
-                                <div class="col-md-3" v-for="pictures in checkedProduct.pictures">
-                                    <img :src="pictures.path" alt="image">
-                                </div>
-                            </div>
-                            <div v-else>
-                                <div class="col-md-3" v-for="image in checkedProducts.images" style="width: auto">
-                                    <div class="img">
-                                        <img :src="image.path" alt="image">
-                                        <button @click="removeImage">Видалити</button>
-                                    </div>
-                                </div>
-                            </div>
                         <div class="col-md-12 after-load-hr">
                             <hr>
                         </div>
+                            <div class="col-md-3" v-for="(image, i) in checkedProduct.pictures" style="width: auto">
+                                <div class="img">
+                                    <img :src="image.path" alt="image" width="100px" height="100px" border="0">
+                                    <button @click="removeImage(i, image.id)">Видалити</button>
+                                </div>
+                            </div>
                     </div>
                     <div class="col-md-12 currency-block">
                         <div class="col-lg-3">
@@ -85,18 +77,19 @@
                     <div class="col-md-12 btn-block">
                         <div class="col-lg-12 btn-lg-block">
                             <hr class="after-line">
-                            <a href="{{ route('user_shop.products') }}" class="btn btn-danger cancel-btn">
-                                <i class="glyphicon glyphicon-remove"></i>&nbsp;
-                                Відміна
-                            </a>
                             <button class="btn send-btn" @click="updateProduct">
                                 <i class="glyphicon glyphicon-send"></i>&nbsp;
                                 Редагувати
                             </button>
-                            <button class="btn send-btn" @click="removeProduct">
-                                <i class="glyphicon glyphicon-send"></i>&nbsp;
+                            <button class="btn btn-danger cancel-btn" @click="removeProduct">
+
+                                <i class="glyphicon glyphicon-remove"></i>&nbsp;
                                 Видалити продукт
                             </button>
+                            <a href="{{ route('user_shop.products') }}" class="btn btn-danger cancel-btn">
+                                <i class="glyphicon glyphicon-remove"></i>&nbsp;
+                                Відміна
+                            </a>
                         </div>
                     </div>
 

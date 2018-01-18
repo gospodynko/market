@@ -101,7 +101,7 @@
                             <span class="di-header-view" v-if="false">{{product.view_counts}}</span>
                         </div>
                         <div class="di-price">
-                            {{numberWithSpaces(product.price)}} грн
+                            {{numberWithSpaces(product.price)}} {{product.currency.name}}
                         </div>
                         <button  class="di-buy" @click="addToCart(product)">{{translate.in_cart}}</button>
                         <div class="di-info">
@@ -215,7 +215,7 @@
                                                 </p>
                                                 <p class="price">
                                                     <!--{{numberWithSpaces(product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max)}} грн.-->
-                                                    {{numberWithSpaces(product.price)}} грн.
+                                                    {{numberWithSpaces(product.price)}} {{product.currency.name}}
                                                 </p>
                                             </div>
                                             <div class="detail-prod-wrap">
@@ -358,7 +358,7 @@
                     <div class="price-wrap">
                         <p class="price">{{translate.price}}
                             <!--{{numberWithSpaces(store.price)}} грн {{store.quantity_price ? '/ '+store.quantity_price : ''}}</p>-->
-                            {{numberWithSpaces(store.price)}} грн</p>
+                            {{numberWithSpaces(store.price)}} {{store.currency.name}}</p>
                         <!--<p class="prod-status">{{translate.in_market}}</p>-->
                     </div>
                     <div class="go-shop-wrap">
