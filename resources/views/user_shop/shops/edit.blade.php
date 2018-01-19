@@ -33,21 +33,31 @@
                             </div>
                             <button class="btn btn-success add-prop-btn" @click="addFeature"><i class="glyphicon glyphicon-plus"></i><span class="add-btn-text"> Додати характеристику</span></button>
                         </div>
-                        <div class="col-md-12 load-file-block">
-                            <div class="col-md-3">
-                                <label class="mini-title load-title">Загрузить картинки (макс 5шт)</label>
-                                <input type="file" class="load-btn" @change="fileLoad">
-                            </div>
                         <div class="col-md-12 after-load-hr">
                             <hr>
                         </div>
+                        <div class="col-md-12 load-file-block">
+                            <div class="col-md-3">
+                               <label class="mini-title load-title">Завантаження фотографiй (макс 5шт)</label>
+                            </div>
+                            <div class="col-md-3">
+                                {{--<input type="file" class="btn btn-success add-prop-btn" @change="fileLoad">--}}
+                                <label for="file-upload" class="custom-file-upload">
+                                    <i class="fa fa-cloud-upload"></i> Додати фото
+                                </label>
+                                 <input id="file-upload" type="file"  @change="fileLoad"/>
+                            </div>
                             <div class="col-md-3" v-for="(image, i) in checkedProduct.pictures" style="width: auto">
+                                <br/>
                                 <div class="img">
                                     <img :src="image.path" alt="image" width="100px" height="100px" border="0">
                                     <button @click="removeImage(i, image.id)">Видалити</button>
                                 </div>
                             </div>
                     </div>
+                        <div class="col-md-12 after-load-hr">
+                            <hr>
+                        </div>
                     <div class="col-md-12 currency-block">
                         <div class="col-lg-3">
                             <label class="mini-title price-title">Ціна*:</label>

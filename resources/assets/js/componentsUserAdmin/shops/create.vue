@@ -40,12 +40,18 @@
                         </div>
                         <button class="btn btn-success add-prop-btn" @click="addFeature"><i class="glyphicon glyphicon-plus"></i><span class="add-btn-text"> Додати характеристику</span></button>
                     </div>
+                    <div class="col-md-12 after-load-hr">
+                        <hr>
+                    </div>
                     <div class="col-md-12 load-file-block">
                         <div class="col-md-3">
                             <label class="mini-title load-title">Завантажити зображення(макс 5шт)</label>
                         </div>
                         <div class="col-md-3">
-                            <input type="file" class="load-btn" @change="fileLoad">
+                            <label for="file-upload" class="custom-file-upload">
+                                <i class="fa fa-cloud-upload"></i> Додати фото
+                            </label>
+                            <input id="file-upload" type="file"  @change="fileLoad"/>
                         </div>
                     </div>
                     <div class="col-md-12 after-load-hr">

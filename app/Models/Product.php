@@ -171,6 +171,11 @@ class Product extends Model
             return $this->parent_product->default_picture;
         }
     }
+        public function setNameAttribute($value)
+           {
+               $this->attributes['name'] = $value;
+               $this->slug = $this->id . '-' . str_slug($value);
+           }
 
     public function getUrlAttribute()
     {
