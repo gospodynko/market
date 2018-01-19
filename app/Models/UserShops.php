@@ -39,6 +39,11 @@ class UserShops extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+
+    }
+    public function setRouteKeyName()
+    {
+        return 'slug';
     }
 
     public function getRateAttribute()
