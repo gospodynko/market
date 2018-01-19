@@ -123,12 +123,6 @@ class Product extends Model
         return (int) $this->reviews->avg('rate');
     }
 
-    public function setNameAttribute($value)
-    {
-        $this->attributes['name'] = $value;
-        $this->slug = $this->id . '-' . str_slug($value);
-    }
-
     public static function scopeBySlugs($query, $market, $product)
     {
         return $query->where('slug', $product)->whereHas('user_shop', function ($query) use ($market) {
