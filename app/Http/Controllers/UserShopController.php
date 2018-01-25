@@ -16,6 +16,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class UserShopController extends Controller
 {
@@ -173,6 +174,25 @@ class UserShopController extends Controller
         }
     }
 
+    public function setStatus(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+        $v = Validator::make($request->all(), [
+            'status' => array('required', Rule::in([1,0]))
+        ]);
+        if (count($v->errors())) {
+            return response()->json(['status' => 0, 'msg' => 'forbidden'], 406);
+        }
+        $user_ids = $product->user_shop->companyUsers()->get()->pluck('user_id');
+        if ($user_ids->search(Auth::id()) === false) {
+            return response()->json(['status' => 0, 'msg' => 'forbidden'], 406);
+        } else {
+            $product->status =$request->input('status');
+            $product->save();
+            return response()->json(['status' => 1], 202);
+        }
+    }
+
     private function createProductSeller($data, $producer_id)
     {
         $data_product = [
@@ -189,7 +209,7 @@ class UserShopController extends Controller
             'bar_code' => '777',
             'producer_id' => $producer_id,
             'moderation' => 1,
-            'status' => 0,
+            'status' => 1,
             'features' => json_encode($data['features']),
             'slug' => str_slug($data['product']['name'] . rand(1,25))
         ];

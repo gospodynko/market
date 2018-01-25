@@ -22,7 +22,9 @@ class SearchController extends Controller
         $products = Product::where(function ($query) use ($q){
                                 $query->where('name', 'like', $q);
                                 $query->orWhere('description', 'like', $q);
+
                             })
+                            ->where('status', 1)
                             ->paginate($page_count);
 
         return view('search',['data' => ['products' => $products, 'q' => $request->input('q'), 'sort' => $request->input('sort')?:'min']]);
@@ -41,7 +43,7 @@ class SearchController extends Controller
         }
 
         $q = '%' . $request->input('q') . '%';
-        $products = Product::where('name', 'like', $q)
+        $products = Product::where([['name', 'like', $q], ['status', '=', 1]])
                             ->orWhere('description', 'like', $q)
                             ->whereHas('user_products.shop', function ($q){
                                 $q->where('status', 1);
