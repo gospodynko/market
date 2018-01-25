@@ -31,7 +31,7 @@ class ValidationProduct extends FormRequest
             'product.id' => 'required',
             'product.name' => 'required|string',
             'description' => 'required|string|min:6',
-            'price' => 'required|integer',
+            'price' => 'required|integer|min:1',
             'shop_id' => 'required|exists:user_shops,id',
             'currency' => 'required|array',
             'currency.id' => 'required|exists:currencies,id',

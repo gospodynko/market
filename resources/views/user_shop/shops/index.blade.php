@@ -32,18 +32,19 @@
                             <th>Опис товару</th>
                             <th>Ціна</th>
                             <th>Валюта</th>
+                            <th>Статус</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="product in products">
-                            <td><button @click="editProduct(product.id)">Редагувати</button></td>
-                            <td>@{{ product.id }}</td>
-                            <td>@{{ product.name }}</td>
-                            <td>@{{ product.description }}</td>
-                            <td>@{{ product.price }}</td>
-                            <td>@{{ product.currency.name }}</td>
-                        </tr>
-
+                            <tr v-for="product in products">
+                                <td><button @click="editProduct(product.id)">Редагувати</button></td>
+                                <td>@{{ product.id }}</td>
+                                <td>@{{ product.name }}</td>
+                                <td>@{{ product.description }}</td>
+                                <td>@{{ product.price }}</td>
+                                <td>@{{ product.currency.name }}</td>
+                                <td><input type="checkbox" v-model="product.status" @change="setStatus(product)"></td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
