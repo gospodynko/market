@@ -86,6 +86,11 @@
                             <option :value="currency" v-for="currency in data.currencies">{{currency.name}}</option>
                         </select>
                     </div>
+                    <div class="col-lg-3">
+                        <label class="mini-title status-title">Вiдображаеться на маркетi:</label>
+                        <input id="productStatus" type="checkbox">
+                    </div>
+                </div>
                     <div class="col-md-12">
                         <hr>
                     </div>
@@ -116,7 +121,6 @@
 
             </div>
         </div>
-    </div>
 </template>
 
 <script type="text/babel">
@@ -137,6 +141,7 @@
                 currencyType: null,
                 description: '',
                 price: 1,
+                status:checked,
                 images: [],
                 features: [
                     {
@@ -185,6 +190,7 @@
                     'pay_type': this.paymentType,
                     'delivery_type': this.deliveryType,
                     'currency': this.currencyType,
+                    'status':this.status,
                     'description': this.description,
                     'producer': this.checkedTag,
                     'category': this.checkedCategory,

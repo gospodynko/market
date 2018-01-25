@@ -27,6 +27,13 @@
 
             editProduct (id) {
                 location.href = '/shop/product/edit/'+id;
+            },
+            setStatus(product){
+                let data = {}
+                data.status = product.status ? 1 : 0;
+                axios.post('/shop/product/edit/'+ product.id + '/status', data).then(res => {
+                    product.status = data.status
+                });
             }
         }
     }
