@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Http\Requests\EditValidation;
 use App\Http\Requests\ValidationProduct;
 use App\Models\Category;
 use App\Models\CompanyUsers;
@@ -72,9 +73,8 @@ class UserShopController extends Controller
         return view('user_shop.shops.edit' , compact('product'));
     }
 
-    public function updateProduct(Request $request, $id)
+    public function updateProduct(EditValidation $request, $id)
     {
-//        abort(404);
         $product = Product::findOrFail($id);
         $data = $request->only(['name', 'description', 'price']);
         $data['features'] = json_encode($request->input('features'));
@@ -86,7 +86,8 @@ class UserShopController extends Controller
         $product->payTypes()->sync($pay_ids);
         $product->deliveryTypes()->sync($delivery_ids);
         $product->updatePictures($request->input('pictures'));
-        return response()->json(['status'=>1], 202);
+        return response()->json(['status' => 1], 202);
+
     }
 
     public function removeImage($id, Request $request)
