@@ -19,6 +19,8 @@ use App\Models\Product;
 use App\Models\Banner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class HomeController extends Controller
 {
@@ -129,6 +131,31 @@ class HomeController extends Controller
             })->flatten()->unique()->all();
     }
 
+    public function getShopList() {
+        $per_page = 20;
+        $shop_list = UserShops::paginate($per_page);
+        return view('shop-list', compact('shop_list'));
+    }
+
+    public function getShopListPost(Request $request)
+    {
+        $v = Validator::make($request->all(), [
+            'q' => 'string',
+            'date_sort' => array('string', Rule::in(['asc', 'desc']))
+        ]);
+
+        if (count($v->errors())) {
+            return response()->json(['status' => 0], 400);
+        }
+
+        /**
+         * get shops with params
+         */
+
+        $checked_shop = UserShops::where('name', 'q')
+                        ->orderBy('date_sort');
+        return $checked_shop;
+    }
     //moved here while refactoring
     public function summary()
     {

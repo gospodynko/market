@@ -94,7 +94,7 @@
                             </form>
                         </div>
                         <div class="all-shops-btn">
-                            <button class="btn" @click="showPopupFunc">{{translate.all_shops}}</button>
+                            <a href="/all-shops"><button class="btn"> {{translate.all_shops}}</button></a>
                         </div>
                     </div>
                 </div>
@@ -197,6 +197,10 @@
                 this.showPopup = !this.showPopup;
                 this.showOverlayPopup = !this.showOverlayPopup;
             },
+//            allShopsPage(){
+//
+//                        location.href = '/all-shops/';
+//            },
             onSubmit(){
                 if(this.q.length <= 1){
                     return false;

@@ -15,7 +15,6 @@ import CartVue from './components/cart/cart.vue';
 import AdminCategories from './components/dashboard/categories/index.vue';
 import AdminHeader from './components/dashboard/core/header.vue';
 import AdminModeration from './components/dashboard/moderations/index.vue';
-import AdminModerationEdit from './components/dashboard/moderations/edit.vue';
 import AdminModerationView from './components/dashboard/moderations/show.vue';
 import PaymentsList from './components/dashboard/payments/index.vue';
 import DeliveriesList from './components/dashboard/deliveries/index.vue';
@@ -31,8 +30,8 @@ import DashboardCategoriesEdit from './components/dashboard/categories/edit.vue'
 import CategoryVue from './components/category/index.vue';
 import ShopsVue from './components/dashboard/shops/index.vue';
 import ShopVue from './components/shop/index.vue';
-// Vue.use(VueSocketio, 'http://localhost:8303');
-// Vue.use(VueRouter);
+import ShopListVue from './components/shopList/index.vue';
+
 Vue.use(VueResource);
 
 Vue.http.headers.common['X-CSRF-TOKEN'] = $('meta[name="csrf-token"]').attr('content');
@@ -69,8 +68,7 @@ const app = new Vue({
         AdminUserProductEdit,
         CategoryVue,
         ShopsVue,
-        ShopVue
+        ShopVue,
+        ShopListVue
     }
-
-
 });

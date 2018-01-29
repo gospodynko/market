@@ -48,6 +48,9 @@ Route::get('/search-page', function (){
 Route::get('/cart-item', function (){
     return view('cart') ;
 });
+//All shops button
+Route::get('/all-shops', 'HomeController@getShopList');
+
 Route::get('summary', ['uses' => 'HomeController@summary']); //while refactoring
 
 Route::group(['prefix' => 'home'], function () {
