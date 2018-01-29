@@ -9,7 +9,7 @@
                     <div v-if="checkedProduct">
                         <div class="col-md-3 ">
                             <label class="mini-title prod-title">Продукт*:</label>
-                            <textarea class="multiselect__input" v-model="checkedProduct.name" >@{{ checkedProduct.name }}</textarea>
+                            <textarea class="multiselect__input" style="width:100%; height: 50px; resize: none;" v-model="checkedProduct.name" >@{{ checkedProduct.name }}</textarea>
                          </div>
                         <div class="col-lg-3">
                             <br/>
