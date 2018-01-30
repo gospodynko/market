@@ -11,7 +11,7 @@
         <div class="sps-contacts" v-if="showPhone">
             <div class="sps-contacts-header">
                 <span class="circle-close" @click.prevent="callShowPhone">x</span>
-                Контакты
+                Контакти
             </div>
             <ul>
                 <li v-for="tel in product.user_shop.phones">{{tel}}</li>
@@ -125,7 +125,7 @@
 
                     <div class="datail-service">
                         <div class="ds-pay">
-                            <h3>Способы оплаты</h3>
+                            <h3>Спосіб оплати</h3>
                             <ul>
                                 <li v-for="pay in product.pay_types">
                                     <img :src=pay.logo :alt=pay.name :title="pay.name">
