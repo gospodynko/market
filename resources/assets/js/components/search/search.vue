@@ -4,7 +4,7 @@
             <div class="breadcrumbs"></div>
             <div class="info-search-head-wrap">
                 <div class="found-list">
-                    <h2>Найдено {{data.products.total}} результатов</h2>
+                    <h2>Знайдено {{data.products.total}} результатів</h2>
                 </div>
                 <div class="filters-list">
                     <div class="my-region-wrap">
@@ -14,11 +14,10 @@
                         <!--</label>-->
                     </div>
                     <div class="sort-wrap">
-                        <span>Сортировать по:</span>
+                        <span>Сортувати за:</span>
                         <select @change="setFilter" v-model="filterType">
-                            <option :value="'minus'">Сначала дешевые</option>
-                            <option :value="'plus'">Сначала дорогие</option>
-                            <option :value="'rating'">По рейтингу</option>
+                            <option :value="'minus'">Спочатку дешеві</option>
+                            <option :value="'plus'">Спочатку дорогі</option>
                         </select>
                     </div>
                     <!--<div class="type-view">-->
@@ -28,7 +27,7 @@
             </div>
             <div class="search-content-wrap">
                 <div class="chose-filters-head">
-                    <h3>Выбранные фильтры: </h3>
+                    <h3>Вибрані фільтри: </h3>
                     <div class="all-chose-filters">
                         <div class="single-filter">
                             <p class="name">{{data.q}}</p>
@@ -190,22 +189,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="footer-search-wrap" v-if="false">
-                    <div class="paginate-wrap" v-if="data.products.total > 16">
-                        <ul class="paginate">
-                            <li class="prev"><i></i> Назад</li>
-                            <li>1</li>
-                            <li class="active">2</li>
-                            <li>3</li>
-                            <li class="next">Вперед <i></i></li>
-                        </ul>
-                    </div>
-                    <div class="chose-page" v-if="data.products.total > 16">
-                        <span>Перейти к странице</span>
-                        <label for="chose-page-id">
-                            <input type="text" id="chose-page-id">
-                            <span class="btn">OK</span>
-                        </label>
+                <div class="footer-search-wrap">
+                    <div class="show-all-btn-wrap" v-if="searchProducts && searchProducts.total > 12 && searchProducts.last_page !== searchProducts.current_page">
+                        <vue-ladda class="btn show-more"@click="getNew" :loading="loadProduct">Показати ще</vue-ladda>
+                        <!--<button class="btn" @click="getNew">Показать еще</button>-->
                     </div>
                 </div>
             </div>
@@ -220,7 +207,8 @@
         data(){
             return {
                 filterType: 'minus',
-                searchProducts: this.data.products
+                searchProducts: this.data.products,
+                loadProduct: false
             }
         },
         props: ['data'],
@@ -231,10 +219,28 @@
             setFilter(){
                 if(!this.filterType) return false;
                 let data = {
-                    sort: this.filterType
+                    sort: this.filterType,
+                    q: this.data.q
                 }
                 this.$http.post('/search', data).then(res => {
                     this.searchProducts = res.data.products;
+                }, err => {
+
+                })
+            },
+            getNew () {
+                this.loadProduct = true
+                let data = {
+                    sort: this.filterType,
+                    q: this.data.q,
+                    page: this.searchProducts.current_page + 1
+                }
+                this.$http.post('/search', data).then(res => {
+                    this.searchProducts.current_page = res.data.products.current_page
+                    res.data.products.data.forEach(product => {
+                        this.searchProducts.data.push(product);
+                    })
+                    this.loadProduct = false
                 }, err => {
 
                 })
