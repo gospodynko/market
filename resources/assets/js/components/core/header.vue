@@ -11,9 +11,9 @@
         </div>
         <div class="header">
             <div class="two-wrap">
-
                 <div class="left">
-                    <svg class="svg-burger-menu-480" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 396.667 396.667" style="enable-background:new 0 0 396.667 396.667;" xml:space="preserve">
+                    <div class="burger-xs" @click="menuClickxs">
+                        <svg class="svg-burger-menu-480" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="30px" height="30px" viewBox="0 0 396.667 396.667" style="enable-background:new 0 0 396.667 396.667;" xml:space="preserve">
 <g>
 	<g>
 		<path d="M17,87.833h362.667c9.35,0,17-7.65,17-17s-7.65-17-17-17H17c-9.35,0-17,7.65-17,17C0,80.183,7.65,87.833,17,87.833z"/>
@@ -52,7 +52,8 @@
 <g>
 </g>
 </svg>
-                    <div class="logo">
+                    </div>
+                        <div class="logo">
                         <a href="/">
                            <img class="img-logo-480" src="/img/header/logo_480.svg" alt="">
                            <img class="img-logo-1024" src="/img/header/logo.svg" alt="">
@@ -102,6 +103,31 @@
                 </div>
             </div>
         </div>
+        <!---->
+        <div class="hidden-filter" :class="{'open': showMenuxs}">
+            <ul>
+                <li v-for="(category,k) in categories">
+                    <a :href="'/category/'+category.slug" >
+                        <div class="single-menu-item-xs" :class="{'active': checkedCat && checkedCat.id == category.id}">
+                            <p>{{category.name}} <i></i></p>
+                        </div>
+                    </a>
+                    <button class="open-btn" :class="{'open': showSubGroup}" @click.self="showSub(k + 1)"></button>
+                    <ul class="mini-cat" :class="{'open': showSubGroup}">
+                        <li v-for="(subCategory,k) in subCategories === k + 1">
+                            <a v-if="checkedCat" :href="'/category/'+checkedCat.slug+'/'+subCategory.slug">
+                                <p>{{subCategory.name}}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div class="close-menu-xs" @click="menuClickxs">
+                <img src="/img/header/arrow_white.png" alt="">
+            </div>
+        </div>
+        <div class="overlay-burger" :class="{'open': showMenuxs}" @click="menuClickxs"></div>
+        <!---->
         <div class="catalogue-wrap" @mouseleave="closeMenu()">
             <div class="menu-wrap">
                 <div class="catalog-menu-items">
@@ -210,7 +236,18 @@
                 showPopup: false,
                 showOverlayPopup: false,
                 q: '',
-                checkedCat: null
+                checkedCat: null,
+                showMenuxs: false,
+                showSubGroup: false
+            }
+        },
+        watch: {
+            showMenuxs: function (val) {
+                if (val) {
+                    this.hiddenBody('open')
+                } else {
+                    this.hiddenBody('close')
+                }
             }
         },
         props: ['user', 'translate', 'cartTranslate'],
@@ -237,10 +274,32 @@
             })
         },
         methods: {
+            showSub (k) {
+                if (+k === +this.showSubGroup) {
+                    this.showSubGroup = false
+                    return false
+                }
+                this.showSubGroup = k
+                console.log(k)
+            },
+            closeMenu () {
+                this.showMenuxs = false
+            },
+            hiddenBody (key) {
+                if (key === 'open') {
+                    $('body').css('overflow', 'hidden')
+                } else {
+                    $('body').css('overflow', 'scroll')
+                }
+            },
+            menuClickxs () {
+                this.showMenuxs = !this.showMenuxs
+            },
             setChild(category){
                 this.showChild = true;
                 this.subCategories = category.children;
                 this.checkedCat = category;
+                this.showUl = !this.showUl
             },
             logout(){
                 this.$http.post('/logout', {}).then(res => {
