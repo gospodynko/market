@@ -7,7 +7,7 @@
         <div class="shops-popup-wrap" v-if="showPopup">
             <span class="close" @click="showPopupFunc"></span>
             <h2>{{translate.popup_catalog}}</h2>
-            <p>Coming soon!</p>
+            <p>Скоро вiдкриття!</p>
         </div>
         <div class="header">
             <div class="two-wrap">
@@ -214,7 +214,8 @@
                             </form>
                         </div>
                         <div class="all-shops-btn">
-                            <a href="/all-shops"><button class="btn"> {{translate.all_shops}}</button></a>
+                            <button class="btn" @click="showPopupFunc">{{translate.all_shops}}</button>
+                            <!--<a href="/all-shops"><button class="btn"> {{translate.all_shops}}</button></a>-->
                         </div>
                     </div>
                 </div>

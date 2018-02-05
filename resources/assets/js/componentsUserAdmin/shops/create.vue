@@ -219,6 +219,10 @@
             addTagProduct(newTag){
                 this.checkedProduct = {'name': newTag, 'id': newTag};
                 this.checkedProducts.push({'name': newTag, 'id': newTag});
+                if (this.checkedProduct.name.val()==null){
+                    toastr["error"].error("Ви не обрали категорiю!");
+                    return;
+                }
             },
             fileLoad(e){
                 if (this.images && this.images.length >= 5) return false
