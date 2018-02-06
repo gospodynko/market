@@ -31,6 +31,7 @@ import CategoryVue from './components/category/index.vue';
 import ShopsVue from './components/dashboard/shops/index.vue';
 import ShopVue from './components/shop/index.vue';
 import ShopListVue from './components/shopList/index.vue';
+import AllShopsVue from './components/all-shops/all-shops.vue';
 
 Vue.use(VueResource);
 
@@ -43,6 +44,7 @@ export const Events = new Vue({});
 const app = new Vue({
     el: '#app',
     components: {
+        AllShopsVue,
         HeaderVue,
         FooterVue,
         MainVue,

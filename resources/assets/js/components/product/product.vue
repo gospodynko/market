@@ -1,4 +1,4 @@
-<template>
+ <template>
     <section class="single-prod-sect">
         <div class="single-prod-wrap">
             <div class="breadcrumbs">

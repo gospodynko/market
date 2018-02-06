@@ -14,7 +14,8 @@
                 Контакти
             </div>
             <ul>
-                <li v-for="tel in product.user_shop.phones">{{tel}}</li>
+                <li >{{product.user_shop.company.compPhone}}</li>
+                <li v-if="product.user_shop.company.compPhone">{{product.user_shop.company.compSecondPhone}}</li>
             </ul>
         </div>
         <div class="overlay-contacts" v-if="showPhone || showAdres" @click.prevent="closeAll"></div>
