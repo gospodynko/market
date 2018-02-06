@@ -107,15 +107,19 @@
         <div class="hidden-filter" :class="{'open': showMenuxs}">
             <ul>
                 <li v-for="(category,k) in categories">
+                    <div class="category-item">
                     <a :href="'/category/'+category.slug" >
                         <div class="single-menu-item-xs" :class="{'active': checkedCat && checkedCat.id == category.id}">
                             <p>{{category.name}} <i></i></p>
                         </div>
                     </a>
-                    <button class="open-btn" :class="{'open': showSubGroup}" @click.self="showSub(k + 1)"></button>
-                    <ul class="mini-cat" :class="{'open': showSubGroup}">
-                        <li v-for="(subCategory,k) in subCategories === k + 1">
-                            <a v-if="checkedCat" :href="'/category/'+checkedCat.slug+'/'+subCategory.slug">
+                    <div class="open-btn" :class="{'open': showSubGroup}" @click="showSub(k, category)">
+                        <img src="/img/header/arrow-down.png" alt="">
+                    </div>
+                    </div>
+                    <ul class="mini-cat" :class="{'open': showSubGroup === k + 1}">
+                        <li class="mini-cat-li" v-for="subCategory in subCategories" >
+                            <a :href="'/category/'+checkedCat.slug+'/'+subCategory.slug">
                                 <p>{{subCategory.name}}</p>
                             </a>
                         </li>
@@ -275,7 +279,10 @@
             })
         },
         methods: {
-            showSub (k) {
+            showSub (k, category) {
+                k = k + 1
+                this.subCategories = category.children
+                this.checkedCat = category
                 if (+k === +this.showSubGroup) {
                     this.showSubGroup = false
                     return false

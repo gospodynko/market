@@ -322,9 +322,9 @@
 }
 //мобильные устройства
 @media screen and (max-width:1024px){
-  .catalogue-wrap{
-    display: none;
-  }
+  //.catalogue-wrap{
+  //  display: none;
+  //}
   //mobile
 .hidden-filter {
   position: fixed;
@@ -332,6 +332,26 @@
   top: 80px;
   background: white;
   width: 0;
+  .category-item{
+    display: flex;
+    a {
+      width: 80%;
+    }
+  }
+  .open-btn{
+    //background: url('/img/header/arrow-down.png') no-repeat;
+    display: inline-block;
+    width: 20%;
+    height: 100%;
+    background-color: #fff;
+    border: none;
+    //background-color:green;
+    cursor: pointer;
+    img{
+      background-size: contain;
+      margin-left:calc(50% - 5px);
+    }
+  }
   .close-menu-xs{
     display: none;
   }
@@ -348,6 +368,10 @@
   }
   .mini-cat.open{
     display: block;
+  }
+  .mini-cat-li.open{
+    display: block;
+    height: 50px;
   }
   .overlay-burger{
     display: none;
