@@ -6,13 +6,13 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <ul class="nav nav-tabs nav-justified">
-                                <li v-for="shop in shops">
-                                    <button @click="productDetails(shop)">
+                        <div class="nav nav-tabs nav-justified">
+                                <div class="shop-box" v-for="shop in shops">
+                                    <button id="shop-button" @click="productDetails(shop)">
                                         @{{ shop.name }} (@{{ productsCount(shop) }})
                                     </button>
-                                </li>
-                        </ul>
+                                </div>
+                        </div>
                     </div>
                 </div>
 
