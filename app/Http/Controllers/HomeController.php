@@ -113,7 +113,7 @@ class HomeController extends Controller
 
     public function getCategories()
     {
-        return response()->json(Category::where('parent_category_id', null)->get(), 200);
+        return response()->json(Category::where('parent_category_id', null)->where('status','=','1')->get(), 200);
     }
 
     /**

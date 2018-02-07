@@ -29,10 +29,10 @@ class EditValidation  extends FormRequest
             'price' => 'required|integer|min:1',
             'currency' => 'required|array',
             'currency.id' => 'required|exists:currencies,id',
-            'pay_type' => 'required|array',
-            'pay_type.*.id' => 'required|exists:pay_types,id',
-            'delivery_type' => 'required|array',
-            'delivery_type.*.id' => 'required|exists:delivery_types,id',
+            'pay_types' => 'required|array',
+            'pay_types.*.id' => 'required|exists:pay_types,id',
+            'delivery_types' => 'required|array',
+            'delivery_types.*.id' => 'required|exists:delivery_types,id',
             'images' => 'array'
         ];
     }
