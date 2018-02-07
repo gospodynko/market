@@ -18,6 +18,24 @@
                 </div>
             </div>
         </aside>
+        <!-- Start filter -->
+        <div class="hidden-shop-filter" :class="{'open': showShop}">
+            <div class="category" v-for="category in categories">
+                <div class="sub-cuts-wrap">
+                    <ul>
+                        <li v-for="child in category.children" v-if="child.products_count">
+                            <input type="checkbox" name="subcat-name" :id="'subcat-child-' + child.id" @change="setSort" :value="child.id" v-model="categoryIds">
+                            <label :for="'subcat-child-' + child.id">{{child.name + ' ' + '(' + child.products_count + ')'}}</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="close-menu-xs" @click="shopClick">
+                <img src="/img/shop-logo/arrow-menu.png" alt="">
+            </div>
+        </div>
+        <div class="overlay-burger" :class="{'open': showShop}" @click="shopClick"></div>
+        <!-- End filter -->
         <div class="content">
             <div class="agro-info">
                 <div class="agro-logo">
@@ -40,11 +58,11 @@
                     </div>
                 </div>
             </div>
-            <div class="btn-filter"> <!-- @click="catalogClick"> -->
+            <div class="btn-filter"  @click="shopClick">
                 <div class="btn-filter-div">
-                    <div class="btn-filter-flex">
+                    <a href="#" class="btn-filter-flex">
                         <div class="svg-filter">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 971.986 971.986" style="enable-background:new 0 0 971.986 971.986;" xml:space="preserve">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 971.986 971.986" style="fill:white;" xml:space="preserve">
 <g>
 <path d="M370.216,459.3c10.2,11.1,15.8,25.6,15.8,40.6v442c0,26.601,32.1,40.101,51.1,21.4l123.3-141.3   c16.5-19.8,25.6-29.601,25.6-49.2V500c0-15,5.7-29.5,15.8-40.601L955.615,75.5c26.5-28.8,6.101-75.5-33.1-75.5h-873   c-39.2,0-59.7,46.6-33.1,75.5L370.216,459.3z"/>
 </g>
@@ -81,7 +99,7 @@
 </svg>
                         </div>
                         <p class="filter">Фiльтр</p>
-                    </div>
+                    </a>
                 </div>
             </div>
             <div class="filter-products">
@@ -216,6 +234,7 @@
                 showList: false,
                 categoryIds: [],
                 showPhone: false,
+                showShop: false,
                 sortTypes: [
                     {
                         id: 1,
@@ -244,7 +263,33 @@
             StarRating
         },
         props: ['shop', 'categories', 'products'],
+        watch: {
+            '$route.name': function (val) {
+                this.closeMenu()
+            },
+            //Скрывает задний скрол
+            showShop: function (val) {
+                if (val) {
+                    this.hiddenBody('open')
+                } else {
+                    this.hiddenBody('close')
+                }
+            }
+        },
         methods: {
+            closeMenu () {
+                this.showShop = false
+            },
+            shopClick () {
+                this.showShop = !this.showShop
+            },
+            hiddenBody (key) {
+                if (key === 'open') {
+                    $('body').css('overflow', 'hidden')
+                } else {
+                    $('body').css('overflow', 'scroll')
+                }
+            },
             getNew () {
                 this.loadProduct = true
                 ++this.page
