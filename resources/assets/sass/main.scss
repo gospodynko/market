@@ -426,27 +426,31 @@ $whitecolor: white;
         border-radius: 5px;
         text-align: center;
         margin-bottom: 20px;
+        margin-top: 20px;
         width: 100%;
         &:hover {
           box-shadow: 0 7px 20px rgba(72, 162, 255, .3);
         }
         .btn-filter-div {
-          height: 50%;
-          width: auto;
-          padding-right: 10px;
+          height: 100%;
+          width: 100%;
+          padding-right: 0px;
+          position: relative;
           .btn-filter-flex {
             color: $whitecolor;
             display: flex;
-            margin-top: 20px;
+            margin-top: 0;
             flex-direction: row;
             justify-content: center;
-            padding-top: 10px;
-            height: 100%;
+            padding-top: 0;
+            height: 50px;
             width: 100%;
+            position: absolute;
             .svg-filter {
-              padding-right: 20px;
               svg {
                 fill: $whitecolor;
+                padding-right: 20px;
+                padding-top: 15px;
               }
             }
             .filter {
@@ -454,6 +458,7 @@ $whitecolor: white;
               font-size: 20px;
               font-weight: 400;
               line-height: 24px;
+              line-height: 50px;
             }
           }
         }
