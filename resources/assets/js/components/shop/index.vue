@@ -40,11 +40,54 @@
                     </div>
                 </div>
             </div>
+            <div class="btn-filter"> <!-- @click="catalogClick"> -->
+                <div class="btn-filter-div">
+                    <div class="btn-filter-flex">
+                        <div class="svg-filter">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 971.986 971.986" style="enable-background:new 0 0 971.986 971.986;" xml:space="preserve">
+<g>
+<path d="M370.216,459.3c10.2,11.1,15.8,25.6,15.8,40.6v442c0,26.601,32.1,40.101,51.1,21.4l123.3-141.3   c16.5-19.8,25.6-29.601,25.6-49.2V500c0-15,5.7-29.5,15.8-40.601L955.615,75.5c26.5-28.8,6.101-75.5-33.1-75.5h-873   c-39.2,0-59.7,46.6-33.1,75.5L370.216,459.3z"/>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+                        </div>
+                        <p class="filter">Фiльтр</p>
+                    </div>
+                </div>
+            </div>
             <div class="filter-products">
-                <h4 id="sum-h">Всього товарів у магазині: {{allProducts.total}}</h4>
                 <div class="sort-view">
                     <div class="filters">
-                        <h4>тип сортування:</h4>
+                        <h4>Сортувати:</h4>
                         <select @change="sortFilter" v-model="sortType">
                             <option selected="selected" value="null">За замовчуванням</option>
                             <option :value="sort.id" v-for="sort in sortTypes">{{sort.name}}</option>
@@ -87,8 +130,18 @@
                         </a></span>
                     </div>
                 </div>
-            </div>
 
+                <h4 id="sum-h">Всього товарів у магазині: {{allProducts.total}}
+                    <!--<span>{{category.name}}</span>-->
+                </h4>
+
+                <div class="category-480" v-for="category in categories">
+                    <div class="root-path">
+                        <span>{{category.name}}</span>
+                    </div>
+                </div>
+
+            </div>
             <div id="grass-defend" class="products">
                 <div class="all-products-list shop-products-wrap" :class="{'type-list': showList}">
                     <div class="single-product" v-for="product in shopProducts">
@@ -101,18 +154,11 @@
                                     <a :href="'/' + product.url">{{product.name}}</a>
                                 </p>
                                 <p class="price">
-                                    {{numberWithSpaces(product.price)}} {{product.currency.name}}.
-                        </p>
+                                    {{numberWithSpaces(product.price)}} грн
+                                    <!--{{product.currency.name}}.-->
+                                </p>
                             </div>
                             <div class="detail-prod-wrap">
-                                <div class="feedback-wrap">
-                                    <div class="rating-wrap">
-                                        <star-rating :star-size="20" :increment="0.01" :rating=product.rate :read-only="true" :show-rating="true"></star-rating>
-                                    </div>
-                                    <div class="count-feedback-wrap">
-                                        <a href="#">{{product.reviews.length}} відгуків</a>
-                                    </div>
-                                </div>
                                 <div class="all-detail-list">
                                     <ul>
                                         <li>{{product.description.length > 100 ? product.description.slice(0, 100) + ' ...' : product.description }}</li>
@@ -135,7 +181,14 @@
                                         </div>
                                     </div>
                                 </div>
-
+                                <div class="feedback-wrap">
+                                    <div class="rating-wrap">
+                                        <star-rating :star-size="15" :increment="0.01" :rating=product.rate :read-only="true" :show-rating="true"></star-rating>
+                                    </div>
+                                    <div class="count-feedback-wrap">
+                                        <a href="#">{{product.reviews.length}} відгуків</a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
