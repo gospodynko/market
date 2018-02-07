@@ -56,10 +56,6 @@
                     </div>
                     <div class="col-md-12 after-load-hr">
                         <div class="pictures" v-if="images.length == 0">
-                            <!--<div class="col-md-3" v-for="pictures in checkedProduct.pictures">-->
-                                <!--<img :src="pictures.path" alt="image">-->
-                            <!--</div>-->
-
                         </div>
                         <div v-else>
                             <div class="col-md-3" v-for="(image, i) in images" style="width: auto">
@@ -209,7 +205,17 @@
             setProducer(){
                 this.checkedProducers = this.checkedCategory.producers;
             },
-            addTag (newTag) {
+            appearTag(){
+                this.$toasted.show('Great News!', {
+                    //theme of the toast you prefer
+                    theme: 'bubble',
+                    //position of the toast container
+                    position: 'top-right',
+                    //display time of the toast
+                    duration: 5000
+                })
+            },
+            addTag(newTag) {
                 this.checkedProducers.push({'name': newTag, 'id': newTag});
                 this.checkedTag = {'name': newTag, 'id': newTag};
                 if(newTag.hasOwnProperty('products')){
@@ -219,10 +225,7 @@
             addTagProduct(newTag){
                 this.checkedProduct = {'name': newTag, 'id': newTag};
                 this.checkedProducts.push({'name': newTag, 'id': newTag});
-//                if (this.checkedProduct.name.val()==null){
-//                    toastr["error"].error("Ви не обрали категорiю!");
-//                    return;
-//                }
+
             },
             fileLoad(e){
                 if (this.images && this.images.length >= 5) return false
