@@ -2,22 +2,14 @@
     <section class="slider">
         <div class="all-slides-wrap">
             <ul class="pgwSlider">
-                <div class="btn-prev-all-slider-480">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 44"><path d="M0,22L22,0l2.1,2.1L4.2,22l19.9,19.9L22,44L0,22L0,22L0,22z" fill="#14c44d"></path></svg>
-                </div>
-                <li v-for="banner in banners">
+                <li v-for="banner in banners" style="width: 33%; display: none;">
                     <a :href="banner.url">
                         <img :src="banner.image" alt="">
                     </a>
                     <span v-if="banner.is_special">{{translate.actual}}</span>
                 </li>
-                <div class="btn-next-all-slider-480">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 44"><path d="M27,22L27,22L5,44l-2.1-2.1L22.8,22L2.9,2.1L5,0L27,22L27,22z" fill="#14c44d"></path></svg>
-                </div>
             </ul>
         </div>
-
-
     </section>
 </template>
 
@@ -31,8 +23,16 @@
             }
         },
         props: ['banners', 'translate'],
-        mounted(){
-            $('.pgwSlider').pgwSlider();
+        computed: {
+            pgwSlider: function () {
+                return $('.pgwSlider').pgwSlider({
+                    displayControls: true
+                })
+            }
+        },
+        mounted () {
+            this.pgwSlider.displaySlide(3)
+            console.log(this.pgwSlider.displaySlide(3));
         }
     }
 </script>

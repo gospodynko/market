@@ -17,7 +17,7 @@
           ul>li{
             height: 500px!important;
             a {
-              width: 100%;
+              width: 90%;
               height: 100%;
               img{
                 max-height: 100%;
@@ -100,7 +100,7 @@
 //мобильные устройства
 @media screen and (max-width:1024px){
   section.slider{
-    margin-bottom: 45px;
+    margin-bottom: 0px;
     width: 100%;
     -moz-box-sizing: border-box; /* Для Firefox */
     box-sizing: border-box;
@@ -157,15 +157,18 @@
         }
         .ps-current{
           width: 100%;
-          height: 240px!important;
+          height: auto;
+          max-height: 500px!important;
           position: relative;
           ul>li{
-            height: 500px!important;
+            height: 300px!important;
             a {
               width: 100%;
               height: 100%;
               img{
-                max-height: 100%;
+                height: 100%;
+                width: auto;
+                margin: 0 auto;
                 object-fit: cover;
               }
             }
