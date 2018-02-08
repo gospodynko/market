@@ -191,6 +191,18 @@
 
 
             }
+        },
+        setSort () {
+            console.log(this.categoryIds)
+            this.$http.post('/shop/' + this.shop.slug + '/load', {category_id: this.categoryIds}).then(res => {
+                this.shopProducts = res.data.data
+                this.allProducts = res.data
+                this.page = res.data.current_page
+                if (res.data.last_page !== this.page) {
+                    this.hideShowMore = false
+                }
+            }, err => {
+            })
         }
     }
 </script>

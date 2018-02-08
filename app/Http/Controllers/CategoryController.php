@@ -21,4 +21,10 @@ class CategoryController extends Controller
 
         return view('category', ['data' => ['products' => $products->paginate($per_page), 'cat_name' => $category->name], 'category' => $category]);
     }
+
+    public function categoryFilter($slug)
+    {
+        $category = Category::where('parent_category_id', null)->get();
+        return view('shop-list', ['data' => ['category' => $category]]);
+    }
 }

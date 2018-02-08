@@ -18,6 +18,7 @@
                         <h3 class="empty-basket">В корзині немає товарів. Але ви можете це виправити.</h3>
                     </div>
                     <div class="single-item-cart" v-for="cartItem in cartItems" v-else>
+                        <div>
                         <div class="logo-wrap">
                             <img :src="cartItem.store.default_picture" alt="">
                         </div>
@@ -34,6 +35,7 @@
                                 <span @click="changeCount('minus', cartItem)">-</span><input type="text" :value="cartItem.store.store_count"><span class="to" @click="changeCount('plus', cartItem)">+</span>
                             </div>
                             <span class="close" @click="delFromCart(cartItem)"></span>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -73,6 +75,13 @@
             starRating
         },
         methods: {
+            hiddenBody (key) {
+                if (key === 'open') {
+                    $('body').css('overflow', 'hidden')
+                } else {
+                    $('body').css('overflow', '')
+                }
+            },
             numberWithSpaces(x) {
                 return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
             },
@@ -91,9 +100,13 @@
             settingsCart(status){
                 this.cartItems = JSON.parse(localStorage.getItem('cart'));
                 this.showCart = status;
+                if (window.innerWidth <= 1024) {
+                    this.hiddenBody('open')
+                }
             },
             closeCart(){
                 this.showCart = !this.showCart;
+                this.hiddenBody('close')
                 Events.$emit('closeCart', this.showCart);
             },
             changeCount(type, item){

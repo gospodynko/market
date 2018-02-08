@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Ubuntu:300,400,500&subset=cyrillic,cyrillic-ext');
 //большие экраны
-@media screen and (min-width: 1025px){
+@media screen and (min-width: 1024px){
     body{
-    min-width: 1315px;
+    //min-width: 1315px;
     margin: 0 auto;
     width: 100%;
     font-family: 'Ubuntu', sans-serif;
@@ -291,6 +291,15 @@
                 color: $white;
             }
         }
+    }
+}
+@media screen and (max-width: 1315px) {
+    .main-content{
+        width: 100% !important;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 20px;
     }
 }
 //мобильные устройства
