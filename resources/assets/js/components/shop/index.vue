@@ -267,7 +267,7 @@
             '$route.name': function (val) {
                 this.closeMenu()
             },
-            //Скрывает задний скрол
+            //Отключает задний скрол
             showShop: function (val) {
                 if (val) {
                     this.hiddenBody('open')

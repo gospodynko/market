@@ -31,7 +31,6 @@
       }
     }
     .single-product {
-      width: 25%;
       height: 430px;
       background: $white;
       padding: 10px 25px;
@@ -263,7 +262,7 @@
       width: 90%;
       margin: 20px 5%;
       background-color: white;
-      border-radius: 5px;
+      //border-radius: 5px;
       padding: 20px 40px;
       -moz-box-sizing: border-box; /* Для Firefox */
       box-sizing: border-box;
@@ -293,6 +292,7 @@
     flex-wrap: wrap;
     position: relative;
     .show-all-btn-wrap {
+      padding-top: 20px;
       width: 100%;
       .btn {
         width: 100%;
@@ -314,7 +314,7 @@
       width: 45%;
       height: 430px;
       background: $white;
-      padding: 10px 25px;
+      padding: 10px;
       -webkit-box-sizing: border-box;
       -moz-box-sizing: border-box;
       box-sizing: border-box;
@@ -323,8 +323,7 @@
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
       border-radius: 5px;
-      margin-right: 2%;
-      margin-bottom: 20px;
+      margin: 10px 0;
       &:nth-child(4n+4) {
         margin-right: 0;
       }
@@ -347,6 +346,9 @@
           display: none;
         }
         .all-goods-btn {
+          display: none;
+        }
+        .all-goods-btn-480 {
           margin: 0 auto;
           .btn {
             width: 90%;
