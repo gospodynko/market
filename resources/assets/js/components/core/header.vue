@@ -69,7 +69,7 @@
                             <a href="/shop/products" class="shop" v-if="user && user.role == 'seller'"><i></i> {{translate.my_shop}}</a>
                         </div>
                         <div class="item">
-                            <a href="#" class="basket" @click="showCartFunc">
+                            <a href="#" class="basket" @click="showCartFunc(0, 1)">
                                 <i></i>
                                 <span class="badge" :class="{'badge': cart}" v-if="cart && cart.length">{{cart.length}}</span>
                                 <p>
@@ -267,6 +267,7 @@
             }
             Events.$on('closeCart', (status) => {
                 this.showCart = status;
+                this.hiddenBody('close')
             })
             Events.$on('newCartItem', () => {
                 this.showCartFunc();
@@ -292,13 +293,6 @@
             },
             closeMenu () {
                 this.showMenuxs = false
-            },
-            hiddenBody (key) {
-                if (key === 'open') {
-                    $('body').css('overflow', 'hidden')
-                } else {
-                    $('body').css('overflow', 'scroll')
-                }
             },
             menuClickxs () {
                 this.showMenuxs = !this.showMenuxs
@@ -338,7 +332,17 @@
                 if(location.pathname == '/') return;
                 this.showMenu = false;
             },
+            hiddenBody (key) {
+                if (key === 'open') {
+                    $('body').css('overflow', 'hidden')
+                } else {
+                    $('body').css('overflow', '')
+                }
+            },
             showCartFunc(e = 0){
+//                if (val) {
+//                    this.hiddenBody('open')
+//                }
                 if(e){
                     e.preventDefault();
                 } else {
