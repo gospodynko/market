@@ -2,7 +2,7 @@
     <section class="single-prod-sect">
         <div class="sps-adres" v-if="showAdres">
             <div class="sps-adres-header">
-                <span class="circle-close" @click.prevent="callShowAdres">x</span>
+                <span class="circle-close" @click.prevent="callShowAdres(false)">x</span>
                 {{product.user_shop.company.address}}
                 <img :src="'https://maps.googleapis.com/maps/api/staticmap?center=' + product.user_shop.company.address + '&zoom=13&size=600x300&maptype=roadmap&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=AIzaSyDsGaGMT-t0qFIwMM3j2nY0Hc5LcTmRNzY'" alt="">
             </div>
@@ -10,7 +10,7 @@
 
         <div class="sps-contacts" v-if="showPhone">
             <div class="sps-contacts-header">
-                <span class="circle-close" @click.prevent="callShowPhone">x</span>
+                <span class="circle-close" @click.prevent="callShowPhone(false)">x</span>
                 Контакти
             </div>
             <ul>
@@ -736,8 +736,13 @@
                     $('body').css('overflow', 'scroll')
                 }
             },
-            callShowPhone () {
+            callShowPhone (val) {
               this.showPhone = !this.showPhone
+                if (val) {
+                    this.hiddenBody('open')
+                } else {
+                    this.hiddenBody('close')
+                }
             },
             callShowAdres (val) {
                 this.showAdres = !this.showAdres
