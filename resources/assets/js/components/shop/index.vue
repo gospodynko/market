@@ -19,7 +19,7 @@
             </div>
         </aside>
         <!-- Start filter -->
-        <div class="hidden-shop-filter" :class="{'open': showShop}">
+        <div class="hidden-shop-filter" :class="{'open': showShop}" style="display: none">
             <div class="category" v-for="category in categories">
                 <div class="sub-cuts-wrap">
                     <ul>

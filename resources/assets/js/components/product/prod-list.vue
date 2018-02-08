@@ -729,11 +729,23 @@
             this.product.description = this.product.description.replace(/(?:\r\n|\r|\n)/g, '<br>');
         },
         methods: {
+            hiddenBody (key) {
+                if (key === 'open') {
+                    $('body').css('overflow', 'hidden')
+                } else {
+                    $('body').css('overflow', 'scroll')
+                }
+            },
             callShowPhone () {
               this.showPhone = !this.showPhone
             },
-            callShowAdres () {
+            callShowAdres (val) {
                 this.showAdres = !this.showAdres
+                if (val) {
+                    this.hiddenBody('open')
+                } else {
+                    this.hiddenBody('close')
+                }
             },
             closeAll () {
                 this.showAdres = false

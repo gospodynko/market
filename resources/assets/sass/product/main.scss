@@ -2026,13 +2026,14 @@
     position: fixed;
     z-index: 999;
     width: 300px;
-    height: 350px;
+    height: auto;
     background: #fff;
     left: 0;
     right: 0;
     margin: auto;
     border-radius: 5px;
     border: 1px solid #d0d4dc;
+    padding-bottom: 20px;
     .sps-contacts-header {
       padding: 15px;
       background: #f5f7f8;
@@ -2074,8 +2075,8 @@
   .sps-adres {
     position: fixed;
     z-index: 999;
-    width: 600px;
-    height: 400px;
+    width: 90%;
+    height: auto;
     background: #fff;
     left: 0;
     right: 0;
