@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueResource from 'vue-resource';
 import moment from 'moment';
+import VueAwesomeSwiper from 'vue-awesome-swiper'
 // import VueRouter from 'vue-router';
 
 /*components*/
@@ -34,6 +35,8 @@ import ShopListVue from './components/shopList/index.vue';
 import AllShopsVue from './components/all-shops/all-shops.vue';
 
 Vue.use(VueResource);
+// required('swiper/dist/css/swiper.css')
+Vue.use(VueAwesomeSwiper);
 
 Vue.http.headers.common['X-CSRF-TOKEN'] = $('meta[name="csrf-token"]').attr('content');
 // Vue.config.devtools = process.env.NODE_ENV != 'production';
