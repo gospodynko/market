@@ -24,6 +24,7 @@
     "pgwslider": "^2.3.1",
     "swiper": "^3.4.2",
     "vue": "^2.5.13",
+    "vue-awesome-swiper": "^3.1.2",
     "vue-ladda": "0.0.13",
     "vue-masked-input": "^0.5.2",
     "vue-multiselect": "^2.0.2",
