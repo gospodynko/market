@@ -138,6 +138,28 @@ class HomeController extends Controller
         return view('shop-list', compact('shop_list', 'categories'));
     }
 
+    public function filterShops(Request $request)
+    {
+        $v = Validator::make($request->all(), [
+            'category_ids' => 'required|array'
+        ]);
+
+        if (count($v->errors())) {
+            return response()->json(['status' => 0], 400);
+        }
+        $per_page = 20;
+        $category_ids = $request->input('category_ids');
+        if (count($category_ids)) {
+            $shop_list = UserShops::whereHas('products', function ($q) use ($category_ids) {
+                $q->whereIn('category_id', $category_ids);
+            })->paginate($per_page);
+        } else {
+            $shop_list = UserShops::paginate($per_page);
+        }
+
+        return response()->json(['shop_list' => $shop_list], 200);
+    }
+
     public function getShopListPost(Request $request)
     {
         $v = Validator::make($request->all(), [

@@ -50,6 +50,7 @@ Route::get('/cart-item', function (){
 });
 //All shops button
 Route::get('/all-shops', 'HomeController@getShopList');
+Route::post('/all-shops', 'HomeController@filterShops');
 
 Route::get('summary', ['uses' => 'HomeController@summary']); //while refactoring
 
