@@ -141,7 +141,7 @@ class HomeController extends Controller
     public function filterShops(Request $request)
     {
         $v = Validator::make($request->all(), [
-            'category_ids' => 'required|array'
+            'category_ids' => 'present|array'
         ]);
 
         if (count($v->errors())) {
