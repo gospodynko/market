@@ -21,8 +21,73 @@
                     </div>
                 </div>
             </aside>
-            <!---->
+            <!-- Start filter -->
+            <div class="hidden-shops-filter" :class="{'open': showShops}">
+                <div class="dropdown-shop">
+                    <div class="main-category">
+                        <h2>Категорії</h2>
+                        <span class="open-icon" :class="{'close': showMenu}" @click="menuClick"></span>
+                    </div>
+                    <div class="category" :class="{'open': showMenu}">
+                        <ul>
+                            <li v-for="category in categories">
+                                <input type="checkbox" name="xm-subcat-name" :id="'xm-subcat-child-' + category.id" :value="category.id" v-model="categoryIds" @click="shopsClick">
+                                <label :for="'xm-subcat-child-' + category.id">{{category.name}}</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="close-menu-xs" @click="shopsClick">
+                    <img src="/img/shop-logo/arrow-menu.png" alt="">
+                </div>
+            </div>
+            <div class="overlay-burger" :class="{'open': showShops}" @click="shopsClick"></div>
+            <!-- End filter -->
             <div class="shop-page-content">
+                <div class="btn-filter"  @click="shopsClick">
+                    <div class="btn-filter-div">
+                        <a href="#" class="btn-filter-flex">
+                            <div class="svg-filter">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 971.986 971.986" style="fill:white;" xml:space="preserve">
+<g>
+<path d="M370.216,459.3c10.2,11.1,15.8,25.6,15.8,40.6v442c0,26.601,32.1,40.101,51.1,21.4l123.3-141.3   c16.5-19.8,25.6-29.601,25.6-49.2V500c0-15,5.7-29.5,15.8-40.601L955.615,75.5c26.5-28.8,6.101-75.5-33.1-75.5h-873   c-39.2,0-59.7,46.6-33.1,75.5L370.216,459.3z"/>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+                            </div>
+                            <p class="filter">Фiльтр</p>
+                        </a>
+                    </div>
+                </div>
                 <div class="filter-products">
                     <h4 id="sum-h">Всього магазинів: {{shopData.data.length}} </h4>
                     <div class="sort-view">
@@ -154,6 +219,7 @@
                 page: this.shopList.current_page - 1,
                 showListShop: false,
                 showMenu: false,
+                showShops: false,
                 sortTypesShop: [
                     {
                         id: 1,
@@ -176,7 +242,8 @@
 
                 ],
                 categoryIds: [],
-                shopData: this.shopList
+                shopData: this.shopList,
+                sortType: null
             }
         },
         props: ['breadcrumbs','shopList', 'categories'],
@@ -187,9 +254,31 @@
         watch: {
             categoryIds: function (val) {
                 this.setSort()
+            },
+            showShops: function (val) {
+                if (val) {
+                    this.hiddenBody('open')
+                } else {
+                    this.hiddenBody('close')
+                }
             }
         },
         methods: {
+            closeMenu () {
+                this.showShops = false
+            },
+            shopsClick () {
+                this.showShops = !this.showShops
+            },
+            sortFilter () {
+            },
+            hiddenBody (key) {
+                if (key === 'open') {
+                    $('body').css('overflow', 'hidden')
+                } else {
+                    $('body').css('overflow', '')
+                }
+            },
             clickCallback(newPage){
                 if(this.page < newPage){
                     location.href = this.shopList.next_page_url;
