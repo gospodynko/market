@@ -51,7 +51,7 @@
                             <label for="file-upload" class="custom-file-upload">
                                 <i class="fa fa-cloud-upload"></i> Додати фото
                             </label>
-                            <input id="file-upload" type="file"  @change="fileLoad"/>
+                            <input id="file-upload" type="file"  accept="image/*" @change="fileLoad"/>
                         </div>
                     </div>
                     <div class="col-md-12 after-load-hr">

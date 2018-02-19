@@ -287,7 +287,7 @@
                 if (key === 'open') {
                     $('body').css('overflow', 'hidden')
                 } else {
-                    $('body').css('overflow', 'scroll')
+                    $('body').css('overflow', '')
                 }
             },
             getNew () {
