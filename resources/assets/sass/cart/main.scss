@@ -3999,4 +3999,42 @@
       }
     }
   }
+  .cart-blocked-wrap.show .cart-wrap{
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 80%;
+    box-sizing: border-box;
+    .cart-list-wrap {
+      .cart-footer-action.two-wrap{
+        .left{
+          display: none;
+        }
+      }
+      .cart-detail-list .single-item-cart{
+        .logo-wrap-xs{
+          position: absolute;
+          left: 60%;
+          top: 50px;
+          height: auto;
+          img {
+            width: 70%;
+            height: auto;
+          }
+        }
+        .title-wrap{
+          .content{
+            p{
+              color: #444444;
+              font-family: Ubuntu;
+              font-size: 12px;
+              font-weight: 500;
+              line-height: 13px;
+            }
+          }
+        }
+      }
+
+    }
+  }
+
 }
