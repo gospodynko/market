@@ -1637,7 +1637,7 @@
 @media screen and (max-width: 1024px) {
   .cart-wrap {
     width: 100%;
-    max-width: 1315px;
+    max-width: 1024px;
     margin: 0 auto;
     .cart-list-wrap {
       width: 100%;
@@ -3291,4 +3291,6 @@
 
     }
   }
+  .cart-blocked-wrap.show .cart-wrap .cart-list-wrap {
+    height: auto;}
 }

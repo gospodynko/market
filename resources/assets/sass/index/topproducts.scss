@@ -327,6 +327,7 @@
       &:nth-child(4n+4) {
         margin-right: 0;
       }
+
       .hide-list-wrap {
         display: none;
       }
@@ -392,6 +393,73 @@
             }
           }
         }
+      }
+
+      .hide-list-wrap-main {
+        display: block;
+        width: 100%;
+        height: auto;
+        background: $white;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        border-bottom: 1px solid $light-gray;
+        .all-detail-list {
+          //height: auto !important;
+          display: none;
+        }
+        .all-goods-btn {
+          display: none;
+        }
+        .all-goods-btn-480 {
+          margin: 0 auto;
+          .btn {
+            width: 90%;
+            margin-left: 5%;
+            margin-right: 5%;
+            background: #48a2ff;
+            border: 1px solid #2d92fa;
+            border-radius: 4px;
+            font-size: 15px;
+            color: #fff;
+            display: inline-block;
+            line-height: 45px;
+            text-align: center;
+          }
+        }
+        .two-wrap {
+          .left, .right {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            i {
+              display: inline-block;
+              width: 20px;
+              height: 20px;
+              margin-bottom: 5px;
+            }
+          }
+          .left {
+            border-right: 1px solid $light-gray;
+            i {
+              background: url("../img/products/eye.png") no-repeat center;
+              -webkit-background-size: 25px;
+              background-size: 25px;
+            }
+          }
+          .right {
+            i {
+              background: url("../img/products/faworite.png") no-repeat center;
+            }
+          }
+        }
+      }
+      .hide-list-wrap-480-main {
+        display: none;
       }
 
       &:after {
@@ -513,5 +581,8 @@
 
   .show-more:focus {
     outline: none;
+  }
+  .all-products-list .single-product .detail-prod-wrap .feedback-wrap-480 .count-feedback-wrap a {
+    font-size: 70%;
   }
 }

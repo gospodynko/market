@@ -70,8 +70,8 @@
                                 <li><router-link :to="{name: 'callback'}">{{translate.feedback}}</router-link></li>
                                 <li><router-link :to="{name: 'classifieds', params: {slug: 'gsm'}, query: {id: 1}}">{{translate.tenders}}</router-link></li>
                                 <li class ="general-footer-title">{{translate.contacts}}</li>
-                                <li><a href="tel:0961992141">(067) 199 21 41</a></li>
-                                <li><a href="tel:0931992141">(093) 199 21 41</a></li>
+                                <li class="telephone"><a href="tel:0961992141">(067) 199 21 41</a></li>
+                                <li class="telephone"><a href="tel:0931992141">(093) 199 21 41</a></li>
                                 <li><a href="mailto:info@agroyard.ua">info@agroyard.ua</a></li>
                             </ul>
                         </div>
@@ -81,8 +81,8 @@
                                 <li><router-link :to="{name: 'AuctionCreate'}">{{translate.sell_crop}}</router-link></li>
                                 <li><router-link :to="{name: 'ClassifiedsCreate'}">{{translate.adv}}</router-link></li>
                                 <li><router-link :to="{name: 'auctions', params: {slug: 'all'}}">{{translate.auction}}</router-link></li>
-                                <li><a href="tel:0800802141">(0800) 80 21 41</a></li>
-                                <li><a href="tel:0501992141">(050) 199 21 41</a></li>
+                                <li class="telephone right"><a href="tel:0800802141">(0800) 80 21 41</a></li>
+                                <li class="telephone"><a href="tel:0501992141">(050) 199 21 41</a></li>
                             </ul>
                         </div>
                     </div>
