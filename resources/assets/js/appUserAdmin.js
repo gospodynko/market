@@ -7,6 +7,7 @@ import moment from 'moment';
 // import VueRouter from 'vue-router';
 
 import axios from 'axios';
+import Toasted from 'vue-toasted'
 
 /*components*/
 import HeaderVue from './componentsUserAdmin/core/header.vue';
@@ -17,6 +18,7 @@ import ShopsCreateVue from './componentsUserAdmin/shops/create.vue';
 import ShopsEditVue from './componentsUserAdmin/shops/edit.vue';
 import ShopsOrdersVue from './componentsUserAdmin/shops/orders.vue';
 Vue.use(VueResource);
+Vue.use(Toasted);
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
