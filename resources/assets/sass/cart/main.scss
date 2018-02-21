@@ -1646,7 +1646,7 @@
 @media screen and (max-width: 1024px) {
   .cart-wrap {
     width: 100%;
-    max-width: 1315px;
+    max-width: 1024px;
     margin: 0 auto;
     .cart-list-wrap {
       width: 100%;
@@ -3384,17 +3384,8 @@
 
     }
   }
-  /**
- * Swiper 4.0.2
- * Most modern mobile touch slider and framework with hardware accelerated transitions
- * http://www.idangero.us/swiper/
- *
- * Copyright 2014-2017 Vladimir Kharlampidi
- *
- * Released under the MIT License
- *
- * Released on: October 18, 2017
- */
+  .cart-blocked-wrap.show .cart-wrap .cart-list-wrap {
+    height: auto;}
   .swiper-container {
     margin-left: auto;
     margin-right: auto;
