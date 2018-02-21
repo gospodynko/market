@@ -782,12 +782,12 @@ $whitecolor: white;
     }
   }
 
-  .shop-products-wrap .single-product:nth-child(4n+4) {
-    margin-right: 0;
-  }
-  .shop-products-wrap .single-product:nth-child(3n+3) {
-    margin-right: 0;
-  }
+  //.shop-products-wrap .single-product:nth-child(4n+4) {
+  //  margin-right: 0;
+  //}
+  //.shop-products-wrap .single-product:nth-child(3n+3) {
+  //  margin-right: 0;
+  //}
 
   /*--- Фильтр-стили ---*/
   .hidden-shop-filter {
@@ -822,6 +822,7 @@ $whitecolor: white;
     cursor: pointer;
   }
   .hidden-shop-filter.open{
+    display: block;
     overflow: scroll;
     left: auto;
     width: 90%;
@@ -1054,11 +1055,28 @@ $whitecolor: white;
       }
     }
   }
-  .main-content .content .products .all-products-list.shop-products-wrap .single-product{
-    width: 32%;
-    margin-right: 2%;
+  .main-content .content .products .all-products-list.shop-products-wrap{
+    width: 100%;
+    .single-product{
+      width: 32%;
+      height: auto;
+      min-height: 300px;
+      margin-right: 2%;
+      .for-list .detail-prod-wrap .feedback-wrap .count-feedback-wrap a {
+        font-size: 60%;
+      }
+    }
+    .single-product:nth-child(3n+3){
+      margin-right: 0;
+    }
+    .single-product:nth-child(4n+4) {
+      margin-right: 2%;
+    }
   }
-  .main-content .content .products .all-products-list.shop-products-wrap .single-product:nth-child(3n+3){
-    margin-right: 0;
+  .hidden-shop-filter{
+    display: none;
+  }
+  .hidden-shop-filter.open{
+    display: block;
   }
 }

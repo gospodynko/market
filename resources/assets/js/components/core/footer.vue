@@ -65,9 +65,9 @@
                         <div class="site-naw-wrap-left">
                             <ul class="head-footer-menu">
                                 <li class ="general-footer-title">{{translate.company}}</li>
-                                <li><router-link :to="{name: 'news'}">{{translate.news}}</router-link></li>
-                                <li><router-link :to="{name: 'about'}">{{translate.about}}</router-link></li>
-                                <li><router-link :to="{name: 'callback'}">{{translate.feedback}}</router-link></li>
+                                <li><a href="https://agroyard.ua/news">{{translate.news}}</a></li>
+                                <li><a href="https://agroyard.ua/about">{{translate.about}}</a></li>
+                                <li><a href="https://agroyard.ua/callback">{{translate.feedback}}</a></li>
                                 <li><router-link :to="{name: 'classifieds', params: {slug: 'gsm'}, query: {id: 1}}">{{translate.tenders}}</router-link></li>
                                 <li class ="general-footer-title">{{translate.contacts}}</li>
                                 <li class="telephone"><a href="tel:0961992141">(067) 199 21 41</a></li>
@@ -78,9 +78,9 @@
                         <div class="site-naw-wrap-right">
                             <ul class="head-footer-menu">
                                 <li class ="general-footer-title">{{translate.tool}}</li>
-                                <li><router-link :to="{name: 'AuctionCreate'}">{{translate.sell_crop}}</router-link></li>
-                                <li><router-link :to="{name: 'ClassifiedsCreate'}">{{translate.adv}}</router-link></li>
-                                <li><router-link :to="{name: 'auctions', params: {slug: 'all'}}">{{translate.auction}}</router-link></li>
+                                <li><a href="https://agroyard.ua/account/auction-create">{{translate.sell_crop}}</a></li>
+                                <li><a href="https://agroyard.ua/classifieds/gsm?id=1">{{translate.adv}}</a></li>
+                                <li><a href="https://agroyard.ua/auctions/all">{{translate.auction}}</a></li>
                                 <li class="telephone right"><a href="tel:0800802141">(0800) 80 21 41</a></li>
                                 <li class="telephone"><a href="tel:0501992141">(050) 199 21 41</a></li>
                             </ul>
