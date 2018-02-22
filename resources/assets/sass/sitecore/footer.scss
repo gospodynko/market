@@ -184,7 +184,29 @@
       }
     }
   }
-  .head-footer-wrap-mobile .bottom-footer-detail > p {
-    color: #ffffff;
+  .head-footer-wrap-mobile {
+    background-color: #36ad5c;
+    color: #FFFFFF;
+    position: relative;
+    .socials {
+      margin: 20px auto;
+      width: 100px;
+      text-align: center;
+    }
+    .bottom-footer-detail {
+      margin: 20px 10%;
+      width: 80%;
+      text-align: center;
+    }
+    .bottom-footer-detail > p {
+      color: #ffffff;
+    }
+    .footer-content {
+       width: 100%;
+       margin: 0 auto;
+       text-align: left;
+       position: absolute;
+       background: #36ad5c;
+     }
   }
 }

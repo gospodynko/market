@@ -614,4 +614,18 @@
     display: block;
     width: 170px;
   }
+  .catalogue-wrap .menu-wrap .search-wrap .actions-wrap{
+    .search-action-wrap {
+      width: 68%;
+      label button{
+        margin-left: 0;
+      }
+    }
+    .all-shops-btn {
+       width: 30%;
+       .btn {
+         font-size: 80%;
+       }
+     }
+  }
 }
