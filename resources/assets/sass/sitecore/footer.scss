@@ -1,5 +1,5 @@
 //большие экраны
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 1024px) {
   footer.footer-section{
     margin-top: 90px;
   }
@@ -98,7 +98,7 @@
   }
 }
 //мобильные устройства
-@media screen and (max-width:1024px){
+@media screen and (max-width:1023px){
   .head-footer-wrap-bigScreen {
     display: none;
   }
@@ -208,5 +208,9 @@
        position: absolute;
        background: #36ad5c;
      }
+  }
+  .main-footer-block{
+    margin: 0 calc((100% - 350px)/2);
+    width: 350px;
   }
 }

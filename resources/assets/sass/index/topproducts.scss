@@ -1,5 +1,5 @@
 //большие экраны
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 1024px) {
   .top-product-wrap {
     width: 100%;
     max-width: 1315px;
@@ -156,6 +156,7 @@
           font-size: 24px;
           font-weight: 500;
           margin-bottom: 10px;
+          padding-left: 15px;
         }
       }
       .detail-prod-wrap {
@@ -245,7 +246,7 @@
   }
 }
 //мобильные устройства
-@media screen and (max-width:1024px){
+@media screen and (max-width:1023px){
   .top-product-wrap {
     width: 100%;
     max-width: 1024px;
@@ -631,5 +632,31 @@
   }
   .all-products-list .single-product .detail-prod-wrap .feedback-wrap-480 .count-feedback-wrap a {
     font-size: 65%;
+  }
+
+  .search-sect .search-content-wrap .main-search-content .content-wrap .all-products-list .single-product{
+    height: 420px;
+    .detail-prod-wrap{
+      width: 100%;
+      display: flex;
+      flex-direction: column-reverse;
+      .feedback-wrap{
+        margin-top: 20px;
+        padding-top: 10px;
+        border-top: 1px solid $light-gray;
+        .rating-wrap{
+          .vue-star-rating{
+            .vue-star-rating-rating-text{
+              display: none;
+            }
+          }
+        }
+        .count-feedback-wrap{
+          a{
+            font-size: 50%;
+          }
+        }
+      }
+    }
   }
 }
