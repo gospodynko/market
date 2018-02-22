@@ -12,7 +12,7 @@
 $whitecolor: white;
 
 //большие экраны
-@media screen and (min-width: 1025px){
+@media screen and (min-width: 1024px){
   .main-content {
     display: flex;
     width: var(--container-width);
@@ -302,7 +302,7 @@ $whitecolor: white;
   }
 }
 //мобильные устройства
-@media screen and (max-width:1024px) {
+@media screen and (max-width:1023px) {
   .product-items {display: flex; justify-content: space-between; flex-wrap: wrap; margin-top: 24px;}
   .product-item {flex-basis: calc(29% - 15px); height: 415px; display: flex; flex-direction: column; justify-content: space-around; align-items: center; margin-bottom: 24px; padding: 20px; background: var(--primary-bg); border-radius: 3px;}
   .product-item .product-descr {border-bottom: 1px solid #444444; width: 100%;}
@@ -695,6 +695,10 @@ $whitecolor: white;
     }
     .agro-info .info span {
       font-size: 0.8em;
+      img {
+        padding-right: 5px;
+        width: 18px;
+      }
     }
     .agro-info {
       height: 350px;
@@ -1055,23 +1059,28 @@ $whitecolor: white;
       }
     }
   }
-  .main-content .content .products .all-products-list.shop-products-wrap{
-    width: 100%;
-    .single-product{
-      width: 32%;
-      height: auto;
-      min-height: 300px;
-      margin-right: 2%;
-      .for-list .detail-prod-wrap .feedback-wrap .count-feedback-wrap a {
-        font-size: 60%;
+  .main-content .content #grass-defend {
+      width: 100%;
+      .all-products-list.shop-products-wrap {
+        width: 100%;
+        .single-product {
+          width: 49%!important;
+          margin-right: 2%;
+          height: 420px;
+          &:nth-child(2n+2){
+            margin-right: 0;
+          }
+          .hide-list-wrap .two-wrap {
+            display: none;
+          }
+          .for-list .detail-prod-wrap .feedback-wrap .count-feedback-wrap a {
+            font-size: 60%;
+          }
+          .detail-wrap .price{
+            padding-left: 20px;
+          }
+        }
       }
-    }
-    .single-product:nth-child(3n+3){
-      margin-right: 0;
-    }
-    .single-product:nth-child(4n+4) {
-      margin-right: 2%;
-    }
   }
   .hidden-shop-filter{
     display: none;
