@@ -1,3 +1,4 @@
+$light-gray: #d0d4dc;
 @media screen and (min-width: 1024px) {
   .right-xs{
     display: none;
@@ -67,8 +68,27 @@
           .logo-wrap-xs{
             display: none;
           }
-          .close{
-            display: none;
+          .close {
+            position: absolute;
+            right: 10px;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            &:before, &:after {
+              position: absolute;
+              left: 9px;
+              content: ' ';
+              height: 20px;
+              width: 2px;
+              background-color: $light-gray;
+            }
+            &:before {
+              transform: rotate(45deg);
+            }
+            &:after {
+              transform: rotate(-45deg);
+            }
           }
           .logo-wrap {
             width: 20%;
