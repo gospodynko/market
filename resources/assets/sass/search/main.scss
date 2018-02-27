@@ -320,7 +320,7 @@
         .paginate {
           width: 100%;
           display: flex;
-          justify-content: flex-start;
+          justify-content: center;
           align-items: center;
           li {
             margin-right: 15px;
@@ -755,7 +755,7 @@
         .paginate {
           width: 90%;
           display: flex;
-          justify-content: flex-start;
+          justify-content: center;
           align-items: center;
           margin: 0 auto;
           li {
@@ -883,5 +883,15 @@
     //    }
     //  }
     //}
+  }
+  .search-content-wrap .footer-search-wrap .paginate-wrap .paginate {
+    width: 90%;
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-pack: start;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    margin: 0 auto;
   }
 }
