@@ -1,5 +1,5 @@
 //большие экраны
-@media screen and (min-width: 1025px){
+@media screen and (min-width: 1024px){
 .hidden-filter{
   display: none;
 }
@@ -321,7 +321,7 @@
 }
 }
 //мобильные устройства
-@media screen and (max-width:1024px){
+@media screen and (max-width:1023px){
   //.catalogue-wrap{
   //  display: none;
   //}
@@ -624,7 +624,7 @@
     .all-shops-btn {
        width: 30%;
        .btn {
-         font-size: 80%;
+         font-size: 100%;
        }
      }
   }
