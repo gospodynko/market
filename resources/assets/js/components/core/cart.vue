@@ -36,7 +36,7 @@
                         <div class="price-wrap">
                             <p class="price-title">{{numberWithSpaces(+cartItem.store.price * cartItem.store.store_count)}} {{cartItem.store.currency.name}}</p>
                             <div class="count-items-wrap">
-                                <span @click="changeCount('minus', cartItem)">-</span><input type="text" :value="cartItem.store.store_count"><span class="to" @click="changeCount('plus', cartItem)">+</span>
+                                <span @click="changeCount('minus', cartItem)">-</span><input type="text" :value="cartItem.store.store_count" pattern="[0-9]{,3}" disabled="disabled"><span class="to" @click="changeCount('plus', cartItem)">+</span>
                             </div>
                             <!--<span class="close" @click="delFromCart(cartItem)"></span>-->
                         </div>
