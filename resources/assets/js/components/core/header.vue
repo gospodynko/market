@@ -117,7 +117,7 @@
                         <img src="/img/header/arrow-down.png" alt="">
                     </div>
                     </div>
-                    <ul class="mini-cat" :class="{'open': showSubGroup === k + 1}">
+                    <ul class="mini-cat" :class="{'open': showSubGroup === k + 1}" v-if="checkedCat && showSubGroup === k + 1">
                         <li class="mini-cat-li" v-for="subCategory in subCategories" >
                             <a :href="'/category/'+checkedCat.slug+'/'+subCategory.slug">
                                 <p>{{subCategory.name}}</p>
