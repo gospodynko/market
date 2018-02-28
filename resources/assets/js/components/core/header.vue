@@ -291,9 +291,6 @@
                 this.showSubGroup = k
                 console.log(k)
             },
-            closeMenu () {
-                this.showMenuxs = false
-            },
             menuClickxs () {
                 this.showMenuxs = !this.showMenuxs
             },
