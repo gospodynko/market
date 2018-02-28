@@ -357,6 +357,9 @@
             showPopupFunc(){
                 this.showPopup = !this.showPopup;
                 this.showOverlayPopup = !this.showOverlayPopup;
+                // this.showPopup = !this.showPopup;
+                // this.hiddenBody('close')
+                // Events.$emit('closePopup', this.showPopup);
             },
 //            allShopsPage(){
 //
