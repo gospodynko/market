@@ -68,7 +68,7 @@
                         <div class="item">
                             <a href="/shop/products" class="shop" v-if="user && user.role == 'seller'"><i></i> {{translate.my_shop}}</a>
                         </div>
-                        <div class="item">
+                        <div class="item ibasket">
                             <a href="#" class="basket" @click="showCartFunc(0, 1)">
                                 <i></i>
                                 <span class="badge" :class="{'badge': cart}" v-if="cart && cart.length">{{cart.length}}</span>

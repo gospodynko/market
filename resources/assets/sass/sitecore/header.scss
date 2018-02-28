@@ -537,7 +537,8 @@
     .site-menu{
       width: 95%;
       display: flex;
-      justify-content: space-between;
+      //justify-content: space-between;
+      justify-content: center;
       align-items: center;
       .item{
         display: none;
@@ -611,6 +612,10 @@
           background-size:25px;
         }
       }
+      .item.ibasket{
+        display: block;
+      }
+
     }
   }
 
