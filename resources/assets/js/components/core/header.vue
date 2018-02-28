@@ -104,7 +104,7 @@
             </div>
         </div>
         <!---->
-        <div class="hidden-filter" :class="{'open': showMenuxs}">
+        <div class="hidden-filter" :class="{'open': showMenuxs}" v-if="showMenuxs">
             <ul>
                 <li v-for="(category,k) in categories">
                     <div class="category-item">
