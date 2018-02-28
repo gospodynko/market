@@ -291,8 +291,8 @@
                 this.showSubGroup = k
                 console.log(k)
             },
-            closeMenuMd () {
-                this.showMenuxs = false
+            menuClickxs () {
+                this.showMenuxs = !this.showMenuxs
             },
             setChild(category){
                 this.showChild = true;
