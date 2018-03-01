@@ -1819,6 +1819,7 @@ $light-gray: #d0d4dc;
           box-sizing: border-box;
           //height: 365px;
           height: 360px;
+          display: flex;
           img {
             max-height: 100%;
             max-width: 100%;
@@ -1833,7 +1834,7 @@ $light-gray: #d0d4dc;
             display: block;
             position: relative;
             cursor: pointer;
-            top: -250px;
+            top: 120px;
           }
           .small-photos-btn-next::before {
             content: '';

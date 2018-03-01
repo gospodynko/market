@@ -1,60 +1,64 @@
 <template>
-    <div class="cart-blocked-wrap" :class="{'show': showCart}">
-        <div class="cart-wrap">
-            <span class="close" @click="closeCart()"></span>
-            <div class="cart-list-wrap">
-                <div class="cart-head-wrap two-wrap">
-                    <div class="left">
-                        <h2>{{translate.cart_goods}}</h2>
-                    </div>
-                    <div class="right">
-                        <div class="count-purchases" v-if="cartItems">
-                            <p>{{translate.together}}: <span>{{cartItems.length}}</span> {{translate.goods}}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="cart-detail-list">
-                    <div v-if="!cartItems || !cartItems.length">
-                        <h3 class="empty-basket">В корзині немає товарів. Але ви можете це виправити.</h3>
-                    </div>
-                    <div class="single-item-cart" v-for="cartItem in cartItems" v-else>
-                        <span class="close" @click="delFromCart(cartItem)"></span>
-                        <div class="logo-wrap-xs">
-                            <img :src="cartItem.store.default_picture" alt="">
-                        </div>
-                        <div class="logo-wrap">
-                            <img :src="cartItem.store.default_picture" alt="">
-                        </div>
-                        <div class="title-wrap">
-                            <h2><a :href="'/' + cartItem.product.url">{{cartItem.store.name}}</a></h2>
+    <div>
+        <div class="cart-blocked-wrap" :class="{'show': showCart}">
 
-                            <div class="content">
-                                <p>Магазин {{cartItem.store.user_shop.name}}</p>
-                                <star-rating :star-size="20" :increment="0.01" :rating=cartItem.product.rate :read-only="true" :show-rating="false"></star-rating>
-                            </div>
+            <div class="cart-wrap">
+                <span class="close" @click="closeCart()"></span>
+                <div class="cart-list-wrap">
+                    <div class="cart-head-wrap two-wrap">
+                        <div class="left">
+                            <h2>{{translate.cart_goods}}</h2>
                         </div>
-                        <div class="price-wrap">
-                            <p class="price-title">{{numberWithSpaces(+cartItem.store.price * cartItem.store.store_count)}} {{cartItem.store.currency.name}}</p>
-                            <div class="count-items-wrap">
-                                <span @click="changeCount('minus', cartItem)">-</span><input type="text" :value="cartItem.store.store_count" pattern="[0-9]{,3}" disabled="disabled"><span class="to" @click="changeCount('plus', cartItem)">+</span>
+                        <div class="right">
+                            <div class="count-purchases" v-if="cartItems">
+                                <p>{{translate.together}}: <span>{{cartItems.length}}</span> {{translate.goods}}</p>
                             </div>
-                            <!--<span class="close" @click="delFromCart(cartItem)"></span>-->
                         </div>
                     </div>
-                </div>
-                <div class="cart-footer-action two-wrap">
-                    <div class="left" style="width: 30%"></div>
-                    <div class="right" style="width: 70%;">
+                    <div class="cart-detail-list">
                         <div v-if="!cartItems || !cartItems.length">
-                            <a href="/checkout" class="btn basket-btn" style="pointer-events: none;">{{translate.buy_item}}</a>
+                            <h3 class="empty-basket">В корзині немає товарів. Але ви можете це виправити.</h3>
                         </div>
-                        <div v-if="cartItems.length">
-                            <a href="/checkout" class="btn basket-btn">{{translate.buy_item}}</a>
+                        <div class="single-item-cart" v-for="cartItem in cartItems" v-else>
+                            <span class="close" @click="delFromCart(cartItem)"></span>
+                            <div class="logo-wrap-xs">
+                                <img :src="cartItem.store.default_picture" alt="">
+                            </div>
+                            <div class="logo-wrap">
+                                <img :src="cartItem.store.default_picture" alt="">
+                            </div>
+                            <div class="title-wrap">
+                                <h2><a :href="'/' + cartItem.product.url">{{cartItem.store.name}}</a></h2>
+
+                                <div class="content">
+                                    <p>Магазин {{cartItem.store.user_shop.name}}</p>
+                                    <star-rating :star-size="20" :increment="0.01" :rating=cartItem.product.rate :read-only="true" :show-rating="false"></star-rating>
+                                </div>
+                            </div>
+                            <div class="price-wrap">
+                                <p class="price-title">{{numberWithSpaces(+cartItem.store.price * cartItem.store.store_count)}} {{cartItem.store.currency.name}}</p>
+                                <div class="count-items-wrap">
+                                    <span @click="changeCount('minus', cartItem)">-</span><input type="text" :value="cartItem.store.store_count" pattern="[0-9]{,3}" disabled="disabled"><span class="to" @click="changeCount('plus', cartItem)">+</span>
+                                </div>
+                                <!--<span class="close" @click="delFromCart(cartItem)"></span>-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cart-footer-action two-wrap">
+                        <div class="left" style="width: 30%"></div>
+                        <div class="right" style="width: 70%;">
+                            <div v-if="!cartItems || !cartItems.length">
+                                <a href="/checkout" class="btn basket-btn" style="pointer-events: none;">{{translate.buy_item}}</a>
+                            </div>
+                            <div v-if="cartItems.length">
+                                <a href="/checkout" class="btn basket-btn">{{translate.buy_item}}</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="overlay-cart-blocked-wrap" :class="{'show': showCart}" @click="closeCart"></div>
     </div>
    </template>
 
@@ -107,6 +111,10 @@
                     this.hiddenBody('open')
                 }
             },
+            // menuClickBasketxs () {
+            //     this.showCart = !this.showCart;
+            //     this.hiddenBody('close');
+            // },
             closeCart(){
                 this.showCart = !this.showCart;
                 this.hiddenBody('close')
