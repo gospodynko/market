@@ -1679,18 +1679,19 @@ $light-gray: #d0d4dc;
   }
   .product-list {
     padding-bottom: 0px;
-    .swiper-container.swiper-container-horizontal.swiper-container-android {
+    .swiper-container.swiper-container-horizontal{
       display: flex;
       flex-direction: row;
       width: 100%;
-      height: 100px;
       overflow: hidden;
       height: 150px;
+      position: relative;
       .swiper-wrapper {
         transform: translate3d(0px, 0px, 0px);
         display: flex;
-        width: 100%;
-        height: auto;
+        width: 80%;
+        margin: 0 auto;
+        height: 180px;
         flex-direction: row;
         justify-content: flex-start;
         .swiper-slide {
@@ -1701,14 +1702,14 @@ $light-gray: #d0d4dc;
       .swiper-button-prev {
         width: 5%;
         position: absolute;
-        left: 30px;
-        top: 350px;
+        left: 20px;
+        top: 50px
       }
       .swiper-button-next{
         width: 5%;
         position: absolute;
-        right: 30px;
-        top: 350px;
+        right: 20px;
+        top: 50px;
       }
     }
   }
