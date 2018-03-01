@@ -380,13 +380,11 @@
                 <div class="gallery-480">
                     <div class="shop-gallery">
                         <div class="small-photos">
-                            <span v-if="product.pictures.length > 1" class="small-photos-btn small-photos-btn-prev" @click.prevent="scrollPrev"></span>
-                            <div class="single-small-photo" v-for="(smallImage, index) in product.pictures.slice(galleryStart, galleryEnd)" @click="checkImages(smallImage)" :class="{'active': checkImage == smallImage.path}" v-if="index <= 1">
-                                <div class="green-point">
-                                    <img :src="smallImage.path" alt="">
-                                </div>
+                            <span class="small-photos-btn small-photos-btn-prev" @click.prevent="scrollPrevMob"></span>
+                            <div class="single-small-photo" v-if="mobGalleryLength">
+                                <img :src="data.product.pictures[mobGalleryStart].path" alt="">
                             </div>
-                            <span v-if="product.pictures.length > 1" class="small-photos-btn small-photos-btn-next" @click.prevent="scrollNext"></span>
+                            <span class="small-photos-btn small-photos-btn-next" @click.prevent="scrollNextMob"></span>
                             <!--<p class="show-all">еще 6</p>-->
                         </div>
                         <!--<div class="full-photo">-->
@@ -719,7 +717,9 @@
                 showAuthorized: false,
                 textLength: 400,
                 galleryStart: 0,
-                galleryEnd: 3
+                galleryEnd: 3,
+                mobGalleryStart: 0,
+                mobGalleryLength: this.data.product.pictures ? this.data.product.pictures.length : 0
             }
         },
         props: ['data', 'user', 'translate', 'breadcrumbs'],
@@ -769,11 +769,25 @@
             scrollNext () {
                 if (this.galleryEnd === this.product.pictures.length) {
                     this.galleryStart =  0
-                    this.galleryEnd =  1
+                    this.galleryEnd =  3
                 } else {
                     this.galleryStart =  this.galleryStart + 1
                     this.galleryEnd =  this.galleryEnd + 1
                 }
+            },
+            scrollPrevMob () {
+                if (!this.mobGalleryStart) {
+                    this.mobGalleryStart = this.product.pictures ? this.product.pictures.length - 1 : 0
+                    return false;
+                }
+                this.mobGalleryStart = this.mobGalleryStart - 1;
+            },
+            scrollNextMob () {
+                if (this.mobGalleryStart >= this.mobGalleryLength - 1) {
+                    this.mobGalleryStart = 0
+                    return false;
+                }
+                this.mobGalleryStart = this.mobGalleryStart + 1;
             },
             numberWithSpaces(x) {
                 return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");

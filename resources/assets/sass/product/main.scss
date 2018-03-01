@@ -1885,6 +1885,10 @@ $light-gray: #d0d4dc;
             //display: flex;
             //justify-content: center;
             //align-items: center;
+            //display: none;
+            //&.active{
+            //  display: block;
+            //}
             .green-point {
               //border-radius: 50%;
               //width: 7px;
@@ -2301,6 +2305,7 @@ $light-gray: #d0d4dc;
       .detail-info-price-button {
         width: 100%;
         padding-bottom: 20px;
+        padding-top: 20px;
         .di-price {
           font-size: 30px;
           color: #14c44d;
