@@ -769,7 +769,7 @@
             scrollNext () {
                 if (this.galleryEnd === this.product.pictures.length) {
                     this.galleryStart =  0
-                    this.galleryEnd =  3
+                    this.galleryEnd =  1
                 } else {
                     this.galleryStart =  this.galleryStart + 1
                     this.galleryEnd =  this.galleryEnd + 1
