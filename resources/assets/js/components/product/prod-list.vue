@@ -380,18 +380,18 @@
                 <div class="gallery-480">
                     <div class="shop-gallery">
                         <div class="small-photos">
-                            <span v-if="product.pictures.length > 3" class="small-photos-btn small-photos-btn-prev" @click.prevent="scrollPrev"></span>
-                            <div class="single-small-photo" v-for="(smallImage, index) in product.pictures.slice(galleryStart, galleryEnd)" @click="checkImages(smallImage)" :class="{'active': checkImage == smallImage.path}" v-if="index <= 3">
+                            <span v-if="product.pictures.length > 1" class="small-photos-btn small-photos-btn-prev" @click.prevent="scrollPrev"></span>
+                            <div class="single-small-photo" v-for="(smallImage, index) in product.pictures.slice(galleryStart, galleryEnd)" @click="checkImages(smallImage)" :class="{'active': checkImage == smallImage.path}" v-if="index <= 1">
                                 <div class="green-point">
                                     <img :src="smallImage.path" alt="">
                                 </div>
                             </div>
-                            <span v-if="product.pictures.length > 3" class="small-photos-btn small-photos-btn-next" @click.prevent="scrollNext"></span>
+                            <span v-if="product.pictures.length > 1" class="small-photos-btn small-photos-btn-next" @click.prevent="scrollNext"></span>
                             <!--<p class="show-all">еще 6</p>-->
                         </div>
-                        <div class="full-photo">
-                            <img :src="checkImage" alt="">
-                        </div>
+                        <!--<div class="full-photo">-->
+                            <!--<img :src="checkImage" alt="">-->
+                        <!--</div>-->
                         <div class="product-options" v-if="false">
                             <div class="find-good">
                                 <i></i>
@@ -769,7 +769,7 @@
             scrollNext () {
                 if (this.galleryEnd === this.product.pictures.length) {
                     this.galleryStart =  0
-                    this.galleryEnd =  3
+                    this.galleryEnd =  1
                 } else {
                     this.galleryStart =  this.galleryStart + 1
                     this.galleryEnd =  this.galleryEnd + 1

@@ -396,6 +396,89 @@
     height: 100%;
     z-index: 9;
     transition: all 0.5s ease-in-out 0s, visibility 0s linear 0.5s, z-index 0s linear 0.01s;
+    .item{
+      border-bottom: 1px solid lightgray;
+      padding-bottom: 20px;
+      p{
+        display: block;
+      }
+      .svg-login-480{
+        fill: white;
+        display: block;
+      }
+      img{
+        width: 45px;
+        height: 45px;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+      }
+      .user-wrap{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 20px;
+        span{
+          display: flex;
+          margin-top: 20px;
+          cursor: pointer;
+          color: #444;
+          font-size: 16px;
+          line-height: 20px;
+          .svg-user-exit{
+            padding-right: 20px;
+          }
+        }
+      }
+      i{
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        vertical-align: sub;
+        margin-right: 10px;
+      }
+      .badge{
+        position: absolute;
+        top: -8px;
+        left: 15px;
+        width: 18px;
+        height: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+        background: #2d92fa;
+        color: #ffffff;
+        font-size: 12px;
+      }
+      p,a{
+        color: $gray-dark;
+      }
+      .city > i{
+        background: url("../img/header/place.svg") no-repeat center;
+        -webkit-background-size: 14px;
+        background-size: 14px;
+      }
+      .shop>i{
+        background: url("../img/header/market.svg") no-repeat center;
+        -webkit-background-size: 25px;
+        background-size: 25px;
+      }
+      .basket{
+        position: relative;
+      }
+      .basket > i{
+        background: url("../img/header/ko_480.png") no-repeat center;
+        -webkit-background-size:25px;
+        background-size:25px;
+      }
+      &.linkexit{
+        border-bottom: none;
+        border-top: 1px solid lightgray;
+      }
+    }
     .close-menu-xs{
       display: inline-block;
       font-size: 20px;
@@ -454,9 +537,11 @@
     .site-menu{
       width: 95%;
       display: flex;
-      justify-content: space-between;
+      //justify-content: space-between;
+      justify-content: center;
       align-items: center;
       .item{
+        display: none;
         p{
           display: none;
         }
@@ -527,8 +612,13 @@
           background-size:25px;
         }
       }
+      .item.ibasket{
+        display: block;
+      }
+
     }
   }
+
   .catalogue-wrap{
     width: 100%;
     max-width: 1024px;
