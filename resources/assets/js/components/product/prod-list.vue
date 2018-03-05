@@ -2,7 +2,7 @@
     <section class="single-prod-sect">
         <div class="sps-adres" v-if="showAdres">
             <div class="sps-adres-header">
-                <span class="circle-close" @click.prevent="callShowAdres">x</span>
+                <span class="circle-close" @click.prevent="callShowAdres(false)">x</span>
                 {{product.user_shop.company.address}}
                 <img :src="'https://maps.googleapis.com/maps/api/staticmap?center=' + product.user_shop.company.address + '&zoom=13&size=600x300&maptype=roadmap&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=AIzaSyDsGaGMT-t0qFIwMM3j2nY0Hc5LcTmRNzY'" alt="">
             </div>
@@ -10,11 +10,12 @@
 
         <div class="sps-contacts" v-if="showPhone">
             <div class="sps-contacts-header">
-                <span class="circle-close" @click.prevent="callShowPhone">x</span>
+                <span class="circle-close" @click.prevent="callShowPhone(false)">x</span>
                 Контакти
             </div>
             <ul>
-                <li v-for="tel in product.user_shop.phones">{{tel}}</li>
+                <li >{{product.user_shop.company.compPhone}}</li>
+                <li v-if="product.user_shop.company.compPhone">{{product.user_shop.company.compSecondPhone}}</li>
             </ul>
         </div>
         <div class="overlay-contacts" v-if="showPhone || showAdres" @click.prevent="closeAll"></div>
@@ -336,6 +337,332 @@
                     </div>
                 </div>
             </div>
+                <!-- ------- Mobile ------- -->
+            <div class="single-prod-detail-480">
+                <div class="single-prod-detail">
+                    <div class="detail-product-wrap-480">
+                        <div class="detail-product-wrap-header-480">
+                            <div class="di-header">
+                                <span class="di-header-id">id {{product.id}}</span>
+                                <span class="di-header-view" v-if="false">{{product.view_counts}}</span>
+                            </div>
+
+                            <div class="detail-description-title">
+                                <h1>{{product.name}}</h1>
+                                <div class="feedback-wrap two-wrap">
+                                    <div class="left">
+                                        <star-rating :star-size="20" :increment="0.01" :rating=product.rate :read-only="true" :show-rating="true"></star-rating>
+                                        <a href="#" class="feedback-link" @click="showReviews">{{translate.reviews}} {{product.reviews.length}}</a>
+                                    </div>
+                                </div>
+                                <div class="price-wrap two-wrap">
+                                    <div class="left">
+                                        <p class="in-sale">
+                                            {{translate.all_goods}}: {{data.otherProducts.length}} шт
+                                        </p>
+                                    </div>
+                                    <div class="right">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="detail-info-price-button">
+                                <div class="di-price">
+                                    {{numberWithSpaces(product.price)}} грн
+                                    <!--{{product.currency.name}}-->
+                                </div>
+                                <button  class="di-buy" @click="addToCart(product)">{{translate.in_cart}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-480">
+                    <div class="shop-gallery">
+                        <div class="small-photos">
+                            <span class="small-photos-btn small-photos-btn-prev" @click.prevent="scrollPrevMob"></span>
+                            <div class="single-small-photo" v-if="mobGalleryLength">
+                                <img :src="data.product.pictures[mobGalleryStart].path" alt="">
+                            </div>
+                            <span class="small-photos-btn small-photos-btn-next" @click.prevent="scrollNextMob"></span>
+                            <!--<p class="show-all">еще 6</p>-->
+                        </div>
+                        <!--<div class="full-photo">-->
+                            <!--<img :src="checkImage" alt="">-->
+                        <!--</div>-->
+                        <div class="product-options" v-if="false">
+                            <div class="find-good">
+                                <i></i>
+                                <p class="find-good-action">Відстежити товар</p>
+                            </div>
+                            <div class="faworite">
+                                <i></i>
+                                <p class="faworite-action">В обране</p>
+                            </div>
+                            <div class="compare">
+                                <i></i>
+                                <p class="compare-action">Сравнение</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="single-prod-detail">
+                    <div class="detail-product-wrap-480">
+
+                        <div class="detail-description">
+
+                            <div class="prod-desc-wrap">
+                                <h2>{{translate.description}}</h2>
+                                <p v-html="product.description.slice(0, textLength) || translate.no_description"></p>
+                                <a v-if="product.description.length >= 400"
+                                   @click.prevent="viewAll"
+                                   href=""
+                                   class="prod-desc-wrap-link">
+                                    <i v-bind:class="{ arrowDown: textLength > 400 }" class="arrowUp"></i>
+                                    {{translate.more}}
+                                </a>
+                            </div>
+
+                            <div class="detail-service">
+                                <div class="ds-pay">
+                                    <h3>Спосіб оплати</h3>
+                                    <ul>
+                                        <li v-for="pay in product.pay_types">
+                                            <img :src=pay.logo :alt=pay.name :title="pay.name">
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="del-pay">
+                                    <h3>Доставка</h3>
+                                    <ul>
+                                        <li v-for="del in product.delivery_types">
+                                            <img :src=del.logo :alt=del.name :title="del.name">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="detail-info">
+                                <div class="di-info">
+                                    <div class="di-info-img">
+                                        <img :src=product.user_shop.logo :alt=product.user_shop.name v-if="product.user_shop.logo">
+                                        <img src="/img/avatars/ava.png" alt="" v-else>
+                                    </div>
+                                    <div class="di-info-about-seller">
+                                        <h3><a :href="'/shop/' + product.user_shop.slug">{{product.user_shop.name}}</a></h3>
+                                        <div class="di-info-adres" @click.prevent="callShowAdres">
+                                            Адрес
+                                        </div>
+                                        <div class="di-info-phone" @click.prevent="callShowPhone">
+                                            Номер телефону
+                                        </div>
+                                        <div class="di-info-rate">
+                                            рейтинг:
+                                            <star-rating :star-size="20" :increment="0.01" :rating=product.user_shop.rate :read-only="true"></star-rating>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="detail-post-info">
+                            <div class="type-payment-wrap" v-if="false">
+                                <div class="post-info">
+                                    <p>{{translate.delivery}}</p>
+                                    <div class="all-post-list">
+                                        <div class="single-post-list">
+                                            <img src="/img/payments/np.png" alt="">
+                                        </div>
+                                        <div class="single-post-list">
+                                            <img src="/img/payments/int.png" alt="">
+                                        </div>
+                                        <div class="single-post-list">
+                                            <img src="/img/payments/up.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="payment-info">
+                                    <p>Оплата</p>
+                                    <div class="all-payment-list">
+                                        <div class="single-payment">
+                                            <img src="/img/payments/webmoney.png" alt="">
+                                        </div>
+                                        <div class="single-payment">
+                                            <img src="/img/payments/visa.png" alt="">
+                                        </div>
+                                        <div class="single-payment">
+                                            <img src="/img/payments/mcard.png" alt="">
+                                        </div>
+                                        <div class="single-payment">
+                                            <img src="/img/payments/pp.png" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="all-tabs-menu">
+                                <div class="single-tab" @click="productTab = 'charact'" :class="{'active': productTab === 'charact'}">
+                                    <p>{{translate.charact}}</p>
+                                </div>
+                                <div class="single-tab" @click="productTab = 'feedback'" :class="{'active': productTab === 'feedback'}">
+                                    <p>
+                                        {{translate.reviews_list}} {{reviews.length ? '('+reviews.length+')' : ''}} ({{reviews.length}})
+                                    </p>
+                                </div>
+                                <div class="single-tab" @click="productTab = 'store'" :class="{'active': productTab === 'store'}">
+                                    <p>{{translate.compare_goods}}</p>
+                                </div>
+                            </div>
+                            <div class="all-tabs-detail">
+                                <div class="single-tab-detail characteristic" v-if="productTab === 'charact'">
+                                    <h2>{{translate.charact}}</h2>
+                                    <div v-for="feature in features">
+                                        <h3>{{feature.name}}</h3>
+                                        <div v-for="param in feature.params">
+                                            <p><span>{{param.title}}</span><span>{{param.param}}</span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-tab-detail market-list-wrap" v-if="productTab === 'store'">
+                                    <div class="compare-products" v-if="data.suggestions.length">
+                                        <div class="all-products-list">
+                                            <div class="single-product" v-for="product in data.suggestions">
+                                                <div class="img-wrap">
+                                                    <a :href="'/shop/' + product.user_shop.slug + '/' + product.slug">
+                                                        <img :src="'../../' + product.default_picture" alt="">
+                                                    </a>
+                                                </div>
+                                                <div class="detail-wrap">
+                                                    <p class="product-title">
+                                                        <a :href="'/shop/' + product.user_shop.slug + '/' + product.slug">{{product.name}}</a>
+                                                    </p>
+                                                    <p class="price">
+                                                        <!--{{numberWithSpaces(product.price_min !== product.price_max ? product.price_min + ' - ' + product.price_max : product.price_max)}} грн.-->
+                                                        {{numberWithSpaces(product.price)}} грн
+                                                        <!--{{product.currency.name}}-->
+                                                    </p>
+                                                </div>
+                                                <div class="detail-prod-wrap">
+                                                    <div class="all-detail-list">
+                                                        <ul>
+                                                            <li>{{product.description.length > 100 ? product.description.slice(0, 100) + ' ...' : product.description }}</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="hide-list-wrap">
+                                                        <!--<div class="all-detail-list">-->
+                                                        <!--<ul>-->
+                                                        <!--&lt;!&ndash;<li>Масса конструкционная, кг	5100</li>&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;<li>Масса эксплуатационная, кг	5260</li>&ndash;&gt;-->
+                                                        <!--&lt;!&ndash;<li>База , мм	2450</li>&ndash;&gt;-->
+                                                        <!--<li>{{product.description}}</li>-->
+                                                        <!--</ul>-->
+                                                        <!--</div>-->
+                                                        <div class="all-goods-btn">
+                                                            <a :href="'/shop/' + product.user_shop.slug + '/' + product.slug" class="btn">
+                                                                {{translate.more}}
+                                                            </a>
+                                                        </div>
+                                                        <div class="two-wrap" v-if="false">
+                                                            <div class="left">
+                                                                <i></i>
+                                                                <span>{{translate.spy_good}}</span>
+                                                            </div>
+                                                            <div class="right">
+                                                                <i></i>
+                                                                <span>{{translate.faworite}}</span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="feedback-wrap">
+                                                            <div class="rating-wrap">
+                                                                <star-rating :star-size="15" :increment="0.01" :rating=product.rate :read-only="true" :show-rating="false"></star-rating>
+                                                            </div>
+                                                            <div class="count-feedback-wrap">
+                                                                <a href="#">{{product.reviews.length}} {{translate.reviews}}</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="single-tab-detail feedback-list-wrap" v-if="productTab === 'feedback'">
+
+                                    <div class="feedback-head-wrap two-wrap">
+                                        <div class="left">
+                                            <h3>{{translate.all_reviews}} ({{reviews.length}})</h3>
+                                            <div class="sort-wrap">
+                                                <p class="bold">
+                                                    <!--<span class="bold">Сортировать: </span>-->
+                                                    <!--<span>-->
+                                                    <!--по дате-->
+                                                    <!--</span>-->
+                                                    <!--<span>-->
+                                                    <!--по оценке-->
+                                                    <!--</span>-->
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <!--<button class="btn" @click="showReviews">{{translate.create_review}}</button>-->
+                                        </div>
+                                    </div>
+                                    <div class="new-review" v-if="showReview">
+                                        <textarea name="" id="" cols="30" rows="10" v-model="reviewText"></textarea>
+                                        <button class="btn send-review" @click="sendReview">{{translate.send}}</button>
+                                    </div>
+                                    <div class="all-feedback-list-wrap">
+                                        <div class="single-answer" v-for="review in reviews">
+                                            <div class="comment-head">
+                                                <div class="logo-user">
+                                                    <img :src=review.user.profile_photo alt="">
+                                                    <!--<img src="/img/avatars/ava.png" alt="">-->
+                                                </div>
+                                                <div v-if="review.user" class="star-rating-wrap">
+                                                    <p class="user-name">{{review.user.first_name + ' ' + review.user.last_name}}</p>
+                                                    <div class="rating-wrap">
+                                                        <span class="rating">Рейтинг </span>
+                                                        <star-rating :star-size="20" :increment="0.01" :rating=review.rate :read-only="true" :show-rating="false"></star-rating>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="comment-wrap">
+                                                <p class="comment">
+                                                    {{review.text}}
+                                                </p>
+                                                <div class="action-wrap">
+                                                    <p class="date">{{moment(review.updated_at).format('LLL')}}</p>
+                                                    <!--<span class="action-link">{{translate.answer}}</span>-->
+                                                </div>
+                                            </div>
+
+                                            <div class="comment-answer" v-for="answer in review.answers">
+                                                <div class="comment-head">
+                                                    <div class="logo-user">
+                                                        <img :src=answer.user.profile_photo alt="">
+                                                    </div>
+                                                    <div class="star-rating-wrap">
+                                                        <p class="user-name">{{answer.user.first_name + ' ' + answer.user.last_name}}</p>
+                                                    </div>
+                                                </div>
+                                                <div class="comment-wrap">
+                                                    <p class="comment">{{answer.text}}</p>
+                                                    <div class="action-wrap">
+                                                        <p class="date">{{moment(answer.updated_at).format('LLL')}}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div v-if="data.otherProducts.length > 0" class="market-list-all">
                 <h2>Всі пропозиції</h2>
                 <div class="single-market" v-for="store in data.otherProducts">
@@ -390,7 +717,9 @@
                 showAuthorized: false,
                 textLength: 400,
                 galleryStart: 0,
-                galleryEnd: 3
+                galleryEnd: 3,
+                mobGalleryStart: 0,
+                mobGalleryLength: this.data.product.pictures ? this.data.product.pictures.length : 0
             }
         },
         props: ['data', 'user', 'translate', 'breadcrumbs'],
@@ -401,11 +730,28 @@
             this.product.description = this.product.description.replace(/(?:\r\n|\r|\n)/g, '<br>');
         },
         methods: {
-            callShowPhone () {
-              this.showPhone = !this.showPhone
+            hiddenBody (key) {
+                if (key === 'open') {
+                    $('body').css('overflow', 'hidden')
+                } else {
+                    $('body').css('overflow', 'scroll')
+                }
             },
-            callShowAdres () {
+            callShowPhone (val) {
+              this.showPhone = !this.showPhone
+                if (val) {
+                    this.hiddenBody('open')
+                } else {
+                    this.hiddenBody('close')
+                }
+            },
+            callShowAdres (val) {
                 this.showAdres = !this.showAdres
+                if (val) {
+                    this.hiddenBody('open')
+                } else {
+                    this.hiddenBody('close')
+                }
             },
             closeAll () {
                 this.showAdres = false
@@ -428,6 +774,20 @@
                     this.galleryStart =  this.galleryStart + 1
                     this.galleryEnd =  this.galleryEnd + 1
                 }
+            },
+            scrollPrevMob () {
+                if (!this.mobGalleryStart) {
+                    this.mobGalleryStart = this.product.pictures ? this.product.pictures.length - 1 : 0
+                    return false;
+                }
+                this.mobGalleryStart = this.mobGalleryStart - 1;
+            },
+            scrollNextMob () {
+                if (this.mobGalleryStart >= this.mobGalleryLength - 1) {
+                    this.mobGalleryStart = 0
+                    return false;
+                }
+                this.mobGalleryStart = this.mobGalleryStart + 1;
             },
             numberWithSpaces(x) {
                 return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");

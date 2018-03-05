@@ -6,15 +6,39 @@
             <div class="all-items-cart-wrap">
                 <div class="checkout-user-wrap">
                     <h2>{{translate.goods_in_cart}}</h2>
+                    <!--<div class="product-list">-->
+                        <!--<div class="single-product" v-for="item in cartItems" @click="setItem(item)" :class="{'active': item.store.id == checketStoreId}">-->
+                            <!--<div class="logo">-->
+                                <!--<img :src="item.product.default_picture" alt="">-->
+                            <!--</div>-->
+                            <!--<div class="title">-->
+                                <!--<p>{{getName(item.product.name)}}</p>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
                     <div class="product-list">
-                        <div class="single-product" v-for="item in cartItems" @click="setItem(item)" :class="{'active': item.store.id == checketStoreId}">
-                            <div class="logo">
-                                <img :src="item.product.default_picture" alt="">
+                        <swiper :options="swiperOption" ref="mySwiper">
+                            <swiper-slide v-for="item in cartItems">
+                                <div class="single-product" @click="setItem(item)" :class="{'active': item.store.id == checketStoreId}">
+                                    <div class="logo">
+                                        <img :src="item.product.default_picture" alt="">
+                                    </div>
+                                    <div class="title">
+                                        <p>{{getName(item.product.name)}}</p>
+                                    </div>
+                                </div>
+                            </swiper-slide>
+                            <div class="swiper-button-next" slot="button-next">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 44">
+                                    <path d="M27,22L27,22L5,44l-2.1-2.1L22.8,22L2.9,2.1L5,0L27,22L27,22z" fill="#14c44d"/>
+                                </svg>
                             </div>
-                            <div class="title">
-                                <p>{{getName(item.product.name)}}</p>
+                            <div class="swiper-button-prev" slot="button-prev">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 44">
+                                    <path d="M0,22L22,0l2.1,2.1L4.2,22l19.9,19.9L22,44L0,22L0,22L0,22z" fill="#14c44d"/>
+                                </svg>
                             </div>
-                        </div>
+                        </swiper>
                     </div>
                     <div class="checked-product">
                         <div class="image-prod">
@@ -130,6 +154,10 @@
                                 <p>Магазин {{checkedItem.product.user_shop ? checkedItem.product.user_shop.name : ''}}</p>
                                 <p>{{translate.phone}}: <span>{{checkedItem.data.user.phone}}</span></p>
                                 <p>{{translate.email}}: <span>{{checkedItem.data.user.email}}</span></p>
+                                <div class="right-xs">
+                                    <p class="price">{{numberWithSpaces(order.price)}} {{checkedItem.product.currency.name}}</p>
+                                    <p class="count">{{translate.quantity}} {{order.quantity}} шт.</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -147,9 +175,20 @@
 
 <script type="text/babel">
     import MaskedInput from 'vue-masked-input';
+    import SwiperSlide from "../../../../../node_modules/vue-awesome-swiper/src/slide.vue";
     export default {
         data(){
             return {
+                swiperOption: {
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    slidesPerView: 3,
+                    paginationClickable: true,
+                    loop: false,
+                    infinity: true
+                },
                 cartItems: JSON.parse(localStorage.getItem('cart')),
                 checkedItem: {'data': {
                     'user': {
@@ -177,6 +216,7 @@
         },
         props: ['store', 'user', 'translate'],
         components: {
+            SwiperSlide,
             MaskedInput
         },
         created(){
@@ -185,7 +225,13 @@
                 this.checketStoreId = this.checkedItem.store.id;
             }
         },
+        mounted () {
+
+        },
         methods: {
+            swiperTest() {
+                console.log(this.$refs.mySwiper)
+            },
             numberWithSpaces(x) {
                 return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
             },

@@ -2,7 +2,7 @@
     <section class="slider">
         <div class="all-slides-wrap">
             <ul class="pgwSlider">
-                <li v-for="banner in banners">
+                <li v-for="banner in banners" style="width: 33%; display: none;">
                     <a :href="banner.url">
                         <img :src="banner.image" alt="">
                     </a>
@@ -10,8 +10,6 @@
                 </li>
             </ul>
         </div>
-
-
     </section>
 </template>
 
@@ -25,8 +23,16 @@
             }
         },
         props: ['banners', 'translate'],
-        mounted(){
-            $('.pgwSlider').pgwSlider();
+        computed: {
+            pgwSlider: function () {
+                return $('.pgwSlider').pgwSlider({
+                    displayControls: true
+                })
+            }
+        },
+        mounted () {
+            this.pgwSlider.displaySlide(3)
+            console.log(this.pgwSlider.displaySlide(3));
         }
     }
 </script>

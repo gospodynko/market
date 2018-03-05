@@ -6,23 +6,21 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <ul class="nav nav-tabs nav-justified">
-                                <li v-for="shop in shops">
-                                    <button @click="productDetails(shop)">
+                        <div class="nav nav-tabs nav-justified">
+                                <div class="shop-box" v-for="shop in shops">
+                                    <button id="shop-button" @click="productDetails(shop)">
                                         @{{ shop.name }} (@{{ productsCount(shop) }})
                                     </button>
-                                </li>
-                        </ul>
+                                </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="row">
-                    <div class="col-md-12 add-new-product">
-                        <a v-if="checkedShopId" :href="'/shop/shop/'+checkedShopId+'/create'" class="btn btn-success btn-lg">Додати продукт</a>
-                    </div>
-                </div>
-
                 <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 add-new-product">
+                            <a v-if="checkedShopId" :href="'/shop/shop/'+checkedShopId+'/create'" class="new-product">Додати продукт</a>
+                        </div>
+                    </div>
                     <table v-if="products.length" class="table product-table">
                         <thead>
                         <tr>
