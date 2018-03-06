@@ -218,7 +218,7 @@
 //                categoryProducts: this.data.shop,
                 page: this.shopList.current_page - 1,
                 showListShop: false,
-                showMenu: false,
+                showMenu: true,
                 showShops: false,
                 sortTypesShop: [
                     {

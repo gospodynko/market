@@ -628,6 +628,9 @@ $greenBtn: #14c44d;
       }
     }
   }
+  .hidden-shops-filter{
+    display: none;
+  }
 }
 //мобильные устройства
 @media screen and (max-width:1023px){
@@ -1260,5 +1263,11 @@ $greenBtn: #14c44d;
     a{
       font-size: 65%;
     }
+  }
+  .shop-content-wrap .main-shop-content .content-wrap .all-products-list.shops-list .single-product {
+    margin: 10px 0!important;
+  }
+  .shop-content-wrap .main-shop-content .content-wrap .all-products-list.shops-list .single-product .detail-prod-wrap .hide-list-wrap {
+    right: 0!important;
   }
 }
