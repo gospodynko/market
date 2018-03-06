@@ -106,7 +106,7 @@
         <!---->
         <div class="hidden-filter" :class="{'open': showMenuxs}" v-if="showMenuxs">
             <ul>
-                <li>
+                <li id="user-menu-hidden-filter">
                     <div class="item">
                         <div class="user-wrap" v-if="user">
                             <img src="/img/avatars/ava.png" alt="" class="avatar">
@@ -121,7 +121,6 @@
                             </p>
                         </a>
                     </div>
-
                     <div class="item">
                         <a href="/shop/products" class="shop" v-if="user && user.role == 'seller'">
                             <!--<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" width="20px" height="20px" version="1.1" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 11497 9839">-->
@@ -164,7 +163,7 @@
                         </li>
                     </ul>
                 </li>
-                <li>
+                <li id="exit-hidden-filter">
                     <div class="item linkexit">
                         <div class="user-wrap" v-if="user">
                             <span class="logout" @click="logout">
@@ -298,8 +297,9 @@
                                 </label>
                             </form>
                         </div>
-                        <div class="all-shops-btn">
-                            <button class="btn" @click="showPopupFunc">{{translate.all_shops}}</button>
+                        <div class="all-shops-btn" @click="allShopsPage">
+                            <a href="#" class="btn">{{translate.all_shops}}</a>
+                            <!--<button class="btn" @click="showPopupFunc">{{translate.all_shops}}</button>-->
                             <!--<a href="/all-shops"><button class="btn"> {{translate.all_shops}}</button></a>-->
                         </div>
                     </div>
@@ -443,10 +443,9 @@
                 // this.hiddenBody('close')
                 // Events.$emit('closePopup', this.showPopup);
             },
-//            allShopsPage(){
-//
-//                        location.href = '/all-shops/';
-//            },
+            allShopsPage(){
+                       location.href = '/all-shops/';
+            },
             onSubmit(){
                 if(this.q.length <= 1){
                     return false;

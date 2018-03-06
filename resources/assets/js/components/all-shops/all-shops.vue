@@ -161,7 +161,7 @@
                                     <div class="detail-prod-wrap">
                                         <div class="feedback-wrap">
                                             <div class="rating-wrap">
-                                                <star-rating :star-size="20" :increment="0.01" :rating=shop.rate :read-only="true" :show-rating="false"></star-rating>
+                                                <star-rating :star-size="15" :increment="0.01" :rating=shop.rate :read-only="true" :show-rating="false"></star-rating>
                                             </div>
                                             <div class="count-feedback-wrap">
                                                 <a :href="shop.url">0 Відгуків</a>
@@ -218,7 +218,7 @@
 //                categoryProducts: this.data.shop,
                 page: this.shopList.current_page - 1,
                 showListShop: false,
-                showMenu: false,
+                showMenu: true,
                 showShops: false,
                 sortTypesShop: [
                     {
