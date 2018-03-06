@@ -321,6 +321,18 @@
 .svg-search-btn, .svg-login-480, .svg-burger-menu-480, .svg-logo-market-480, .img-logo-480 {
     display: none;
 }
+  .catalogue-wrap .menu-wrap .search-wrap .actions-wrap .all-shops-btn .btn {
+    width: 100%;
+    background: #48a2ff;
+    border: 1px solid #2d92fa;
+    border-radius: 4px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #fff;
+    height: 40px;
+    line-height: 40px;
+    padding: 10px;
+  }
 }
 //мобильные устройства
 @media screen and (max-width:1023px){
@@ -397,9 +409,6 @@
     z-index: 9;
     transition: all 0.5s ease-in-out 0s, visibility 0s linear 0.5s, z-index 0s linear 0.01s;
     li {
-      &:first-child {
-        border-bottom: 1px solid lightgray;
-      }
       .item {
         height: auto;
         padding-bottom: 20px;
@@ -485,9 +494,12 @@
           background-size: 25px;
         }
       }
-      &:last-child {
-        border-top: 1px solid lightgray;
-      }
+    }
+    #user-menu-hidden-filter {
+      border-bottom: 1px solid lightgray;
+    }
+    #exit-hidden-filter {
+      border-top: 1px solid lightgray;
     }
     .close-menu-xs{
       display: inline-block;
@@ -722,7 +734,35 @@
        }
      }
   }
+  .btn{
+      width: 45px;
+      height: 45px;
+      display: inline-block;
+      border: 1px solid $green;
+      background: $green-btn;
+      color: $white;
+      margin-left: -5px;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      font-size: 18px;
+      line-height: 45px;
+      text-align: center;
+  }
+}
+//мобильные устройства
+@media screen and (max-width:479px){
+  .catalogue-wrap .menu-wrap .search-wrap .actions-wrap .all-shops-btn .btn {
+    font-size: 13px;
+  }
+  .shop-wrap {
+    .shop-page-content {
+      padding: 0 10px!important;
+    }
+    .sort-view .filters select {
+      font-size: 12px;
+    }
+  }
   .header .left .logo .img-logo-480 {
-    width: 120%;
+    width: 150%;
   }
 }

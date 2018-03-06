@@ -2391,3 +2391,20 @@ $light-gray: #d0d4dc;
     }
   }
 }
+//мобильные устройства
+@media screen and (max-width:479px) {
+  .single-prod-detail-480 .single-prod-detail .detail-product-wrap-480 .detail-post-info .all-tabs-menu .single-tab.active p {
+    font-size: 12px;
+  }
+  .single-prod-detail-480 .single-prod-detail .detail-product-wrap-480 .detail-post-info .all-tabs-menu .single-tab p{
+    font-size: 12px;
+  }
+  .all-products-list .single-product .detail-prod-wrap .feedback-wrap {
+    display: -webkit-box;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    margin-bottom: 20px;
+    height: 10px;
+  }
+}
