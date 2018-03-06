@@ -4,11 +4,11 @@
         <div class="overlay" style="z-index: 6" :class="{'show': showOverlayPopup}" @click="showPopupFunc"></div>
         <cart-blocked :translate="cartTranslate"></cart-blocked>
         <!--<noselect-user :user="user" v-if="user && user.role == 'noselect'"></noselect-user>-->
-        <div class="shops-popup-wrap" v-if="showPopup">
-            <span class="close" @click="showPopupFunc"></span>
-            <h2>{{translate.popup_catalog}}</h2>
-            <p>Скоро вiдкриття!</p>
-        </div>
+        <!--<div class="shops-popup-wrap" v-if="showPopup">-->
+            <!--<span class="close" @click="showPopupFunc"></span>-->
+            <!--<h2>{{translate.popup_catalog}}</h2>-->
+            <!--<p>Скоро вiдкриття!</p>-->
+        <!--</div>-->
         <div class="header">
             <div class="two-wrap">
                 <div class="left">
@@ -299,7 +299,7 @@
                             </form>
                         </div>
                         <div class="all-shops-btn">
-                            <button class="btn" @click="showPopupFunc">{{translate.all_shops}}</button>
+                            <button class="btn" @click="allShopsPage">{{translate.all_shops}}</button>
                             <!--<a href="/all-shops"><button class="btn"> {{translate.all_shops}}</button></a>-->
                         </div>
                     </div>
@@ -436,17 +436,17 @@
             updateCart(){
                 this.cart = JSON.parse(localStorage.getItem('cart'));
             },
-            showPopupFunc(){
-                this.showPopup = !this.showPopup;
-                this.showOverlayPopup = !this.showOverlayPopup;
-                // this.showPopup = !this.showPopup;
-                // this.hiddenBody('close')
-                // Events.$emit('closePopup', this.showPopup);
-            },
-//            allShopsPage(){
-//
-//                        location.href = '/all-shops/';
-//            },
+            // showPopupFunc(){
+            //     this.showPopup = !this.showPopup;
+            //     this.showOverlayPopup = !this.showOverlayPopup;
+            //     // this.showPopup = !this.showPopup;
+            //     // this.hiddenBody('close')
+            //     // Events.$emit('closePopup', this.showPopup);
+            // },
+           allShopsPage(){
+
+                       location.href = '/all-shops/';
+           },
             onSubmit(){
                 if(this.q.length <= 1){
                     return false;
