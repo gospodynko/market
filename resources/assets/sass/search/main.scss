@@ -895,3 +895,13 @@
     margin: 0 auto;
   }
 }
+//мобильные устройства
+@media screen and (max-width:479px) {
+  .search-content-wrap .chose-filters-head h3 {
+    font-size: 12px;
+    width: 100px;
+  }
+  .search-content-wrap .chose-filters-head .all-chose-filters {
+    width: 50%;
+  }
+}
