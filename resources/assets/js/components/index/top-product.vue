@@ -40,7 +40,7 @@
                     <div class="detail-prod-wrap">
                         <div class="feedback-wrap-480">
                             <div class="rating-wrap">
-                                <star-rating :star-size="15" :increment="0.01" :rating=product.rate :read-only="true" :show-rating="true"></star-rating>
+                                <star-rating :star-size="13" :increment="0.01" :rating=product.rate :read-only="true" :show-rating="true"></star-rating>
                             </div>
                             <div class="count-feedback-wrap">
                                 <a href="#">{{product.reviews.length}} {{translate.reviews}}</a>
