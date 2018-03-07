@@ -749,6 +749,9 @@
       font-size: 20px;
     }
   }
+}
+//мобильные устройства
+@media screen and (max-width:359px){
   .top-product .top-product-wrap .all-products-list .single-product{
     height: 430px;
     .detail-prod-wrap .feedback-wrap-480 {
@@ -756,6 +759,13 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
+      margin-top: 5px;
+      .rating-wrap {
+        width: 100%;
+      }
+      .count-feedback-wrap {
+        width: 100%;
+      }
     }
   }
 }
