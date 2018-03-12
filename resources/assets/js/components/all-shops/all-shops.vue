@@ -89,7 +89,7 @@
                     </div>
                 </div>
                 <div class="filter-products">
-                    <h4 id="sum-h">Всього магазинів: {{shopData.data.length}} </h4>
+                    <h4 id="sum-h">Всього магазинів: {{shopData.total}} </h4>
                     <div class="sort-view">
                         <div class="filters">
                             <h4>тип сортування:</h4>
@@ -221,18 +221,18 @@
                 showMenu: true,
                 showShops: false,
                 sortTypesShop: [
-                    {
-                        id: 1,
-                        type: 'desc',
-                        slug: 'price',
-                        name: 'Ціна: Від більшої до меншої'
-                    },
-                    {
-                        id: 2,
-                        type: 'asc',
-                        slug: 'price',
-                        name: 'Ціна: Від меншої до більшої'
-                    },
+                    // {
+                    //     id: 1,
+                    //     type: 'desc',
+                    //     slug: 'price',
+                    //     name: 'Ціна: Від більшої до меншої'
+                    // },
+                    // {
+                    //     id: 2,
+                    //     type: 'asc',
+                    //     slug: 'price',
+                    //     name: 'Ціна: Від меншої до більшої'
+                    // },
                     {
                         id: 3,
                         type: 'desc',

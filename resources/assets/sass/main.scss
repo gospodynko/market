@@ -1306,6 +1306,13 @@ $whitecolor: white;
       }
     }
   }
+
+  .main-content .agro-info .rating .rating-wrap .star-rating div{
+    margin: auto;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  }
 }
 //мобильные устройства
 @media screen  and (min-width:480px) and (max-width:599px) {
@@ -2288,6 +2295,12 @@ $whitecolor: white;
       }
     }
   }
+  .main-content .agro-info .rating .rating-wrap .star-rating div{
+    margin: auto;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  }
 }
 //мобильные устройства
 @media screen and (max-width:479px) {
@@ -3253,5 +3266,11 @@ $whitecolor: white;
         }
       }
     }
+  }
+  .main-content .agro-info .rating .rating-wrap .star-rating div{
+    margin: auto;
+    justify-content: center;
+    display: flex;
+    align-items: center;
   }
 }

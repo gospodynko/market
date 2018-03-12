@@ -647,11 +647,23 @@
             }
         }
     }
+    .search-sect .search-wrap .search-content-wrap{
+        margin-top: 0;
+        .chose-filters-head{
+            display: none;
+        }
+    }
 }
 //мобильные устройства
 @media screen and (max-width:599px) {
     .unauthorized-user-popup {
         left: 5%;
         width: 90%;
+    }
+    .search-sect .search-wrap .search-content-wrap{
+        margin-top: 0;
+        .chose-filters-head{
+            display: none;
+        }
     }
 }
