@@ -917,11 +917,18 @@
 }
 //мобильные устройства
 @media screen and (max-width:479px) {
-  .search-content-wrap .chose-filters-head h3 {
-    font-size: 12px;
-    width: 100px;
-  }
-  .search-content-wrap .chose-filters-head .all-chose-filters {
-    width: 50%;
+  .search-content-wrap {
+    .chose-filters-head {
+      h3 {
+        font-size: 12px;
+        width: 100px;
+      }
+     .all-chose-filters {
+        width: 50%;
+     }
+    }
+    .footer-search-wrap .paginate-wrap .paginate li a {
+      padding: 10px 7px;
+    }
   }
 }

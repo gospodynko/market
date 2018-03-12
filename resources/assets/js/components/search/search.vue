@@ -273,7 +273,7 @@
                 })
             },
             getNew () {
-                this.loadProduct = true
+                this.loadProduct = true;
                 let data = {
                     sort: this.filterType,
                     q: this.data.q,
