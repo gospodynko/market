@@ -25,6 +25,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 20px;
       div{
         height: 40px;
       }
@@ -444,6 +445,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 20px;
       div{
         height: 40px;
       }
@@ -894,6 +896,23 @@
     -webkit-box-align: center;
     align-items: center;
     margin: 0 auto;
+  }
+  .search-sect .search-wrap .search-content-wrap{
+    margin-top: 0;
+    .chose-filters-head {
+      border: 0;
+      height: auto;
+      h3 {
+        margin: 20px;
+      }
+      .all-chose-filters .single-filter .close {
+        display: none;
+      }
+      .all-chose-filters .single-filter .name{
+        margin-right: 0;
+        padding: 0;
+      }
+    }
   }
 }
 //мобильные устройства

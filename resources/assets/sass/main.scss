@@ -3273,4 +3273,8 @@ $whitecolor: white;
     display: flex;
     align-items: center;
   }
+  .main-content .content .products .all-products-list.shop-products-wrap .single-product .for-list .detail-prod-wrap .feedback-wrap{
+    display: flex;
+    flex-direction: row;
+  }
 }
