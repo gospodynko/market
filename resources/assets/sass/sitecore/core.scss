@@ -598,4 +598,60 @@
             }
         }
     }
+
+    .unauthorized-user-popup {
+        position: fixed;
+        top: 25%;
+        left: 25%;
+        width: 50%;
+        height: 300px;
+        border-radius: 6px;
+        background: #ffffff;
+        z-index: 7;
+        margin: 0;
+        .head {
+            height: auto;
+            line-height: 50px;
+            position: relative;
+            margin: 20px;
+            .close {
+                position: absolute;
+                top: 0;
+                right: 0;
+                display: inline-block;
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+            }
+        }
+        .main {
+            display: -webkit-box;
+            display: flex;
+            flex-direction: column;
+            -webkit-box-align: center;
+            align-items: center;
+            justify-content: space-between;
+            width: 90%;
+            margin: auto;
+            .btn {
+                background: #48a2ff;
+                border: 1px solid #2d92fa;
+                padding: 0 20px;
+                text-align: center;
+                line-height: 45px;
+                font-size: 16px;
+                color: #fff;
+                width: 90%;
+                margin-bottom: 10px;
+                border-radius: 4px;
+            }
+        }
+    }
+}
+//мобильные устройства
+@media screen and (max-width:599px) {
+    .unauthorized-user-popup {
+        left: 5%;
+        width: 90%;
+    }
 }
