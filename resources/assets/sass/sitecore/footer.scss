@@ -19,6 +19,7 @@
           height: 100%;
           display: flex;
           align-items: center;
+          padding-left: 20px;
           li{
             width: 20%;
             font-size: 20px;
@@ -38,7 +39,9 @@
         max-width: 1200px;
         margin: 0 auto;
         padding-top: 30px;
+        padding-left: 20px;
         display: flex;
+        box-sizing: border-box;
         .single-menu-item{
           width: 20%;
           ul{

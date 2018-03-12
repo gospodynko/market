@@ -53,10 +53,10 @@
 </g>
 </svg>
                     </div>
-                        <div class="logo">
+                    <div class="logo">
                         <a href="/">
-                           <img class="img-logo-480" src="/img/header/logo_480.svg" alt="">
-                           <img class="img-logo-1024" src="/img/header/logo.svg" alt="">
+                            <img class="img-logo-480" src="/img/header/logo_480.svg" alt="">
+                            <img class="img-logo-1024" src="/img/header/logo.svg" alt="">
                         </a>
                     </div>
                 </div>
@@ -104,26 +104,110 @@
             </div>
         </div>
         <!---->
-        <div class="hidden-filter" :class="{'open': showMenuxs}">
+        <div class="hidden-filter" :class="{'open': showMenuxs}" v-if="showMenuxs">
             <ul>
+                <li id="user-menu-hidden-filter">
+                    <div class="item">
+                        <div class="user-wrap" v-if="user">
+                            <img src="/img/avatars/ava.png" alt="" class="avatar">
+                        </div>
+                        <a href="/login" v-else>
+                            <svg class="svg-login-480" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="20px" height="20px" viewBox="0 0 258.8 258.8" style="enable-background:new 0 0 258.8 258.8;" xml:space="preserve">
+<circle cx="129.4" cy="109" r="60"/>
+<path d="M129.4,181c-60.1,0-108.8,34.8-108.8,77.8h217.5C238.1,215.8,189.4,181,129.4,181z"/>
+</svg>
+                            <p>
+                                {{translate.enter}}
+                            </p>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="/shop/products" class="shop" v-if="user && user.role == 'seller'">
+                            <!--<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" width="20px" height="20px" version="1.1" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 11497 9839">-->
+                            <!--<g id="Слой_x0020_1">-->
+                            <!--<metadata id="CorelCorpID_0Corel-Layer"/>-->
+                            <!--<path fill="#fff" d="M0 2294l0 317 26 44c57,120 77,270 262,413 129,100 295,205 530,202 580,-10 721,-493 860,-604 75,106 207,626 819,603 413,-16 678,-309 766,-658 52,34 47,28 75,115 97,308 417,539 754,543 339,5 670,-222 772,-524 10,-27 9,-35 21,-63l45 -71c82,144 64,268 286,460 456,393 1115,158 1290,-322l61 -138 0 0c65,67 46,126 117,250 326,568 1285,592 1510,-250 67,37 17,-6 51,51 19,31 19,87 80,194 271,476 982,600 1367,57 63,-89 79,-180 127,-247 115,92 175,288 338,415 136,106 328,197 564,188 300,-11 561,-209 683,-447 45,-88 60,-202 93,-277l0 -202c-60,-124 -52,-213 -145,-353l-1487 -1990 -3298 0 -4170 0 -761 2c-277,315 -942,1287 -1267,1687 -182,225 -235,289 -330,529l-39 76z"/>-->
+                            <!--<path fill="#fff" d="M1325 9832l8842 7 5 -5957c-154,-49 -4155,-14 -4424,-14 -261,0 -4282,-34 -4423,15l0 5949z"/>-->
+                            <!--<path fill="#fff" d="M1325 9837l8842 2 5 -1364c-154,-11 -4155,-3 -4424,-3 -261,0 -4282,-7 -4423,4l0 1361z"/>-->
+                            <!--</g>-->
+                            <!--</svg>-->
+                            <i></i> {{translate.my_shop}}
+                        </a>
+                    </div>
+                    <div class="item ibasket">
+                        <a href="#" class="basket" @click="showCartFunc(0, 1)">
+                            <i></i>
+                            <span class="badge" :class="{'badge': cart}" v-if="cart && cart.length">{{cart.length}}</span>
+                            <p>
+                                {{translate.cart}}
+                            </p>
+                        </a>
+                    </div>
+                </li>
                 <li v-for="(category,k) in categories">
                     <div class="category-item">
-                    <a :href="'/category/'+category.slug" >
-                        <div class="single-menu-item-xs" :class="{'active': checkedCat && checkedCat.id == category.id}">
-                            <p>{{category.name}} <i></i></p>
+                        <a :href="'/category/'+category.slug" >
+                            <div class="single-menu-item-xs" :class="{'active': checkedCat && checkedCat.id == category.id}">
+                                <p>{{category.name}} <i></i></p>
+                            </div>
+                        </a>
+                        <div class="open-btn" :class="{'open': showSubGroup}" @click="showSub(k, category)">
+                            <img src="/img/header/arrow-down.png" alt="">
                         </div>
-                    </a>
-                    <div class="open-btn" :class="{'open': showSubGroup}" @click="showSub(k, category)">
-                        <img src="/img/header/arrow-down.png" alt="">
                     </div>
-                    </div>
-                    <ul class="mini-cat" :class="{'open': showSubGroup === k + 1}">
+                    <ul class="mini-cat" :class="{'open': showSubGroup === k + 1}" v-if="checkedCat && showSubGroup === k + 1">
                         <li class="mini-cat-li" v-for="subCategory in subCategories" >
                             <a :href="'/category/'+checkedCat.slug+'/'+subCategory.slug">
                                 <p>{{subCategory.name}}</p>
                             </a>
                         </li>
                     </ul>
+                </li>
+                <li id="exit-hidden-filter">
+                    <div class="item linkexit">
+                        <div class="user-wrap" v-if="user">
+                            <span class="logout" @click="logout">
+                                <svg class="svg-user-exit" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"  width="20px" height="20px" fill="lightgray"  viewBox="0 0 459 459" xml:space="preserve">
+<g>
+	<g id="exit-to-app">
+		<path d="M181.05,321.3l35.7,35.7l127.5-127.5L216.75,102l-35.7,35.7l66.3,66.3H0v51h247.35L181.05,321.3z M408,0H51    C22.95,0,0,22.95,0,51v102h51V51h357v357H51V306H0v102c0,28.05,22.95,51,51,51h357c28.05,0,51-22.95,51-51V51    C459,22.95,436.05,0,408,0z" fill="#b3b3b3"/>
+	</g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+<g>
+</g>
+</svg>
+                                {{translate.exit}}
+                            </span>
+                        </div>
+                    </div>
                 </li>
             </ul>
             <div class="close-menu-xs" @click="menuClickxs">
@@ -216,6 +300,7 @@
                         <div class="all-shops-btn">
                             <!--<button class="btn" @click="showPopupFunc">{{translate.all_shops}}</button>-->
                             <a href="/all-shops"><button class="btn"> {{translate.all_shops}}</button></a>
+
                         </div>
                     </div>
                 </div>
@@ -291,9 +376,6 @@
                 this.showSubGroup = k
                 console.log(k)
             },
-            closeMenu () {
-                this.showMenuxs = false
-            },
             menuClickxs () {
                 this.showMenuxs = !this.showMenuxs
             },
@@ -357,11 +439,13 @@
             showPopupFunc(){
                 this.showPopup = !this.showPopup;
                 this.showOverlayPopup = !this.showOverlayPopup;
+                // this.showPopup = !this.showPopup;
+                // this.hiddenBody('close')
+                // Events.$emit('closePopup', this.showPopup);
             },
-//            allShopsPage(){
-//
-//                        location.href = '/all-shops/';
-//            },
+            allShopsPage(){
+                location.href = '/all-shops/';
+            },
             onSubmit(){
                 if(this.q.length <= 1){
                     return false;

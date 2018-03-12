@@ -194,7 +194,7 @@
                                 <div class="detail-prod-wrap">
                                     <div class="feedback-wrap">
                                         <div class="rating-wrap">
-                                            <star-rating :star-size="20" :increment="0.01" :rating=product.rate :read-only="true" :show-rating="true"></star-rating>
+                                            <!--<star-rating :star-size="20"></star-rating>-->
                                         </div>
                                         <div class="count-feedback-wrap">
                                             <a href="#">{{product.reviews.length}} Відгуків</a>
@@ -235,7 +235,7 @@
                 </div>
                 <div class="footer-search-wrap">
                     <div class="show-all-btn-wrap" v-if="searchProducts && searchProducts.total > 12 && searchProducts.last_page !== searchProducts.current_page">
-                        <vue-ladda class="btn show-more"@click="getNew" :loading="loadProduct">Показати ще</vue-ladda>
+                        <vue-ladda class="btn show-more" @click="getNew" :loading="loadProduct">Показати ще</vue-ladda>
                         <!--<button class="btn" @click="getNew">Показать еще</button>-->
                     </div>
                 </div>
