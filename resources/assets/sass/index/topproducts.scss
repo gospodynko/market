@@ -673,6 +673,9 @@
       }
     }
   }
+  .top-product .top-product-wrap .all-products-list .single-product .detail-prod-wrap .feedback-wrap-480 .rating-wrap .star-rating .star-rating .rating-text[data-v-34cbeed1]{
+    display: none;
+  }
 }
 //мобильные устройства
 @media screen and (max-width:479px){
@@ -701,6 +704,9 @@
       font-size: 20px;
     }
   }
+  .top-product .top-product-wrap .all-products-list .single-product .detail-prod-wrap .feedback-wrap-480 .rating-wrap .star-rating .star-rating .rating-text[data-v-34cbeed1]{
+    display: none;
+  }
 }
 //мобильные устройства
 @media screen and (max-width:359px){
@@ -722,5 +728,8 @@
         }
       }
     }
+  }
+  .top-product .top-product-wrap .all-products-list .single-product .detail-prod-wrap .feedback-wrap-480 .rating-wrap .star-rating .star-rating .rating-text[data-v-34cbeed1]{
+    display: none;
   }
 }

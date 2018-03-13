@@ -647,11 +647,17 @@
             }
         }
     }
+    .top-product .top-product-wrap .all-products-list .single-product .detail-prod-wrap .feedback-wrap-480 .rating-wrap .star-rating .star-rating .rating-text[data-v-34cbeed1]{
+        display: none;
+    }
 }
 //мобильные устройства
 @media screen and (max-width:599px) {
     .unauthorized-user-popup {
         left: 5%;
         width: 90%;
+    }
+    .top-product .top-product-wrap .all-products-list .single-product .detail-prod-wrap .feedback-wrap-480 .rating-wrap .star-rating .star-rating .rating-text[data-v-34cbeed1]{
+        display: none;
     }
 }
