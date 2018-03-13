@@ -4195,6 +4195,9 @@ $light-gray: #d0d4dc;
       }
     }
   }
+  .cart-checkout-wrap .all-items-cart-wrap .checkout-user-wrap .product-list .swiper-wrapper {
+    justify-content: flex-start;
+  }
 }
 //мобильные устройства
 @media screen and (max-width:479px) {

@@ -1,14 +1,14 @@
 <template>
     <header @mouseleave="closeMenu()">
         <div class="overlay" :class="{'show': showChild || showOverlay}" @click="showPopupFunc"></div>
-        <div class="overlay" style="z-index: 6" :class="{'show': showOverlayPopup}" @click="showPopupFunc"></div>
+        <!--<div class="overlay" style="z-index: 6" :class="{'show': showOverlayPopup}" @click="showPopupFunc"></div>-->
         <cart-blocked :translate="cartTranslate"></cart-blocked>
         <!--<noselect-user :user="user" v-if="user && user.role == 'noselect'"></noselect-user>-->
-        <div class="shops-popup-wrap" v-if="showPopup">
-            <span class="close" @click="showPopupFunc"></span>
-            <h2>{{translate.popup_catalog}}</h2>
-            <p>Скоро вiдкриття!</p>
-        </div>
+        <!--<div class="shops-popup-wrap" v-if="showPopup">-->
+            <!--<span class="close" @click="showPopupFunc"></span>-->
+            <!--<h2>{{translate.popup_catalog}}</h2>-->
+            <!--<p>Скоро вiдкриття!</p>-->
+        <!--</div>-->
         <div class="header">
             <div class="two-wrap">
                 <div class="left">
