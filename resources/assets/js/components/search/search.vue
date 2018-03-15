@@ -60,8 +60,8 @@
                     <div class="sort-wrap">
                         <span>Сортувати за:</span>
                         <select @change="setFilter" v-model="filterType">
-                            <option :value="'minus'">Спочатку дешеві</option>
-                            <option :value="'plus'">Спочатку дорогі</option>
+                            <option :value="'minus'">Ціна: від меньшої до більшої</option>
+                            <option :value="'plus'">Ціна: від більшої до меньшої</option>
                         </select>
                     </div>
                     <!--<div class="type-view">-->
