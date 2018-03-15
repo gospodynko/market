@@ -113,12 +113,7 @@
         },
         methods: {
             clickCallback(newPage){
-                if(this.page < newPage){
-                    location.href = this.data.products.next_page_url;
-                } else {
-                    location.href = this.data.products.prev_page_url;
-                }
-
+                location.href = this.data.products.path + '?page=' + newPage;
 
             }
         }
