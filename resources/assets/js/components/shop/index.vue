@@ -4,7 +4,7 @@
             <div class="dropdown">
                 <div class="category" v-for="category in categories">
                     <div class="root-path">
-                        <img src="/img/gsm.png" alt="">
+                        <img src="/img/gsm.png" alt="kanistra">
                         <span>{{category.name}}</span>
                     </div>
                     <div class="sub-cuts-wrap">
@@ -31,23 +31,35 @@
                 </div>
             </div>
             <div class="close-menu-xs" @click="shopClick">
-                <img src="/img/shop-logo/arrow-menu.png" alt="">
+                <img src="/img/shop-logo/arrow-menu.png" alt="arrow-menu">
             </div>
         </div>
         <div class="overlay-burger" :class="{'open': showShop}" @click="shopClick"></div>
         <!-- End filter -->
         <div class="content">
+            <div class="partners-egap-company">
+                <div class="info-partners">
+                    <p class="desktop-banner-egap">Завдяки Швейцарсько-українській програмі EGAP «Електронне врядування задля підзвітності влади та участі громади», що виконується Фондом Східна Європа та партнерами, «АгроЯрд Маркет» працює та самовдосконалюється для Вас.</p>
+                    <p class="mobile-banner-egap">При підтримці Швейцарсько-української програми
+                        <a class="link_egap" href="http://egap.in.ua/"> EGAP </a>
+                        проект «АгроЯрд Маркет» працює для Вас
+                    </p>
+                    <a class="logo_egap" href="http://egap.in.ua/">
+                        <img src="/img/footer/egap.png" title="Натисність для переходу на сайт EGAP!" alt="Логотип сайту EGAP" />
+                    </a>
+                </div>
+            </div>
             <div class="agro-info">
                 <div class="agro-logo">
-                    <img :src="shop.logo" alt="">
+                    <img :src="shop.logo" :alt="shop.name">
                 </div>
                 <div class="bg"></div>
                 <div class="info">
                     <div>
                         <h3>{{shop.name}}</h3>
                         <div class="agro-contact">
-                            <span><img src="/img/blue_place.png">{{shop.company.address}}</span>
-                            <span @click="showPhone = !showPhone" style="cursor: pointer;"><img src="/img/phone.png" v-if="shop.company.compPhone">{{!showPhone ? 'Номер телефону' : shop.company.compPhone}}</span>
+                            <span><img src="/img/blue_place.png" alt="location">{{shop.company.address}}</span>
+                            <span @click="showPhone = !showPhone" style="cursor: pointer;"><img src="/img/phone.png" alt="phone" shop.company.compPhone">{{!showPhone ? 'Номер телефону' : shop.company.compPhone}}</span>
                         </div>
                     </div>
                     <div class="rating">
@@ -164,7 +176,7 @@
                 <div class="all-products-list shop-products-wrap" :class="{'type-list': showList}">
                     <div class="single-product" v-for="product in shopProducts">
                         <div class="img-wrap">
-                            <a :href="'/' + product.url"><img :src="product.default_picture" alt=""></a>
+                            <a :href="'/' + product.url"><img :src="product.default_picture" :alt="product.name"></a>
                         </div>
                         <div class="for-list">
                             <div class="detail-wrap">
@@ -218,7 +230,6 @@
     </div>
     </div>
 </template>
-
 <script type="text/babel">
     import VueLadda from 'vue-ladda'
     import StarRating from 'vue-star-rating';

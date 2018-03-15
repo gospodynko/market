@@ -8,26 +8,26 @@
                         <p class="text-wrap">
                             Аренда сельскохозяйственной техники в Украине
                         </p>
-                        <img src="/img/products/category-img-1.jpg" alt="">
+                        <img src="/img/products/category-img-1.jpg" alt="category-img-1">
                     </div>
                     <div class="single-popular-cat size320">
                         <p class="text-wrap">
                             Товары для отдыха
                         </p>
-                        <img src="/img/products/category-img-2.jpg" alt="">
+                        <img src="/img/products/category-img-2.jpg" alt="category-img-2">
                     </div>
                     <div class="single-popular-cat size320">
                         <p class="text-wrap">
                             Услуги логистики
                         </p>
-                        <img src="/img/products/category-img-3.jpg" alt="">
+                        <img src="/img/products/category-img-3.jpg" alt="category-img-3">
                     </div>
                 </div>
             </div>
             <div class="all-products-list">
                 <div class="single-product" v-for="n in 12">
                     <div class="img-wrap">
-                        <img src="/img/products/tr.jpg" alt="">
+                        <img src="/img/products/tr.jpg" alt="tractor">
                     </div>
                     <div class="detail-wrap">
                         <p class="product-title">

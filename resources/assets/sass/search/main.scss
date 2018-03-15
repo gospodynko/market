@@ -83,7 +83,7 @@
         }
       }
       .sort-wrap{
-        width: 38%;
+        width: 58%;
         display: flex;
         align-items: center;
         justify-content: flex-start;
@@ -412,6 +412,9 @@
   }
   .btn-filter{
     display: none;
+  }
+  .search-content-wrap .chose-filters-head .all-chose-filters .single-filter .close{
+    display:none;
   }
 }
 //мобильные устройства

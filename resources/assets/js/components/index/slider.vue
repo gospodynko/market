@@ -4,7 +4,7 @@
             <ul class="pgwSlider">
                 <li v-for="banner in banners" style="width: 33%; display: none;">
                     <a :href="banner.url">
-                        <img :src="banner.image" alt="">
+                        <img :src="banner.image">
                     </a>
                     <span v-if="banner.is_special">{{translate.actual}}</span>
                 </li>

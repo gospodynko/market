@@ -27,7 +27,7 @@
                             </div>
                             <div class="single-product" style="width: 23.5%; " v-for="product in categoryProducts.data">
                                 <div class="img-wrap">
-                                    <a :href="'/' + product.url"><img :src="product.default_picture" alt=""></a>
+                                    <a :href="'/' + product.url"><img :src="product.default_picture" :alt="product.name"></a>
                                 </div>
                                 <div class="detail-wrap">
                                     <p class="product-title">
@@ -113,12 +113,7 @@
         },
         methods: {
             clickCallback(newPage){
-                if(this.page < newPage){
-                    location.href = this.data.products.next_page_url;
-                } else {
-                    location.href = this.data.products.prev_page_url;
-                }
-
+                location.href = this.data.products.path + '?page=' + newPage;
 
             }
         }
