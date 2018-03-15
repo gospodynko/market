@@ -154,6 +154,7 @@
                         <div class="open-btn" :class="{'open': showSubGroup}" @click="showSub(k, category)">
                             <img src="/img/header/arrow-down.png" alt="">
                         </div>
+                    </div>
                     <div class="open-btn" :class="{'open': showSubGroup}" @click="showSub(k, category)">
                         <img src="/img/header/arrow-down.png" alt="arrow-down">
                     </div>
