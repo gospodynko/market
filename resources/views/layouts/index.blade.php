@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="@yield('description', 'Створіть свій унікальний магазин в рамках маркетплейс «АгроЯрд», де будуть виставлені товари сільськогосподарського
     призначення. Підвищіть власну впізнаваність і розширте ЦА з маркетплейс.')">
+    @yield('paginate')
     <title>@yield('title') - AgroYard marketplace @show</title>
     <!-- Global Site Tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94031775-2"></script>
