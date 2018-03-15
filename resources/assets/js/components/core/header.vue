@@ -297,10 +297,10 @@
                                 </label>
                             </form>
                         </div>
-                        <div class="all-shops-btn" @click="allShopsPage">
-                            <a href="#" class="btn">{{translate.all_shops}}</a>
+                        <div class="all-shops-btn">
                             <!--<button class="btn" @click="showPopupFunc">{{translate.all_shops}}</button>-->
-                            <!--<a href="/all-shops"><button class="btn"> {{translate.all_shops}}</button></a>-->
+                            <a href="/all-shops"><button class="btn"> {{translate.all_shops}}</button></a>
+
                         </div>
                     </div>
                 </div>
