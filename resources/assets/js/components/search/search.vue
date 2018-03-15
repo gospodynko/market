@@ -181,7 +181,7 @@
                         <div class="all-products-list" style="width: 100%;">
                             <div class="single-product" style="width: 23.5%; " v-for="product in searchProducts.data">
                                 <div class="img-wrap">
-                                    <a :href="product.url"><img :src="product.default_picture" alt="product"></a>
+                                    <a :href="product.url"><img :src="product.default_picture" :alt="product.name"></a>
                                 </div>
                                 <div class="detail-wrap">
                                     <p class="product-title">

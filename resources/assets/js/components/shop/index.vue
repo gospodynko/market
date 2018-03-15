@@ -39,7 +39,7 @@
         <div class="content">
             <div class="agro-info">
                 <div class="agro-logo">
-                    <img :src="shop.logo" alt="agro-logo">
+                    <img :src="shop.logo" :alt="shop.name">
                 </div>
                 <div class="bg"></div>
                 <div class="info">
@@ -164,7 +164,7 @@
                 <div class="all-products-list shop-products-wrap" :class="{'type-list': showList}">
                     <div class="single-product" v-for="product in shopProducts">
                         <div class="img-wrap">
-                            <a :href="'/' + product.url"><img :src="product.default_picture" alt="product"></a>
+                            <a :href="'/' + product.url"><img :src="product.default_picture" :alt="product.name"></a>
                         </div>
                         <div class="for-list">
                             <div class="detail-wrap">

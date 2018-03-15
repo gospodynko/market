@@ -32,7 +32,7 @@
                             <label>Изображение:</label>
                             <input type="file" class="form-control" name="_pictures_file" @change="fileLoad">
                         </div>
-                        <div class="col-md-3" v-if="checkedCategory.image"><img :src="checkedCategory.image" alt="category_img"></div>
+                        <div class="col-md-3" v-if="checkedCategory.image"><img :src="checkedCategory.image" :alt="parent.name"></div>
                     </div>
                 </div>
                 <div class="form-group">
