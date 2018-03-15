@@ -87,14 +87,17 @@ $greenBtn: #14c44d;
               top: 56%;
             }
           }
-          .category{
-            display: none;
-          }
-          .category.open{
-            display: block;
-            ul{
-              li{
-                padding: 10px 0px;
+        }
+        .category{
+          display: none;
+        }
+        .category.open{
+          display: block;
+          ul{
+            li{
+              padding: 10px 0px;
+              label{
+                margin-bottom: 10px;
               }
             }
           }
