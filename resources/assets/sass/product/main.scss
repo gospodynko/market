@@ -2452,4 +2452,13 @@ $light-gray: #d0d4dc;
     margin-bottom: 20px;
     height: 10px;
   }
+  .single-prod-detail-480 .single-prod-detail .detail-product-wrap-480 .detail-description .detail-info .di-info{
+    flex-direction: column;
+    .di-info-img {
+      margin: 20px auto;
+    }
+    h3 {
+      padding-top: 0px;
+    }
+  }
 }

@@ -142,7 +142,7 @@
                         <h3>Соцсети</h3>
                         <div class="soc-ico">
                             <a href="https://www.facebook.com/agroyard/">
-                            <img class="img-fb-social-network" src="/img/footer/fb.png" alt="">
+                            <img class="img-fb-social-network" src="/img/footer/fb.png" alt="facebook">
                             </a>
                         </div>
                     </div>

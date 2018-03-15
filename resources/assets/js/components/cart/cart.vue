@@ -16,7 +16,7 @@
                 <div class="cart-detail-list">
                     <div class="single-item-cart">
                         <div class="logo-wrap">
-                            <img src="/img/shop-logo/cola.jpg" alt="">
+                            <img src="/img/shop-logo/cola.jpg" alt="cola">
                         </div>
                         <div class="title-wrap">
                             <h2><a href="#">Наименование товара очень длинное и тупое</a></h2>
@@ -35,7 +35,7 @@
                     </div>
                     <div class="single-item-cart">
                         <div class="logo-wrap">
-                            <img src="/img/shop-logo/cola.jpg" alt="">
+                            <img src="/img/shop-logo/cola.jpg" alt="cola">
                         </div>
                         <div class="title-wrap">
                             <h2><a href="#">Наименование товара очень длинное и тупое</a></h2>
@@ -54,7 +54,7 @@
                     </div>
                     <div class="single-item-cart">
                         <div class="logo-wrap">
-                            <img src="/img/shop-logo/cola.jpg" alt="">
+                            <img src="/img/shop-logo/cola.jpg" alt="cola">
                         </div>
                         <div class="title-wrap">
                             <h2><a href="#">Наименование товара очень длинное и тупое</a></h2>
@@ -73,7 +73,7 @@
                     </div>
                     <div class="single-item-cart">
                         <div class="logo-wrap">
-                            <img src="/img/shop-logo/cola.jpg" alt="">
+                            <img src="/img/shop-logo/cola.jpg" alt="cola">
                         </div>
                         <div class="title-wrap">
                             <h2><a href="#">Наименование товара очень длинное и тупое</a></h2>
@@ -92,7 +92,7 @@
                     </div>
                     <div class="single-item-cart">
                         <div class="logo-wrap">
-                            <img src="/img/shop-logo/cola.jpg" alt="">
+                            <img src="/img/shop-logo/cola.jpg" alt="cola">
                         </div>
                         <div class="title-wrap">
                             <h2><a href="#">Наименование товара очень длинное и тупое</a></h2>
@@ -111,7 +111,7 @@
                     </div>
                     <div class="single-item-cart">
                         <div class="logo-wrap">
-                            <img src="/img/shop-logo/cola.jpg" alt="">
+                            <img src="/img/shop-logo/cola.jpg" alt="cola">
                         </div>
                         <div class="title-wrap">
                             <h2><a href="#">Наименование товара очень длинное и тупое</a></h2>
@@ -130,7 +130,7 @@
                     </div>
                     <div class="single-item-cart">
                         <div class="logo-wrap">
-                            <img src="/img/shop-logo/cola.jpg" alt="">
+                            <img src="/img/shop-logo/cola.jpg" alt="cola">
                         </div>
                         <div class="title-wrap">
                             <h2><a href="#">Наименование товара очень длинное и тупое</a></h2>
@@ -149,7 +149,7 @@
                     </div>
                     <div class="single-item-cart">
                         <div class="logo-wrap">
-                            <img src="/img/shop-logo/cola.jpg" alt="">
+                            <img src="/img/shop-logo/cola.jpg" alt="cola">
                         </div>
                         <div class="title-wrap">
                             <h2><a href="#">Наименование товара очень длинное и тупое</a></h2>
@@ -168,7 +168,7 @@
                     </div>
                     <div class="single-item-cart">
                         <div class="logo-wrap">
-                            <img src="/img/shop-logo/cola.jpg" alt="">
+                            <img src="/img/shop-logo/cola.jpg" alt="cola">
                         </div>
                         <div class="title-wrap">
                             <h2><a href="#">Наименование товара очень длинное и тупое</a></h2>

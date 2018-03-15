@@ -8,13 +8,13 @@
                 <div class="detail-product-wrap">
                     <div class="shop-gallery">
                         <div class="small-photos">
-                            <div class="single-small-photo active"><img src="/img/product-photos/drell-small.png" alt=""></div>
-                            <div class="single-small-photo"><img src="/img/product-photos/drell-small.png" alt=""></div>
-                            <div class="single-small-photo"><img src="/img/product-photos/drell-small.png" alt=""></div>
+                            <div class="single-small-photo active"><img src="/img/product-photos/drell-small.png" alt="drell-small"></div>
+                            <div class="single-small-photo"><img src="/img/product-photos/drell-small.png" alt="drell-small"></div>
+                            <div class="single-small-photo"><img src="/img/product-photos/drell-small.png" alt="drell-small"></div>
                             <p class="show-all">еще 6</p>
                         </div>
                         <div class="full-photo">
-                            <img src="/img/product-photos/drell-full.png" alt="">
+                            <img src="/img/product-photos/drell-full.png" alt="drell-full">
                         </div>
                         <div class="product-options">
                             <div class="find-good">
@@ -73,13 +73,13 @@
                                 <p>Доставка</p>
                                 <div class="all-post-list">
                                     <div class="single-post-list">
-                                        <img src="/img/payments/np.png" alt="">
+                                        <img src="/img/payments/np.png" alt="nova_poshta">
                                     </div>
                                     <div class="single-post-list">
-                                        <img src="/img/payments/int.png" alt="">
+                                        <img src="/img/payments/int.png" alt="in_time">
                                     </div>
                                     <div class="single-post-list">
-                                        <img src="/img/payments/up.png" alt="">
+                                        <img src="/img/payments/up.png" alt="ukr_poshta">
                                     </div>
                                 </div>
                             </div>
@@ -87,16 +87,16 @@
                                 <p>Оплата</p>
                                 <div class="all-payment-list">
                                     <div class="single-payment">
-                                        <img src="/img/payments/webmoney.png" alt="">
+                                        <img src="/img/payments/webmoney.png" alt="webmoney">
                                     </div>
                                     <div class="single-payment">
-                                        <img src="/img/payments/visa.png" alt="">
+                                        <img src="/img/payments/visa.png" alt="visa">
                                     </div>
                                     <div class="single-payment">
-                                        <img src="/img/payments/mcard.png" alt="">
+                                        <img src="/img/payments/mcard.png" alt="mastercard">
                                     </div>
                                     <div class="single-payment">
-                                        <img src="/img/payments/pp.png" alt="">
+                                        <img src="/img/payments/pp.png" alt="paypal">
                                     </div>
                                 </div>
                             </div>
@@ -151,7 +151,7 @@
                                 <div class="market-list-all">
                                     <div class="single-market">
                                         <div class="logo-shop-wrap">
-                                            <img src="/img/shop-logo/cola.jpg" alt="">
+                                            <img src="/img/shop-logo/cola.jpg" alt="cola">
                                         </div>
                                         <div class="shop-detail-wrap">
                                             <h2>Название магазина "Звездочка"</h2>
@@ -170,7 +170,7 @@
                                     </div>
                                     <div class="single-market">
                                         <div class="logo-shop-wrap">
-                                            <img src="/img/shop-logo/cola.jpg" alt="">
+                                            <img src="/img/shop-logo/cola.jpg" alt="cola">
                                         </div>
                                         <div class="shop-detail-wrap">
                                             <h2>Название магазина "Самая длинная Звездочка для вас плюс"</h2>
@@ -189,7 +189,7 @@
                                     </div>
                                     <div class="single-market">
                                         <div class="logo-shop-wrap">
-                                            <img src="/img/shop-logo/cola.jpg" alt="">
+                                            <img src="/img/shop-logo/cola.jpg" alt="cola">
                                         </div>
                                         <div class="shop-detail-wrap">
                                             <h2>Название магазина "Очень длинная Звездочка плюс"</h2>
@@ -208,7 +208,7 @@
                                     </div>
                                     <div class="single-market">
                                         <div class="logo-shop-wrap">
-                                            <img src="/img/shop-logo/cola.jpg" alt="">
+                                            <img src="/img/shop-logo/cola.jpg" alt="cola">
                                         </div>
                                         <div class="shop-detail-wrap">
                                             <h2>Название магазина "Звездочка длинная и крепкая"</h2>
@@ -251,7 +251,7 @@
                                     <div class="single-answer">
                                         <div class="comment-head">
                                             <div class="logo-user">
-                                                <img src="/img/avatars/ava.png" alt="">
+                                                <img src="/img/avatars/ava.png" alt="avatar">
                                             </div>
                                             <div class="star-rating-wrap">
                                                 <p class="user-name">Артур Пирожков</p>
@@ -274,7 +274,7 @@
                                         <div class="comment-answer">
                                             <div class="comment-head">
                                                 <div class="logo-user">
-                                                    <img src="/img/avatars/ava.png" alt="">
+                                                    <img src="/img/avatars/ava.png" alt="avatar">
                                                 </div>
                                                 <div class="star-rating-wrap">
                                                     <p class="user-name">Артур Пирожков (Менеджер "Рога и Копыта" отвечает)</p>
@@ -295,7 +295,7 @@
                                     <div class="single-answer">
                                         <div class="comment-head">
                                             <div class="logo-user">
-                                                <img src="/img/avatars/ava.png" alt="">
+                                                <img src="/img/avatars/ava.png" alt="avatar">
                                             </div>
                                             <div class="star-rating-wrap">
                                                 <p class="user-name">Артур Пирожков</p>
@@ -330,7 +330,7 @@
                                     <div class="single-answer">
                                         <div class="comment-head">
                                             <div class="logo-user">
-                                                <img src="/img/avatars/ava.png" alt="">
+                                                <img src="/img/avatars/ava.png" alt="avatar">
                                             </div>
                                             <div class="star-rating-wrap">
                                                 <p class="user-name">Артур Пирожков</p>
@@ -354,7 +354,7 @@
                                     <div class="single-answer">
                                         <div class="comment-head">
                                             <div class="logo-user">
-                                                <img src="/img/avatars/ava.png" alt="">
+                                                <img src="/img/avatars/ava.png" alt="avatar">
                                             </div>
                                             <div class="star-rating-wrap">
                                                 <p class="user-name">Артур Пирожков</p>
@@ -378,7 +378,7 @@
                                     <div class="single-answer">
                                         <div class="comment-head">
                                             <div class="logo-user">
-                                                <img src="/img/avatars/ava.png" alt="">
+                                                <img src="/img/avatars/ava.png" alt="avatar">
                                             </div>
                                             <div class="star-rating-wrap">
                                                 <p class="user-name">Артур Пирожков</p>
@@ -412,7 +412,7 @@
                 <div class="all-products-list">
                     <div class="single-product" v-for="n in 4">
                         <div class="img-wrap">
-                            <img src="/img/products/tr.jpg" alt="">
+                            <img src="/img/products/tr.jpg" alt="tractor">
                         </div>
                         <div class="detail-wrap">
                             <p class="product-title">
