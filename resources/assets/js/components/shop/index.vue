@@ -4,7 +4,7 @@
             <div class="dropdown">
                 <div class="category" v-for="category in categories">
                     <div class="root-path">
-                        <img src="/img/gsm.png" alt="">
+                        <img src="/img/gsm.png" alt="kanistra">
                         <span>{{category.name}}</span>
                     </div>
                     <div class="sub-cuts-wrap">
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="close-menu-xs" @click="shopClick">
-                <img src="/img/shop-logo/arrow-menu.png" alt="">
+                <img src="/img/shop-logo/arrow-menu.png" alt="arrow-menu">
             </div>
         </div>
         <div class="overlay-burger" :class="{'open': showShop}" @click="shopClick"></div>
@@ -39,15 +39,15 @@
         <div class="content">
             <div class="agro-info">
                 <div class="agro-logo">
-                    <img :src="shop.logo" alt="">
+                    <img :src="shop.logo" alt="agro-logo">
                 </div>
                 <div class="bg"></div>
                 <div class="info">
                     <div>
                         <h3>{{shop.name}}</h3>
                         <div class="agro-contact">
-                            <span><img src="/img/blue_place.png">{{shop.company.address}}</span>
-                            <span @click="showPhone = !showPhone" style="cursor: pointer;"><img src="/img/phone.png" v-if="shop.company.compPhone">{{!showPhone ? 'Номер телефону' : shop.company.compPhone}}</span>
+                            <span><img src="/img/blue_place.png" alt="location">{{shop.company.address}}</span>
+                            <span @click="showPhone = !showPhone" style="cursor: pointer;"><img src="/img/phone.png" alt="phone" shop.company.compPhone">{{!showPhone ? 'Номер телефону' : shop.company.compPhone}}</span>
                         </div>
                     </div>
                     <div class="rating">
@@ -164,7 +164,7 @@
                 <div class="all-products-list shop-products-wrap" :class="{'type-list': showList}">
                     <div class="single-product" v-for="product in shopProducts">
                         <div class="img-wrap">
-                            <a :href="'/' + product.url"><img :src="product.default_picture" alt=""></a>
+                            <a :href="'/' + product.url"><img :src="product.default_picture" alt="product"></a>
                         </div>
                         <div class="for-list">
                             <div class="detail-wrap">

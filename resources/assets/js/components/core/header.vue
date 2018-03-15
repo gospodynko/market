@@ -55,8 +55,8 @@
                     </div>
                         <div class="logo">
                         <a href="/">
-                           <img class="img-logo-480" src="/img/header/logo_480.svg" alt="">
-                           <img class="img-logo-1024" src="/img/header/logo.svg" alt="">
+                           <img class="img-logo-480" src="/img/header/logo_480.svg" alt="img-logo-480">
+                           <img class="img-logo-1024" src="/img/header/logo.svg" alt="img-logo-1024">
                         </a>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
                         </div>
                         <div class="item">
                             <div class="user-wrap" v-if="user">
-                                <img src="/img/avatars/ava.png" alt="" class="avatar">
+                                <img src="/img/avatars/ava.png" alt="avatar" class="avatar">
                                 <span class="logout" @click="logout">{{translate.exit}}</span>
                             </div>
                             <a href="/login" v-else>
@@ -114,7 +114,7 @@
                         </div>
                     </a>
                     <div class="open-btn" :class="{'open': showSubGroup}" @click="showSub(k, category)">
-                        <img src="/img/header/arrow-down.png" alt="">
+                        <img src="/img/header/arrow-down.png" alt="arrow-down">
                     </div>
                     </div>
                     <ul class="mini-cat" :class="{'open': showSubGroup === k + 1}">
@@ -127,7 +127,7 @@
                 </li>
             </ul>
             <div class="close-menu-xs" @click="menuClickxs">
-                <img src="/img/header/arrow_white.png" alt="">
+                <img src="/img/header/arrow_white.png" alt="arrow_white">
             </div>
         </div>
         <div class="overlay-burger" :class="{'open': showMenuxs}" @click="menuClickxs"></div>

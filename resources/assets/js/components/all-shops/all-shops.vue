@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="close-menu-xs" @click="shopsClick">
-                    <img src="/img/shop-logo/arrow-menu.png" alt="">
+                    <img src="/img/shop-logo/arrow-menu.png" alt="arrow-menu">
                 </div>
             </div>
             <div class="overlay-burger" :class="{'open': showShops}" @click="shopsClick"></div>
@@ -151,7 +151,7 @@
                                 </div>
                                 <div class="single-product" style="width: 23.5%; " v-for="shop in shopData.data">
                                     <div class="img-wrap">
-                                        <a :href="'/' + shop.url"><img :src="'' + shop.logo" alt=""></a>
+                                        <a :href="'/' + shop.url"><img :src="'' + shop.logo" alt="shop-logo"></a>
                                     </div>
                                     <div class="detail-wrap">
                                         <p class="product-title">

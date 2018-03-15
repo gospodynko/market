@@ -16,7 +16,7 @@
                 <h2>Картинки</h2>
                 <div class="row">
                     <div class="col-sm-3" v-for="image in product.images">
-                        <img :src="image" width="30%" alt="">
+                        <img :src="image" width="30%" alt="row">
                     </div>
                 </div>
                 <hr>

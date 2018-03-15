@@ -20,10 +20,10 @@
                     <div class="single-item-cart" v-for="cartItem in cartItems" v-else>
                         <span class="close" @click="delFromCart(cartItem)"></span>
                         <div class="logo-wrap-xs">
-                            <img :src="cartItem.store.default_picture" alt="">
+                            <img :src="cartItem.store.default_picture" alt="logo">
                         </div>
                         <div class="logo-wrap">
-                            <img :src="cartItem.store.default_picture" alt="">
+                            <img :src="cartItem.store.default_picture" alt="logo">
                         </div>
                         <div class="title-wrap">
                             <h2><a :href="'/' + cartItem.product.url">{{cartItem.store.name}}</a></h2>

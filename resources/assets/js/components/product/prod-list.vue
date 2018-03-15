@@ -4,7 +4,7 @@
             <div class="sps-adres-header">
                 <span class="circle-close" @click.prevent="callShowAdres(false)">x</span>
                 {{product.user_shop.company.address}}
-                <img :src="'https://maps.googleapis.com/maps/api/staticmap?center=' + product.user_shop.company.address + '&zoom=13&size=600x300&maptype=roadmap&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=AIzaSyDsGaGMT-t0qFIwMM3j2nY0Hc5LcTmRNzY'" alt="">
+                <img :src="'https://maps.googleapis.com/maps/api/staticmap?center=' + product.user_shop.company.address + '&zoom=13&size=600x300&maptype=roadmap&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=AIzaSyDsGaGMT-t0qFIwMM3j2nY0Hc5LcTmRNzY'" alt="adress">
             </div>
         </div>
 
@@ -42,13 +42,13 @@
                         <div class="small-photos">
                             <span v-if="product.pictures.length > 3" class="small-photos-btn small-photos-btn-prev" @click.prevent="scrollPrev"></span>
                             <div class="single-small-photo" v-for="(smallImage, index) in product.pictures.slice(galleryStart, galleryEnd)" @click="checkImages(smallImage)" :class="{'active': checkImage == smallImage.path}" v-if="index <= 3">
-                                <img :src="smallImage.path" alt="">
+                                <img :src="smallImage.path" alt="smallImage">
                             </div>
                             <span v-if="product.pictures.length > 3" class="small-photos-btn small-photos-btn-next" @click.prevent="scrollNext"></span>
                             <!--<p class="show-all">еще 6</p>-->
                         </div>
                         <div class="full-photo">
-                            <img :src="checkImage" alt="">
+                            <img :src="checkImage" alt="full-photo">
                         </div>
                         <div class="product-options" v-if="false">
                             <div class="find-good">
@@ -108,7 +108,7 @@
                         <div class="di-info">
                             <div class="di-info-img">
                                 <img :src=product.user_shop.logo :alt=product.user_shop.name v-if="product.user_shop.logo">
-                                <img src="/img/avatars/ava.png" alt="" v-else>
+                                <img src="/img/avatars/ava.png" alt="avatar" v-else>
                             </div>
                             <h3><a :href="'/shop/' + product.user_shop.slug">{{product.user_shop.name}}</a></h3>
                             <div class="di-info-adres" @click.prevent="callShowAdres">
@@ -150,13 +150,13 @@
                                 <p>{{translate.delivery}}</p>
                                 <div class="all-post-list">
                                     <div class="single-post-list">
-                                        <img src="/img/payments/np.png" alt="">
+                                        <img src="/img/payments/np.png" alt="nova_poshta">
                                     </div>
                                     <div class="single-post-list">
-                                        <img src="/img/payments/int.png" alt="">
+                                        <img src="/img/payments/int.png" alt="intime">
                                     </div>
                                     <div class="single-post-list">
-                                        <img src="/img/payments/up.png" alt="">
+                                        <img src="/img/payments/up.png" alt="ukr_poshta">
                                     </div>
                                 </div>
                             </div>
@@ -164,16 +164,16 @@
                                 <p>Оплата</p>
                                 <div class="all-payment-list">
                                     <div class="single-payment">
-                                        <img src="/img/payments/webmoney.png" alt="">
+                                        <img src="/img/payments/webmoney.png" alt="webmoney">
                                     </div>
                                     <div class="single-payment">
-                                        <img src="/img/payments/visa.png" alt="">
+                                        <img src="/img/payments/visa.png" alt="visa">
                                     </div>
                                     <div class="single-payment">
-                                        <img src="/img/payments/mcard.png" alt="">
+                                        <img src="/img/payments/mcard.png" alt="mastercard">
                                     </div>
                                     <div class="single-payment">
-                                        <img src="/img/payments/pp.png" alt="">
+                                        <img src="/img/payments/pp.png" alt="paypal">
                                     </div>
                                 </div>
                             </div>
@@ -207,7 +207,7 @@
                                         <div class="single-product" v-for="product in data.suggestions">
                                             <div class="img-wrap">
                                                 <a :href="'/shop/' + product.user_shop.slug + '/' + product.slug">
-                                                    <img :src="'../../' + product.default_picture" alt="">
+                                                    <img :src="'../../' + product.default_picture" alt="product">
                                                 </a>
                                             </div>
                                             <div class="detail-wrap">
@@ -292,7 +292,7 @@
                                     <div class="single-answer" v-for="review in reviews">
                                         <div class="comment-head">
                                             <div class="logo-user">
-                                                <img :src=review.user.profile_photo alt="">
+                                                <img :src=review.user.profile_photo alt="profile_photo">
                                                 <!--<img src="/img/avatars/ava.png" alt="">-->
                                             </div>
                                             <div v-if="review.user" class="star-rating-wrap">
@@ -316,7 +316,7 @@
                                         <div class="comment-answer" v-for="answer in review.answers">
                                             <div class="comment-head">
                                                 <div class="logo-user">
-                                                    <img :src=answer.user.profile_photo alt="">
+                                                    <img :src=answer.user.profile_photo alt="profile_photo">
                                                 </div>
                                                 <div class="star-rating-wrap">
                                                     <p class="user-name">{{answer.user.first_name + ' ' + answer.user.last_name}}</p>
@@ -383,14 +383,14 @@
                             <span v-if="product.pictures.length > 3" class="small-photos-btn small-photos-btn-prev" @click.prevent="scrollPrev"></span>
                             <div class="single-small-photo" v-for="(smallImage, index) in product.pictures.slice(galleryStart, galleryEnd)" @click="checkImages(smallImage)" :class="{'active': checkImage == smallImage.path}" v-if="index <= 3">
                                 <div class="green-point">
-                                    <img :src="smallImage.path" alt="">
+                                    <img :src="smallImage.path" alt="smallImage">
                                 </div>
                             </div>
                             <span v-if="product.pictures.length > 3" class="small-photos-btn small-photos-btn-next" @click.prevent="scrollNext"></span>
                             <!--<p class="show-all">еще 6</p>-->
                         </div>
                         <div class="full-photo">
-                            <img :src="checkImage" alt="">
+                            <img :src="checkImage" alt="full-photo">
                         </div>
                         <div class="product-options" v-if="false">
                             <div class="find-good">
@@ -450,7 +450,7 @@
                                 <div class="di-info">
                                     <div class="di-info-img">
                                         <img :src=product.user_shop.logo :alt=product.user_shop.name v-if="product.user_shop.logo">
-                                        <img src="/img/avatars/ava.png" alt="" v-else>
+                                        <img src="/img/avatars/ava.png" alt="avatar" v-else>
                                     </div>
                                     <div class="di-info-about-seller">
                                         <h3><a :href="'/shop/' + product.user_shop.slug">{{product.user_shop.name}}</a></h3>
@@ -475,13 +475,13 @@
                                     <p>{{translate.delivery}}</p>
                                     <div class="all-post-list">
                                         <div class="single-post-list">
-                                            <img src="/img/payments/np.png" alt="">
+                                            <img src="/img/payments/np.png" alt="nova_poshta">
                                         </div>
                                         <div class="single-post-list">
-                                            <img src="/img/payments/int.png" alt="">
+                                            <img src="/img/payments/int.png" alt="intime">
                                         </div>
                                         <div class="single-post-list">
-                                            <img src="/img/payments/up.png" alt="">
+                                            <img src="/img/payments/up.png" alt="ukr_poshta">
                                         </div>
                                     </div>
                                 </div>
@@ -489,16 +489,16 @@
                                     <p>Оплата</p>
                                     <div class="all-payment-list">
                                         <div class="single-payment">
-                                            <img src="/img/payments/webmoney.png" alt="">
+                                            <img src="/img/payments/webmoney.png" alt="webmoney">
                                         </div>
                                         <div class="single-payment">
-                                            <img src="/img/payments/visa.png" alt="">
+                                            <img src="/img/payments/visa.png" alt="visa">
                                         </div>
                                         <div class="single-payment">
-                                            <img src="/img/payments/mcard.png" alt="">
+                                            <img src="/img/payments/mcard.png" alt="mastercard">
                                         </div>
                                         <div class="single-payment">
-                                            <img src="/img/payments/pp.png" alt="">
+                                            <img src="/img/payments/pp.png" alt="paypal">
                                         </div>
                                     </div>
                                 </div>
@@ -532,7 +532,7 @@
                                             <div class="single-product" v-for="product in data.suggestions">
                                                 <div class="img-wrap">
                                                     <a :href="'/shop/' + product.user_shop.slug + '/' + product.slug">
-                                                        <img :src="'../../' + product.default_picture" alt="">
+                                                        <img :src="'../../' + product.default_picture" alt="product">
                                                     </a>
                                                 </div>
                                                 <div class="detail-wrap">
@@ -618,7 +618,7 @@
                                         <div class="single-answer" v-for="review in reviews">
                                             <div class="comment-head">
                                                 <div class="logo-user">
-                                                    <img :src=review.user.profile_photo alt="">
+                                                    <img :src=review.user.profile_photo alt="logo-user">
                                                     <!--<img src="/img/avatars/ava.png" alt="">-->
                                                 </div>
                                                 <div v-if="review.user" class="star-rating-wrap">
@@ -642,7 +642,7 @@
                                             <div class="comment-answer" v-for="answer in review.answers">
                                                 <div class="comment-head">
                                                     <div class="logo-user">
-                                                        <img :src=answer.user.profile_photo alt="">
+                                                        <img :src=answer.user.profile_photo alt="logo-user">
                                                     </div>
                                                     <div class="star-rating-wrap">
                                                         <p class="user-name">{{answer.user.first_name + ' ' + answer.user.last_name}}</p>
@@ -670,7 +670,7 @@
                 <div class="single-market" v-for="store in data.otherProducts">
                     <div class="logo-shop-wrap">
                         <a :href="'/shop/' + store.user_shop.slug + '/' + store.slug">
-                            <img :src="'../../' + store.default_picture" alt="">
+                            <img :src="'../../' + store.default_picture" alt="logo-shop">
                         </a>
                         <!--<img src="/img/avatars/ava.png" alt="" v-else>-->
                     </div>

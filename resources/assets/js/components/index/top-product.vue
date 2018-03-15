@@ -10,7 +10,7 @@
             <div class="all-products-list">
                 <div class="single-product" v-for="product in allProducts.data">
                     <div class="img-wrap">
-                        <a :href="product.url"><img :src="product.default_picture" alt=""></a>
+                        <a :href="product.url"><img :src="product.default_picture" alt="product"></a>
                     </div>
                     <div class="detail-wrap">
                         <p class="product-title">
