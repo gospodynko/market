@@ -89,7 +89,7 @@
                     </div>
                 </div>
                 <div class="filter-products">
-                    <h4 id="sum-h">Всього магазинів: {{shopData.data.length}} </h4>
+                    <h4 id="sum-h">Всього магазинів: {{shopData.total}} </h4>
                     <div class="sort-view">
                         <div class="filters">
                             <h4>тип сортування:</h4>
@@ -100,9 +100,20 @@
                         </div>
                         <div class="view">
                             <h4>Вид:</h4>
-                            <span><a href="#" class="grid" :class="{'active': !showListShop}" @click.prevent="showListShop = false"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24"><defs><path id="a" d="M3538 483v-5h5v5zm0 8v-5h5v5zm0 8v-5h5v5zm8-16v-5h5v5zm0 8v-5h5v5zm0 8v-5h5v5zm8-16v-5h5v5zm0 8v-5h5v5zm0 8v-5h5v5z"/></defs><g transform="translate(-3536 -476)"><use fill="#1dd659" xlink:href="#a"/></g></svg></a></span>
-                            <span><a href="#" class="table" :class="{'active': showListShop}" @click.prevent="showListShop = true">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18" version="1.1">
+                            <span>
+                                <a href="#" class="grid" :class="{'active': !showListShop}" @click.prevent="showListShop = false">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+                                        <defs><path id="a" d="M3538 483v-5h5v5zm0 8v-5h5v5zm0 8v-5h5v5zm8-16v-5h5v5zm0 8v-5h5v5zm0 8v-5h5v5zm8-16v-5h5v5zm0 8v-5h5v5zm0 8v-5h5v5z"/>
+                                        </defs>
+                                        <g transform="translate(-3536 -476)">
+                                            <use fill="#1dd659" xlink:href="#a"/>
+                                        </g>
+                                    </svg>
+                                </a>
+                            </span>
+                            <span>
+                                <a href="#" class="table" :class="{'active': showListShop}" @click.prevent="showListShop = true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18" version="1.1">
                                     <title>Group2</title>
                                     <desc>Created using Figma</desc>
                                     <g id="Canvas" transform="translate(6590 1075)">
@@ -132,7 +143,8 @@
                                     <path id="path1_fill" d="M 11 0L 0 0L 0 4L 11 4L 11 0Z"/>
                                     </defs>
                                 </svg>
-                            </a></span>
+                                </a>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -161,7 +173,7 @@
                                     <div class="detail-prod-wrap">
                                         <div class="feedback-wrap">
                                             <div class="rating-wrap">
-                                                <star-rating :star-size="20" :increment="0.01" :rating=shop.rate :read-only="true" :show-rating="false"></star-rating>
+                                                <star-rating :star-size="15" :increment="0.01" :rating=shop.rate :read-only="true" :show-rating="false"></star-rating>
                                             </div>
                                             <div class="count-feedback-wrap">
                                                 <a :href="shop.url">0 Відгуків</a>
@@ -218,21 +230,21 @@
 //                categoryProducts: this.data.shop,
                 page: this.shopList.current_page - 1,
                 showListShop: false,
-                showMenu: false,
+                showMenu: true,
                 showShops: false,
                 sortTypesShop: [
-                    {
-                        id: 1,
-                        type: 'desc',
-                        slug: 'price',
-                        name: 'Ціна: Від більшої до меншої'
-                    },
-                    {
-                        id: 2,
-                        type: 'asc',
-                        slug: 'price',
-                        name: 'Ціна: Від меншої до більшої'
-                    },
+                    // {
+                    //     id: 1,
+                    //     type: 'desc',
+                    //     slug: 'price',
+                    //     name: 'Ціна: Від більшої до меншої'
+                    // },
+                    // {
+                    //     id: 2,
+                    //     type: 'asc',
+                    //     slug: 'price',
+                    //     name: 'Ціна: Від меншої до більшої'
+                    // },
                     {
                         id: 3,
                         type: 'desc',

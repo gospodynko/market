@@ -321,6 +321,18 @@
 .svg-search-btn, .svg-login-480, .svg-burger-menu-480, .svg-logo-market-480, .img-logo-480 {
     display: none;
 }
+  .catalogue-wrap .menu-wrap .search-wrap .actions-wrap .all-shops-btn .btn {
+    width: 100%;
+    background: #48a2ff;
+    border: 1px solid #2d92fa;
+    border-radius: 4px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #fff;
+    height: 40px;
+    line-height: 40px;
+    padding: 10px;
+  }
 }
 //мобильные устройства
 @media screen and (max-width:1023px){
@@ -393,9 +405,102 @@
     overflow: scroll;
     left: auto;
     width: 90%;
-    height: 100%;
+    height: calc(100% - 80px);
     z-index: 9;
     transition: all 0.5s ease-in-out 0s, visibility 0s linear 0.5s, z-index 0s linear 0.01s;
+    li {
+      .item {
+        height: auto;
+        padding-bottom: 20px;
+        p {
+          display: block;
+        }
+        .svg-login-480 {
+          fill: white;
+          display: block;
+        }
+        img {
+          width: 45px;
+          height: 45px;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          border-radius: 50%;
+        }
+        .user-wrap {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          margin-top: 20px;
+          span {
+            display: flex;
+            margin-top: 20px;
+            cursor: pointer;
+            color: #444;
+            font-size: 16px;
+            line-height: 20px;
+            .svg-user-exit {
+              padding-right: 20px;
+            }
+          }
+        }
+        i {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          vertical-align: sub;
+          margin-right: 10px;
+        }
+        .badge {
+          position: absolute;
+          top: -8px;
+          left: 15px;
+          width: 18px;
+          height: 18px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          border-radius: 50%;
+          background: #2d92fa;
+          color: #ffffff;
+          font-size: 12px;
+        }
+        p, a {
+          color: $gray-dark;
+        }
+        .city > i {
+          background: url("../img/header/place.svg") no-repeat center;
+          -webkit-background-size: 14px;
+          background-size: 14px;
+        }
+        .shop > i {
+          background: url("../img/header/market.svg") no-repeat center;
+          -webkit-background-size: 25px;
+          background-size: 25px;
+        }
+        .basket {
+          position: relative;
+          display: flex;
+          p {
+            position: absolute;
+            left: 40px;
+            top: -10px;
+          }
+        }
+        .basket > i {
+          background: url("../img/header/ko.svg") no-repeat center;
+          -webkit-background-size: 25px;
+          background-size: 25px;
+        }
+      }
+    }
+    #user-menu-hidden-filter {
+      border-bottom: 1px solid lightgray;
+    }
+    #exit-hidden-filter {
+      border-top: 1px solid lightgray;
+    }
     .close-menu-xs{
       display: inline-block;
       font-size: 20px;
@@ -454,9 +559,11 @@
     .site-menu{
       width: 95%;
       display: flex;
-      justify-content: space-between;
+      //justify-content: space-between;
+      justify-content: center;
       align-items: center;
       .item{
+        display: none;
         p{
           display: none;
         }
@@ -522,13 +629,14 @@
           position: relative;
         }
         .basket > i{
-          background: url("../img/header/ko_480.png") no-repeat center;
+          background: url("../img/header/ko.svg") no-repeat center;
           -webkit-background-size:25px;
           background-size:25px;
         }
       }
     }
   }
+
   .catalogue-wrap{
     width: 100%;
     max-width: 1024px;
@@ -612,10 +720,6 @@
   .all-menu-list{
     display: none;
   }
-  .header .left .logo .img-logo-480 {
-    display: block;
-    width: 170px;
-  }
   .catalogue-wrap .menu-wrap .search-wrap .actions-wrap{
     .search-action-wrap {
       width: 68%;
@@ -630,7 +734,35 @@
        }
      }
   }
+  .btn{
+      width: 45px;
+      height: 45px;
+      display: inline-block;
+      border: 1px solid $green;
+      background: $green-btn;
+      color: $white;
+      margin-left: -5px;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      font-size: 18px;
+      line-height: 45px;
+      text-align: center;
+  }
+}
+//мобильные устройства
+@media screen and (max-width:479px){
+  .catalogue-wrap .menu-wrap .search-wrap .actions-wrap .all-shops-btn .btn {
+    font-size: 13px;
+  }
+  .shop-wrap {
+    .shop-page-content {
+      padding: 0 10px!important;
+    }
+    .sort-view .filters select {
+      font-size: 12px;
+    }
+  }
   .header .left .logo .img-logo-480 {
-    width: 100%;
+    width: 150%;
   }
 }

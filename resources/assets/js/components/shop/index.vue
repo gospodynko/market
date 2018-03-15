@@ -37,6 +37,18 @@
         <div class="overlay-burger" :class="{'open': showShop}" @click="shopClick"></div>
         <!-- End filter -->
         <div class="content">
+            <div class="partners-egap-company">
+                <div class="info-partners">
+                    <p class="desktop-banner-egap">Завдяки Швейцарсько-українській програмі EGAP «Електронне врядування задля підзвітності влади та участі громади», що виконується Фондом Східна Європа та партнерами, «АгроЯрд Маркет» працює та самовдосконалюється для Вас.</p>
+                    <p class="mobile-banner-egap">При підтримці Швейцарсько-української програми
+                        <a class="link_egap" href="http://egap.in.ua/"> EGAP </a>
+                        проект «АгроЯрд Маркет» працює для Вас
+                    </p>
+                    <a class="logo_egap" href="http://egap.in.ua/">
+                        <img src="/img/footer/egap.png" title="Натисність для переходу на сайт EGAP!" alt="Логотип сайту EGAP" />
+                    </a>
+                </div>
+            </div>
             <div class="agro-info">
                 <div class="agro-logo">
                     <img :src="shop.logo" :alt="shop.name">
@@ -218,7 +230,6 @@
     </div>
     </div>
 </template>
-
 <script type="text/babel">
     import VueLadda from 'vue-ladda'
     import StarRating from 'vue-star-rating';

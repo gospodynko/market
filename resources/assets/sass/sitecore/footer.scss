@@ -81,6 +81,8 @@
         align-items: center;
         justify-content: center;
         height: 100%;
+        padding: 0 20px;
+        box-sizing: border-box;
         .left,.right{
           width: 50%;
           height: 100%;
@@ -90,6 +92,39 @@
             color: #ffffff;
             font-size: 15px;
             font-weight: 400;
+          }
+        }
+      }
+    }
+    .partners{
+      background: #36ad5c;
+      width: 100%;
+      .info-partners{
+          width: 100%;
+          max-width: 1200px;
+          margin:  0 auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 20px;
+          box-sizing: border-box;
+          p{
+            color: #ffffff;
+            font-size: 15px;
+            font-weight: 400;
+            padding-right: 20px;
+            text-align: justify;
+            word-wrap:  break-word;
+          }
+        a{
+          display: block;
+          width: auto;
+          height: auto;
+          &:hover{
+            cursor: pointer;
+          }
+          img{
+            border-radius: 6px;
           }
         }
       }
@@ -215,5 +250,55 @@
   .main-footer-block{
     margin: 0 calc((100% - 350px)/2);
     width: 350px;
+  }
+  .partners{
+    background: #36ad5c;
+    margin: 20px 10%;
+    width: 80%;
+    .info-partners{
+      width: 100%;
+      max-width: 1200px;
+      margin:  0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      box-sizing: border-box;
+      p{
+        color: #ffffff;
+        font-size: 15px;
+        font-weight: 400;
+        padding-bottom: 20px;
+        text-align: justify;
+        word-wrap:  break-word;
+      }
+      a{
+        display: block;
+        width: auto;
+        height: auto;
+        &:hover{
+          cursor: pointer;
+        }
+        img{
+          border-radius: 6px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width:350px){
+  .main-footer-block {
+    margin: 0 auto;
+    width: 320px;
+    .site-naw-wrap-left{
+      width: 50%;
+    }
+    .site-naw-wrap-right{
+      width: 50%;
+    }
+  }
+  .head-footer-wrap-mobile .main-footer-block .head-footer-menu {
+    margin-left: 20px;
   }
 }

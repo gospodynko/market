@@ -47,6 +47,14 @@
                     </div>
                 </div>
             </div>
+            <div class="partners">
+                <div class="info-partners">
+                    <p>При підтримці Швейцарсько-української програми EGAP проект «АгроЯрд Маркет» працює для Вас</p>
+                    <a class="logo_egap" href="http://egap.in.ua/" title="Перейти на сайт EGAP!">
+                        <img src="/img/footer/egap.png" title="Натисність для переходу на сайт EGAP!" alt="Логотип сайту EGAP" />
+                    </a>
+                </div>
+            </div>
             <div class="bottom-footer-detail">
                 <div class="all-det-wrap">
                     <div class="left">
@@ -134,6 +142,14 @@
                         <div class="soc-ico">
                             <a href="https://www.facebook.com/agroyard/">
                             <img class="img-fb-social-network" src="/img/footer/fb.png" alt="facebook">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="partners">
+                        <div class="info-partners">
+                            <p>При підтримці Швейцарсько-української програми EGAP проект «АгроЯрд Маркет» працює для Вас</p>
+                            <a class="logo_egap" href="http://egap.in.ua/" title="Перейти на сайт EGAP!">
+                                <img src="/img/footer/egap.png" title="Натисність для переходу на сайт EGAP!" alt="Логотип сайту EGAP" />
                             </a>
                         </div>
                     </div>

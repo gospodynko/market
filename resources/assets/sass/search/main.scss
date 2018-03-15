@@ -3,7 +3,7 @@
   .search-wrap{
     width: 100%;
     max-width: 1315px;
-    margin: 0 auto;
+    margin: 20px auto;
   }
   .info-search-head-wrap{
     height: 100%;
@@ -25,6 +25,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 20px;
       div{
         height: 40px;
       }
@@ -444,6 +445,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      margin-bottom: 20px;
       div{
         height: 40px;
       }
@@ -602,8 +604,9 @@
           display: flex;
           justify-content: space-between;
           align-items: center;
-          margin-right: 15px;
-          width: 100%;
+          margin-right: 0;
+          max-width: 200px;
+          width: 80%;
           .name {
             font-size: 13px;
             font-weight: 500;
@@ -893,5 +896,39 @@
     -webkit-box-align: center;
     align-items: center;
     margin: 0 auto;
+  }
+  .search-sect .search-wrap .search-content-wrap{
+    margin-top: 0;
+    .chose-filters-head {
+      border: 0;
+      height: auto;
+      h3 {
+        margin: 20px;
+      }
+      .all-chose-filters .single-filter .close {
+        display: none;
+      }
+      .all-chose-filters .single-filter .name{
+        margin-right: 0;
+        padding: 0;
+      }
+    }
+  }
+}
+//мобильные устройства
+@media screen and (max-width:479px) {
+  .search-content-wrap {
+    .chose-filters-head {
+      h3 {
+        font-size: 12px;
+        width: 100px;
+      }
+     .all-chose-filters {
+        width: 50%;
+     }
+    }
+    .footer-search-wrap .paginate-wrap .paginate li a {
+      padding: 10px 7px;
+    }
   }
 }
