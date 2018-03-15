@@ -1,7 +1,6 @@
 <template>
     <div>
         <div class="cart-blocked-wrap" :class="{'show': showCart}">
-
             <div class="cart-wrap">
                 <span class="close" @click="closeCart()"></span>
                 <div class="cart-list-wrap">
@@ -29,7 +28,6 @@
                             </div>
                             <div class="title-wrap">
                                 <h2><a :href="'/' + cartItem.product.url">{{cartItem.store.name}}</a></h2>
-
                                 <div class="content">
                                     <p>Магазин {{cartItem.store.user_shop.name}}</p>
                                     <star-rating :star-size="20" :increment="0.01" :rating=cartItem.product.rate :read-only="true" :show-rating="false"></star-rating>
@@ -38,7 +36,9 @@
                             <div class="price-wrap">
                                 <p class="price-title">{{numberWithSpaces(+cartItem.store.price * cartItem.store.store_count)}} {{cartItem.store.currency.name}}</p>
                                 <div class="count-items-wrap">
-                                    <span @click="changeCount('minus', cartItem)">-</span><input type="text" :value="cartItem.store.store_count" pattern="[0-9]{,3}" disabled="disabled"><span class="to" @click="changeCount('plus', cartItem)">+</span>
+                                    <span @click="changeCount('minus', cartItem)">-</span>
+                                    <input type="text" :value="cartItem.store.store_count" pattern="[0-9]{,3}" disabled="disabled">
+                                    <span class="to" @click="changeCount('plus', cartItem)">+</span>
                                 </div>
                                 <!--<span class="close" @click="delFromCart(cartItem)"></span>-->
                             </div>
@@ -60,7 +60,7 @@
         </div>
         <div class="overlay-cart-blocked-wrap" :class="{'show': showCart}" @click="closeCart"></div>
     </div>
-   </template>
+</template>
 
 <script type="text/babel">
     import starRating from 'vue-star-rating';

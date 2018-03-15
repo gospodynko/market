@@ -2,7 +2,6 @@
     <section class="cart-checkout-sect">
         <div class="cart-checkout-wrap" v-if="!showSuccess">
             <div class="breadcrumbs"></div>
-
             <div class="all-items-cart-wrap">
                 <div class="checkout-user-wrap">
                     <h2>{{translate.goods_in_cart}}</h2>
@@ -101,7 +100,6 @@
                         <textarea name="" id="" cols="30" rows="10" v-model="checkedItem.data.delivery.delivery_comment" :class="{'error': errors.delivery_comment}"></textarea>
                     </div>
                 </div>
-
                 <div class="end-section">
                     <div class="two-wrap">
                         <div class="left">
@@ -116,19 +114,14 @@
             </div>
         </div>
         <div class="cart-checkout-success-wrap" v-if="showSuccess">
-            <div class="breadcrumbs">
-
-            </div>
-
+            <div class="breadcrumbs"></div>
             <div class="success-wrap">
                 <div class="head">
                     <div class="left">
                         <p>{{translate.order}} №1</p>
                     </div>
                     <div class="right">
-                        <p>
-                            {{translate.success_text}}
-                        </p>
+                        <p>{{translate.success_text}}</p>
                         <p>{{translate.buyer_action}}</p>
                     </div>
                 </div>

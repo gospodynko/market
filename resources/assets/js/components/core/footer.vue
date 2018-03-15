@@ -49,9 +49,9 @@
             </div>
             <div class="partners">
                 <div class="info-partners">
-                    <p>Завдяки Швейцарсько-українській програмі EGAP «Електронне врядування задля підзвітності влади та участі громади», що виконується Фондом Східна Європа та партнерами, «АгроЯрд Маркет» працює та самовдосконалюється для Вас.</p>
+                    <p>При підтримці Швейцарсько-української програми EGAP проект «АгроЯрд Маркет» працює для Вас</p>
                     <a class="logo_egap" href="http://egap.in.ua/" title="Перейти на сайт EGAP!">
-                        <img src="/img/footer/egap.png"/>
+                        <img src="/img/footer/egap.png" title="Натисність для переходу на сайт EGAP!" alt="Логотип сайту EGAP" />
                     </a>
                 </div>
             </div>
@@ -147,9 +147,9 @@
                     </div>
                     <div class="partners">
                         <div class="info-partners">
-                            <p> «АгроЯрд Маркет» працює та самовдосконалюється завдяки Швейцарсько-українській програмі EGAP </p>
+                            <p>При підтримці Швейцарсько-української програми EGAP проект «АгроЯрд Маркет» працює для Вас</p>
                             <a class="logo_egap" href="http://egap.in.ua/" title="Перейти на сайт EGAP!">
-                                <img src="/img/footer/egap.png"/>
+                                <img src="/img/footer/egap.png" title="Натисність для переходу на сайт EGAP!" alt="Логотип сайту EGAP" />
                             </a>
                         </div>
                     </div>

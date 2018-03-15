@@ -287,3 +287,18 @@
     }
   }
 }
+@media screen and (max-width:350px){
+  .main-footer-block {
+    margin: 0 auto;
+    width: 320px;
+    .site-naw-wrap-left{
+      width: 50%;
+    }
+    .site-naw-wrap-right{
+      width: 50%;
+    }
+  }
+  .head-footer-wrap-mobile .main-footer-block .head-footer-menu {
+    margin-left: 20px;
+  }
+}

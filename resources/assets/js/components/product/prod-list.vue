@@ -7,7 +7,6 @@
                 <img :src="'https://maps.googleapis.com/maps/api/staticmap?center=' + product.user_shop.company.address + '&zoom=13&size=600x300&maptype=roadmap&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=AIzaSyDsGaGMT-t0qFIwMM3j2nY0Hc5LcTmRNzY'" alt="">
             </div>
         </div>
-
         <div class="sps-contacts" v-if="showPhone">
             <div class="sps-contacts-header">
                 <span class="circle-close" @click.prevent="callShowPhone(false)">x</span>
@@ -123,7 +122,14 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="partners">
+                        <div class="info-partners">
+                            <p>Завдяки Швейцарсько-українській програмі EGAP «Електронне врядування задля підзвітності влади та участі громади», що виконується Фондом Східна Європа та партнерами, «АгроЯрд Маркет» працює та самовдосконалюється для Вас.</p>
+                            <a class="logo_egap" href="http://egap.in.ua/">
+                                <img src="/img/footer/egap.png" title="Натисність для переходу на сайт EGAP!" alt="Логотип сайту EGAP" />
+                            </a>
+                        </div>
+                    </div>
                     <div class="datail-service">
                         <div class="ds-pay">
                             <h3>Спосіб оплати</h3>
@@ -346,7 +352,6 @@
                                 <span class="di-header-id">id {{product.id}}</span>
                                 <span class="di-header-view" v-if="false">{{product.view_counts}}</span>
                             </div>
-
                             <div class="detail-description-title">
                                 <h1>{{product.name}}</h1>
                                 <div class="feedback-wrap two-wrap">
@@ -423,7 +428,14 @@
                                     {{translate.more}}
                                 </a>
                             </div>
-
+                            <div class="partners-egap">
+                                <div class="info-partners">
+                                    <p>Завдяки Швейцарсько-українській програмі EGAP «Електронне врядування задля підзвітності влади та участі громади», що виконується Фондом Східна Європа та партнерами, «АгроЯрд Маркет» працює та самовдосконалюється для Вас.</p>
+                                    <a class="logo_egap" href="http://egap.in.ua/">
+                                        <img src="/img/footer/egap.png" title="Натисність для переходу на сайт EGAP!" alt="Логотип сайту EGAP" />
+                                    </a>
+                                </div>
+                            </div>
                             <div class="detail-service">
                                 <div class="ds-pay">
                                     <h3>Спосіб оплати</h3>
