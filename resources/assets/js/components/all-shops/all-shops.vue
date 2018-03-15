@@ -100,9 +100,20 @@
                         </div>
                         <div class="view">
                             <h4>Вид:</h4>
-                            <span><a href="#" class="grid" :class="{'active': !showListShop}" @click.prevent="showListShop = false"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24"><defs><path id="a" d="M3538 483v-5h5v5zm0 8v-5h5v5zm0 8v-5h5v5zm8-16v-5h5v5zm0 8v-5h5v5zm0 8v-5h5v5zm8-16v-5h5v5zm0 8v-5h5v5zm0 8v-5h5v5z"/></defs><g transform="translate(-3536 -476)"><use fill="#1dd659" xlink:href="#a"/></g></svg></a></span>
-                            <span><a href="#" class="table" :class="{'active': showListShop}" @click.prevent="showListShop = true">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18" version="1.1">
+                            <span>
+                                <a href="#" class="grid" :class="{'active': !showListShop}" @click.prevent="showListShop = false">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+                                        <defs><path id="a" d="M3538 483v-5h5v5zm0 8v-5h5v5zm0 8v-5h5v5zm8-16v-5h5v5zm0 8v-5h5v5zm0 8v-5h5v5zm8-16v-5h5v5zm0 8v-5h5v5zm0 8v-5h5v5z"/>
+                                        </defs>
+                                        <g transform="translate(-3536 -476)">
+                                            <use fill="#1dd659" xlink:href="#a"/>
+                                        </g>
+                                    </svg>
+                                </a>
+                            </span>
+                            <span>
+                                <a href="#" class="table" :class="{'active': showListShop}" @click.prevent="showListShop = true">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18" version="1.1">
                                     <title>Group2</title>
                                     <desc>Created using Figma</desc>
                                     <g id="Canvas" transform="translate(6590 1075)">
@@ -132,7 +143,8 @@
                                     <path id="path1_fill" d="M 11 0L 0 0L 0 4L 11 4L 11 0Z"/>
                                     </defs>
                                 </svg>
-                            </a></span>
+                                </a>
+                            </span>
                         </div>
                     </div>
                 </div>

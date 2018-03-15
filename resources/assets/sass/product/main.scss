@@ -1059,6 +1059,18 @@ $light-gray: #d0d4dc;
     margin-top: -160px;
     z-index: 6;
   }
+
+  .single-prod-detail .detail-product-wrap .datail-service {
+    margin-top: 20px;
+  }
+
+  .single-prod-detail .detail-product-wrap .partners .info-partners{
+    margin-top: 40px;
+    display: flex;
+    background: #f5f7f8;
+    padding: 15px;
+    border-radius: 5px;
+  }
 }
 @media screen and (max-width:1023px) {
   .detail-product-wrap {
@@ -2395,6 +2407,31 @@ $light-gray: #d0d4dc;
             }
           }
         }
+      }
+    }
+  }
+
+  .detail-product-wrap-480 .detail-description .partners-egap .info-partners{
+    margin-top: 40px;
+    display: flex;
+    background: #f5f7f8;
+    padding: 15px;
+    border-radius: 6px;
+    flex-direction: column;
+    p{
+      text-align: justify;
+      padding-bottom: 20px;
+    }
+    a{
+      text-align: center;
+      display: block;
+      width: auto;
+      height: auto;
+      img{
+        border-radius: 6px;
+      }
+      &:hover{
+        cursor: pointer;
       }
     }
   }
