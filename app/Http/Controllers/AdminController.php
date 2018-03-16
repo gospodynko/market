@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Currency;
 use App\Models\DeliveryType;
 use App\Models\PayType;
+use App\Models\CreditAlliances;
 use App\Models\UserProductOffers;
 use App\Models\UserShops;
 use Illuminate\Http\Request;
@@ -210,6 +211,20 @@ class AdminController extends Controller
         return view('dashboard.sections.payment.create');
     }
 
+    public function allianceCreate()
+    {
+        return view('dashboard.sections.credits.create');
+    }
+
+    public function storeAlliance(Request $request)
+    {
+        CreditAlliances::create([
+            'title' => $request->input('title'),
+            'contacts' =>$request->input('contacts')
+        ]);
+        return response()->json(['message' => 'success'], 200);
+    }
+
     public function storePayment(Request $request)
     {
         PayType::create([
@@ -218,7 +233,6 @@ class AdminController extends Controller
         ]);
         return response()->json(['message' => 'success'], 200);
     }
-
     public function storeDelivery(Request $request)
     {
         DeliveryType::create([

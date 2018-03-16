@@ -28,11 +28,11 @@ Any item that is returned more than 30 days after delivery
 
 Refunds (if applicable)
 Once your return is received and inspected, we will send you an email to notify you that we have received your returned item. We will also notify you of the approval or rejection of your refund.
-If you are approved, then your refund will be processed, and a credit will automatically be applied to your credit card or original method of payment, within a certain amount of days.
+If you are approved, then your refund will be processed, and a credits will automatically be applied to your credits card or original method of payment, within a certain amount of days.
 
 Late or missing refunds (if applicable)
 If you haven’t received a refund yet, first check your bank account again.
-Then contact your credit card company, it may take some time before your refund is officially posted.
+Then contact your credits card company, it may take some time before your refund is officially posted.
 Next contact your bank. There is often some processing time before a refund is posted.
 If you’ve done all of this and you still have not received your refund yet, please contact us at [ [ email@email.com ] ].
 
@@ -43,7 +43,7 @@ Exchanges (if applicable)
 We only replace items if they are defective or damaged.  If you need to exchange it for the same item, send us an email at [ [ email@email.com ] ] and send your item to: [ [  Address ] ] [ [ City ] ] [ [ State ] ] [ [ Country ] ] [ [ PostCode ] ].
 
 Gifts
-If the item was marked as a gift when purchased and shipped directly to you, you’ll receive a gift credit for the value of your return. Once the returned item is received, a gift certificate will be mailed to you.
+If the item was marked as a gift when purchased and shipped directly to you, you’ll receive a gift credits for the value of your return. Once the returned item is received, a gift certificate will be mailed to you.
 
 If the item wasn’t marked as a gift when purchased, or the gift giver had the order shipped to themselves to give to you later, we will send a refund to the gift giver and he will find out about your return.
 
@@ -83,7 +83,7 @@ SECTION 2 - CONSENT
 
 How do you get my consent?
 
-When you provide us with personal information to complete a transaction, verify your credit card, place an order, arrange for a delivery or return a purchase, we imply that you consent to our collecting it and using it for that specific reason only.
+When you provide us with personal information to complete a transaction, verify your credits card, place an order, arrange for a delivery or return a purchase, we imply that you consent to our collecting it and using it for that specific reason only.
 
 If we ask for your personal information for a secondary reason, like marketing, we will either ask you directly for your expressed consent, or provide you with an opportunity to say no.
 
@@ -116,7 +116,7 @@ Payment:
 
 All direct payment gateways adhere to the standards set by PCI-DSS as managed by the PCI Security Standards Council, which is a joint effort of brands like Visa, MasterCard, American Express and Discover.
 
-PCI-DSS requirements help ensure the secure handling of credit card information by our store and its service providers.
+PCI-DSS requirements help ensure the secure handling of credits card information by our store and its service providers.
 
 
 
@@ -149,7 +149,7 @@ SECTION 6 - SECURITY
 
 To protect your personal information, we take reasonable precautions and follow industry best practices to make sure it is not inappropriately lost, misused, accessed, disclosed, altered or destroyed.
 
-If you provide us with your credit card information, the information is encrypted using secure socket layer technology (SSL) and stored with a AES-256 encryption.  Although no method of transmission over the Internet or electronic storage is 100% secure, we follow all PCI-DSS requirements and implement additional generally accepted industry standards.
+If you provide us with your credits card information, the information is encrypted using secure socket layer technology (SSL) and stored with a AES-256 encryption.  Although no method of transmission over the Internet or electronic storage is 100% secure, we follow all PCI-DSS requirements and implement additional generally accepted industry standards.
 
 
 
@@ -237,7 +237,7 @@ SECTION 2 - GENERAL CONDITIONS
 
 We reserve the right to refuse service to anyone for any reason at any time.
 
-You understand that your content (not including credit card information), may be transferred unencrypted and involve (a) transmissions over various networks; and (b) changes to conform and adapt to technical requirements of connecting networks or devices. Credit card information is always encrypted during transfer over networks.
+You understand that your content (not including credits card information), may be transferred unencrypted and involve (a) transmissions over various networks; and (b) changes to conform and adapt to technical requirements of connecting networks or devices. Credit card information is always encrypted during transfer over networks.
 
 You agree not to reproduce, duplicate, copy, sell, resell or exploit any portion of the Service, use of the Service, or access to the Service or any contact on the website through which the service is provided, without express written permission by us.
 
@@ -285,11 +285,11 @@ SECTION 6 - ACCURACY OF BILLING AND ACCOUNT INFORMATION
 
 
 
-We reserve the right to refuse any order you place with us. We may, in our sole discretion, limit or cancel quantities purchased per person, per household or per order. These restrictions may include orders placed by or under the same customer account, the same credit card, and/or orders that use the same billing and/or shipping address. In the event that we make a change to or cancel an order, we may attempt to notify you by contacting the e-mail and/or billing address/phone number provided at the time the order was made. We reserve the right to limit or prohibit orders that, in our sole judgment, appear to be placed by dealers, resellers or distributors.
+We reserve the right to refuse any order you place with us. We may, in our sole discretion, limit or cancel quantities purchased per person, per household or per order. These restrictions may include orders placed by or under the same customer account, the same credits card, and/or orders that use the same billing and/or shipping address. In the event that we make a change to or cancel an order, we may attempt to notify you by contacting the e-mail and/or billing address/phone number provided at the time the order was made. We reserve the right to limit or prohibit orders that, in our sole judgment, appear to be placed by dealers, resellers or distributors.
 
 
 
-You agree to provide current, complete and accurate purchase and account information for all purchases made at our store. You agree to promptly update your account and other information, including your email address and credit card numbers and expiration dates, so that we can complete your transactions and contact you as needed.
+You agree to provide current, complete and accurate purchase and account information for all purchases made at our store. You agree to promptly update your account and other information, including your email address and credits card numbers and expiration dates, so that we can complete your transactions and contact you as needed.
 
 
 

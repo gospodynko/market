@@ -24,6 +24,7 @@ import AdminBannersCreate from './components/dashboard/banners/create.vue';
 import CartCheckoutVue from './components/cart/cart-checkout.vue';
 import PaymentsCreate from './components/dashboard/payments/create.vue';
 import DeliveriesCreate from './components/dashboard/deliveries/create.vue';
+import CreditsCreate from './components/dashboard/credits/create.vue';
 import ProductCreate from './components/dashboard/products/create.vue';
 import AdminProductEdit from './components/dashboard/products/edit.vue';
 import AdminUserProductEdit from './components/dashboard/products/user-edit.vue';
@@ -67,6 +68,7 @@ const app = new Vue({
         PaymentsList,
         PaymentsCreate,
         DeliveriesCreate,
+        CreditsCreate,
         ProductCreate,
         DashboardCategoriesEdit,
         AdminProductEdit,
