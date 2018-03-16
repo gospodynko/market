@@ -8,19 +8,6 @@
                         <div class="left">
                             <h2>{{translate.cart_goods}}</h2>
                         </div>
-                    </div>
-                </div>
-                <div class="cart-detail-list">
-                    <div v-if="!cartItems || !cartItems.length">
-                        <h3 class="empty-basket">В корзині немає товарів. Але ви можете це виправити.</h3>
-                    </div>
-                    <div class="single-item-cart" v-for="cartItem in cartItems" v-else>
-                        <span class="close" @click="delFromCart(cartItem)"></span>
-                        <div class="logo-wrap-xs">
-                            <img :src="cartItem.store.default_picture" :alt="cartItem.store.name">
-                        </div>
-                        <div class="logo-wrap">
-                            <img :src="cartItem.store.default_picture" :alt="cartItem.store.name">
                         <div class="right">
                             <div class="count-purchases" v-if="cartItems">
                                 <p>{{translate.together}}: <span>{{cartItems.length}}</span> {{translate.goods}}</p>

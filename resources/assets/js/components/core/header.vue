@@ -5,9 +5,9 @@
         <cart-blocked :translate="cartTranslate"></cart-blocked>
         <!--<noselect-user :user="user" v-if="user && user.role == 'noselect'"></noselect-user>-->
         <!--<div class="shops-popup-wrap" v-if="showPopup">-->
-            <!--<span class="close" @click="showPopupFunc"></span>-->
-            <!--<h2>{{translate.popup_catalog}}</h2>-->
-            <!--<p>Скоро вiдкриття!</p>-->
+        <!--<span class="close" @click="showPopupFunc"></span>-->
+        <!--<h2>{{translate.popup_catalog}}</h2>-->
+        <!--<p>Скоро вiдкриття!</p>-->
         <!--</div>-->
         <div class="header">
             <div class="two-wrap">
@@ -55,8 +55,8 @@
                     </div>
                     <div class="logo">
                         <a href="/">
-                           <img class="img-logo-480" src="/img/header/logo_480.svg" alt="img-logo-480">
-                           <img class="img-logo-1024" src="/img/header/logo.svg" alt="img-logo-1024">
+                            <img class="img-logo-480" src="/img/header/logo_480.svg" alt="">
+                            <img class="img-logo-1024" src="/img/header/logo.svg" alt="">
                         </a>
                     </div>
                 </div>
@@ -79,7 +79,7 @@
                         </div>
                         <div class="item">
                             <div class="user-wrap" v-if="user">
-                                <img src="/img/avatars/ava.png" alt="avatar" class="avatar">
+                                <img src="/img/avatars/ava.png" alt="" class="avatar">
                                 <span class="logout" @click="logout">{{translate.exit}}</span>
                             </div>
                             <a href="/login" v-else>
@@ -155,9 +155,6 @@
                             <img src="/img/header/arrow-down.png" alt="">
                         </div>
                     </div>
-                    <div class="open-btn" :class="{'open': showSubGroup}" @click="showSub(k, category)">
-                        <img src="/img/header/arrow-down.png" alt="arrow-down">
-                    </div>
                     <ul class="mini-cat" :class="{'open': showSubGroup === k + 1}" v-if="checkedCat && showSubGroup === k + 1">
                         <li class="mini-cat-li" v-for="subCategory in subCategories" >
                             <a :href="'/category/'+checkedCat.slug+'/'+subCategory.slug">
@@ -214,7 +211,7 @@
                 </li>
             </ul>
             <div class="close-menu-xs" @click="menuClickxs">
-                <img src="/img/header/arrow_white.png" alt="arrow_white">
+                <img src="/img/header/arrow_white.png" alt="">
             </div>
         </div>
         <div class="overlay-burger" :class="{'open': showMenuxs}" @click="menuClickxs"></div>
@@ -300,10 +297,10 @@
                                 </label>
                             </form>
                         </div>
-                        <div class="all-shops-btn">
+                        <div class="all-shops-btn" @click="allShopsPage">
+                            <a href="#" class="btn">{{translate.all_shops}}</a>
                             <!--<button class="btn" @click="showPopupFunc">{{translate.all_shops}}</button>-->
-                            <a href="/all-shops"><button class="btn"> {{translate.all_shops}}</button></a>
-
+                            <!--<a href="/all-shops"><button class="btn"> {{translate.all_shops}}</button></a>-->
                         </div>
                     </div>
                 </div>
