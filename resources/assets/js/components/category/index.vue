@@ -27,7 +27,8 @@
                             </div>
                             <div class="single-product" style="width: 23.5%; " v-for="product in categoryProducts.data">
                                 <div class="img-wrap">
-                                    <a :href="'/' + product.url"><img :src="product.default_picture" :alt="product.name"></a>
+                                    <a :href="'/' + product.url">
+                                        <img :src="product.default_picture" :alt="product.name"></a>
                                 </div>
                                 <div class="detail-wrap">
                                     <p class="product-title">
