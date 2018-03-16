@@ -142,11 +142,11 @@
 
                         <div class="del-pay">
                             <h3>Доставка</h3>
-                        <ul>
-                            <li v-for="del in product.delivery_types">
-                                <img :src=del.logo :alt=del.name :title="del.name">
-                            </li>
-                        </ul>
+                            <ul>
+                                <li v-for="del in product.delivery_types">
+                                    <img :src=del.logo :alt=del.name :title="del.name">
+                                </li>
+                            </ul>
                         </div>
                     </div>
 
@@ -278,10 +278,10 @@
                                             <p class="bold">
                                                 <!--<span class="bold">Сортировать: </span>-->
                                                 <!--<span>-->
-                                                    <!--по дате-->
+                                                <!--по дате-->
                                                 <!--</span>-->
                                                 <!--<span>-->
-                                                    <!--по оценке-->
+                                                <!--по оценке-->
                                                 <!--</span>-->
                                             </p>
                                         </div>
@@ -343,7 +343,7 @@
                     </div>
                 </div>
             </div>
-                <!-- ------- Mobile ------- -->
+            <!-- ------- Mobile ------- -->
             <div class="single-prod-detail-480">
                 <div class="single-prod-detail">
                     <div class="detail-product-wrap-480">
@@ -393,7 +393,7 @@
                             <!--<p class="show-all">еще 6</p>-->
                         </div>
                         <!--<div class="full-photo">-->
-                            <!--<img :src="checkImage" alt="">-->
+                        <!--<img :src="checkImage" alt="">-->
                         <!--</div>-->
                         <div class="product-options" v-if="false">
                             <div class="find-good">
@@ -750,7 +750,7 @@
                 }
             },
             callShowPhone (val) {
-              this.showPhone = !this.showPhone
+                this.showPhone = !this.showPhone
                 if (val) {
                     this.hiddenBody('open')
                 } else {
@@ -822,12 +822,12 @@
                     userBuys = [];
                 }
                 if(userBuys.length){
-                   userBuys.forEach(buy => {
-                       if(buy.store.id == item.id){
-                           ++buy.store.store_count;
-                           ++item.store_count;
-                       }
-                   })
+                    userBuys.forEach(buy => {
+                        if(buy.store.id == item.id){
+                            ++buy.store.store_count;
+                            ++item.store_count;
+                        }
+                    })
                 }
                 if(!item.store_count){
                     item.store_count = 1;

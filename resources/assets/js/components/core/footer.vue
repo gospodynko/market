@@ -25,6 +25,7 @@
                             <li><a href="https://agroyard.ua/auctions/all">{{translate.sell_crop}}</a></li>
                             <li><a href="https://agroyard.ua/classifieds/gsm?id=1">{{translate.adv}}</a></li>
                             <li><a href="https://agroyard.ua/auctions/all">{{translate.auction}}</a></li>
+                            <li><a href="/sitemap.xml">Карта сайту</a></li>
                             <!--<li><a href="#">{{translate.tenders}}</a></li>-->
                         </ul>
                     </div>
@@ -141,7 +142,7 @@
                         <h3>Соцсети</h3>
                         <div class="soc-ico">
                             <a href="https://www.facebook.com/agroyard/">
-                            <img class="img-fb-social-network" src="/img/footer/fb.png" alt="">
+                            <img class="img-fb-social-network" src="/img/footer/fb.png" alt="facebook">
                             </a>
                         </div>
                     </div>

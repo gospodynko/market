@@ -5,9 +5,9 @@
         <cart-blocked :translate="cartTranslate"></cart-blocked>
         <!--<noselect-user :user="user" v-if="user && user.role == 'noselect'"></noselect-user>-->
         <!--<div class="shops-popup-wrap" v-if="showPopup">-->
-            <!--<span class="close" @click="showPopupFunc"></span>-->
-            <!--<h2>{{translate.popup_catalog}}</h2>-->
-            <!--<p>Скоро вiдкриття!</p>-->
+        <!--<span class="close" @click="showPopupFunc"></span>-->
+        <!--<h2>{{translate.popup_catalog}}</h2>-->
+        <!--<p>Скоро вiдкриття!</p>-->
         <!--</div>-->
         <div class="header">
             <div class="two-wrap">

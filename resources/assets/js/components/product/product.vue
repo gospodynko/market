@@ -7,7 +7,7 @@
             <div class="single-prod-detail">
                 <div class="detail-shop-info">
                     <div class="logo-shop">
-                        <img src="/img/shop-logo/shop1.png" alt="">
+                        <img src="/img/shop-logo/shop1.png" alt="shop-logo">
                     </div>
                     <div class="detail-shop-wrap two-wrap">
                         <div class="left">
@@ -44,13 +44,13 @@
                 <div class="detail-product-wrap">
                     <div class="shop-gallery">
                         <div class="small-photos">
-                            <div class="single-small-photo active"><img src="/img/product-photos/drell-small.png" alt=""></div>
-                            <div class="single-small-photo"><img src="/img/product-photos/drell-small.png" alt=""></div>
-                            <div class="single-small-photo"><img src="/img/product-photos/drell-small.png" alt=""></div>
+                            <div class="single-small-photo active"><img src="/img/product-photos/drell-small.png" alt="small_photo"></div>
+                            <div class="single-small-photo"><img src="/img/product-photos/drell-small.png" alt="small_photo"></div>
+                            <div class="single-small-photo"><img src="/img/product-photos/drell-small.png" alt="small_photo"></div>
                             <p class="show-all">еще 6</p>
                         </div>
                         <div class="full-photo">
-                            <img src="/img/product-photos/drell-full.png" alt="">
+                            <img src="/img/product-photos/drell-full.png" alt="full_photo">
                         </div>
                         <div class="product-options">
                             <div class="find-good">
@@ -110,13 +110,13 @@
                                 <p>Доставка</p>
                                 <div class="all-post-list">
                                     <div class="single-post-list">
-                                        <img src="/img/payments/np.png" alt="">
+                                        <img src="/img/payments/np.png" alt="nova_poshta">
                                     </div>
                                     <div class="single-post-list">
-                                        <img src="/img/payments/int.png" alt="">
+                                        <img src="/img/payments/int.png" alt="in_time">
                                     </div>
                                     <div class="single-post-list">
-                                        <img src="/img/payments/up.png" alt="">
+                                        <img src="/img/payments/up.png" alt="ukr_poshta">
                                     </div>
                                 </div>
                             </div>
@@ -124,16 +124,16 @@
                                 <p>Оплата</p>
                                 <div class="all-payment-list">
                                     <div class="single-payment">
-                                        <img src="/img/payments/webmoney.png" alt="">
+                                        <img src="/img/payments/webmoney.png" alt="webmoney">
                                     </div>
                                     <div class="single-payment">
-                                        <img src="/img/payments/visa.png" alt="">
+                                        <img src="/img/payments/visa.png" alt="visa">
                                     </div>
                                     <div class="single-payment">
-                                        <img src="/img/payments/mcard.png" alt="">
+                                        <img src="/img/payments/mcard.png" alt="mastercard">
                                     </div>
                                     <div class="single-payment">
-                                        <img src="/img/payments/pp.png" alt="">
+                                        <img src="/img/payments/pp.png" alt="paypal">
                                     </div>
                                 </div>
                             </div>

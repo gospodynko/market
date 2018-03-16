@@ -20,7 +20,7 @@
                             <swiper-slide v-for="item in cartItems">
                                 <div class="single-product" @click="setItem(item)" :class="{'active': item.store.id == checketStoreId}">
                                     <div class="logo">
-                                        <img :src="item.product.default_picture" alt="">
+                                        <img :src="item.product.default_picture" :alt="item.product.name">
                                     </div>
                                     <div class="title">
                                         <p>{{getName(item.product.name)}}</p>
@@ -41,7 +41,7 @@
                     </div>
                     <div class="checked-product">
                         <div class="image-prod">
-                            <img :src="checkedItem.product.default_picture" alt="">
+                            <img :src="checkedItem.product.default_picture" :alt="product.name">
                         </div>
                         <div class="detail-description">
                             <div class="head">
@@ -129,7 +129,7 @@
                     <div class="product-list">
                         <div class="single-product">
                             <div class="logo-wrap">
-                                <img :src="checkedItem.product.default_picture" alt="">
+                                <img :src="checkedItem.product.default_picture" alt="logo">
                             </div>
                             <div class="product-wrap">
                                 <div class="head-product two-wrap">
