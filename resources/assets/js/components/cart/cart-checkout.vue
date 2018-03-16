@@ -41,7 +41,7 @@
                     </div>
                     <div class="checked-product">
                         <div class="image-prod">
-                            <img :src="checkedItem.product.default_picture" :alt="product.name">
+                            <img :src="checkedItem.product.default_picture" :alt="checkedItem.product.name">
                         </div>
                         <div class="detail-description">
                             <div class="head">
