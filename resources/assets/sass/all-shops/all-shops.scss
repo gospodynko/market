@@ -1253,8 +1253,13 @@ $greenBtn: #14c44d;
 @media screen and (max-width:479px){
   .shop-wrap .shop-page-content{
     .filter-products{
-      .sort-view .filters select {
-        width: 125px!important;
+      .sort-view .filters{
+        h4{
+          padding-left: 0;
+        }
+        select {
+          width: 125px!important;
+        }
       }
     }
     .shop-content-wrap{
