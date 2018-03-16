@@ -9,15 +9,23 @@
         <div class="col-lg-12">
             <table class="table table-hover">
                 <thead>
-                <th class="text-left">ID</th>
-                <th class="text-left">Название</th>
-                <th class="text-left">Контакты</th>
-                </thead>
+                    <th class="text-left">ID</th>
+                    <th class="text-left">Название</th>
+                    <th class="text-left">Контакты</th>
+                    </thead>
                 <tbody>
                 <tr v-for="credits in credits.data">
                     <td class="text-left">{{credits.id }}</td>
                     <td class="text-left">{{credits.title}}</td>
                     <td class="text-left">{{credits.contacts}}</td>
+                    <td class="text-center">
+                        <a :href="'/admin/credits/edit/'+credits.id" class="btn btn-primary btn-sm">
+                            <i class="glyphicon glyphicon-edit"></i>
+                        </a>
+                        <a :href="'/admin/credits/delete/'+credits.id" class="btn btn-primary btn-sm btn-danger">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </td>
                 </tr>
                 </tbody>
             </table>
