@@ -56,7 +56,7 @@ Route::group(['roles' => ['admin'], 'middleware' => ['auth', 'roles']], function
         Route::post('/create', 'AdminController@storeDelivery');
     });
     Route::group(['prefix' => 'admin/credits'], function (){
-//        Route::get('/', 'AdminController@paymentList');
+        Route::get('/', 'AdminController@allianceList');
         Route::get('/create', 'AdminController@allianceCreate');
         Route::post('/create', 'AdminController@storeAlliance');
     });

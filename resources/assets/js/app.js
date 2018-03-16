@@ -19,6 +19,7 @@ import AdminModeration from './components/dashboard/moderations/index.vue';
 import AdminModerationView from './components/dashboard/moderations/show.vue';
 import PaymentsList from './components/dashboard/payments/index.vue';
 import DeliveriesList from './components/dashboard/deliveries/index.vue';
+import CreditsList from './components/dashboard/credits/index.vue';
 import AdminBanners from './components/dashboard/banners/index.vue';
 import AdminBannersCreate from './components/dashboard/banners/create.vue';
 import CartCheckoutVue from './components/cart/cart-checkout.vue';
@@ -64,6 +65,7 @@ const app = new Vue({
         AdminBanners,
         AdminBannersCreate,
         CartCheckoutVue,
+        CreditsList,
         DeliveriesList,
         PaymentsList,
         PaymentsCreate,

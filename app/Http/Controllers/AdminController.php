@@ -194,6 +194,11 @@ class AdminController extends Controller
         $count_page = 15;
         return view('dashboard.sections.delivery.index', ['deliveries' => DeliveryType::paginate($count_page)]);
     }
+    public function allianceList()
+    {
+        $count_page = 15;
+        return view('dashboard.sections.credits.index', ['credits' => CreditAlliances::paginate($count_page)]);
+    }
 
     public function paymentList()
     {
