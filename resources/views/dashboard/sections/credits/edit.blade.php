@@ -3,5 +3,5 @@
 @section('sectionTitle')
 
 @section('content')
-    <credits-edit :credits="{{json_encode($credits)}}"></credits-edit>
+    <credits-edit :credit="{{json_encode($credit)}}"></credits-edit>
 @endsection

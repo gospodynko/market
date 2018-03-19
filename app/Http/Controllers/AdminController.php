@@ -363,7 +363,7 @@ class AdminController extends Controller
 
     public function editAlliance($id)
     {
-        return view('dashboard.sections.credits.edit' , ['credits'=> CreditAlliances::findOrFail($id)]);
+        return view('dashboard.sections.credits.edit' , ['credit'=> CreditAlliances::findOrFail($id)]);
     }
 
     public function updatePAlliance( $id)

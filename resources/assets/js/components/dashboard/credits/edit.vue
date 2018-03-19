@@ -6,11 +6,11 @@
                     <div class="panel-heading"><i class="glyphicon glyphicon-menu-right"></i>&nbsp Редактирование кредитного союза:</div>
                     <div class="panel-body">
                         <label>Название кредитного союза:</label>
-                        <input type="text" class="form-control"  v-model="title">
+                        <input type="text" class="form-control"  v-model="creditData.title">
                     </div>
                     <div class="panel-body">
                         <label>Контакты:</label>
-                        <input type="text" class="form-control"  v-model="contacts">
+                        <input type="text" class="form-control"  v-model="creditData.contacts">
                     </div>
                 </div>
             </div>
@@ -33,13 +33,13 @@
     export default{
         data(){
             return {
-                credits: this.data.credits
+                creditData: this.credit
             }
         },
         components: {
             Multiselect
         },
-        props: ['data'],
+        props: ['credit'],
         methods: {
             updateProduct(){
                 this.$http.put('/admin/credits/'+this.credits.id, this.credits).then(res => {
