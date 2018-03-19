@@ -194,11 +194,6 @@ class AdminController extends Controller
         $count_page = 15;
         return view('dashboard.sections.delivery.index', ['deliveries' => DeliveryType::paginate($count_page)]);
     }
-    public function allianceList()
-    {
-        $count_page = 15;
-        return view('dashboard.sections.credits.index', ['credits' => CreditAlliances::paginate($count_page)]);
-    }
 
     public function paymentList()
     {
@@ -214,20 +209,6 @@ class AdminController extends Controller
     public function paymentCreate()
     {
         return view('dashboard.sections.payment.create');
-    }
-
-    public function allianceCreate()
-    {
-        return view('dashboard.sections.credits.create');
-    }
-
-    public function storeAlliance(Request $request)
-    {
-        CreditAlliances::create([
-            'title' => $request->input('title'),
-            'contacts' =>$request->input('contacts')
-        ]);
-        return response()->json(['message' => 'success'], 200);
     }
 
     public function storePayment(Request $request)
@@ -359,5 +340,38 @@ class AdminController extends Controller
         $shop->status = $request->input('status');
         $shop->save();
         return json_encode(['status' => 1]);
+    }
+
+    public function allianceCreate()
+    {
+        return view('dashboard.sections.credits.create');
+    }
+
+    public function storeAlliance(Request $request)
+    {
+        CreditAlliances::create([
+            'title' => $request->input('title'),
+            'contacts' =>$request->input('contacts')
+        ]);
+        return response()->json(['message' => 'success'], 200);
+    }
+    public function allianceList()
+    {
+        $count_page = 15;
+        return view('dashboard.sections.credits.index', ['credits' => CreditAlliances::paginate($count_page)]);
+    }
+
+    public function editAlliance($id)
+    {
+        return view('dashboard.sections.credits.edit' , ['credits'=> CreditAlliances::findOrFail($id)]);
+    }
+
+    public function updatePAlliance( $id)
+    {
+        $credits = CreditAlliances::findOrFail($id);
+        $data = ['title', 'contacts'];
+        $credits->update($data);
+        return response()->json(['status' => 1], 202);
+
     }
 }
