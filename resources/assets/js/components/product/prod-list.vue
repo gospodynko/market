@@ -542,7 +542,7 @@
                                             <div class="single-product" v-for="product in data.suggestions">
                                                 <div class="img-wrap">
                                                     <a :href="'/shop/' + product.user_shop.slug + '/' + product.slug">
-                                                        <img :src="'../../' + product.default_picture" alt="">
+                                                        <img :src="'../../' + product.default_picture" :alt="product.name">
                                                     </a>
                                                 </div>
                                                 <div class="detail-wrap">

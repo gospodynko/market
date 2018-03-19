@@ -163,7 +163,11 @@
                                 </div>
                                 <div class="single-product" style="width: 23.5%; " v-for="shop in shopData.data">
                                     <div class="img-wrap">
-                                        <a :href="'/' + shop.url"><img :src="'' + shop.logo" :alt="shop.name"></a>
+                                        <a :href="'/' + shop.url">
+                                            <!--<img :src="'' + shop.logo" :alt="shop.name">-->
+                                            <img v-if="shop.logo" :src="'' + shop.logo" :alt="shop.name">
+                                            <img v-if="!shop.logo" src="/img/default.png" style="object-fit: none" :alt="shop.name">
+                                        </a>
                                     </div>
                                     <div class="detail-wrap">
                                         <p class="product-title">
