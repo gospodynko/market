@@ -45,6 +45,11 @@ class CreditController extends Controller
         $credits->update($data);
         dd($credits);
         return response()->json(['status' => 1], 202);
+    }
 
+    public function deleteAlliance($id){
+        $credit = CreditAlliances::findOrFail($id);
+        $credit->delete();
+        return redirect()->back();
     }
 }

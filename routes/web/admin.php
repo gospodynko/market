@@ -33,8 +33,6 @@ Route::group(['roles' => ['admin'], 'middleware' => ['auth', 'roles']], function
 
     Route::put('admin/products/{id}', ['uses' => 'ProductsController@updateAdmin', 'as' => 'products.admin.update']);
 
-//    Route::put('admin/credits/{id}', ['uses' => 'AdminController@updateAlliance', 'as' => 'credits.admin.update']);
-
     Route::get('admin/producers', ['uses' => 'AdminController@indexProducers', 'as' => 'admin.producers']);
 
     Route::get('admin/producers/create', ['uses' => 'AdminController@createProducer', 'as' => 'admin.producers.create']);
@@ -63,6 +61,7 @@ Route::group(['roles' => ['admin'], 'middleware' => ['auth', 'roles']], function
         Route::post('/create', 'CreditController@storeAlliance');
         Route::get('/edit/{id}', 'CreditController@editAlliance');
         Route::put('/update/{id}', 'CreditController@updateAlliance');
+        Route::get('/delete/{id}', 'CreditController@deleteAlliance');
     });
     Route::group(['prefix' => 'admin/payments'], function (){
         Route::get('/', 'AdminController@paymentList');

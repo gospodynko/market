@@ -341,5 +341,4 @@ class AdminController extends Controller
         $shop->save();
         return json_encode(['status' => 1]);
     }
-
 }
