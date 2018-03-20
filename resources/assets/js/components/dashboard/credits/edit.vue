@@ -42,7 +42,7 @@
         props: ['credit'],
         methods: {
             updateProduct(){
-                this.$http.put('/admin/credits/'+this.credits.id, this.credits).then(res => {
+                this.$http.put('/admin/credits/update/'+this.credit.id, this.credit).then(res => {
                     location.href = '/admin/credits';
                 }, err => {
 

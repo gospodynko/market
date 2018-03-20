@@ -366,11 +366,12 @@ class AdminController extends Controller
         return view('dashboard.sections.credits.edit' , ['credit'=> CreditAlliances::findOrFail($id)]);
     }
 
-    public function updatePAlliance( $id)
+    public function updateAlliance(Request $request, $id)
     {
-        $credits = CreditAlliances::findOrFail($id);
-        $data = ['title', 'contacts'];
+        $credits =CreditAlliances::findOrFail($id);
+        $data = $request->only(['title', 'contacts']);
         $credits->update($data);
+        dd($credits);
         return response()->json(['status' => 1], 202);
 
     }
