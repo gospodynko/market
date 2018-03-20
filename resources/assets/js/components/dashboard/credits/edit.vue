@@ -14,6 +14,16 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-6">
+                <div class="panel panel-info">
+                    <div class="panel-heading"><i class="glyphicon glyphicon-menu-right"></i>&nbsp;Выберите регион:</div>
+                    <div class="panel-body">
+                        <select v-model="regions" class="form-control">
+                            <option :value="data.regions" v-for="region in data.regions">{{region.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="row">
@@ -33,7 +43,8 @@
     export default{
         data(){
             return {
-                creditData: this.credit
+                creditData: this.credit,
+                regionId: 0
             }
         },
         components: {

@@ -61,7 +61,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/admin/credits/create">
+                                    <a href="/admin/credits">
                                         <i class="glyphicon glyphicon-menu-right"></i>&nbsp;Кредитнi союзи
                                     </a>
                                 </li>
