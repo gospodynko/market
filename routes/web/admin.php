@@ -58,11 +58,11 @@ Route::group(['roles' => ['admin'], 'middleware' => ['auth', 'roles']], function
         Route::post('/create', 'AdminController@storeDelivery');
     });
     Route::group(['prefix' => 'admin/credits'], function (){
-        Route::get('/', 'AdminController@allianceList');
-        Route::get('/create', 'AdminController@allianceCreate');
-        Route::post('/create', 'AdminController@storeAlliance');
-        Route::get('/edit/{id}', 'AdminController@editAlliance');
-        Route::put('/update/{id}', 'AdminController@updateAlliance');
+        Route::get('/', 'CreditController@allianceList');
+        Route::get('/create', 'CreditController@allianceCreate');
+        Route::post('/create', 'CreditController@storeAlliance');
+        Route::get('/edit/{id}', 'CreditController@editAlliance');
+        Route::put('/update/{id}', 'CreditController@updateAlliance');
     });
     Route::group(['prefix' => 'admin/payments'], function (){
         Route::get('/', 'AdminController@paymentList');
