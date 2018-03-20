@@ -103,7 +103,10 @@
                         <div class="di-price">
                             {{numberWithSpaces(product.price)}} {{product.currency.name}}
                         </div>
-                        <button  class="di-buy" @click="addToCart(product)">{{translate.in_cart}}</button>
+                        <div class="btn-buy">
+                            <button class="di-buy" @click="addToCart(product)">{{translate.in_cart}}</button>
+                            <popup-credit></popup-credit>
+                        </div>
                         <div class="di-info">
                             <div class="di-info-img">
                                 <img :src=product.user_shop.logo :alt=product.user_shop.name v-if="product.user_shop.logo">
@@ -134,6 +137,9 @@
                         <div class="ds-pay">
                             <h3>Спосіб оплати</h3>
                             <ul>
+                                <li>
+                                    <button  class="buy-credit" @click=""> Кредит</button>
+                                </li>
                                 <li v-for="pay in product.pay_types">
                                     <img :src=pay.logo :alt=pay.name :title="pay.name">
                                 </li>
@@ -376,7 +382,10 @@
                                     {{numberWithSpaces(product.price)}} грн
                                     <!--{{product.currency.name}}-->
                                 </div>
-                                <button  class="di-buy" @click="addToCart(product)">{{translate.in_cart}}</button>
+                                <div class="btn-buy">
+                                    <button  class="di-buy" @click="addToCart(product)">{{translate.in_cart}}</button>
+                                    <popup-credit></popup-credit>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -440,6 +449,9 @@
                                 <div class="ds-pay">
                                     <h3>Спосіб оплати</h3>
                                     <ul>
+                                        <li>
+                                            <button  class="buy-credit" @click=""> Кредит</button>
+                                        </li>
                                         <li v-for="pay in product.pay_types">
                                             <img :src=pay.logo :alt=pay.name :title="pay.name">
                                         </li>
@@ -714,6 +726,7 @@
     import StarRating from 'vue-star-rating';
     import {Events} from './../../app';
     import moment from 'moment';
+    import popupCredit from './../popUp/credit-registration.vue';
     export default {
         data(){
             return {
@@ -736,7 +749,8 @@
         },
         props: ['data', 'user', 'translate', 'breadcrumbs'],
         components: {
-            StarRating
+            StarRating,
+            popupCredit
         },
         created(){
             this.product.description = this.product.description.replace(/(?:\r\n|\r|\n)/g, '<br>');
@@ -838,6 +852,10 @@
                 }
                 localStorage.setItem('cart', JSON.stringify(userBuys));
                 Events.$emit('newCartItem', true);
+            },
+            addToCredit(item){
+                console.log(item)
+
             },
             moment(time){
                 return moment(time).locale('ru');
