@@ -85,12 +85,6 @@
                             <button>Купити в кредит</button>
                         </label>
                     </div>
-                    <!--
-                    <label>
-                        <input type="checkbox" name="checkbox-buy-credit" checked="checked" id="checkbox-buy-credit" style="width:  25px;height:  20px;"/>
-                        Купити в кредит
-                    </label>
-                    -->
                     <div class="application-credit"  :class="{'open': showApplicationForm}" v-if="showApplicationForm">
                         <div class="credit-conditions">
                             <div class="reg-obl">
