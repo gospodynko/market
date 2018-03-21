@@ -78,6 +78,69 @@
                         </p>
                     </div>
                 </div>
+                <div class="buy-credit">
+                    <div class="flex-checkbox-buy-credit">
+                        <input type="checkbox" id="checkbox-buy-credit" style="width:25px;height:20px;"/>
+                        <label for="checkbox-buy-credit"  @click="creditClick">
+                            <button>Купити в кредит</button>
+                        </label>
+                    </div>
+                    <div class="application-credit"  :class="{'open': showApplicationForm}" v-if="showApplicationForm">
+                        <div class="credit-conditions">
+                            <div class="reg-obl">
+                                <p>Де Ви зареєстровані?</p>
+                                <div class="obl-select">
+                                    <div class="select-side">
+                                        <i class="obl obl-menu-down gray">
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 37 27"><g><g transform="translate(-570 -284)"><image width="37" height="27" transform="translate(570 284)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAbCAYAAAD77kbeAAACCElEQVRYR+2V30sUURSAvxlStz9A01LbkKByyzUxA0Ux3IyKwsrMZPsB/j1FkVjpshYmJmIvPUiksFtL6EMUJUEvET3G7po/Vne2mYk7NLGQ5b1sQdAMzNMc5nz3O+eeo9m2bfOPPZoHJVkRz5SkKDxTnilZA7Jx/2dPiYWhaZqsJCdOyZRIYJqmk0TX9U2TWZaNZZlOrHhlH2kosSE/J5NcuzXM4cZ6Oo+04vOVbAjmrtP5l68ZffiIjrZmTh0PbXoIF1oBymZkbJLpp3FWMxn6wz0cC7VRUlz8UzLTtHj1ZoGbd0ZIpRZpbT7EpQtn2FZWKiVLCcqyLO5Gx5h99oL1rMGVi+c40dn+A0wYEjFv373nxmCUZDpNY32dA1RVWfHnTYkjOj31HSyWmGM1s8bl3rMO2Fafj6+myYIAuh0llV6kqSHofK8oL/s7PeV6d21EH0zyZDbO2nrWSRxqb+HDx09cH4iwtLJCMLCPcE8Xu/xV0oaUeyq/GVywoXvjzMQSZI0cXSePEns+x5elZQ4GA/R1n8ZfXalkqCCo/FJG7o8zPRPHMHIUFW2hoS7A1b5udmwvVzZUMJQLJhp7MDJKLDHP7ho//eHz+HdWo+tqAzO/EtK371d3WZTSyOWYmHrM/to9HKjdWxCQ8kT/3ZBxB6bqStnonwWbkpqGikEelKwwz5SsqW8fvjC/keZcfgAAAABJRU5ErkJggg=="/></g></g></svg>
+                                        </i>
+                                    </div>
+                                    <select class="form-control" id="sel1">
+                                        <option><p>Дніпропетровська</p></option>
+                                        <option><p>Київська</p></option>
+                                        <option><p>Полтавська</p></option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="credit-union">
+                                <p>Кредитний союз "Агрокредит"</p>
+                                <div>
+                                    <div class="credit-union-select">
+                                        <div class="select-side">
+                                            <i class="credit-union-down gray">
+                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 37 27"><g><g transform="translate(-570 -284)"><image width="37" height="27" transform="translate(570 284)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAbCAYAAAD77kbeAAACCElEQVRYR+2V30sUURSAvxlStz9A01LbkKByyzUxA0Ux3IyKwsrMZPsB/j1FkVjpshYmJmIvPUiksFtL6EMUJUEvET3G7po/Vne2mYk7NLGQ5b1sQdAMzNMc5nz3O+eeo9m2bfOPPZoHJVkRz5SkKDxTnilZA7Jx/2dPiYWhaZqsJCdOyZRIYJqmk0TX9U2TWZaNZZlOrHhlH2kosSE/J5NcuzXM4cZ6Oo+04vOVbAjmrtP5l68ZffiIjrZmTh0PbXoIF1oBymZkbJLpp3FWMxn6wz0cC7VRUlz8UzLTtHj1ZoGbd0ZIpRZpbT7EpQtn2FZWKiVLCcqyLO5Gx5h99oL1rMGVi+c40dn+A0wYEjFv373nxmCUZDpNY32dA1RVWfHnTYkjOj31HSyWmGM1s8bl3rMO2Fafj6+myYIAuh0llV6kqSHofK8oL/s7PeV6d21EH0zyZDbO2nrWSRxqb+HDx09cH4iwtLJCMLCPcE8Xu/xV0oaUeyq/GVywoXvjzMQSZI0cXSePEns+x5elZQ4GA/R1n8ZfXalkqCCo/FJG7o8zPRPHMHIUFW2hoS7A1b5udmwvVzZUMJQLJhp7MDJKLDHP7ho//eHz+HdWo+tqAzO/EtK371d3WZTSyOWYmHrM/to9HKjdWxCQ8kT/3ZBxB6bqStnonwWbkpqGikEelKwwz5SsqW8fvjC/keZcfgAAAABJRU5ErkJggg=="/></g></g></svg>
+                                            </i>
+                                        </div>
+                                        <select class="form-control" id="sel2">
+                                            <option>6 месяців</option>
+                                            <option>18 месяців</option>
+                                            <option>24 месяці</option>
+                                        </select>
+                                    </div>
+                                    <p>399 грн/пл</p>
+                                </div>
+                            </div>
+                            <div class="credit-union two">
+                                <p>Кредитний союз "Слобожанський"</p>
+                                <div>
+                                    <div class="credit-union-select">
+                                        <div class="select-side">
+                                            <i class="credit-union-down gray">
+                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 37 27"><g><g transform="translate(-570 -284)"><image width="37" height="27" transform="translate(570 284)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAbCAYAAAD77kbeAAACCElEQVRYR+2V30sUURSAvxlStz9A01LbkKByyzUxA0Ux3IyKwsrMZPsB/j1FkVjpshYmJmIvPUiksFtL6EMUJUEvET3G7po/Vne2mYk7NLGQ5b1sQdAMzNMc5nz3O+eeo9m2bfOPPZoHJVkRz5SkKDxTnilZA7Jx/2dPiYWhaZqsJCdOyZRIYJqmk0TX9U2TWZaNZZlOrHhlH2kosSE/J5NcuzXM4cZ6Oo+04vOVbAjmrtP5l68ZffiIjrZmTh0PbXoIF1oBymZkbJLpp3FWMxn6wz0cC7VRUlz8UzLTtHj1ZoGbd0ZIpRZpbT7EpQtn2FZWKiVLCcqyLO5Gx5h99oL1rMGVi+c40dn+A0wYEjFv373nxmCUZDpNY32dA1RVWfHnTYkjOj31HSyWmGM1s8bl3rMO2Fafj6+myYIAuh0llV6kqSHofK8oL/s7PeV6d21EH0zyZDbO2nrWSRxqb+HDx09cH4iwtLJCMLCPcE8Xu/xV0oaUeyq/GVywoXvjzMQSZI0cXSePEns+x5elZQ4GA/R1n8ZfXalkqCCo/FJG7o8zPRPHMHIUFW2hoS7A1b5udmwvVzZUMJQLJhp7MDJKLDHP7ho//eHz+HdWo+tqAzO/EtK371d3WZTSyOWYmHrM/to9HKjdWxCQ8kT/3ZBxB6bqStnonwWbkpqGikEelKwwz5SsqW8fvjC/keZcfgAAAABJRU5ErkJggg=="/></g></g></svg>
+                                            </i>
+                                        </div>
+                                        <select class="form-control" id="sel3">
+                                            <option>6 месяців</option>
+                                            <option>18 месяців</option>
+                                            <option>24 месяці</option>
+                                        </select>
+                                    </div>
+                                    <p>220 грн/пл</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="payment-delivery-wrap">
                     <h2>{{translate.pay_type}} *</h2>
                     <div class="checked-payment">
@@ -205,6 +268,7 @@
                 productName: '',
                 errors: {
                 },
+                showApplicationForm: false
             }
         },
         props: ['store', 'user', 'translate'],
@@ -370,7 +434,10 @@
             validateEmail(email) {
                 var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
                 return re.test(email);
-            }
+            },
+            creditClick () {
+                this.showApplicationForm = !this.showApplicationForm
+            },
         }
 
     }
