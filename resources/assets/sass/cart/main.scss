@@ -707,7 +707,6 @@ $light-gray: #d0d4dc;
             display: flex;
             justify-content: flex-start;
             margin: 20px 0;
-
             #checkbox-buy-credit {
               margin: 10px;
             }
@@ -717,6 +716,9 @@ $light-gray: #d0d4dc;
 
               padding: 0;
               margin: 0;
+              &:hover{
+                cursor: pointer;
+              }
             }
             #checkbox-buy-credit + label button {
               position: relative;
@@ -730,6 +732,9 @@ $light-gray: #d0d4dc;
               font-size: 20px;
               border-radius: 4px;
               height: 40px;
+              &:hover{
+                cursor: pointer;
+              }
             }
           }
           .application-credit.open {
@@ -757,6 +762,9 @@ $light-gray: #d0d4dc;
                   height: 50px;
                   border-radius: 4px;
                   background-color: #ffffff;
+                  &:hover{
+                    cursor: pointer;
+                  }
                   select {
                     position: relative;
                     width: 100%;
@@ -765,6 +773,9 @@ $light-gray: #d0d4dc;
                     border-radius: 4px;
                     border: 1px solid #d0d4dc;
                     background-color: #ffffff;
+                    &:hover{
+                      cursor: pointer;
+                    }
                     p{
                       padding-left: 20px;
                       color: #cfcfcf;
@@ -792,6 +803,9 @@ $light-gray: #d0d4dc;
                     border-top: 1px solid #d0d4dc;
                     border-bottom: 1px solid #d0d4dc;
                     background-color: #ffffff;
+                    &:hover{
+                      cursor: pointer;
+                    }
                     i {
                       &.gray {
                         color: #4E7AF0;
@@ -824,6 +838,9 @@ $light-gray: #d0d4dc;
                     height: 50px;
                     border-radius: 4px;
                     background-color: #ffffff;
+                    &:hover{
+                      cursor: pointer;
+                    }
                     select {
                       position: relative;
                       width: 100%;
@@ -832,6 +849,9 @@ $light-gray: #d0d4dc;
                       border-radius: 4px;
                       border: 1px solid #d0d4dc;
                       background-color: #ffffff;
+                      &:hover{
+                        cursor: pointer;
+                      }
                       p{
                         padding-left: 20px;
                         color: #cfcfcf;
@@ -858,6 +878,9 @@ $light-gray: #d0d4dc;
                       border-top: 1px solid #d0d4dc;
                       border-bottom: 1px solid #d0d4dc;
                       background-color: #ffffff;
+                      &:hover{
+                        cursor: pointer;
+                      }
                       i {
                         &.gray {
                           color: #4E7AF0;
@@ -978,6 +1001,9 @@ $light-gray: #d0d4dc;
                   height: 30px;
                   border: 1px solid transparent;
                   margin-right: 15px;
+                }
+                &:hover{
+                  cursor: pointer;
                 }
               }
             }
@@ -2401,6 +2427,9 @@ $light-gray: #d0d4dc;
                 border: 1px solid transparent;
                 margin-right: 15px;
               }
+              &:hover{
+                cursor: pointer;
+              }
             }
           }
           .single-payment.samoviviz {
@@ -2524,9 +2553,11 @@ $light-gray: #d0d4dc;
           display: flex;
           justify-content: flex-start;
           margin: 20px 0;
-
           #checkbox-buy-credit {
             margin: 10px;
+            &:hover{
+              cursor: pointer;
+            }
           }
           #checkbox-buy-credit + label {
             position: relative;
@@ -2574,6 +2605,9 @@ $light-gray: #d0d4dc;
                 height: 50px;
                 border-radius: 4px;
                 background-color: #ffffff;
+                &:hover{
+                  cursor: pointer;
+                }
                 select {
                   position: relative;
                   width: 100%;
@@ -2582,6 +2616,9 @@ $light-gray: #d0d4dc;
                   border-radius: 4px;
                   border: 1px solid #d0d4dc;
                   background-color: #ffffff;
+                  &:hover{
+                    cursor: pointer;
+                  }
                   p{
                     padding-left: 20px;
                     color: #cfcfcf;
@@ -2609,6 +2646,9 @@ $light-gray: #d0d4dc;
                   border-top: 1px solid #d0d4dc;
                   border-bottom: 1px solid #d0d4dc;
                   background-color: #ffffff;
+                  &:hover{
+                    cursor: pointer;
+                  }
                   i {
                     &.gray {
                       color: #4E7AF0;
@@ -2641,6 +2681,9 @@ $light-gray: #d0d4dc;
                   height: 50px;
                   border-radius: 4px;
                   background-color: #ffffff;
+                  &:hover{
+                    cursor: pointer;
+                  }
                   select {
                     position: relative;
                     width: 100%;
@@ -2649,6 +2692,9 @@ $light-gray: #d0d4dc;
                     border-radius: 4px;
                     border: 1px solid #d0d4dc;
                     background-color: #ffffff;
+                    &:hover{
+                      cursor: pointer;
+                    }
                     p{
                       padding-left: 20px;
                       color: #cfcfcf;
@@ -2675,6 +2721,9 @@ $light-gray: #d0d4dc;
                     border-top: 1px solid #d0d4dc;
                     border-bottom: 1px solid #d0d4dc;
                     background-color: #ffffff;
+                    &:hover{
+                      cursor: pointer;
+                    }
                     i {
                       &.gray {
                         color: #4E7AF0;

@@ -46,13 +46,13 @@
         background: transparent;
         transition: background .5s ease-out;
         z-index: 0;
-    }
-    .overlay.show{
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,.7);
-        transition: background .5s ease-out;
-        z-index: 5;
+        &.show{
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,.7);
+            transition: background .5s ease-out;
+            z-index: 5;
+        }
     }
     .btn{
         height: 45px;
@@ -326,7 +326,6 @@
         box-sizing: border-box;
         padding: 20px;
     }
-
     .partners-egap-company .info-partners{
         display: flex;
         padding: 15px;
@@ -403,13 +402,13 @@
         background: transparent;
         transition: background .5s ease-out;
         z-index: 0;
-    }
-    .overlay.show{
-        width: 100%;
-        height: 100%;
-        background: rgba(0,0,0,.7);
-        transition: background .5s ease-out;
-        z-index: 5;
+        &.show{
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,.7);
+            transition: background .5s ease-out;
+            z-index: 5;
+        }
     }
     .btn{
         height: 45px;
@@ -592,28 +591,29 @@
             text-align: center;
         }
     }
-    .unauthorized-user-popup{
+    .unauthorized-user-popup {
         position: fixed;
         top: 25%;
-        left: 50%;
-        width: 600px;
-        height: 140px;
-        margin-left: -15%;
+        left: 25%; //left: 50%;
+        width: 50%; //width: 600px;
+        height: 300px; //height: 140px;
+        border-radius: 6px;
         background: #ffffff;
         z-index: 7;
-        .head{
-            height: 50px;
+        margin: 0; //margin-left: -15%;
+        .head {
+            height: auto;   //height: 50px;
             line-height: 50px;
             position: relative;
-            margin-bottom: 15px;
+            margin: 20px; //margin-bottom: 15px;
             h2{
                 text-align: center;
                 font-size: 21px;
             }
-            .close{
+            .close {
                 position: absolute;
-                top: 15px;
-                right: 10px;
+                top: 0; //top: 15px;
+                right: 0; //right: 10px;
                 display: inline-block;
                 width: 20px;
                 height: 20px;
@@ -634,59 +634,18 @@
                 }
             }
         }
-        .main{
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            .btn{
-                background: $blue-btn;
-                border: 1px solid $blue-btn-bd;
-                padding: 0 20px;
-                text-align: center;
-                line-height: 45px;
-                font-size: 16px;
-                color: $white;
-            }
-        }
-    }
-
-    .unauthorized-user-popup {
-        position: fixed;
-        top: 25%;
-        left: 25%;
-        width: 50%;
-        height: 300px;
-        border-radius: 6px;
-        background: #ffffff;
-        z-index: 7;
-        margin: 0;
-        .head {
-            height: auto;
-            line-height: 50px;
-            position: relative;
-            margin: 20px;
-            .close {
-                position: absolute;
-                top: 0;
-                right: 0;
-                display: inline-block;
-                width: 20px;
-                height: 20px;
-                cursor: pointer;
-            }
-        }
         .main {
             display: -webkit-box;
             display: flex;
             flex-direction: column;
             -webkit-box-align: center;
             align-items: center;
-            justify-content: space-between;
+            justify-content: space-between; //justify-content: space-around;
             width: 90%;
             margin: auto;
             .btn {
-                background: #48a2ff;
-                border: 1px solid #2d92fa;
+                background: #48a2ff; //$blue-btn;
+                border: 1px solid #2d92fa; //$blue-btn-bd;
                 padding: 0 20px;
                 text-align: center;
                 line-height: 45px;
