@@ -19,5 +19,4 @@ class CreditAlliances extends Model
         'title',
         'contacts'
     ];
-
 }

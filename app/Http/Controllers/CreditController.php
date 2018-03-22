@@ -9,6 +9,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CreditAlliances;
+use App\Models\CreditRegions;
 use Illuminate\Http\Request;
 
 
@@ -16,7 +17,7 @@ class CreditController extends Controller
 {
     public function allianceCreate()
     {
-        return view('dashboard.sections.credits.create');
+        return view('dashboard.sections.credits.create', [$regions = CreditRegions::all()]);
     }
 
     public function storeAlliance(Request $request)

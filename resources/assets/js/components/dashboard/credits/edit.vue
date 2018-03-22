@@ -18,9 +18,11 @@
                 <div class="panel panel-info">
                     <div class="panel-heading"><i class="glyphicon glyphicon-menu-right"></i>&nbsp;Выберите регион:</div>
                     <div class="panel-body">
-                        <select v-model="regions" class="form-control">
-                            <option :value="data.regions" v-for="region in data.regions">{{region.name}}</option>
-                        </select>
+                            <label class="mini-title category-title">Вибір категорії:</label>
+                            <select class="form-control category-form" @change="setProducer" v-model="checkedRegion">
+                                <option :value="null" disabled selected>Оберіть категорію</option>
+                                <option :value="region" v-for="region in regiones">{{region.name}}</option>
+                            </select>
                     </div>
                 </div>
             </div>
@@ -44,13 +46,13 @@
         data(){
             return {
                 creditData: this.credit,
-                regionId: 0
+                checkedRegion: ''
             }
         },
         components: {
             Multiselect
         },
-        props: ['credit'],
+        props: ['credit', 'region'],
         methods: {
             updateProduct(){
                 this.$http.put('/admin/credits/update/'+this.credit.id, this.credit).then(res => {
