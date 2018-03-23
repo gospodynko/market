@@ -25,6 +25,10 @@
                             <option value="0" disabled selected>Выберите регион</option>
                             <option :value="region" v-for="region in data.regions ">{{region.region_name}}</option>
                         </select>
+                        <div class="form-group">
+                            <label>Email:</label>
+                            <input type="text" class="form-control" name="name" v-model="contacts">
+                        </div>
                     </div>
                 </div>
             </div>
