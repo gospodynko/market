@@ -14,18 +14,18 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="panel panel-info">
-                    <div class="panel-heading"><i class="glyphicon glyphicon-menu-right"></i>&nbsp;Выберите регион:</div>
-                    <div class="panel-body">
-                            <label class="mini-title category-title">Вибір категорії:</label>
-                            <select class="form-control category-form" @change="setProducer" v-model="checkedRegion">
-                                <option :value="null" disabled selected>Оберіть категорію</option>
-                                <option :value="region" v-for="region in regiones">{{region.name}}</option>
-                            </select>
-                    </div>
-                </div>
-            </div>
+            <!--<div class="col-lg-6">-->
+                <!--<div class="panel panel-info">-->
+                    <!--<div class="panel-heading"><i class="glyphicon glyphicon-menu-right"></i>&nbsp;Выберите регион:</div>-->
+                    <!--<div class="panel-body">-->
+                            <!--<label class="mini-title category-title">Вибір категорії:</label>-->
+                            <!--<select class="form-control category-form" @change="setProducer" v-model="checkedRegion">-->
+                                <!--<option :value="null" disabled selected>Оберіть категорію</option>-->
+                                <!--<option :value="region" v-for="region in regiones">{{region.name}}</option>-->
+                            <!--</select>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
         </div>
 
         <div class="row">
@@ -52,7 +52,7 @@
         components: {
             Multiselect
         },
-        props: ['credit', 'region'],
+        props: ['credit'],
         methods: {
             updateProduct(){
                 this.$http.put('/admin/credits/update/'+this.credit.id, this.credit).then(res => {

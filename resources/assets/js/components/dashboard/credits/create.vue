@@ -21,9 +21,9 @@
                     <div class="panel-heading"><i class="glyphicon glyphicon-menu-right"></i>&nbsp;Выберите регион:</div>
                     <div class="panel-body">
                         <label class="mini-title region-title">Регионы кредитования:</label>
-                        <select class="form-control region-form" v-model="newRegion">
-                            <option :value="null" disabled selected>Выберите регион</option>
-                            <option :value="region" v-for="region in regiones">{{region.name}}</option>
+                        <select class="form-control region-form" v-model="checkedRegion">
+                            <option value="0" disabled selected>Выберите регион</option>
+                            <option :value="region" v-for="region in data.regions ">{{region.region_name}}</option>
                         </select>
                     </div>
                 </div>
@@ -43,8 +43,8 @@
             return{
                 title: '',
                 contacts: '',
-                newRegion: null,
-                regionContact:null,
+                checkedRegion: null,
+                regionContact:null
             }
         },
         props: ['data'],
@@ -53,7 +53,7 @@
                 let data = {
                     'title': this.title,
                     'contacts': this.contacts,
-                    'region_name': this.newRegion,
+                    'region_name': this.checkedRegion,
                     'region_contact': this.regionContact
                 };
                 this.$http.post('/admin/credits/create', data).then(res => {

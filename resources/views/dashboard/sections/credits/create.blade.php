@@ -3,6 +3,6 @@
 @section('sectionTitle', 'Кредитнi союзи')
 
 @section('content')
-    <credits-create></credits-create>
+    <credits-create :data="{{json_encode($data)}}"></credits-create>
 @endsection
 

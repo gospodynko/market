@@ -15,7 +15,7 @@ class CreditRegions extends Model
 {
     public $timestamps = false;
 
-    protected $table = 'agroyard_alliance_region';
+    protected $table = 'regions';
     protected $fillable = [
         'region_name'
     ];
