@@ -10,33 +10,41 @@
                             <input type="text" class="form-control" name="name" v-model="title">
                         </div>
                         <div class="form-group">
-                            <label>Email:</label>
+                            <label>Контакты:</label>
                             <input type="text" class="form-control" name="name" v-model="contacts">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-success" @click="createAlliance">
+                                Добавить
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="panel panel-info">
+                    <div ></div>
                     <div class="panel-heading"><i class="glyphicon glyphicon-menu-right"></i>&nbsp;Выберите регион:</div>
-                    <div class="panel-body">
-                        <label class="mini-title region-title">Регионы кредитования:</label>
-                        <select class="form-control region-form" v-model="checkedRegion">
-                            <option value="0" disabled selected>Выберите регион</option>
-                            <option :value="region" v-for="region in data.regions ">{{region.region_name}}</option>
-                        </select>
+                    <div class="panel-body" v-for="branch in branches">
+                        <div class="form-group">
+                            <label class="mini-title region-title">Регионы кредитования:</label>
+                            <select class="form-control region-form" v-model="checkedRegion">
+                                <option value="0" disabled selected>Выберите регион</option>
+                                <option :value="region" v-for="region in data.regions ">{{region.region_name}}</option>
+                            </select>
+                        </div>
                         <div class="form-group">
                             <label>Email:</label>
-                            <input type="text" class="form-control" name="name" v-model="contacts">
+                            <input type="text" class="form-control" name="name" v-model="branch.region_email">
                         </div>
                     </div>
                 </div>
+                <div class="form-group" align="center">
+                    <button class="btn btn-success" @click="addRegion(region)"><i class="glyphicon glyphicon-plus"></i>
+                        Добавить регион кредитования
+                    </button>
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <button class="btn btn-success" @click="createAlliance">
-                Добавить
-            </button>
         </div>
     </div>
 </template>
@@ -47,8 +55,12 @@
             return{
                 title: '',
                 contacts: '',
-                checkedRegion: null,
-                regionContact:null
+                branches:[
+                    {
+                        checkedRegion: null,
+                        region_email: ''
+                    }]
+
             }
         },
         props: ['data'],
@@ -64,6 +76,12 @@
                     location.href = '/admin/credits';
                 }, err => {
 
+                })
+            },
+            addRegion(branch){
+                this.branches.push({
+                    region_name: '',
+                    region_email: ''
                 })
             }
         }

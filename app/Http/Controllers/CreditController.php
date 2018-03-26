@@ -17,6 +17,7 @@ class CreditController extends Controller
 {
     public function allianceCreate()
     {
+//        dd(['regions' => CreditRegions::all()]);
         return view('dashboard.sections.credits.create', ['data' => ['regions' => CreditRegions::all()]]);
     }
 
