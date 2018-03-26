@@ -28,9 +28,9 @@
                     <div class="panel-body" v-for="branch in branches">
                         <div class="form-group">
                             <label class="mini-title region-title">Регионы кредитования:</label>
-                            <select class="form-control region-form" v-model="checkedRegion">
+                            <select class="form-control region-form" v-model="branch.id_credit_region">
                                 <option value="0" disabled selected>Выберите регион</option>
-                                <option :value="region" v-for="region in data.regions ">{{region.region_name}}</option>
+                                <option :value="region.id" v-for="region in data.regions ">{{region.region_name}}</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="form-group" align="center">
-                    <button class="btn btn-success" @click="addRegion(region)"><i class="glyphicon glyphicon-plus"></i>
+                    <button class="btn btn-success" @click="addRegion()"><i class="glyphicon glyphicon-plus"></i>
                         Добавить регион кредитования
                     </button>
                 </div>
@@ -57,7 +57,7 @@
                 contacts: '',
                 branches:[
                     {
-                        checkedRegion: null,
+                        id_credit_region: '',
                         region_email: ''
                     }]
 
@@ -69,18 +69,17 @@
                 let data = {
                     'title': this.title,
                     'contacts': this.contacts,
-                    'region_name': this.checkedRegion,
-                    'region_contact': this.regionContact
+                    branches: this.branches
                 };
                 this.$http.post('/admin/credits/create', data).then(res => {
-                    location.href = '/admin/credits';
+//                    location.href = '/admin/credits';
                 }, err => {
 
                 })
             },
-            addRegion(branch){
+            addRegion(){
                 this.branches.push({
-                    region_name: '',
+                    id_credit_region: '',
                     region_email: ''
                 })
             }

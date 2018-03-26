@@ -9,24 +9,51 @@
 namespace App\Http\Controllers;
 
 use App\Models\CreditAlliances;
+use App\Models\CreditContacts;
 use App\Models\CreditRegions;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 
 class CreditController extends Controller
 {
-    public function allianceCreate()
+    public function allianceCreate(Request $request)
     {
-//        dd(['regions' => CreditRegions::all()]);
+//        dd(CreditRegions::get());
         return view('dashboard.sections.credits.create', ['data' => ['regions' => CreditRegions::all()]]);
+    }
+
+    public function createRegionContact($alliance, $region){
+        $data_region = [
+            'id_agro_alliance' => $alliance['id'],
+            'id_credit_region' => $region['id'],
+            'region_email'
+        ];
+        $region_cont_id = CreditContacts::create($data_region);
+        $region_cont_id->region()->sync($region['id']);
+        $region_cont_id->alliance()->sync( $alliance['id']);
+        return $region_cont_id->id;
     }
 
     public function storeAlliance(Request $request)
     {
-        CreditAlliances::create([
+
+        $v = Validator::make($request->all(), [
+            'branches' => 'required|array',
+            'branches.*.id_credit_region' => 'required|integer|exists:regions,id',
+            'branches.*.region_email' => 'required|string'
+
+        ]);
+
+        if (count($v->errors())) {
+            return response()->json([], 400);
+        }
+
+        $credit_aliance = CreditAlliances::create([
             'title' => $request->input('title'),
             'contacts' =>$request->input('contacts')
         ]);
+        $credit_aliance->branches()->createMany($request->input('branches'));
         return response()->json(['message' => 'success'], 200);
     }
     public function allianceList()
