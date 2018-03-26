@@ -58,7 +58,7 @@ Route::group(['roles' => ['admin'], 'middleware' => ['auth', 'roles']], function
     Route::group(['prefix' => 'admin/credits'], function (){
         Route::get('/', 'CreditController@allianceList');
         Route::get('/create', 'CreditController@allianceCreate');
-        Route::post('/create', 'CreditController@storeAlliance');
+        Route::post('/create/add/{id}', 'CreditController@storeAlliance');
         Route::get('/edit/{id}', 'CreditController@editAlliance');
         Route::put('/update/{id}', 'CreditController@updateAlliance');
         Route::get('/delete/{id}', 'CreditController@deleteAlliance');

@@ -71,7 +71,7 @@
                     'contacts': this.contacts,
                     branches: this.branches
                 };
-                this.$http.post('/admin/credits/create', data).then(res => {
+                this.$http.post('/admin/credits/create/add/'+this.id ,data).then(res => {
 //                    location.href = '/admin/credits';
                 }, err => {
 
