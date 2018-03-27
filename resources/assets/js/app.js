@@ -19,11 +19,14 @@ import AdminModeration from './components/dashboard/moderations/index.vue';
 import AdminModerationView from './components/dashboard/moderations/show.vue';
 import PaymentsList from './components/dashboard/payments/index.vue';
 import DeliveriesList from './components/dashboard/deliveries/index.vue';
+import CreditsList from './components/dashboard/credits/index.vue';
+import CreditsEdit from './components/dashboard/credits/edit.vue';
 import AdminBanners from './components/dashboard/banners/index.vue';
 import AdminBannersCreate from './components/dashboard/banners/create.vue';
 import CartCheckoutVue from './components/cart/cart-checkout.vue';
 import PaymentsCreate from './components/dashboard/payments/create.vue';
 import DeliveriesCreate from './components/dashboard/deliveries/create.vue';
+import CreditsCreate from './components/dashboard/credits/create.vue';
 import ProductCreate from './components/dashboard/products/create.vue';
 import AdminProductEdit from './components/dashboard/products/edit.vue';
 import AdminUserProductEdit from './components/dashboard/products/user-edit.vue';
@@ -63,10 +66,13 @@ const app = new Vue({
         AdminBanners,
         AdminBannersCreate,
         CartCheckoutVue,
+        CreditsList,
+        CreditsEdit,
         DeliveriesList,
         PaymentsList,
         PaymentsCreate,
         DeliveriesCreate,
+        CreditsCreate,
         ProductCreate,
         DashboardCategoriesEdit,
         AdminProductEdit,

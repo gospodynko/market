@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Currency;
 use App\Models\DeliveryType;
 use App\Models\PayType;
+use App\Models\CreditAlliances;
 use App\Models\UserProductOffers;
 use App\Models\UserShops;
 use Illuminate\Http\Request;
@@ -218,7 +219,6 @@ class AdminController extends Controller
         ]);
         return response()->json(['message' => 'success'], 200);
     }
-
     public function storeDelivery(Request $request)
     {
         DeliveryType::create([

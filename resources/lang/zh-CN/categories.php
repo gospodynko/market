@@ -28,7 +28,7 @@ return [
          'fui-checkbox-unchecked',
          'fui-clip',
          'fui-cmd',
-         'fui-credit-card',
+         'fui-credits-card',
          'fui-cross',
          'fui-cross-circle',
          'fui-document',
