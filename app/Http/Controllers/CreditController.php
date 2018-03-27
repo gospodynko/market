@@ -64,15 +64,24 @@ class CreditController extends Controller
 
     public function editAlliance($id)
     {
-        return view('dashboard.sections.credits.edit' , ['credit'=> CreditAlliances::findOrFail($id)]);
+        return view('dashboard.sections.credits.edit' , ['credit'=> CreditAlliances::findOrFail($id)->load('branches'), 'regions' => CreditRegions::all()]);
     }
 
-    public function updateAlliance(Request $request, $id)
+    public function updateAlliance(CreditAlliances $alliances, Request $request)
     {
-        $credits =CreditAlliances::findOrFail($id);
-        $data = $request->only(['title', 'contacts']);
-        $credits->update($data);
-        dd($credits);
+        $v = Validator::make($request->all(), [
+            'title' => 'required|string',
+            'contacts' => 'required|string',
+            'branches' => 'required|array',
+            'branches.*.id_credit_region' => 'required|integer|exists:regions,id',
+            'branches.*.region_email' => 'required|string'
+        ]);
+
+        if (count($v->errors())) {
+            return response()->json([], 400);
+        }
+        $alliances->update($request->only(['title', 'contacts']));
+        $alliances->branches()->sync($request->only(['branches']));
         return response()->json(['status' => 1], 202);
     }
 

@@ -72,7 +72,7 @@
                     branches: this.branches
                 };
                 this.$http.post('/admin/credits/create/add/'+this.id ,data).then(res => {
-//                    location.href = '/admin/credits';
+                    location.href = '/admin/credits';
                 }, err => {
 
                 })
