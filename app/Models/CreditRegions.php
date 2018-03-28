@@ -21,4 +21,9 @@ class CreditRegions extends Model
         'region_name'
     ];
 
+    public function branches()
+    {
+        return $this->hasMany(CreditContacts::class, 'id_credit_region', 'id');
+    }
+
 }
