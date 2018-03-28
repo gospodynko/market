@@ -16,8 +16,13 @@ class CreditAlliances extends Model
 
     protected $table = 'agroyard_alliance';
     protected $fillable = [
+        'id',
         'title',
         'contacts'
     ];
 
+    public function branches()
+    {
+        return $this->hasMany(CreditContacts::class, 'id_agro_alliance', 'id');
+    }
 }

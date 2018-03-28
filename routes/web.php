@@ -76,6 +76,9 @@ Route::get('/checkout/success/{id}', 'CheckoutController@successBuy');
 
 Route::post('/set-order', 'CheckoutController@setOrder');
 
+Route::get('/credit-regions', 'CreditController@getRegions');
+Route::get('/credit-alliance/{region}', 'CreditController@getAlliance');
+
 //users routes
 require __DIR__ . '/web/users.php';
 
