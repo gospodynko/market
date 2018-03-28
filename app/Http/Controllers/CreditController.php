@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use App\Models\CreditAlliances;
 use App\Models\CreditContacts;
 use App\Models\CreditRegions;
+use FontLib\Table\Type\post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -81,7 +82,8 @@ class CreditController extends Controller
             return response()->json([], 400);
         }
         $alliances->update($request->only(['title', 'contacts']));
-        $alliances->branches()->sync($request->only(['branches']));
+        $alliances->branches()->delete();
+        $alliances->branches()->createMany($request->only(['branches']));
         return response()->json(['status' => 1], 202);
     }
 
@@ -89,5 +91,15 @@ class CreditController extends Controller
         $credit = CreditAlliances::findOrFail($id);
         $credit->delete();
         return redirect()->back();
+    }
+
+    public function getRegions(){
+        $regions = CreditRegions::select('id','region_name')->get()->toArray();
+        return response()->json(['regions' => $regions], 200);
+    }
+
+    public function getAlliance(CreditRegions $region){
+        $branches = $region->branches()->with('alliance')->get();
+        return response()->json(['branches' => $branches], 200);
     }
 }
