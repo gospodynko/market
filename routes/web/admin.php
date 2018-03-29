@@ -55,12 +55,19 @@ Route::group(['roles' => ['admin'], 'middleware' => ['auth', 'roles']], function
         Route::get('/create', 'AdminController@deliveryCreate');
         Route::post('/create', 'AdminController@storeDelivery');
     });
+    Route::group(['prefix' => 'admin/credits'], function (){
+        Route::get('/', 'CreditController@allianceList');
+        Route::get('/create', 'CreditController@allianceCreate');
+        Route::post('/create/add/{alliances}', 'CreditController@storeAlliance');
+        Route::get('/edit/{id}', 'CreditController@editAlliance');
+        Route::put('/update/{id}', 'CreditController@updateAlliance');
+        Route::get('/delete/{id}', 'CreditController@deleteAlliance');
+    });
     Route::group(['prefix' => 'admin/payments'], function (){
         Route::get('/', 'AdminController@paymentList');
         Route::get('/create', 'AdminController@paymentCreate');
         Route::post('/create', 'AdminController@storePayment');
     });
-
     Route::get('admin/moderation/accept/{id}', 'AdminController@acceptProduct');
     Route::get('admin/moderation/show/{id}', 'AdminController@viewProduct');
 
