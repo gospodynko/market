@@ -291,6 +291,49 @@ ul{
     }
     .mobile-banner-egap{ display: none; }
 }
+
+.pr-Egap{
+    width: 100%;
+    max-width: 1315px;
+    margin: 0 auto;
+    display: inline-block;
+    margin-bottom: 40px;
+    background-color: white;
+    padding: 10px 0;
+    .about-egap-challenge{
+        font-size: 16px;
+        line-height: 25px;
+        font-weight: 500;
+        text-align: center;
+        margin-bottom: 10px;
+        word-wrap: break-word; /* Перенос слов */
+        a{
+            font-size: 16px;
+            margin-bottom: 5px;
+            line-height: 15px;
+            font-weight: 500;
+            color: #1dd659;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
+    .partners-egap{
+        display: flex;
+        justify-content: space-around;
+        a{
+            img{
+                width: auto;
+                height: 70px;
+            }
+            .egaplogolittle{ display: none;}
+            .egaplogobig{ display: block;}
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
+}
 //большие экраны
 @media screen and (min-width: 1024px){
     body{ min-width: 1024px; }
@@ -387,4 +430,13 @@ ul{
             }
         }
     }
+  .pr-Egap .partners-egap {
+    //flex-direction: column;
+    //text-align: center;
+    a{
+          margin-top: 10px;
+          .egaplogolittle{ display: block;}
+          .egaplogobig{ display: none;}
+    }
+  }
 }

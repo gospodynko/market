@@ -5,6 +5,19 @@
         <top-product :products="data.productsTop" :translate="data.translate"></top-product>
         <!--<popular-products></popular-products>-->
         <!--<actual-products></actual-products>-->
+        <div class="pr-Egap">
+            <p class="about-egap-challenge">
+                АгроЯрд – переможець першого конкурсу IT-проектів у сфері е-демократії
+                <a href="http://egap-challenge.in.ua/" target="_blank">Egap Challenge</a>
+                 та реалізован за підтримки:
+            </p>
+            <div class="partners-egap">
+                <a href="https://www.eda.admin.ch/" target="_blank"><img src="/img/our_partners/swiss.jpg" alt="swiss"></a>
+                <a href="http://egap.in.ua/" class=""><img class="egaplogobig" src="/img/our_partners/egap.png" alt="egap"> <img class="egaplogolittle" src="/img/our_partners/egap_logo.jpg" alt="egap"></a>
+                <a href="http://eef.org.ua/" target="_blank"><img src="/img/our_partners/easteurope.png" alt="easteurope"></a>
+            </div>
+
+        </div>
     </div>
 </template>
 
