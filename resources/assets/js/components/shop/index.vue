@@ -59,7 +59,7 @@
                         <h3>{{shop.name}}</h3>
                         <div class="agro-contact">
                             <span><img src="/img/blue_place.png" alt="location">{{shop.company.address}}</span>
-                            <span @click="showPhone = !showPhone" style="cursor: pointer;"><img src="/img/phone.png" alt="phone" shop.company.compPhone">{{!showPhone ? 'Номер телефону' : shop.company.compPhone}}</span>
+                            <span @click="showPhone = !showPhone" style="cursor: pointer;"><img src="/img/phone.png" alt="phone">{{!showPhone ? 'Номер телефону' : shop.company.compPhone}}</span>
                         </div>
                     </div>
                     <div class="rating">
