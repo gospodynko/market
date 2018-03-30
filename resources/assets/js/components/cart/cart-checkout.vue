@@ -79,11 +79,18 @@
                     </div>
                 </div>
                 <div class="buy-credit">
+                    <!--
                     <div class="flex-checkbox-buy-credit">
                         <input type="checkbox" id="checkbox-buy-credit" style="width:25px;height:20px;"/>
                         <label for="checkbox-buy-credit"  @click="creditClick">
                             <button>Купити в кредит</button>
                         </label>
+                    </div>
+                    -->
+                    <div id="checkbox-buy-credit"   @click="creditClick">
+                        <!--<img class="credit-nook" src="/img/nook.png"/>-->
+                        <!--<img src="/img/ok.png" class="credit-ok" />-->
+                        <button>Купити в кредит</button>
                     </div>
                     <div class="application-credit"  :class="{'open': showApplicationForm}" v-if="showApplicationForm">
                         <div class="credit-conditions">
