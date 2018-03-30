@@ -339,7 +339,7 @@ ul{
 }
 //большие экраны
 @media screen and (min-width: 1024px){
-    body{ min-width: 1024px; }
+    //body{ min-width: 1024px; }
     .unauthorized-user-popup{
         left: 50%;
         width: 600px;
