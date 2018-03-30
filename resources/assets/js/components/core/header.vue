@@ -166,11 +166,11 @@
                 <li id="nav-menu-xs" >
                     <div>
                         <nav class="user-menu">
-                            <a href="https://agroyard.ua/classifieds/gsm?id=1" class="ripplelink">Оголошення</a>
-                            <a href="https://agroyard.ua/auctions/all" class="ripplelink">Аукціони</a>
-                            <a href="https://agroyard.ua/catalog" class="ripplelink">Каталог</a>
-                            <a href="https://agroyard.ua/traders" class="ripplelink">Ціни трейдерів</a>
-                            <a href="https://market.agroyard.ua" target="_blank" class="ripplelink">Маркет</a>
+                            <a href="https://agroyard.ua/classifieds/gsm?id=1" class="ripplelink">{{translate.classifieds}}</a>
+                            <a href="https://agroyard.ua/auctions/all" class="ripplelink">{{translate.auctions}}</a>
+                            <a href="https://agroyard.ua/catalog" class="ripplelink">{{translate.catalog}}</a>
+                            <a href="https://agroyard.ua/traders" class="ripplelink">{{translate.traders}}</a>
+                            <!--<a href="https://market.agroyard.ua" target="_blank" class="ripplelink">{{translate.market}}</a>-->
                         </nav>
                     </div>
                 </li>
@@ -229,11 +229,11 @@
         <!---->
         <div id="nav-menu">
             <nav class="user-menu">
-                <a href="https://agroyard.ua/classifieds/gsm?id=1" class="ripplelink">Оголошення</a>
-                <a href="https://agroyard.ua/auctions/all" class="ripplelink">Аукціони</a>
-                <a href="https://agroyard.ua/catalog" class="ripplelink">Каталог</a>
-                <a href="https://agroyard.ua/traders" class="ripplelink">Ціни трейдерів</a>
-                <a href="https://market.agroyard.ua" target="_blank" class="ripplelink">Маркет</a>
+                <a href="https://agroyard.ua/classifieds/gsm?id=1" class="ripplelink">{{translate.classifieds}}</a>
+                <a href="https://agroyard.ua/auctions/all" class="ripplelink">{{translate.auctions}}</a>
+                <a href="https://agroyard.ua/catalog" class="ripplelink">{{translate.catalog}}</a>
+                <a href="https://agroyard.ua/traders" class="ripplelink">{{translate.traders}}</a>
+                <a href="https://market.agroyard.ua" target="_blank" class="ripplelink">{{translate.market}}</a>
             </nav>
         </div>
         <!---->

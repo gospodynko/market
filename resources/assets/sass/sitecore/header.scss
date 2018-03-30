@@ -536,6 +536,10 @@
       #nav-menu-xs{
         display: block;
         border-top: 1px solid lightgray;
+        .user-menu{
+          display: flex;
+          flex-direction: column;
+        }
       }
       .close-menu-xs{
         display: inline-block;
