@@ -90,12 +90,12 @@
                     <div id="checkbox-buy-credit"   @click="creditClick">
                         <!--<img class="credit-nook" src="/img/nook.png"/>-->
                         <!--<img src="/img/ok.png" class="credit-ok" />-->
-                        <button>Купити в кредит</button>
+                        <button>{{translate.buy_credit}}</button>
                     </div>
                     <div class="application-credit"  :class="{'open': showApplicationForm}" v-if="showApplicationForm">
                         <div class="credit-conditions">
                             <div class="reg-obl">
-                                <p>Де Ви зареєстровані?</p>
+                                <p>{{translate.where_registration}}</p>
                                 <div class="obl-select">
                                     <div class="select-side">
                                         <i class="obl obl-menu-down gray">
@@ -119,12 +119,12 @@
                                             </i>
                                         </div>
                                         <select class="form-control" id="sel2">
-                                            <option>6 месяців</option>
-                                            <option>18 месяців</option>
-                                            <option>24 месяці</option>
+                                            <option>6 {{translate.months}}</option>
+                                            <option>18 {{translate.months}}</option>
+                                            <option>24 {{translate.month}}</option>
                                         </select>
                                     </div>
-                                    <p>399 грн/пл</p>
+                                    <p>399 {{translate.payment}}</p>
                                 </div>
                             </div>
                             <div class="credit-union two">
@@ -137,12 +137,12 @@
                                             </i>
                                         </div>
                                         <select class="form-control" id="sel3">
-                                            <option>6 месяців</option>
-                                            <option>18 месяців</option>
-                                            <option>24 месяці</option>
+                                            <option>6 {{translate.months}}</option>
+                                            <option>18 {{translate.months}}</option>
+                                            <option>24 {{translate.month}}</option>
                                         </select>
                                     </div>
-                                    <p>220 грн/пл</p>
+                                    <p>220 {{translate.payment}}</p>
                                 </div>
                             </div>
                         </div>
