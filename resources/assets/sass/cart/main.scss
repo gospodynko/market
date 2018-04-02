@@ -605,6 +605,7 @@ $white: #ffffff;
           margin-bottom: 25px;
         }
         .application-credit{ display:none; }
+        /*
         .flex-checkbox-buy-credit{
           display: flex;
           justify-content: flex-start;
@@ -629,6 +630,27 @@ $white: #ffffff;
             color: $white;
             padding: 0 15px;
             font-size: 20px;
+            border-radius: 4px;
+            height: 40px;
+            &:hover{ cursor: pointer;}
+          }
+        }
+        */
+        #checkbox-buy-credit{
+          position: relative;
+          z-index: 1;
+          padding: 0;
+          margin: 20px 0 0 0;
+          display: flex;
+          button{
+            width: 100%;
+            z-index: -1;
+            border: 1px solid #2d92fa;
+            background: #48a2ff;
+            font-weight: 500;
+            color: $white;
+            padding: 0 15px;
+            font-size: 24px;
             border-radius: 4px;
             height: 40px;
             &:hover{ cursor: pointer;}
@@ -1431,6 +1453,25 @@ $white: #ffffff;
         .buy-credit{
           //margin-top: 30px;
           //border-top: 1px solid $light-gray;
+          width: 90%;
+          margin: 0 auto;
+          border-top: 1px solid lightgray;
+          border-bottom: 1px solid lightgray;
+          #checkbox-buy-credit {
+            margin: 20px 0 20px 0;
+          }
+          .application-credit.open {
+            margin-bottom: 20px;
+            .credit-conditions .credit-union{
+              div .credit-union-select { width: 50%; }
+              div p {
+                font-size: 16px;
+                padding-left: 20px;
+                width: 50%;
+              }
+              p{ font-size: 16px; line-height: 40px; }
+            }
+          }
         }
         .detail-user-fields {
           box-sizing: border-box;

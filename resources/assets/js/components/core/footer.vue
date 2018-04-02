@@ -59,7 +59,7 @@
             <div class="bottom-footer-detail">
                 <div class="all-det-wrap">
                     <div class="left">
-                        <p>&#169; АгроЯрд 2017 г. {{translate.all_right}}</p>
+                        <p>&#169; АгроЯрд 2018 г. {{translate.all_right}}</p>
                     </div>
                     <div class="right">
                         <p>{{translate.site_create}}</p>
@@ -155,7 +155,7 @@
                         </div>
                     </div>
                     <div class="bottom-footer-detail">
-                        <p>&#169; АгроЯрд 2017 г. {{translate.all_right}}</p>
+                        <p>&#169; АгроЯрд 2018 г. {{translate.all_right}}</p>
                         <p>{{translate.site_create}}</p>
                     </div>
                 </div>
