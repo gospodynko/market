@@ -151,9 +151,9 @@
                             <p>Заповніть дані</p>
                         </div>
                     </div>
-                    <form id="form-user-info" action="">
+                    <form id="form-user-info" @submit.prevent="sendMobForm">
                         <div class="popup-credit-caption">ПІБ</div>
-                        <input type="text" name="name" value="" v-model="userData.fio" id="firstName" :class="{'error': errors.fio}">
+                        <input type="text" name="name" value="" v-model="userData.fio" id="firstName" :class="{'error': errors.fio}" required>
                         <div class="popup-credit-caption">E-mail</div>
                         <input type="email" name="email" value="" v-model="userData.email" id="email" :class="{'error': errors.email}" required>
                         <div class="popup-credit-caption">Телефон</div>
@@ -171,7 +171,7 @@
                             </select>
                         </div>
                         <div class="popup-regMBtn">
-                            <button type="submit" @click.prevent="sendMobForm($event)"><p>Відправити</p></button>
+                            <button type="submit"><p>Відправити</p></button>
                         </div>
                     </form>
                 </div>
@@ -278,31 +278,30 @@
             },
             validate (e) {
                 for (let key in this.userData) {
-                    console.log(key)
                     switch (key) {
                         case 'phone':
-                            if (!this.userData[key] || !this.userData[key].length || this.userData[key][0] !== 0) {
+                            if (!this.userData[key] || !this.userData[key].length) {
                                 this.errors.phone = true
                             } else {
                                 this.errors.phone = false
                             }
                             break;
                         case 'fio':
-                            if (!this.userData[key] || !this.userData[key].length || this.userData[key][0] !== 0) {
+                            if (!this.userData[key] || !this.userData[key].length) {
                                 this.errors.fio = true
                             } else {
                                 this.errors.fio = false
                             }
                             break;
                         case 'email':
-                            if (!this.userData[key] || !this.userData[key].length || this.userData[key][0] !== 0) {
+                            if (!this.userData[key] || !this.userData[key].length) {
                                 this.errors.email = true
                             } else {
                                 this.errors.email = false
                             }
                             break;
                         case 'payType':
-                            if (!this.userData[key] || !this.userData[key].length || this.userData[key][0] !== 0) {
+                            if (!this.userData[key] || !this.userData[key].length) {
                                 this.errors.payType = true
                             } else {
                                 this.errors.payType = false
@@ -311,6 +310,7 @@
 
                     }
                 }
+                console.log(this.errors)
                 let hasError = false
                 for (let key in this.errors) {
                     if (this.errors[key]) {
@@ -321,8 +321,14 @@
             },
             sendMobForm (e) {
                 if (this.validate()) return false
+                this.$http.post('api/user-registration/credit-form', this.userData).then(res => {
+                    this.close()
+                }, err => {
+                    this.close()
+                    console.log(err)
+                })
 
-                //TODO send ajax
+                //TODO send ajax\ё\
             },
             close () {
                 this.step = 1;
