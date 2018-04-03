@@ -5,7 +5,7 @@
             <div class="cart-list-wrap">
                 <div class="cart-head-wrap two-wrap">
                     <div class="left">
-                        <h2>Корзина заказов</h2>
+                        <h2>{{translate.cart_goods}} Корзина заказов</h2>
                     </div>
                     <div class="right">
                         <div class="count-purchases">
@@ -189,7 +189,7 @@
                 <div class="cart-footer-action two-wrap">
                     <div class="left"></div>
                     <div class="right">
-                        <button class="btn">Оформить заказ</button>
+                        <button class="btn">Оформити замовлення</button>
                     </div>
                 </div>
             </div>
@@ -205,6 +205,7 @@
 
             }
         },
+        props: ['translate'],
         components: {
             StarRating
         }

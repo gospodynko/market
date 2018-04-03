@@ -2513,6 +2513,11 @@ $light-gray: #d0d4dc;
                     width: 49% !important;
                     margin-right: 2%;
                     height: 420px;
+                    @media screen and (max-width: 480px){
+                      .single-product {
+                        width: 100% !important;
+                      }
+                    }
                     &:nth-child(2n+2) {
                       margin-right: 0;
                     }

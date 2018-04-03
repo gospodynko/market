@@ -163,6 +163,17 @@
                         </li>
                     </ul>
                 </li>
+                <li id="nav-menu-xs" >
+                    <div>
+                        <nav class="user-menu">
+                            <a href="https://agroyard.ua/classifieds/gsm?id=1" class="ripplelink">{{translate.classifieds}}</a>
+                            <a href="https://agroyard.ua/auctions/all" class="ripplelink">{{translate.auctions}}</a>
+                            <a href="https://agroyard.ua/catalog" class="ripplelink">{{translate.catalog}}</a>
+                            <a href="https://agroyard.ua/traders" class="ripplelink">{{translate.traders}}</a>
+                            <!--<a href="https://market.agroyard.ua" target="_blank" class="ripplelink">{{translate.market}}</a>-->
+                        </nav>
+                    </div>
+                </li>
                 <li id="exit-hidden-filter">
                     <div class="item linkexit">
                         <div class="user-wrap" v-if="user">
@@ -215,6 +226,16 @@
             </div>
         </div>
         <div class="overlay-burger" :class="{'open': showMenuxs}" @click="menuClickxs"></div>
+        <!---->
+        <div id="nav-menu">
+            <nav class="user-menu">
+                <a href="https://agroyard.ua/classifieds/gsm?id=1" class="ripplelink">{{translate.classifieds}}</a>
+                <a href="https://agroyard.ua/auctions/all" class="ripplelink">{{translate.auctions}}</a>
+                <a href="https://agroyard.ua/catalog" class="ripplelink">{{translate.catalog}}</a>
+                <a href="https://agroyard.ua/traders" class="ripplelink">{{translate.traders}}</a>
+                <a href="https://market.agroyard.ua" target="_blank" class="ripplelink">{{translate.market}}</a>
+            </nav>
+        </div>
         <!---->
         <div class="catalogue-wrap" @mouseleave="closeMenu()">
             <div class="menu-wrap">

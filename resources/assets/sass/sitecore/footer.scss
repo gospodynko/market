@@ -1,9 +1,13 @@
 .partners{ display: none;}
 //большие экраны
+.head-footer-wrap-bigScreen {
+  display: none;
+}
 @media screen and (min-width: 1024px) {
   footer.footer-section{
-    margin-top: 90px;
+    //margin-top: 90px;
     .head-footer-wrap-bigScreen{
+      display: none;
       .head-footer-wrap{
         height: 60px;
         width: 100%;
@@ -131,13 +135,13 @@
       }
     }
     /*--- news classes for mobile ---*/
-    .head-footer-wrap-mobile{ display: none; }
+    //.head-footer-wrap-mobile{ display: none; }
   }
 }
 //мобильные устройства
-@media screen and (max-width:1023px){
+//@media screen and (max-width:1023px){
   footer.footer-section{
-    .head-footer-wrap-bigScreen { display: none; }
+    //.head-footer-wrap-bigScreen { display: none; }
     .head-footer-wrap-mobile {
       background-color: #36ad5c;
       color: #FFFFFF;
@@ -198,13 +202,24 @@
           .head-footer-menu {
             margin-left: 40px;
             text-align: left;
+            .general-footer-title{
+              font-size: 18px!important;
+              font-weight: 600;
+              @media screen and (min-width:1024px) {
+                font-size: 26px!important;
+              }
+            }
             li {
               margin-top: 15px;
+              }
               a {
                 color: #FFFFFF;
                 font-size: 15px;
                 font-weight: 400;
                 line-height: 30px;
+                @media screen and (min-width:1024px) {
+                  font-size: 21px!important;
+                }
               }
               .general-footer-title{
                 margin-top: 15px;
@@ -235,6 +250,11 @@
             font-size: 15px;
             padding-left: 10px;
           }
+          li{
+            @media screen and (min-width:1024px) {
+              font-size: 21px!important;
+            }
+          }
           svg {
             padding-left: 20px;
             path {
@@ -245,10 +265,22 @@
         .socials {
           //margin-bottom: 20px;
           margin: 20px auto;
-          width: 100px;
+          width: 100%;
           text-align: center;
           h3{
             margin-bottom: 10px;
+            font-weight: 600;
+            @media screen and (min-width:1024px) {
+              font-size: 21px!important;
+            }
+          }
+          .qr-wrap{
+            width: 140px;
+            height: 140px;
+            margin: 20px auto;
+            background: url("../img/qr.png") no-repeat center;
+            -webkit-background-size: 100%;
+            background-size: 100%;
           }
         }
         .bottom-footer-detail {
@@ -261,12 +293,14 @@
           & > p {
             margin-bottom: 30px;
             color: #ffffff;
+            @media screen and (min-width:1024px) {
+              font-size: 21px!important;
+            }
           }
         }
       }      
     }
-  }
-}
+//}
 @media screen and (max-width:350px){
   .head-footer-wrap-mobile .main-footer-block{
     margin: 0 auto;

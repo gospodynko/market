@@ -8,7 +8,7 @@
             <aside>
                 <div class="dropdown-shop">
                     <div class="main-category">
-                        <h2>Категорії</h2>
+                        <h2>{{translate.categories}} </h2>
                         <span class="open-icon" :class="{'close': showMenu}" @click="menuClick"></span>
                     </div>
                     <div class="category" :class="{'open': showMenu}">
@@ -25,7 +25,7 @@
             <div class="hidden-shops-filter" :class="{'open': showShops}">
                 <div class="dropdown-shop">
                     <div class="main-category">
-                        <h2>Категорії</h2>
+                        <h2> {{translate.count_shops}} </h2>
                         <span class="open-icon" :class="{'close': showMenu}" @click="menuClick"></span>
                     </div>
                     <div class="category" :class="{'open': showMenu}">
@@ -84,17 +84,17 @@
 </g>
 </svg>
                             </div>
-                            <p class="filter">Фiльтр</p>
+                            <p class="filter">{{translate.filter}}</p>
                         </a>
                     </div>
                 </div>
                 <div class="filter-products">
-                    <h4 id="sum-h">Всього магазинів: {{shopData.total}} </h4>
+                    <h4 id="sum-h">{{translate.count_shops}}: {{shopData.total}} </h4>
                     <div class="sort-view">
                         <div class="filters">
-                            <h4>тип сортування:</h4>
+                            <h4>{{translate.type_sort}}:</h4>
                             <select @change="sortFilter" v-model="sortType">
-                                <option selected="selected" value="null">За замовчуванням</option>
+                                <option selected="selected" value="null">{{translate.auto_sort}}</option>
                                 <option :value="sort.id" v-for="sort in sortTypesShop">{{sort.name}}</option>
                             </select>
                         </div>
@@ -151,7 +151,7 @@
                 <!---->
                 <div class="info-shop-head-wrap" >
                     <div class="found-list">
-                        <h2 style="color: #0f0f0f">Магазини</h2>
+                        <h2 style="color: #0f0f0f">{{translate.shops}}</h2>
                     </div>
                 </div>
                 <div class="shop-content-wrap">
@@ -159,7 +159,7 @@
                         <div class="content-wrap" style="width: 100%;">
                             <div class="all-products-list" style="width: 100%;" :class="{'shops-list': showListShop}">
                                 <div  v-if="!shopData.data.length">
-                                    <h3>"На жаль в даному розділі немає товарів, спробуйте знайти щось інше"</h3>
+                                    <h3>{{translate.sory}}</h3>
                                 </div>
                                 <div class="single-product" style="width: 23.5%; " v-for="shop in shopData.data">
                                     <div class="img-wrap">
@@ -180,7 +180,7 @@
                                                 <star-rating :star-size="15" :increment="0.01" :rating=shop.rate :read-only="true" :show-rating="false"></star-rating>
                                             </div>
                                             <div class="count-feedback-wrap">
-                                                <a :href="shop.url">0 Відгуків</a>
+                                                <a :href="shop.url">0 {{translate.reviews}}</a>
                                                 <!--{{shop.reviews.length}}-->
                                             </div>
                                         </div>
@@ -192,7 +192,7 @@
                                         <div class="hide-list-wrap">
                                             <div class="all-goods-btn">
                                                 <a :href="'/' + shop.url" class="btn">
-                                                    До магазину
+                                                    {{translate.go_to_shop}}
                                                 </a>
                                             </div>
                                         </div>
@@ -262,7 +262,7 @@
                 sortType: null
             }
         },
-        props: ['breadcrumbs','shopList', 'categories'],
+        props: ['breadcrumbs','shopList', 'categories', 'translate'],
         components: {
             StarRating,
             paginate
