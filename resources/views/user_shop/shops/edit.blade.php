@@ -98,19 +98,20 @@
                                 <i class="glyphicon glyphicon-send"></i>&nbsp;
                                 Редагувати
                             </button>
-                            <button class="btn btn-danger cancel-btn" @click="removeProduct">
-
+                            <button class="btn btn-danger cancel-btn" id="show-modal" @click="alert"> {{--@click="removeProduct"--}}
                                 <i class="glyphicon glyphicon-remove"></i>&nbsp;
                                 Видалити продукт
                             </button>
+                            <job></job>
+                            </div>
                             <a href="{{ route('user_shop.products') }}" class="btn btn-danger cancel-btn">
                                 <i class="glyphicon glyphicon-remove"></i>&nbsp;
                                 Відміна
                             </a>
                         </div>
                     </div>
-
                 </div>
+
             </div>
         </div>
     </shops-edit-vue>

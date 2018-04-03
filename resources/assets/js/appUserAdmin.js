@@ -8,6 +8,8 @@ import moment from 'moment';
 
 import axios from 'axios';
 import Toasted from 'vue-toasted'
+import VueSwal from 'vue-swal'
+
 
 /*components*/
 import HeaderVue from './componentsUserAdmin/core/header.vue';
@@ -19,6 +21,8 @@ import ShopsEditVue from './componentsUserAdmin/shops/edit.vue';
 import ShopsOrdersVue from './componentsUserAdmin/shops/orders.vue';
 Vue.use(VueResource);
 Vue.use(Toasted);
+Vue.use(VueSwal);
+
 
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 

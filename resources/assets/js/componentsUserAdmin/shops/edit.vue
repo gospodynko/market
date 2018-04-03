@@ -12,6 +12,30 @@
             Multiselect
         },
         methods: {
+            alert() {
+                this.$swal({
+                    title: 'Ви дiйсно бажаете видалити даний продукт?',
+                    icon: "warning",
+                    buttons: ["Нi", "Так"],
+                    dangerMode: true,
+                })
+                    .then((willDelete) => {
+                    if (willDelete) {
+                        axios.post('/shop/product/remove/' + this.product.id, this.product)
+                        swal("Poof! Your imaginary file has been deleted!", {
+                            icon: "success",
+                        })
+                            .then(response => {
+                                location.href = '/shop/products/';
+                            })
+                            .catch(function (error) {
+                                console.log(error.response.data);
+                            });
+                    } else {
+                        swal("Продукт не видалено");
+                    }
+                });
+            },
             updateProduct() {
                 axios.post('/shop/product/update/' + this.product.id, this.product)
                     .then(response => {
@@ -29,8 +53,7 @@
                     })
                     .catch(function (error) {
                         console.log(error.response.data);
-                    })
-                ;
+                    });
             },
             fileLoad(e) {
                 if (this.checkedProduct.pictures && this.checkedProduct.pictures.length >= 5) return false
@@ -123,6 +146,12 @@
                     this.checkedProduct.pictures.splice(i, 1)
                 }
 
+            },
+            show () {
+                this.$modal.show('deleting-modal');
+            },
+            hide () {
+                this.$modal.hide('deleting-modal');
             }
         }
     }
