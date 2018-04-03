@@ -123,6 +123,12 @@
                     this.checkedProduct.pictures.splice(i, 1)
                 }
 
+            },
+            show () {
+                this.$modal.show('deleting-modal');
+            },
+            hide () {
+                this.$modal.hide('deleting-modal');
             }
         }
     }
