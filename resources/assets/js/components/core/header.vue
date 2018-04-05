@@ -232,7 +232,7 @@
                 <a href="https://agroyard.ua/classifieds/gsm?id=1" class="ripplelink">{{translate.classifieds}}</a>
                 <a href="https://agroyard.ua/auctions/all" class="ripplelink">{{translate.auctions}}</a>
                 <a href="https://agroyard.ua/catalog" class="ripplelink">{{translate.catalog}}</a>
-                <aА href="https://agroyard.ua/traders" class="ripplelink">{{translate.traders}}</aА>
+                <a href="https://agroyard.ua/traders" class="ripplelink">{{translate.traders}}</a>
                 <!--<a href="https://agroyard.ua" target="_blank" class="ripplelink">АгроЯрд</a>-->
             </nav>
         </div>
