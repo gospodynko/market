@@ -233,7 +233,7 @@
                 <a href="https://agroyard.ua/auctions/all" class="ripplelink">{{translate.auctions}}</a>
                 <a href="https://agroyard.ua/catalog" class="ripplelink">{{translate.catalog}}</a>
                 <a href="https://agroyard.ua/traders" class="ripplelink">{{translate.traders}}</a>
-                <a href="https://market.agroyard.ua" target="_blank" class="ripplelink">{{translate.market}}</a>
+                <!--<a href="https://agroyard.ua" target="_blank" class="ripplelink">АгроЯрд</a>-->
             </nav>
         </div>
         <!---->
