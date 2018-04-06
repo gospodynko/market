@@ -103,7 +103,7 @@
                                         </i>
                                     </div>
                                     <select class="form-control" id="sel1" v-model="checkedRegion">
-                                        <option :value="null"><p>Оберіть регіон</p></option>
+                                        <option :value="null"><p>{{translate.select_region}}</p></option>
                                         <option :value="region.id" v-for="region in regions"><p>{{region.region_name}}</p></option>
                                     </select>
                                 </div>
@@ -118,9 +118,9 @@
                                             </i>
                                         </div>
                                         <select class="form-control" id="sel2">
-                                            <option>6 месяців</option>
-                                            <option>18 месяців</option>
-                                            <option>24 месяці</option>
+                                            <option>6 {{translate.months}}</option>
+                                            <option>18 {{translate.months}}</option>
+                                            <option>24 {{translate.month}}</option>
                                         </select>
                                     </div>
                                     <p>399 грн/пл</p>
