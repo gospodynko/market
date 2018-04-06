@@ -335,7 +335,8 @@
                 this.showCreditForm = false
             },
             addToCredit(){
-                this.showCreditForm = !this.showCreditForm
+                alert("Данная функция в процессе разработки! Пожалуйста, выберите другой способ покупки данного товара!");
+                //this.showCreditForm = !this.showCreditForm
             },
             hiddenBody (key) {
                 if (key === 'open') {

@@ -6,14 +6,14 @@
                 <div class="checkout-user-wrap">
                     <h2>{{translate.goods_in_cart}}</h2>
                     <!--<div class="product-list">-->
-                        <!--<div class="single-product" v-for="item in cartItems" @click="setItem(item)" :class="{'active': item.store.id == checketStoreId}">-->
-                            <!--<div class="logo">-->
-                                <!--<img :src="item.product.default_picture" alt="">-->
-                            <!--</div>-->
-                            <!--<div class="title">-->
-                                <!--<p>{{getName(item.product.name)}}</p>-->
-                            <!--</div>-->
-                        <!--</div>-->
+                    <!--<div class="single-product" v-for="item in cartItems" @click="setItem(item)" :class="{'active': item.store.id == checketStoreId}">-->
+                    <!--<div class="logo">-->
+                    <!--<img :src="item.product.default_picture" alt="">-->
+                    <!--</div>-->
+                    <!--<div class="title">-->
+                    <!--<p>{{getName(item.product.name)}}</p>-->
+                    <!--</div>-->
+                    <!--</div>-->
                     <!--</div>-->
                     <div class="product-list">
                         <swiper :options="swiperOption" ref="mySwiper">
@@ -102,13 +102,34 @@
                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 37 27"><g><g transform="translate(-570 -284)"><image width="37" height="27" transform="translate(570 284)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAbCAYAAAD77kbeAAACCElEQVRYR+2V30sUURSAvxlStz9A01LbkKByyzUxA0Ux3IyKwsrMZPsB/j1FkVjpshYmJmIvPUiksFtL6EMUJUEvET3G7po/Vne2mYk7NLGQ5b1sQdAMzNMc5nz3O+eeo9m2bfOPPZoHJVkRz5SkKDxTnilZA7Jx/2dPiYWhaZqsJCdOyZRIYJqmk0TX9U2TWZaNZZlOrHhlH2kosSE/J5NcuzXM4cZ6Oo+04vOVbAjmrtP5l68ZffiIjrZmTh0PbXoIF1oBymZkbJLpp3FWMxn6wz0cC7VRUlz8UzLTtHj1ZoGbd0ZIpRZpbT7EpQtn2FZWKiVLCcqyLO5Gx5h99oL1rMGVi+c40dn+A0wYEjFv373nxmCUZDpNY32dA1RVWfHnTYkjOj31HSyWmGM1s8bl3rMO2Fafj6+myYIAuh0llV6kqSHofK8oL/s7PeV6d21EH0zyZDbO2nrWSRxqb+HDx09cH4iwtLJCMLCPcE8Xu/xV0oaUeyq/GVywoXvjzMQSZI0cXSePEns+x5elZQ4GA/R1n8ZfXalkqCCo/FJG7o8zPRPHMHIUFW2hoS7A1b5udmwvVzZUMJQLJhp7MDJKLDHP7ho//eHz+HdWo+tqAzO/EtK371d3WZTSyOWYmHrM/to9HKjdWxCQ8kT/3ZBxB6bqStnonwWbkpqGikEelKwwz5SsqW8fvjC/keZcfgAAAABJRU5ErkJggg=="/></g></g></svg>
                                         </i>
                                     </div>
-                                    <select class="form-control" id="sel1">
-                                        <option><p>Дніпропетровська</p></option>
-                                        <option><p>Київська</p></option>
-                                        <option><p>Полтавська</p></option>
+                                    <select class="form-control" id="sel1" v-model="checkedRegion">
+                                        <option :value="null"><p>{{translate.select_region}}</p></option>
+                                        <option :value="region.id" v-for="region in regions"><p>{{region.region_name}}</p></option>
                                     </select>
                                 </div>
                             </div>
+                            <div class="credit-union" v-for="branch in alliances">
+                                <p>{{branch.alliance.title}}</p>
+                                <div>
+                                    <div class="credit-union-select">
+                                        <div class="select-side">
+                                            <i class="credit-union-down gray">
+                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 37 27"><g><g transform="translate(-570 -284)"><image width="37" height="27" transform="translate(570 284)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAbCAYAAAD77kbeAAACCElEQVRYR+2V30sUURSAvxlStz9A01LbkKByyzUxA0Ux3IyKwsrMZPsB/j1FkVjpshYmJmIvPUiksFtL6EMUJUEvET3G7po/Vne2mYk7NLGQ5b1sQdAMzNMc5nz3O+eeo9m2bfOPPZoHJVkRz5SkKDxTnilZA7Jx/2dPiYWhaZqsJCdOyZRIYJqmk0TX9U2TWZaNZZlOrHhlH2kosSE/J5NcuzXM4cZ6Oo+04vOVbAjmrtP5l68ZffiIjrZmTh0PbXoIF1oBymZkbJLpp3FWMxn6wz0cC7VRUlz8UzLTtHj1ZoGbd0ZIpRZpbT7EpQtn2FZWKiVLCcqyLO5Gx5h99oL1rMGVi+c40dn+A0wYEjFv373nxmCUZDpNY32dA1RVWfHnTYkjOj31HSyWmGM1s8bl3rMO2Fafj6+myYIAuh0llV6kqSHofK8oL/s7PeV6d21EH0zyZDbO2nrWSRxqb+HDx09cH4iwtLJCMLCPcE8Xu/xV0oaUeyq/GVywoXvjzMQSZI0cXSePEns+x5elZQ4GA/R1n8ZfXalkqCCo/FJG7o8zPRPHMHIUFW2hoS7A1b5udmwvVzZUMJQLJhp7MDJKLDHP7ho//eHz+HdWo+tqAzO/EtK371d3WZTSyOWYmHrM/to9HKjdWxCQ8kT/3ZBxB6bqStnonwWbkpqGikEelKwwz5SsqW8fvjC/keZcfgAAAABJRU5ErkJggg=="/></g></g></svg>
+                                            </i>
+                                        </div>
+                                        <select class="form-control" id="sel2">
+                                            <option>6 {{translate.months}}</option>
+                                            <option>18 {{translate.months}}</option>
+                                            <option>24 {{translate.month}}</option>
+                                        </select>
+                                    </div>
+                                    <p>399 грн/пл</p>
+                                    <!--<div class="btn-checkout-credit" @click.prevent="sendForm($event, branch.alliance.id)">-->
+                                        <!--<p>Оформити</p>-->
+                                    <!--</div>-->
+                                </div>
+                            </div>
+                            <!--
                             <div class="credit-union">
                                 <p>Кредитний союз "Агрокредит"</p>
                                 <div>
@@ -145,6 +166,7 @@
                                     <p>220 {{translate.payment}}</p>
                                 </div>
                             </div>
+                            -->
                         </div>
                     </div>
                 </div>
@@ -254,20 +276,20 @@
                 },
                 cartItems: JSON.parse(localStorage.getItem('cart')),
                 checkedItem: {'data': {
-                    'user': {
-                        'first_name': this.user ? this.user.first_name : '',
-                        'last_name': this.user ?  this.user.last_name : '',
-                        'phone': this.user ?  this.user.phone : '',
-                        'email': this.user ?  this.user.email : ''
+                        'user': {
+                            'first_name': this.user ? this.user.first_name : '',
+                            'last_name': this.user ?  this.user.last_name : '',
+                            'phone': this.user ?  this.user.phone : '',
+                            'email': this.user ?  this.user.email : ''
+                        },
+                        'delivery': {
+                            'delivery_type': '',
+                            'delivery_comment': ''
+                        },
+                        'payment': {
+                            'payment_type': ''
+                        }
                     },
-                    'delivery': {
-                        'delivery_type': '',
-                        'delivery_comment': ''
-                    },
-                    'payment': {
-                        'payment_type': ''
-                    }
-                },
                     'store_count': ''
                 },
                 showSuccess: false,
@@ -275,7 +297,10 @@
                 productName: '',
                 errors: {
                 },
-                showApplicationForm: false
+                showApplicationForm: false,
+                regions: null,
+                checkedRegion: null,
+                alliances: null
             }
         },
         props: ['store', 'user', 'translate'],
@@ -283,7 +308,15 @@
             SwiperSlide,
             MaskedInput
         },
+        watch: {
+            checkedRegion: function (val) {
+                if (val) {
+                    this.getAlliance()
+                }
+            },
+        },
         created(){
+            this.getRegions();
             if(this.cartItems.length){
                 Object.assign(this.checkedItem, this.cartItems[0]);
                 this.checketStoreId = this.checkedItem.store.id;
@@ -301,20 +334,20 @@
             },
             setItem(item){
                 this.checkedItem = {'data': {
-                    'user': {
-                        'first_name': this.user ? this.user.first_name : '',
-                        'last_name': this.user ?  this.user.last_name : '',
-                        'phone': this.user ?  this.user.phone : '',
-                        'email': this.user ?  this.user.email : ''
-                    },
-                    'delivery': {
-                        'delivery_type': '',
-                        'delivery_comment': ''
-                    },
-                    'payment': {
-                        'payment_type': ''
-                    }
-                }};
+                        'user': {
+                            'first_name': this.user ? this.user.first_name : '',
+                            'last_name': this.user ?  this.user.last_name : '',
+                            'phone': this.user ?  this.user.phone : '',
+                            'email': this.user ?  this.user.email : ''
+                        },
+                        'delivery': {
+                            'delivery_type': '',
+                            'delivery_comment': ''
+                        },
+                        'payment': {
+                            'payment_type': ''
+                        }
+                    }};
                 Object.assign(this.checkedItem, item);
                 this.checketStoreId = item.store.id;
                 this.errors = {};
@@ -443,7 +476,24 @@
                 return re.test(email);
             },
             creditClick () {
-                this.showApplicationForm = !this.showApplicationForm
+                alert("Данная функция в процессе разработки! Пожалуйста, выберите другой способ покупки данного товара!");
+               // this.showApplicationForm = !this.showApplicationForm
+            },
+            getAlliance () {
+                this.$http.get('/credit-alliance/' + this.checkedRegion)
+                    .then(res => {
+                        this.alliances = res.data.branches;
+                        console.log(res.data.branches)
+                    }, err => {
+                    })
+            },
+            getRegions () {
+                this.$http.get('/credit-regions')
+                    .then(res => {
+                        this.regions = res.data.regions
+                    }, err => {
+                        // this.close()
+                    })
             },
         }
 

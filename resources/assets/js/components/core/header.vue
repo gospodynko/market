@@ -241,9 +241,9 @@
             <div class="menu-wrap">
                 <div class="catalog-menu-items">
                     <div class="catalog-menu-btn" @click="showMenuFunc()">
-                        <i class="burger"></i>
+                        <!--<i class="burger"></i>-->
                         <p>{{translate.catalog}}</p>
-                        <i class="arrow-down"></i>
+                        <!--<i class="arrow-down"></i>-->
                     </div>
                 </div>
                 <!--:class="{'full-size': showChild}" v-if="showMenu"-->

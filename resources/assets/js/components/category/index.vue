@@ -44,7 +44,7 @@
                                             <star-rating :star-size="20" :increment="0.01" :rating=product.rate :read-only="true" :show-rating="true"></star-rating>
                                         </div>
                                         <div class="count-feedback-wrap">
-                                            <a :href="product.url">{{product.reviews.length}} Відгуків</a>
+                                            <a :href="product.url">{{product.reviews.length}} {{translate.reviews}}</a>
                                         </div>
                                     </div>
                                     <div class="all-detail-list">
@@ -55,7 +55,7 @@
                                     <div class="hide-list-wrap">
                                         <div class="all-goods-btn">
                                             <a :href="'/' + product.url" class="btn">
-                                                Детальніше
+                                                {{translate.detail}}
                                             </a>
                                         </div>
                                         <div class="two-wrap">
