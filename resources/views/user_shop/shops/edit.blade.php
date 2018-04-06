@@ -14,10 +14,6 @@
                         <div class="col-lg-3">
                             <br/>
                         </div>
-                        <div class="col-lg-3">
-                            <label class="mini-title status-title">Вiдображаеться на маркетi:</label>
-                            <input id="status" type="checkbox">
-                        </div>
                         </div>
                         <div class="col-lg-12 description-block">
                             <label class="mini-title description-title">Опис продукту*</label>

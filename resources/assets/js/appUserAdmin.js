@@ -19,6 +19,8 @@ import ShopsVue from './componentsUserAdmin/shops/index.vue';
 import ShopsCreateVue from './componentsUserAdmin/shops/create.vue';
 import ShopsEditVue from './componentsUserAdmin/shops/edit.vue';
 import ShopsOrdersVue from './componentsUserAdmin/shops/orders.vue';
+import AllUserShopsVue from './componentsUserAdmin/shops/all-user-shops.vue';
+import UpdateShopVue from './componentsUserAdmin/shops/update-shop.vue';
 Vue.use(VueResource);
 Vue.use(Toasted);
 Vue.use(VueSwal);
@@ -46,7 +48,9 @@ const app = new Vue({
         ShopsVue,
         ShopsCreateVue,
         ShopsEditVue,
-        ShopsOrdersVue
+        ShopsOrdersVue,
+        AllUserShopsVue,
+        UpdateShopVue
     }
 
 
