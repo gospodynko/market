@@ -2,11 +2,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EditValidation;
+use App\Http\Requests\ShopValidation;
 use App\Http\Requests\ValidationProduct;
 use App\Models\Category;
 use App\Models\CompanyUsers;
 use App\Models\Currency;
 use App\Models\DeliveryType;
+use App\Models\MarketShopInfo;
 use App\Models\PayType;
 use App\Models\Producer;
 use App\Models\Product;
@@ -45,11 +47,9 @@ class UserShopController extends Controller
         return view('user_shop.shops.index', compact('shops'));
     }
 
-
     public function getShopOrders(UserShops $shops)
     {
         $shops = $shops->getProducts();
-
         return view('user_shop.shops.orders', compact('shops'));
     }
 

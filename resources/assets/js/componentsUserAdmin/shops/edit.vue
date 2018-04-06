@@ -22,7 +22,7 @@
                     .then((willDelete) => {
                     if (willDelete) {
                         axios.post('/shop/product/remove/' + this.product.id, this.product)
-                        swal("Poof! Your imaginary file has been deleted!", {
+                        swal("Ви успiшно видалили даний продукт!", {
                             icon: "success",
                         })
                             .then(response => {

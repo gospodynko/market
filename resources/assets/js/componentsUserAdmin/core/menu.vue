@@ -10,14 +10,14 @@
                             </span>
                     </div>
                 </li>
-                <!--<li>-->
-                    <!--<a href="/user/data" class="waves-effect">Личные данные</a>-->
-                <!--</li>-->
                 <li>
                     <a href="/shop/products" class="waves-effect">Магазини та продукти</a>
                 </li>
                 <li>
                     <a href="/shop/orders" class="waves-effect">Замовлення</a>
+                </li>
+                <li>
+                    <a href="/shop/all-user-shops" class="waves-effect">Редагування магазинiв</a>
                 </li>
             </ul>
         </div>
