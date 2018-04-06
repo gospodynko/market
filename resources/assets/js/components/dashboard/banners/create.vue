@@ -37,6 +37,7 @@
                 url: ''
             }
         },
+        props:['translate'],
         methods: {
             setFile(e){
 
