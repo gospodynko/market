@@ -791,7 +791,7 @@ $light-gray: #d0d4dc;
         height: 390px;
         .small-photos{
           display: flex;
-          justify-content: space-between;
+          justify-content: flex-start;
           width: 100%;
           margin: auto;
           position: relative;

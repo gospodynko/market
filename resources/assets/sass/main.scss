@@ -211,6 +211,7 @@ $whitecolor: white;
     width: var(--container-width);
     padding-top: 20px;
     margin: 0 auto;
+    margin-bottom: 20px;
     justify-content: space-between;
     aside { flex-basis: 23.57%; color: var(--primary-text-color); background: var(--primary-bg)}
     .content {
@@ -271,7 +272,8 @@ $whitecolor: white;
     }
   }
   .filter-products { display: flex; justify-content: space-between; color: #1dab4b;  padding-top: 23px; font-size: var(--info-title-size)  }
-  .sort-view { display: flex; width: 55%; justify-content: space-between; font-size: var(--info-text-size); color: var(--primary-text-color); }
+  .sort-view { display: flex; width: 55%; font-size: var(--info-text-size); color: var(--primary-text-color); justify-content: flex-end;
+    padding-right: 20px;}
   .filters {
     display: flex;
     justify-content: space-around;
@@ -440,6 +442,7 @@ $whitecolor: white;
     width: 100%;
     padding: 20px 0;
     margin: 0 auto;
+    margin-bottom: 20px;
     justify-content: space-between;
     aside {
       display: none;
@@ -1049,8 +1052,9 @@ $whitecolor: white;
     }
     .sort-view {
       display: flex;
-      justify-content: space-between;
       box-sizing: border-box;
+      justify-content: flex-end;
+      padding-right: 20px;
       .filters {
         font-size: 12px;
         text-align: left;
@@ -1747,8 +1751,9 @@ $whitecolor: white;
     }
     .sort-view {
       display: flex;
-      justify-content: space-between;
       box-sizing: border-box;
+      justify-content: flex-end;
+      padding-right: 20px;
       .filters {
         font-size: 12px;
         text-align: left;
@@ -2078,9 +2083,10 @@ $whitecolor: white;
         .sort-view {
           width: 100%;
           display: flex;
-          justify-content: space-between;
           font-size: var(--info-text-size);
           color: var(--primary-text-color);
+          justify-content: flex-end;
+          padding-right: 20px;
           .filters {
             display: flex;
             justify-content: space-around;

@@ -25,7 +25,7 @@
             <div class="hidden-shops-filter" :class="{'open': showShops}">
                 <div class="dropdown-shop">
                     <div class="main-category">
-                        <h2> {{translate.count_shops}} </h2>
+                        <h2> {{translate.categories}} </h2>
                         <span class="open-icon" :class="{'close': showMenu}" @click="menuClick"></span>
                     </div>
                     <div class="category" :class="{'open': showMenu}">
