@@ -25,7 +25,7 @@
             <div class="hidden-shops-filter" :class="{'open': showShops}">
                 <div class="dropdown-shop">
                     <div class="main-category">
-                        <h2> {{translate.count_shops}} </h2>
+                        <h2> {{translate.categories}} </h2>
                         <span class="open-icon" :class="{'close': showMenu}" @click="menuClick"></span>
                     </div>
                     <div class="category" :class="{'open': showMenu}">
@@ -91,17 +91,17 @@
                 <div class="filter-products">
                     <h4 id="sum-h">{{translate.count_shops}}: {{shopData.total}} </h4>
                     <div class="sort-view">
-                        <div class="filters">
-                            <h4>{{translate.type_sort}}:</h4>
-                            <select @change="sortFilter" v-model="sortType">
-                                <option selected="selected" value="null">{{translate.auto_sort}}</option>
-                                <option :value="sort.id" v-for="sort in sortTypesShop">{{sort.name}}</option>
-                            </select>
-                        </div>
+                        <!--<div class="filters">-->
+                            <!--<h4>{{translate.type_sort}}:</h4>-->
+                            <!--<select @change="sortFilter" v-model="sortType">-->
+                                <!--<option selected="selected" value="null">{{translate.auto_sort}}</option>-->
+                                <!--<option :value="sort.id" v-for="sort in sortTypesShop">{{sort.name}}</option>-->
+                            <!--</select>-->
+                        <!--</div>-->
                         <div class="view">
                             <h4>Вид:</h4>
                             <span>
-                                <a href="#" class="grid" :class="{'active': !showListShop}" @click.prevent="showListShop = false">
+                                <a href="#" class="grid" :class="{'active': typeListShop == 'ceil'}" @click.prevent="changeType(1)">
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
                                         <defs><path id="a" d="M3538 483v-5h5v5zm0 8v-5h5v5zm0 8v-5h5v5zm8-16v-5h5v5zm0 8v-5h5v5zm0 8v-5h5v5zm8-16v-5h5v5zm0 8v-5h5v5zm0 8v-5h5v5z"/>
                                         </defs>
@@ -112,7 +112,7 @@
                                 </a>
                             </span>
                             <span>
-                                <a href="#" class="table" :class="{'active': showListShop}" @click.prevent="showListShop = true">
+                                <a href="#" class="table" :class="{'active': typeListShop == 'table'}" @click.prevent="changeType(0)">
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="18" height="18" viewBox="0 0 18 18" version="1.1">
                                     <title>Group2</title>
                                     <desc>Created using Figma</desc>
@@ -157,7 +157,7 @@
                 <div class="shop-content-wrap">
                     <div class="main-shop-content" >
                         <div class="content-wrap" style="width: 100%;">
-                            <div class="all-products-list" style="width: 100%;" :class="{'shops-list': showListShop}">
+                            <div class="all-products-list" style="width: 100%;" :class="{'shops-list': typeListShop == 'table'}">
                                 <div  v-if="!shopData.data.length">
                                     <h3>{{translate.sory}}</h3>
                                 </div>
@@ -203,7 +203,7 @@
                         </div>
                     </div>
                     <div class="footer-search-wrap">
-                        <div class="paginate-wrap" v-if="shopData.total > 16">
+                        <div class="paginate-wrap" v-if="shopData.total > 10">
                             <paginate :page-count="shopData.last_page"
                                       :page-range="3"
                                       :margin-pages="2"
@@ -215,7 +215,8 @@
                                       :prev-class="'prev'"
                                       :next-class="'next'"
                                       ref="paginate"
-                                      :page-class="'page-item'"></paginate>
+                                      :page-class="'page-item'">
+                            </paginate>
                         </div>
                     </div>
                 </div>
@@ -233,7 +234,7 @@
             return {
 //                categoryProducts: this.data.shop,
                 page: this.shopList.current_page - 1,
-                showListShop: false,
+                typeListShop: 'ceil',
                 showMenu: true,
                 showShops: false,
                 sortTypesShop: [
@@ -260,6 +261,7 @@
                 categoryIds: [],
                 shopData: this.shopList,
                 sortType: null
+
             }
         },
         props: ['breadcrumbs','shopList', 'categories', 'translate'],
@@ -279,7 +281,37 @@
                 }
             }
         },
+        created () {
+            var strLink = location.search
+            var sort = strLink.replace(/.*?sortType=(.*?)/g, '$1')
+
+            if (sort == 'table' || sort == 'ceil') {
+                this.typeListShop = sort
+            }
+
+        },
         methods: {
+            changeType(type) {
+                if (type) {
+                    this.typeListShop = 'ceil'
+                } else {
+                    this.typeListShop = 'table'
+                }
+                this.locationWatch()
+            },
+            locationWatch () {
+                var url = ''
+                if (this.page) {
+                    url = '?page=' + this.page
+                }
+                if (url) {
+                    url += '&sortType=' + this.typeListShop
+                } else {
+                    url ='?sortType=' + this.typeListShop
+                }
+
+                window.history.pushState(null, null, url);
+            },
             closeMenu () {
                 this.showShops = false
             },
@@ -297,9 +329,9 @@
             },
             clickCallback(newPage){
                 if(this.page < newPage){
-                    location.href = this.shopList.next_page_url;
+                    location.href = this.shopList.next_page_url + '&sortType=' + this.typeListShop;
                 } else {
-                    location.href = this.shopList.prev_page_url;
+                    location.href = this.shopList.prev_page_url + '&sortType=' + this.typeListShop;
                 }
             },
             menuClick () {
