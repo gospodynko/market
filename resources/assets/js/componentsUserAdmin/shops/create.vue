@@ -82,10 +82,6 @@
                             <option :value="currency" v-for="currency in data.currencies">{{currency.name}}</option>
                         </select>
                     </div>
-                    <div class="col-lg-3">
-                        <label class="mini-title status-title">Вiдображаеться на маркетi:</label>
-                        <input id="producttatus" type="checkbox">
-                    </div>
                 </div>
                     <div class="col-md-12">
                         <hr>
