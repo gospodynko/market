@@ -156,3 +156,15 @@ input[type="file"] {  display: none;}
   }
 }
 .btn-block{  padding:0;}
+
+
+.add-param-btn, .add-prop-btn{
+  width: 200px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.param-name, .parametr{
+  width: 200px;
+  border: 1px solid;
+}
