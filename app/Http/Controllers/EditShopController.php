@@ -10,8 +10,10 @@ namespace App\Http\Controllers;
 
 use App\Models\UserShops;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\ShopValidation;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -31,8 +33,12 @@ class EditShopController extends Controller
     public function updateShopInfo(ShopValidation $request, $id){
         $shop = UserShops::findOrFail($id);
         $data = $request->only(['name']);
-        $shop->update($data);
-        return view('user_shop.shops.update_shop', compact('shop'));
+        if (UserShops::where('name', '=', Input::get('name'))-> exists()){
+            return response()->json(['status' => 0], 400);
+        } else {
+            $shop->update($data);
+            return view('user_shop.shops.update_shop', compact('shop'));
+        }
     }
 
     public function updatePicture($id, Request $request) {
