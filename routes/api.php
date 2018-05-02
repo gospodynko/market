@@ -1,0 +1,1 @@
+<?php Route::post('/login-token', 'Auth\LoginController@login')->middleware('auth.site');
