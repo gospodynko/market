@@ -30,6 +30,8 @@ Route::get('/adminlogin', function (){
     return view('auth.login');
 });
 
+Route::get('/token/{token}', 'Auth\LoginController@loginWithToken');
+
 // home
 Route::any('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 Route::post('/get-categories', 'HomeController@getCategories');

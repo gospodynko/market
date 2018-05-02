@@ -45,21 +45,20 @@ class LoginController extends Controller
      */
     public function login(LoginRequest $request)
     {
-        $credentials = [
-            'email' => $request->input('email'),
-            'password' => $request->input('password')
-        ];
+        $user = AgroUser::where('phone', $request->input('phone'))->first();
+        if ($user) {
+            $token = microtime().mt_rand(1,100);
+            $token = md5($token);
 
-        $attempt = \Auth::attempt($credentials);
-        if ($attempt) {
-            return redirect(url('/'));
+            $data = [
+                'user_id' => $user->id,
+                'token' => $token
+            ];
+            AgroAuth::create($data);
+            return response()->json(['url' => url('/token/' .  $token)], 202);
         }
 
-        return redirect()->back()
-                ->withInput($request->only('email'))
-                ->withErrors([
-                    'password' => 'Invalid password',
-        ]);
+        return response()->json(['url' => url('/')], 400);
     }
 
     public function loginOauth(Request $request)
@@ -114,5 +113,28 @@ class LoginController extends Controller
                 ->withErrors([
                     'password' => 'Invalid password',
         ]);
+    }
+
+    public function loginWithToken($token)
+    {
+        if (!$token || !is_string($token)) {
+            return redirect('/');
+        }
+
+        $user_data = AgroAuth::where('token', $token)->first();
+
+        if (!$user_data) {
+            return redirect('/');
+        }
+
+        $user = $user_data->user;
+
+        try {
+            \Auth::login($user);
+            $user_data->delete();
+            return redirect('/');
+        } catch (\ErrorException $e) {
+            return redirect('/');
+        }
     }
 }
