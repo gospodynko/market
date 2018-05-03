@@ -43,7 +43,7 @@ class LoginController extends Controller
      * @param  Request $request
      * @return void
      */
-    public function login(LoginRequest $request)
+    public function login(Request $request)
     {
         $user = AgroUser::where('phone', $request->input('phone'))->first();
         if ($user) {
