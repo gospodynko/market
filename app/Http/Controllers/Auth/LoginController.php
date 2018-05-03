@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use Antvel\User\Auth\Login;
+use App\Models\AgroAuth;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
