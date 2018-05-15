@@ -74,21 +74,22 @@
                                 </div>
                             </div>
                             <div class="credit-union" v-for="branch in alliances">
-                                <p>{{branch.alliance.title}}</p>
+                                <!--<p>{{branch.alliance.title}}</p>-->
                                 <div>
                                     <div class="credit-union-select">
-                                        <div class="select-side">
-                                            <i class="credit-union-down gray">
-                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 37 27"><g><g transform="translate(-570 -284)"><image width="37" height="27" transform="translate(570 284)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAbCAYAAAD77kbeAAACCElEQVRYR+2V30sUURSAvxlStz9A01LbkKByyzUxA0Ux3IyKwsrMZPsB/j1FkVjpshYmJmIvPUiksFtL6EMUJUEvET3G7po/Vne2mYk7NLGQ5b1sQdAMzNMc5nz3O+eeo9m2bfOPPZoHJVkRz5SkKDxTnilZA7Jx/2dPiYWhaZqsJCdOyZRIYJqmk0TX9U2TWZaNZZlOrHhlH2kosSE/J5NcuzXM4cZ6Oo+04vOVbAjmrtP5l68ZffiIjrZmTh0PbXoIF1oBymZkbJLpp3FWMxn6wz0cC7VRUlz8UzLTtHj1ZoGbd0ZIpRZpbT7EpQtn2FZWKiVLCcqyLO5Gx5h99oL1rMGVi+c40dn+A0wYEjFv373nxmCUZDpNY32dA1RVWfHnTYkjOj31HSyWmGM1s8bl3rMO2Fafj6+myYIAuh0llV6kqSHofK8oL/s7PeV6d21EH0zyZDbO2nrWSRxqb+HDx09cH4iwtLJCMLCPcE8Xu/xV0oaUeyq/GVywoXvjzMQSZI0cXSePEns+x5elZQ4GA/R1n8ZfXalkqCCo/FJG7o8zPRPHMHIUFW2hoS7A1b5udmwvVzZUMJQLJhp7MDJKLDHP7ho//eHz+HdWo+tqAzO/EtK371d3WZTSyOWYmHrM/to9HKjdWxCQ8kT/3ZBxB6bqStnonwWbkpqGikEelKwwz5SsqW8fvjC/keZcfgAAAABJRU5ErkJggg=="/></g></g></svg>
-                                            </i>
-                                        </div>
-                                        <select class="form-control" id="sel2">
-                                            <option>6 месяців</option>
-                                            <option>18 месяців</option>
-                                            <option>24 месяці</option>
-                                        </select>
+                                        <!--<div class="select-side">-->
+                                            <!--<i class="credit-union-down gray">-->
+                                                <!--<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="45" height="45" viewBox="0 0 37 27"><g><g transform="translate(-570 -284)"><image width="37" height="27" transform="translate(570 284)" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACUAAAAbCAYAAAD77kbeAAACCElEQVRYR+2V30sUURSAvxlStz9A01LbkKByyzUxA0Ux3IyKwsrMZPsB/j1FkVjpshYmJmIvPUiksFtL6EMUJUEvET3G7po/Vne2mYk7NLGQ5b1sQdAMzNMc5nz3O+eeo9m2bfOPPZoHJVkRz5SkKDxTnilZA7Jx/2dPiYWhaZqsJCdOyZRIYJqmk0TX9U2TWZaNZZlOrHhlH2kosSE/J5NcuzXM4cZ6Oo+04vOVbAjmrtP5l68ZffiIjrZmTh0PbXoIF1oBymZkbJLpp3FWMxn6wz0cC7VRUlz8UzLTtHj1ZoGbd0ZIpRZpbT7EpQtn2FZWKiVLCcqyLO5Gx5h99oL1rMGVi+c40dn+A0wYEjFv373nxmCUZDpNY32dA1RVWfHnTYkjOj31HSyWmGM1s8bl3rMO2Fafj6+myYIAuh0llV6kqSHofK8oL/s7PeV6d21EH0zyZDbO2nrWSRxqb+HDx09cH4iwtLJCMLCPcE8Xu/xV0oaUeyq/GVywoXvjzMQSZI0cXSePEns+x5elZQ4GA/R1n8ZfXalkqCCo/FJG7o8zPRPHMHIUFW2hoS7A1b5udmwvVzZUMJQLJhp7MDJKLDHP7ho//eHz+HdWo+tqAzO/EtK371d3WZTSyOWYmHrM/to9HKjdWxCQ8kT/3ZBxB6bqStnonwWbkpqGikEelKwwz5SsqW8fvjC/keZcfgAAAABJRU5ErkJggg=="/></g></g></svg>-->
+                                            <!--</i>-->
+                                        <!--</div>-->
+                                        <!--<select class="form-control" id="sel2">-->
+                                            <!--<option>6 месяців</option>-->
+                                            <!--<option>18 месяців</option>-->
+                                            <!--<option>24 месяці</option>-->
+                                        <!--</select>-->
+                                        <p>{{branch.alliance.title}}</p>
+                                        <!--<p>{{branch.alliance.contacts}}</p>-->
                                     </div>
-                                    <p>399 грн/пл</p>
                                     <div class="btn-checkout-credit" @click.prevent="sendForm($event, branch.alliance.id)">
                                         <p>Оформити</p>
                                     </div>
@@ -152,6 +153,9 @@
                         </div>
                     </div>
                     <form id="form-user-info" @submit.prevent="sendMobForm">
+                        <div class="popup-regMBtn">
+                            <button type="submit"><p>Відправити</p></button>
+                        </div>
                         <div class="popup-credit-caption">ПІБ</div>
                         <input type="text" name="name" value="" v-model="userData.fio" id="firstName" :class="{'error': errors.fio}" required>
                         <div class="popup-credit-caption">E-mail</div>
@@ -170,9 +174,9 @@
                                 <option :value="type.name" v-for="type in payTypes">{{type.name}}</option>
                             </select>
                         </div>
-                        <div class="popup-regMBtn">
-                            <button type="submit"><p>Відправити</p></button>
-                        </div>
+                        <!--<div class="popup-regMBtn">-->
+                            <!--<button type="submit"><p>Відправити</p></button>-->
+                        <!--</div>-->
                     </form>
                 </div>
             </transition>
@@ -321,10 +325,11 @@
             },
             sendMobForm (e) {
                 if (this.validate()) return false
-                this.$http.post('api/user-registration/credit-form', this.userData).then(res => {
+                this.$http.post('/credit-order', this.userData).then(res => {
                     this.close()
+                    console.log(this.userData);
                 }, err => {
-                    this.close()
+                    this.close();
                     console.log(err)
                 })
 
@@ -335,8 +340,8 @@
                 this.showCreditForm = false
             },
             addToCredit(){
-                alert("Данная функция в процессе разработки! Пожалуйста, выберите другой способ покупки данного товара!");
-                //this.showCreditForm = !this.showCreditForm
+//                alert("Данная функция в процессе разработки! Пожалуйста, выберите другой способ покупки данного товара!");
+                this.showCreditForm = !this.showCreditForm
             },
             hiddenBody (key) {
                 if (key === 'open') {

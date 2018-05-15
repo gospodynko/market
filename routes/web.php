@@ -81,6 +81,8 @@ Route::post('/set-order', 'CheckoutController@setOrder');
 Route::get('/credit-regions', 'CreditController@getRegions');
 Route::get('/credit-alliance/{region}', 'CreditController@getAlliance');
 
+Route::post('/credit-order', 'MailOrderController@setCreditOrder');
+
 //users routes
 require __DIR__ . '/web/users.php';
 

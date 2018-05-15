@@ -8,11 +8,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\CreditOrder;
 use App\Models\CreditAlliances;
 use App\Models\CreditContacts;
 use App\Models\CreditRegions;
 use FontLib\Table\Type\post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -102,4 +105,11 @@ class CreditController extends Controller
         $branches = $region->branches()->with('alliance')->get();
         return response()->json(['branches' => $branches], 200);
     }
+
+//    public function testMail(Request $request){
+//        $email = Auth::user()->email;
+//        Mail::to($email)->send(new CreditOrder());
+//        return view('home');
+//
+//    }
 }
