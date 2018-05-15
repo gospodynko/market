@@ -10,10 +10,10 @@ class MailOrderController extends Controller
 {
     public function setCreditOrder(Request $request)
     {
-        $region = $request->input('region');
-//        $credit_mail = CreditContacts::findOrFail();
+        $region_id = $request->input('region');
+//        $credit_mail = CreditContacts->findOrFail(['id_credit_region'=>$region_id]);
 //        dd($credit_mail);
 //        return $request->all();
-        return $region;
+//        return $credit_mail;
     }
 }
