@@ -26,7 +26,7 @@ class EditValidation  extends FormRequest
     {
         return [
             'description' => 'required|string|min:6',
-            'price' => 'required|integer|min:1',
+            'price' => 'required|between:0,999999999,99',
             'currency' => 'required|array',
             'currency.id' => 'required|exists:currencies,id',
             'pay_types' => 'required|array',
@@ -41,7 +41,7 @@ class EditValidation  extends FormRequest
     {
         return [
             'description' => 'required|string|min:6',
-            'price' => 'required|integer',
+            'price' => 'required|between:0,999999999,99',
             'shop_id' => 'required|exists:user_shops,id',
             'currency' => 'required|array',
             'currency.id' => 'required|exists:currencies,id',
