@@ -53,10 +53,16 @@ class UserShopController extends Controller
         return view('user_shop.shops.orders', compact('shops'));
     }
 
+    public function getSubcategory($id)
+    {
+        $subcategories = Category::where('parent_category_id', $id)->with('producers.products')->get();
+        return response()->json(['subcategories' => $subcategories], 200);
+    }
+
     public function createProduct($id)
     {
         return view('user_shop.shops.create', ['data' => ['shop' => UserShops::find($id),
-                'categories' => Category::with('producers.products')->get(),
+                'categories' => Category::where('parent_category_id', null)->get(),
                 'currencies' => Currency::all(), 'delivery_type' => DeliveryType::all(),
                 'pay_type' => PayType::all()]]);
     }

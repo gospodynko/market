@@ -3,6 +3,7 @@
 Route::group(['prefix' => 'shop'], function () {
 
     Route::get('/products', ['uses' => 'UserShopController@getShopProducts', 'as' => 'user_shop.products'])->middleware('auth');
+    Route::get('/products/get-subcategories/{id}', ['uses' => 'UserShopController@getSubcategory', 'as' => 'user_shop.products.sub'])->middleware('auth');
     Route::get('/orders', ['uses' => 'UserShopController@getShopOrders', 'as' => 'user_shop.orders'])->middleware('auth');
     Route::get('/all-user-shops', ['uses' => 'EditShopController@getShopList', 'as' => 'user_shop.shops.all-user-shops'])->middleware('auth');
     Route::get('/edit-info/{id}', ['uses' => 'EditShopController@editShopInfo', 'as' => 'user_shop.update_shop'])->middleware('auth');

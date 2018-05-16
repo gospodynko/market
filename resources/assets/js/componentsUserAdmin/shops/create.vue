@@ -8,9 +8,17 @@
                     <div class="col-md-3">
                         <!--<br/>-->
                         <label class="mini-title category-title">Вибір категорії*:</label>
-                        <select class="form-control category-form" @change="setProducer" v-model="checkedCategory">
+                        <select class="form-control category-form" v-model="checkedCategory">
                             <option :value="null" disabled selected>Оберіть категорію</option>
-                            <option :value="category" v-for="category in categories">{{category.name}}</option>
+                            <option :value="category.id" v-for="category in categories">{{category.name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <!--<br/>-->
+                        <label class="mini-title category-title">Вибір пiдкатегорії:</label>
+                        <select class="form-control category-form" @change="setProducer" v-model="checkedSubCategory">
+                            <option :value="null" disabled selected>Оберіть категорію</option>
+                            <option :value="subcategory" v-for="subcategory in subcategories">{{subcategory.name}}</option>
                         </select>
                     </div>
                     <div class="col-md-3">
@@ -123,12 +131,14 @@
             return{
                 checkedProducers: [],
                 checkedCategory: null,
+                checkedSubCategory: null,
                 newProducer: null,
                 checkedTag: [],
                 checkedProducts: [],
                 checkedProduct: null,
                 shop: this.data.shop,
                 categories: this.data.categories,
+                subcategories: this.data.subcategories,
                 deliveryType: [],
                 paymentType: [],
                 currencyType: null,
@@ -171,6 +181,9 @@
                         }
                     ]
                 }
+            },
+            checkedCategory: function (val) {
+                this.getSubcategories(val)
             }
         },
 
@@ -184,7 +197,8 @@
                     'currency': this.currencyType,
                     'description': this.description,
                     'producer': this.checkedTag,
-                    'category': this.checkedCategory,
+//                    'category': this.checkedCategory,
+                    'category': this.checkedSubCategory,
                     'shop_id': this.shop.id,
                     'price': + this.price,
                     'images': this.images,
@@ -198,9 +212,18 @@
                         console.log(error.response.data);
                     });
             },
-            setProducer(){
-                this.checkedProducers = this.checkedCategory.producers;
+
+            getSubcategories(id) {
+                this.$http.get('/shop/products/get-subcategories/' + id).then(res => {
+                    this.subcategories = res.data.subcategories;
+                }, err => {
+
+                })
             },
+            setProducer(){
+                this.checkedProducers = this.checkedSubCategory.producers;
+            },
+
             appearTag(){
                 this.$toasted.show('Great News!', {
                     //theme of the toast you prefer
