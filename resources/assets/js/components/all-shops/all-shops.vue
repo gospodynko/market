@@ -329,9 +329,9 @@
             },
             clickCallback(newPage){
                 if(this.page < newPage){
-                    location.href = this.shopList.next_page_url + '&sortType=' + this.typeListShop;
+                    location.href = this.shopData.path + '?page=' + (newPage) + '&sortType=' + this.typeListShop;
                 } else {
-                    location.href = this.shopList.prev_page_url + '&sortType=' + this.typeListShop;
+                    location.href = this.shopData.path + '?page=' + (newPage  ? newPage : newPage - 1 ) + '&sortType=' + this.typeListShop;
                 }
             },
             menuClick () {
