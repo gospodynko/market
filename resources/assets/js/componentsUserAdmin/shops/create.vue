@@ -10,7 +10,7 @@
                         <label class="mini-title category-title">Вибір категорії*:</label>
                         <select class="form-control category-form" v-model="checkedCategory">
                             <option :value="null" disabled selected>Оберіть категорію</option>
-                            <option :value="category.id" v-for="category in categories">{{category.name}}</option>
+                            <option :value="category" v-for="category in categories">{{category.name}}</option>
                         </select>
                     </div>
                     <div class="col-md-3">
@@ -155,7 +155,7 @@
                             }
                         ]
                     }
-                ]
+                ],
             }
         },
         props: ['data'],
@@ -198,7 +198,7 @@
                     'description': this.description,
                     'producer': this.checkedTag,
 //                    'category': this.checkedCategory,
-                    'category': this.checkedSubCategory,
+                    'category': this.checkedSubCategory ? this.checkedSubCategory : this.checkedCategory,
                     'shop_id': this.shop.id,
                     'price': + this.price,
                     'images': this.images,
@@ -224,16 +224,7 @@
                 this.checkedProducers = this.checkedSubCategory.producers;
             },
 
-            appearTag(){
-                this.$toasted.show('Great News!', {
-                    //theme of the toast you prefer
-                    theme: 'bubble',
-                    //position of the toast container
-                    position: 'top-right',
-                    //display time of the toast
-                    duration: 5000
-                })
-            },
+
             addTag(newTag) {
                 this.checkedProducers.push({'name': newTag, 'id': newTag});
                 this.checkedTag = {'name': newTag, 'id': newTag};
