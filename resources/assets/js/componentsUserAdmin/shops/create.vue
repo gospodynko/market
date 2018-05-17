@@ -183,7 +183,7 @@
                 }
             },
             checkedCategory: function (val) {
-                this.getSubcategories(val)
+                this.getSubcategories(val.id)
             }
         },
 
