@@ -103,6 +103,7 @@
                         <div class="di-price">
                             {{numberWithSpaces(product.price)}} {{product.currency.name}}
                         </div>
+                        <span class="di-header-id">(за одиницю товару)</span>
                         <div class="btn-buy">
                             <button class="di-buy" @click="addToCart(product)">{{translate.in_cart}}</button>
                             <popup-credit></popup-credit>
