@@ -293,7 +293,7 @@ class UserShopController extends Controller
             return $validation;
         }
 
-        $products = $shop->products()->applyFilters($filters)->paginate(6);
+        $products = $shop->products()->orderBy('id', 'DESC')->applyFilters($filters)->paginate(6);
         return $products;
     }
 
@@ -308,9 +308,7 @@ class UserShopController extends Controller
             ->with(['children.products' => function ($query) use ($shop) {
                     $query->where('user_shop_id', $shop->id);
                 }])
-            ->get()
-        ;
-
+            ->get();
         foreach ($categories as $category) {
             foreach ($category->children as $key => $child) {
                 $child->products_count = $child->products()->where('user_shop_id', $shop->id)->count();
@@ -320,7 +318,8 @@ class UserShopController extends Controller
             }
         }
 
-        $products = $shop->products()->paginate(6);
+        $products = $shop->products()->orderBy('id', 'DESC')->paginate(6);
+//        dd($products);
 
         return view('user_shop.shops.show', compact('shop', 'categories', 'products'));
     }

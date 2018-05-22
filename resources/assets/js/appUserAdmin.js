@@ -52,6 +52,4 @@ const app = new Vue({
         AllUserShopsVue,
         UpdateShopVue
     }
-
-
 });
