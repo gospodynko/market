@@ -175,15 +175,15 @@
                                         </p>
                                     </div>
                                     <div class="detail-prod-wrap">
-                                        <div class="feedback-wrap">
-                                            <div class="rating-wrap">
-                                                <star-rating :star-size="15" :increment="0.01" :rating=shop.rate :read-only="true" :show-rating="false"></star-rating>
-                                            </div>
-                                            <div class="count-feedback-wrap">
-                                                <a :href="shop.url">0 {{translate.reviews}}</a>
-                                                <!--{{shop.reviews.length}}-->
-                                            </div>
-                                        </div>
+                                        <!--<div class="feedback-wrap">-->
+                                            <!--<div class="rating-wrap">-->
+                                                <!--<star-rating :star-size="15" :increment="0.01" :rating=shop.rate :read-only="true" :show-rating="false"></star-rating>-->
+                                            <!--</div>-->
+                                            <!--<div class="count-feedback-wrap">-->
+                                                <!--<a :href="shop.url">0 {{translate.reviews}}</a>-->
+                                                <!--&lt;!&ndash;{{shop.reviews.length}}&ndash;&gt;-->
+                                            <!--</div>-->
+                                        <!--</div>-->
                                         <!--<div class="all-detail-list">-->
                                         <!--<ul>-->
                                         <!--<li>{{shop.description.length > 100 ? shop.description.slice(0, 100) + ' ...' : product.description }}</li>-->

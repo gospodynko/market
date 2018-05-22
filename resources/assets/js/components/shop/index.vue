@@ -211,14 +211,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="feedback-wrap">
-                                    <div class="rating-wrap">
-                                        <star-rating :star-size="15" :increment="0.01" :rating=product.rate :read-only="true" :show-rating="true"></star-rating>
-                                    </div>
-                                    <div class="count-feedback-wrap">
-                                        <a href="#">{{product.reviews.length}} відгуків</a>
-                                    </div>
-                                </div>
+                                <!--<div class="feedback-wrap">-->
+                                    <!--<div class="rating-wrap">-->
+                                        <!--<star-rating :star-size="15" :increment="0.01" :rating=product.rate :read-only="true" :show-rating="true"></star-rating>-->
+                                    <!--</div>-->
+                                    <!--<div class="count-feedback-wrap">-->
+                                        <!--<a href="#">{{product.reviews.length}} відгуків</a>-->
+                                    <!--</div>-->
+                                <!--</div>-->
                             </div>
                         </div>
                     </div>
