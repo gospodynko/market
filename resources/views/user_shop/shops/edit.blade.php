@@ -8,6 +8,9 @@
                     <h2 class="title">&nbsp;&nbsp;&nbsp;&nbsp;Внесіть зміни: </h2>
                     <div v-if="checkedProduct">
                         <div class="col-md-3 ">
+
+
+
                             <label class="mini-title prod-title">Продукт*:</label>
                             <textarea class="multiselect__input" style="width:100%; height: 50px; resize: none;" v-model="checkedProduct.name" >@{{ checkedProduct.name }}</textarea>
                          </div>

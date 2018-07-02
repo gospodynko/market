@@ -26,6 +26,7 @@
                             <li><a href="https://agroyard.ua/classifieds/gsm?id=1">{{translate.adv}}</a></li>
                             <li><a href="https://agroyard.ua/auctions/all">{{translate.auction}}</a></li>
                             <li><a href="/sitemap.xml">Карта сайту</a></li>
+                            <li><a href="https://agroyard.ua/traders">Цiни трейдера</a></li>
                             <!--<li><a href="#">{{translate.tenders}}</a></li>-->
                         </ul>
                     </div>
@@ -115,6 +116,7 @@
                                 <li><a href="https://agroyard.ua/news">{{translate.news}}</a></li>
                                 <li><a href="https://agroyard.ua/about">{{translate.about}}</a></li>
                                 <li><a href="https://agroyard.ua/callback">{{translate.feedback}}</a></li>
+                                <li><a href="https://agroyard.ua/traders">Цiни трейдера</a></li>
                                 <li><router-link :to="{name: 'classifieds', params: {slug: 'gsm'}, query: {id: 1}}">{{translate.tenders}}</router-link></li>
                                 <li class ="general-footer-title">{{translate.contacts}}</li>
                                 <li class="telephone"><a href="tel:0961992141">(067) 199 21 41</a></li>
@@ -128,6 +130,8 @@
                                 <li><a href="https://agroyard.ua/account/auction-create">{{translate.sell_crop}}</a></li>
                                 <li><a href="https://agroyard.ua/classifieds/gsm?id=1">{{translate.adv}}</a></li>
                                 <li><a href="https://agroyard.ua/auctions/all">{{translate.auction}}</a></li>
+                                <li><a href="https://agroyard.ua/traders">Цiни трейдера</a></li>
+                                <li><a href="https://agroyard.ua/traders">Цiни трейдера</a></li>
                                 <li class="telephone right"><a href="tel:0800802141">(0800) 80 21 41</a></li>
                                 <li class="telephone"><a href="tel:0501992141">(050) 199 21 41</a></li>
                             </ul>

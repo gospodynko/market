@@ -1,10 +1,13 @@
 <script type="text/babel">
+
+
     import Multiselect from 'vue-multiselect'
     export default{
         data(){
             return{
                 checkedProduct: this.product,
-                images: []
+                images: [],
+                test: "test"
             }
         },
         props: ['product'],
@@ -31,9 +34,9 @@
                             .catch(function (error) {
                                 console.log(error.response.data);
                             });
-                    } else {
-                        swal("Продукт не видалено");
-                    }
+                        } else {
+                            swal("Продукт не видалено");
+                        }
                 });
             },
             updateProduct() {

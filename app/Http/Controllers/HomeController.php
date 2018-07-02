@@ -132,7 +132,7 @@ class HomeController extends Controller
     }
 
     public function getShopList() {
-        $per_page = 10;
+        $per_page = 9;
         $shop_list = UserShops::paginate($per_page);
         $categories = Category::where('parent_category_id', null)->get();
         return view('shop-list', compact('shop_list', 'categories'));

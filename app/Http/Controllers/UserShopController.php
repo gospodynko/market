@@ -75,7 +75,7 @@ class UserShopController extends Controller
         $product->currencies = Currency::all();
         $product->delivery_type = DeliveryType::all();
         $product->features = json_decode($product->features);
-
+        $categories = Category::where('parent_category_id', null)->get();
         return view('user_shop.shops.edit' , compact('product'));
     }
 
