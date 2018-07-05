@@ -3,5 +3,5 @@
 @section('title', trans('titles.main'))
 
 @section('content')
-<main-vue :data="{{json_encode($data)}}"></main-vue>
-    @endsection
+    <main-vue :data="{{json_encode($data)}}"></main-vue>
+@endsection

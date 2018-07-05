@@ -15,7 +15,7 @@
 
 <script type="text/babel">
     import pgwSlider from  'pgwslider';
-    require('!style!css!pgwslider/pgwslider.min.css');
+    //require('!style!css!pgwslider/pgwslider.min.css');
     export default {
         data(){
             return {

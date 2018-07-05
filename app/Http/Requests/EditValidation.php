@@ -33,7 +33,8 @@ class EditValidation  extends FormRequest
             'pay_types.*.id' => 'required|exists:pay_types,id',
             'delivery_types' => 'required|array',
             'delivery_types.*.id' => 'required|exists:delivery_types,id',
-            'images' => 'array'
+            'images' => 'array',
+            'category_id' => 'required|integer|exists:categories,id'
         ];
     }
 

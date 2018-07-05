@@ -1,17 +1,50 @@
 <script type="text/babel">
+    function getIndex(product) {
+        let current_category_index = product.category.id;
+                            product.categories.forEach(function(item, i) {
+                                if(item.id === current_category_index)
+                                    return i;
+                            });
+    };
+
     import Multiselect from 'vue-multiselect'
     export default{
         data(){
             return{
                 checkedProduct: this.product,
+                category_id: '',
+                current_category: '',
+                current_category_id: '',
                 images: []
+
+
             }
         },
         props: ['product'],
         components: {
             Multiselect
         },
+        created: function() {
+            let current_category_id = this.product.category.parent_category_id;
+            let that = this;
+            this.product.categories.forEach(function(item, i) {
+                if(item.id === current_category_id) {
+                    that.current_category = that.checkedProduct.categories[i];
+                    that.category_id = i;
+                }
+
+            });
+        },
+        watch: {
+            category_id: function(id) {
+                this.current_category = this.checkedProduct.categories[id];
+            }
+        },
         methods: {
+            setCurrentCategory(index) {
+                console.log(index);
+                this.current_category = this.checkedProduct.categories[index];
+            },
             alert() {
                 this.$swal({
                     title: 'Ви дiйсно бажаете видалити даний продукт?',
@@ -31,12 +64,13 @@
                             .catch(function (error) {
                                 console.log(error.response.data);
                             });
-                    } else {
-                        swal("Продукт не видалено");
-                    }
+                        } else {
+                            swal("Продукт не видалено");
+                        }
                 });
             },
             updateProduct() {
+
                 axios.post('/shop/product/update/' + this.product.id, this.product)
                     .then(response => {
                         location.href = '/shop/products/';

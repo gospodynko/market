@@ -52,6 +52,7 @@
         </div>
     </div>
 </template>
+
 <script type="text/babel">
     import Multiselect from 'vue-multiselect'
     export default{

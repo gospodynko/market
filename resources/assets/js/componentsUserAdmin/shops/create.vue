@@ -143,7 +143,7 @@
                 paymentType: [],
                 currencyType: null,
                 description: '',
-                price: 1,
+                price: '1',
                 images: [],
                 features: [
                     {
@@ -155,7 +155,7 @@
                             }
                         ]
                     }
-                ],
+                ]
             }
         },
         props: ['data'],

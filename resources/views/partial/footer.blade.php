@@ -5,7 +5,9 @@
 			<?php $menu=\Menu::help(true); ?>
 			<h3>{{ trans('globals.company_label') }}</h3>
 			<ul>
+
 				@foreach ($menu as $item)
+
 					<li><a href = '{{ $item['route'] }}'>{{ $item['text'] }}</a></li>
 				@endforeach
 			</ul>
