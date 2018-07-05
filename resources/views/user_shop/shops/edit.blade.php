@@ -1,13 +1,32 @@
 @extends('user_shop.layouts.index')
 
 @section('user-shop-content')
-    <shops-edit-vue inline-template :product="{{$product}}" xmlns:v-on="http://www.w3.org/1999/xhtml">
+    <shops-edit-vue inline-template :product="{{$product}}"  xmlns:v-on="http://www.w3.org/1999/xhtml">
         <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row">
                     <h2 class="title">&nbsp;&nbsp;&nbsp;&nbsp;Внесіть зміни: </h2>
                     <div v-if="checkedProduct">
                         <div class="col-md-3 ">
+                            <div class="col-md-12 props-block">
+                                <div class="">
+                                    <!--<br/>-->
+                                    <label class="mini-title category-title">Вибір категорії*:</label>
+                                    <select class="form-control category-form" v-model="category_id" style="">
+                                        <option :value="null">Оберіть категорію</option>
+                                        <option :value="index" v-for="(category, index) in checkedProduct.categories" :key="index" :selected="category_id === index">@{{category.name}}</option>
+                                    </select>
+                                </div>
+                                <div class="">
+                                    <!--<br/>-->
+                                    <label class="mini-title category-title">Вибір пiдкатегорії:</label>
+                                    <select class="form-control category-form"  v-model="checkedProduct.category_id">
+                                        <option :value="null">Оберіть категорію</option>
+                                        <option :value="children.id" v-for="children in current_category.children" :key="children.id" :selected="children.id == checkedProduct.category_id">@{{children.name}}</option>
+                                    </select>
+
+                                </div>
+                                </div>
 
 
 

@@ -75,14 +75,17 @@ class UserShopController extends Controller
         $product->currencies = Currency::all();
         $product->delivery_type = DeliveryType::all();
         $product->features = json_decode($product->features);
-        $categories = Category::where('parent_category_id', null)->get();
-        return view('user_shop.shops.edit' , compact('product'));
+        $product->categories = json_decode(Category::where('parent_category_id', null)->get());
+        $product->categories_curr = Category::all();
+
+
+        return view('user_shop.shops.edit' , compact(['product']));
     }
 
     public function updateProduct(EditValidation $request, $id)
     {
         $product = Product::findOrFail($id);
-        $data = $request->only(['name', 'description', 'price']);
+        $data = $request->only(['name', 'description', 'price', 'category_id']);
         $data['features'] = json_encode($request->input('features'));
         $currency = $request->input('currency');
         $data['currency_id'] = $currency['id'];
