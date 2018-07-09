@@ -141,7 +141,7 @@ class HomeController extends Controller
     public function filterShops(Request $request)
     {
         $v = Validator::make($request->all(), [
-            'category_ids' => 'present|array'
+            'category_ids' => 'present|array',
         ]);
 
         if (count($v->errors())) {
@@ -149,15 +149,35 @@ class HomeController extends Controller
         }
         $per_page = 20;
         $category_ids = $request->input('category_ids');
-        if (count($category_ids)) {
-            $shop_list = UserShops::whereHas('products', function ($q) use ($category_ids) {
-                $q->whereIn('category_id', $category_ids);
+
+        $clear_category_ids = [];
+
+        foreach ($category_ids as $category_id) {
+            $category = Category::find($category_id);
+            array_push($clear_category_ids, $category_id);
+            if (!$category->parent_category_id) {
+
+                $all_categories_ids = $category->children()->get()->pluck('id')->toArray();
+
+                if ($all_categories_ids) {
+                    $clear_category_ids = array_merge($clear_category_ids, $all_categories_ids);
+                }
+            }
+        }
+        \Log::info($clear_category_ids);
+        if (count($clear_category_ids)) {
+           $shop_list = UserShops::whereHas('products', function ($q) use ($clear_category_ids) {
+                $q->whereIn('category_id', $clear_category_ids);
             })->paginate($per_page);
+//            $cat = implode(',',$category_ids);
+//          $shop_list = \DB::select("SELECT id FROM user_shops WHERE user_shops.id in (select products.user_shop_id from products,categories  where category_id in ($cat) group by products.user_shop_id) ");
+//            #$category_ids*/
+          /*  $shop_list =DB::table('user_shops')->whereIn()*/
         } else {
             $shop_list = UserShops::paginate($per_page);
         }
 
-        return response()->json(['shop_list' => $shop_list], 200);
+        return response()->json(['shop_list' => $shop_list,'category'=> $category_ids], 200);
     }
 
     public function getShopListPost(Request $request)
