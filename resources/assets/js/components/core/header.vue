@@ -404,7 +404,10 @@
                 this.showChild = true;
                 this.subCategories = category.children;
                 this.checkedCat = category;
-                this.showUl = !this.showUl
+                this.showUl = !this.showUl;
+                     if(this.checkedCat.slug == 'rizne') {
+                                   this.showChild = false;
+                               };
             },
             logout(){
                 this.$http.post('/logout', {}).then(res => {
