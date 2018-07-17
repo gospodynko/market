@@ -20,6 +20,9 @@
     "webpack": "^2.7.0"
   },
   "dependencies": {
+    "gulp": "^3.9.1",
+    "laravel-elixir": "^6.0.0-18",
+    "laravel-elixir-vue-2": "^0.3.0",
     "moment": "^2.22.2",
     "pgwslider": "^2.3.1",
     "vue-awesome-swiper": "^3.1.3",
