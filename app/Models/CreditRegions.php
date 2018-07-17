@@ -14,7 +14,7 @@ use App\Eloquent\Model;
 class CreditRegions extends Model
 {
     public $timestamps = false;
-    protected $table = 'regions';
+    protected $table = 'regions_ua';
 
     protected $fillable = [
         'id',

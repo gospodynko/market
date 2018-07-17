@@ -60,7 +60,7 @@
                     <form id="form-conditions" action="">
                         <div class="credit-conditions">
                             <div class="reg-obl">
-                                <p>Де Ви зареєстровані?</p>
+                                <p>Оберіть місце вашої реєстрації</p>
                                 <div class="obl-select">
                                     <div class="select-side">
                                         <i class="obl obl-menu-down gray">
@@ -73,6 +73,7 @@
                                     </select>
                                 </div>
                             </div>
+                            <p>Відсутні страховки та комісії</p>
                             <div class="credit-union" v-for="branch in alliances">
                                 <!--<p>{{branch.alliance.title}}</p>-->
                                 <div>
@@ -87,7 +88,7 @@
                                             <!--<option>18 месяців</option>-->
                                             <!--<option>24 месяці</option>-->
                                         <!--</select>-->
-                                        <p>{{branch.alliance.title}}</p>
+                                        <p>Кредитна спiлка "{{branch.alliance.title}}"</p>
                                         <!--<p>{{branch.alliance.contacts}}</p>-->
                                     </div>
                                     <div class="btn-checkout-credit" @click.prevent="sendForm($event, branch.alliance.id)">

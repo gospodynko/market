@@ -410,7 +410,7 @@ $light-gray: #d0d4dc;
             }
         }
         .credit-union{
-            padding-bottom: 20px;
+            padding: 20px 0;
             border-bottom: 1px solid lightgray;
             p{
               width: 100%;
@@ -421,9 +421,10 @@ $light-gray: #d0d4dc;
             }
             div{
               display: flex;
+              height:auto;
               .credit-union-select {
                 position: relative;
-                height: 50px;
+                height: auto;
                 border-radius: 4px;
                 background-color: #ffffff;
                 .select-side {
@@ -459,6 +460,8 @@ $light-gray: #d0d4dc;
                 font-weight: 500;
                 line-height: 50px;
                 font-size: 28px;
+                height:auto;
+                word-wrap: break-word;
               }
               .btn-checkout-credit{
                 height: 49px;
