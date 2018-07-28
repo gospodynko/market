@@ -369,9 +369,9 @@
             justify-content: flex-end;
             align-items: center;
             flex-direction: column;
-            background: url("../img/no-image/no-image.jpg") no-repeat center;
+            background: url("../img/close.png") no-repeat center;
             &:hover{
-              background: url("../img/no-image/no-image.jpg") no-repeat center;
+              background: url("../img/close.png") no-repeat center;
               border: 1px solid $green-btn;
               box-shadow: 0px 7px 8px rgba(186,204,213,.3);
               p{
