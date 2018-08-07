@@ -12,6 +12,7 @@ use App\Mail\CreditOrder;
 use App\Models\CreditAlliances;
 use App\Models\CreditContacts;
 use App\Models\CreditRegions;
+use App\User;
 use FontLib\Table\Type\post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
