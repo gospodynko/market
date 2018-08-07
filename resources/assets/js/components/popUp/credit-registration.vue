@@ -154,9 +154,7 @@
                         </div>
                     </div>
                     <form id="form-user-info" @submit.prevent="sendMobForm">
-                        <div class="popup-regMBtn">
-                            <button type="submit"><p>Відправити</p></button>
-                        </div>
+
                         <div class="popup-credit-caption">ПІБ</div>
                         <input type="text" name="name" value="" v-model="userData.fio" id="firstName" :class="{'error': errors.fio}" required>
                         <div class="popup-credit-caption">E-mail</div>
@@ -175,9 +173,10 @@
                                 <option :value="type.name" v-for="type in payTypes">{{type.name}}</option>
                             </select>
                         </div>
-                        <!--<div class="popup-regMBtn">-->
-                            <!--<button type="submit"><p>Відправити</p></button>-->
-                        <!--</div>-->
+                        <div class="popup-regMBtn">
+                            <button type="submit"><p>Відправити</p></button>
+                        </div>
+                        <p>Ця інформація потрібна для швидкого з’єднання з Вами представником кредитної спілки</p>
                     </form>
                 </div>
             </transition>
