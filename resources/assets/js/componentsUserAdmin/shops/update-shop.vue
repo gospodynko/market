@@ -5,7 +5,7 @@
                 <h2 class="title">&nbsp;&nbsp;&nbsp;&nbsp;Внесіть зміни: </h2>
                 <div class="col-lg-6">
                     <div class="panel panel-info">
-                        <div class="panel-heading"><i class="glyphicon glyphicon-menu-right"></i>&nbsp Редагування назви компанii:</div>
+                        <div class="panel-heading"><i class="glyphicon glyphicon-menu-right"></i>&nbsp Редагування назви магазину в маркетi:</div>
                         <div class="panel-body">
                             <label>Змiнiть назву:</label>
                             <input type="text" class="form-control"  v-model="checkedShop.name">
