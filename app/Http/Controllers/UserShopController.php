@@ -322,8 +322,9 @@ class UserShopController extends Controller
         }
 
         $products = $shop->products()->orderBy('id', 'DESC')->paginate(6);
+      
 //        dd($products);
 
-        return view('user_shop.shops.show', compact('shop', 'categories', 'products'));
+        return view('user_shop.shops.show', compact('shop', 'categories', 'products','currency'));
     }
 }
