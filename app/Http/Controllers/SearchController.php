@@ -22,7 +22,7 @@ class SearchController extends Controller
                                         ->whereHas('user_shop', function ($q){
                                             $q->where('status', 1);
                                         })
-                                        ->orderby($sort['type'], $sort['sort'])
+                                        ->orderBy($sort['type'], $sort['sort'])
                                         ->paginate($page_count);
 
         return view('search',['data' => ['products' => $products, 'q' => $request->input('q'), 'sort' => $request->input('sort')?:'min']]);
@@ -32,6 +32,7 @@ class SearchController extends Controller
     {
         $page_count = 12;
         $filter_type = $request->input('sort');
+
         if($filter_type == 'plus'){
             $filter_type = ['type' => 'price', 'sort' => 'DESC'];
         } else {
@@ -44,9 +45,10 @@ class SearchController extends Controller
                             ->whereHas('user_shop', function ($q){
                                 $q->where('status', 1);
                             })
-                            ->orderby($filter_type['type'], $filter_type['sort'])
+                            ->orderBy($filter_type['type'], $filter_type['sort'])
                             ->paginate($page_count);
 
+    \Log::info($products);
         return response()->json(['products' => $products], 200);
     }
 }
