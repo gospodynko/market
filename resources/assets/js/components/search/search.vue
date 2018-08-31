@@ -6,7 +6,7 @@
                 <div class="found-list">
                     <h2>Знайдено {{data.products.total}} результатів</h2>
                 </div>
-                <div class="btn-filter" @click="showFilter">
+                <div class="btn-filter" >
                     <div>
                         <a class="a-btn-filter" href="#">
                             <div class="svg-filter">
@@ -235,7 +235,7 @@
                 <div class="footer-search-wrap">
                     <div class="show-all-btn-wrap" v-if="searchProducts && searchProducts.total > 12 && searchProducts.last_page !== searchProducts.current_page">
                         <vue-ladda class="btn show-more" @click="getNew" :loading="loadProduct">Показати ще</vue-ladda>
-                        <!--<button class="btn" @click="getNew">Показать еще</button>-->
+                       <!-- <button class="btn" @click="getNew">Показать еще</button>-->
                     </div>
                 </div>
             </div>
@@ -278,11 +278,15 @@
                     q: this.data.q,
                     page: this.searchProducts.current_page + 1
                 }
+
                 this.$http.post('/search', data).then(res => {
                     this.searchProducts.current_page = res.data.products.current_page
+
                     res.data.products.data.forEach(product => {
                         this.searchProducts.data.push(product);
+
                     })
+
                     this.loadProduct = false
                 }, err => {
 
