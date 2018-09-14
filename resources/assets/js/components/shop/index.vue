@@ -297,8 +297,10 @@
                     page: this.page
                 }
                 if (this.sortType) {
+                    console.log(this.sortType)
                     this.sortTypes.forEach(type => {
                         if (+type.id === +this.sortType) {
+                            console.log()
                             data.order_by = type.slug
                             data.order_by_type = type.type
                         }
@@ -320,8 +322,11 @@
             },
             sortFilter () {
                 let data = {}
+              //  console.log(data)
+             //   console.log(this.sortTypes)
                 this.sortTypes.forEach(type => {
-                    if (+type.id === +this.sortType) {
+                    if (+type.id == +this.sortType) {
+
                         data.order_by = type.slug
                         data.order_by_type = type.type
                     }
