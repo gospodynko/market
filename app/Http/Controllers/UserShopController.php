@@ -296,7 +296,13 @@ class UserShopController extends Controller
             return $validation;
         }
 
-        $products = $shop->products()->orderBy('id', 'DESC')->applyFilters($filters)->paginate(6);
+        if($request){
+            $products = $shop->products()->orderBy($filters['order_by'],$filters['order_by_type'] )->applyFilters($filters)->paginate(6);
+        }
+        else{
+            $products = $shop->products()->orderBy('id', 'DESC')->applyFilters($filters)->paginate(6);
+        }
+
         return $products;
     }
 
